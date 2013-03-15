@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        android:name="Basic menu"
+
+        >
+<!--    <item
+        android:id="@+id/settingsItem"
+        android:icon="@drawable/action_settings"
+        android:title="@string/settings"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        >
+
+    </item>
+-->
+    <item
+        android:id="@+id/setDataItem"
+        android:icon="@drawable/device_access_data_usage"
+        android:title="@string/setData"
+        android:orderInCategory="200"
+        android:showAsAction="ifRoom"
+        >
+    </item>
+
+</menu>

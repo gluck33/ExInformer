@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ex-informer-lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ex-informer-lib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
