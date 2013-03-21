@@ -62,7 +62,7 @@ public class main extends ListActivity {
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
             final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vNomView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
-             valFromDbAdapter = new ru.openitr.exinformerlib.ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
+             valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
             setListAdapter(valFromDbAdapter);
             //Титл бар
 
@@ -228,14 +228,15 @@ public class main extends ListActivity {
         protected Integer doInBackground(Void...params){
             int res = OK;
                 publishProgress();
-//                DailyInfoStub infoStub = new DailyInfoStub();
                 try {
                     if (db.needUpdate(onDate)) {
                         if (internetAvailable()){
                             ArrayList<Currency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
-                            db.deleteAllRecord();
+                            //db.deleteAllRows();
                             for (Currency currencyRecord:infoStub){
-                                db.insertCurRow(currencyRecord);
+                                if (db.updateCurrencyRow(currencyRecord) == 0) {
+                                    db.insertCurrencyRow(currencyRecord);
+                                }
                             }
                         }
                         else res = NETWORK_DISABLE;

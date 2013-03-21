@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ExInformer.iml" filepath="$PROJECT_DIR$/ExInformer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../exinformerlib/ru.openitr.exinformerlib.iml" filepath="$PROJECT_DIR$/../exinformerlib/ru.openitr.exinformerlib.iml" />
     </modules>
   </component>
 </project>

@@ -27,6 +27,7 @@ public class Currency {
     }
 
 
+
     public Currency(String vName, int vNom, Float vCurs, String vchCode, int vCode, Date vDate) {
         this.vName = vName;
         this.vNom = vNom;
@@ -36,29 +37,35 @@ public class Currency {
         this.vDate = vDate;
     }
 
-    public String getvName(){
+    public String getvName() {
         return this.vName;
     }
+
     public int getvNom() {
         return this.vNom;
     }
-    public Float getvCurs(){
+
+    public Float getvCurs() {
         return this.vCurs;
     }
-    public String getVchCode(){
+
+    public String getVchCode() {
         return this.vchCode;
     }
-    public void setvName(String vName){
+
+    public void setvName(String vName) {
         this.vName = vName;
     }
 
-    public void setvNom(int vNom){
+    public void setvNom(int vNom) {
         this.vNom = vNom;
     }
-    public void setvCurs(Float vCurs){
+
+    public void setvCurs(Float vCurs) {
         this.vCurs = vCurs;
     }
-    public void setVchCode (String vchCode){
+
+    public void setVchCode(String vchCode) {
         this.vchCode = vchCode;
     }
 
@@ -72,15 +79,15 @@ public class Currency {
 
     @Override
     // TODO Продумать и переделать toString
-    public String toString(){
-      return String.format("%s %s %s %s", this.vchCode, this.vNom, this.vCurs, this.vName);
+    public String toString() {
+        return String.format("%s %s %s %s", this.vchCode, this.vNom, this.vCurs, this.vName);
     }
 
-    public String vNomAsString(){
+    public String vNomAsString() {
         return Integer.toString(this.vNom);
     }
 
-    public String vCursAsString(){
+    public String vCursAsString() {
         return Float.toString(this.vCurs);
     }
 
@@ -92,9 +99,10 @@ public class Currency {
         this.vDate = vDate;
     }
 
-    public String vDateAsString(){
+    public String vDateAsString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dat = sdf.format(this.vDate);
         return dat;
     }
+
 }
