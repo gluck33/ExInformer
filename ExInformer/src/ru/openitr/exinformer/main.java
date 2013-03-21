@@ -79,6 +79,11 @@ public class main extends ListActivity {
         super.onResume();
     }
 */
+    @Override
+    public void onDestroy(){
+        db.close();
+    }
+
     private DatePickerDialog.OnDateSetListener cDateSetListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             getExchange(new Date(year-1900, month, day), false);

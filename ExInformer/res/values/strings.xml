@@ -24,4 +24,6 @@
     <!-- Menu strings -->
     <string name="settings">Settings</string>
     <string name="setData">Set exchange date</string>
+    <!-- Other -->
+    <string name="valItemVisible">Visible</string>
 </resources>

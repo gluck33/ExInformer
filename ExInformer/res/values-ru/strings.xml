@@ -24,4 +24,7 @@
     <!-- Menu strings -->
     <string name="settings">Настройки</string>
     <string name="setData">Установить дату курса</string>
+    <!-- Other -->
+    <string name="valItemVisible">Отображать</string>
+
 </resources>

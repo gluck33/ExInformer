@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView" android:layout_gravity="center_horizontal|top"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView1" android:layout_gravity="center_horizontal|top"/>
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/valItemVisible"
+                android:id="@+id/visibleCheckBox" android:layout_gravity="center_horizontal|top" android:clickable="false"
+                android:longClickable="false" android:enabled="true" android:checked="false" android:focusable="false"
+                android:textAlignment="viewStart"/>
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton" android:layout_gravity="center_horizontal|top"
+                android:background="@drawable/money"/>
+    </TableRow>
+</LinearLayout>
