@@ -1,4 +1,4 @@
-package ru.openitr.exinformerlib;
+package ru.openitr.exinformer;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import ru.openitr.exinformer.exinformerlib.Icurrency;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -21,18 +22,18 @@ public class CurrencyDbAdapter {
     //private static final String TAG = "exInformer";
     private static final String DATABASE_NAME = "exInformer.db";
     private static String CURRENCY_TABLE = "curtable";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     // Имена столбцов
     public static final String KEY_ID = "_id";
-    public static final String KEY_CODE = "val_code";
-    public static final String KEY_CHARCODE = "v_char_code";
-    public static final String KEY_NOMINAL = "v_nom";
-    public static final String KEY_VCURS = "v_curs";
-    public static final String KEY_VNAME = "v_name";
-    public static final String KEY_DATE = "v_curs_date";
-    private static final String KEY_IMAGE_URI = "v_flag_image";
-    public static final String KEY_VISIBLE = "v_curs_visible";
-    public static final String KEY_ORDER = "v_curs_order";
+    public static final String KEY_CODE = "vCode";
+    public static final String KEY_CHARCODE = "vchCode";
+    public static final String KEY_NOMINAL = "vNom";
+    public static final String KEY_VCURS = "vCurs";
+    public static final String KEY_VNAME = "vName";
+    public static final String KEY_DATE = "vDate";
+    private static final String KEY_IMAGE_URI = "vFlagImageUri";
+    public static final String KEY_VISIBLE = "vVisible";
+    public static final String KEY_ORDER = "vOrder";
 
     // Индексы столбцов
     public static final int VALINDEX_COLUMN = 0;
@@ -60,7 +61,6 @@ public class CurrencyDbAdapter {
             KEY_VISIBLE + " integer," +
             KEY_ORDER + " integer" +
             ");";
-    //+ " CREATE TRIGGER set_vcurs_order_default AFTER  INSERT  ON curtable BEGIN update curtable set v_curs_order = new.rowid where _id = new._id; END;";
     public static final String[] ALL_COLUMNS = {KEY_ID, KEY_CODE, KEY_CHARCODE, KEY_NOMINAL, KEY_VCURS, KEY_VNAME, KEY_DATE, KEY_IMAGE_URI, KEY_VISIBLE, KEY_ORDER};
     public static final String[] ALL_VISIBLE_COLUMNS = {KEY_IMAGE_URI, KEY_CHARCODE, KEY_NOMINAL, KEY_VCURS, KEY_VNAME};
     //    private static final String DELETE_AUTO_INCREMENT = "DELETE FROM sqlite_sequence WHERE name='"+CURRENCY_TABLE+"';";
@@ -82,7 +82,7 @@ public class CurrencyDbAdapter {
 
         @Override
         public void onUpgrade(SQLiteDatabase _db, int _oldVersion, int __newVersion) {
-            _db.execSQL("drop table if exist " + CURRENCY_TABLE);
+            _db.execSQL("drop table if exists " + CURRENCY_TABLE);
             onCreate(_db);
 
         }
@@ -116,20 +116,20 @@ public class CurrencyDbAdapter {
     }
 
     /**
-     * Запихивает экземпляр Currency в ContentValues для дальнейшего использования в
+     * Запихивает экземпляр Icurrency в ContentValues для дальнейшего использования в
      * разных запросах.
-     * @param _currency
+     * @param _icurrency
      * @return Запихнутые в ContentValues данные о валюте.
      */
 
-    private ContentValues currencyToContentValues(Currency _currency){
+    private ContentValues currencyToContentValues(Icurrency _icurrency){
         ContentValues cv = new ContentValues();
-        cv.put(KEY_CODE, _currency.getvCode());
-        cv.put(KEY_CHARCODE, _currency.getVchCode());
-        cv.put(KEY_NOMINAL, _currency.getvNom());
-        cv.put(KEY_VCURS, _currency.getvCurs());
-        cv.put(KEY_VNAME, _currency.getvName());
-        cv.put(KEY_DATE, _currency.getvDate().getTime());
+        cv.put(KEY_CODE, _icurrency.getvCode());
+        cv.put(KEY_CHARCODE, _icurrency.getVchCode());
+        cv.put(KEY_NOMINAL, _icurrency.getvNom());
+        cv.put(KEY_VCURS, _icurrency.getvCurs());
+        cv.put(KEY_VNAME, _icurrency.getvName());
+        cv.put(KEY_DATE, _icurrency.getvDate().getTime());
         return cv;
     }
 
@@ -138,15 +138,15 @@ public class CurrencyDbAdapter {
      * Вставить строку в таблицу
      */
 
-    public long insertCurrencyRow(Currency currency) {
-        String vChCode = currency.getVchCode().toLowerCase();
+    public long insertCurrencyRow(Icurrency icurrency) {
+        String vChCode = icurrency.getVchCode().toLowerCase();
         String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + vChCode;
         Integer rowId = 0;
         Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
         if (cursor.getCount() != 0 && cursor.moveToFirst()) {
             rowId = cursor.getInt(0);
         }
-        ContentValues newCurRow = currencyToContentValues(currency);
+        ContentValues newCurRow = currencyToContentValues(icurrency);
         newCurRow.put(KEY_IMAGE_URI, imageURI);
         newCurRow.put(KEY_VISIBLE, 1);
         newCurRow.put(KEY_ORDER, rowId + 1);
@@ -154,15 +154,39 @@ public class CurrencyDbAdapter {
     }
 
     /**
+     * Вставляет строку в таблицу curtable
+     * @param _cv Contentvalues
+     * @return
+     */
+    public long insertCurrencyRow(ContentValues _cv) {
+        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString("vChCode");
+        Integer rowId = 0;
+        Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
+        if (cursor.getCount() != 0 && cursor.moveToFirst()) {
+            rowId = cursor.getInt(0);
+        }
+        _cv.put(KEY_IMAGE_URI, imageURI);
+        _cv.put(KEY_VISIBLE, 1);
+        _cv.put(KEY_ORDER, rowId + 1);
+        return db.insert(CURRENCY_TABLE, null, _cv);
+    }
+
+
+
+    /**
      * Изменяет строку данных о валюте в таблице.
-     * @param _currency
+     * @param _icurrency
      * @return количество измененных строк.
      */
 
 
-    public int updateCurrencyRow (Currency _currency){
-        ContentValues cv = currencyToContentValues(_currency);
-        return db.update(CURRENCY_TABLE, cv, KEY_CHARCODE+" = ?", new String[]{_currency.getVchCode()});
+    public int updateCurrencyRow (Icurrency _icurrency){
+        ContentValues cv = currencyToContentValues(_icurrency);
+        return db.update(CURRENCY_TABLE, cv, KEY_CHARCODE+" = ?", new String[]{_icurrency.getVchCode()});
+    }
+
+    public int updateCurrencyRow(ContentValues _cv, String selection, String[] selectionArgs){
+       return db.update(CURRENCY_TABLE, _cv, selection, selectionArgs);
     }
 
 
@@ -195,7 +219,7 @@ public class CurrencyDbAdapter {
      * @return
      */
 
-    public Currency getCurrency(int rowIndex) {
+    public Icurrency getCurrency(int rowIndex) {
         Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_ID + "=" + rowIndex, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
             throw new SQLiteException("No to do row found: " + rowIndex);
@@ -207,17 +231,17 @@ public class CurrencyDbAdapter {
         int vCode = cursor.getInt(VALCODE_COLUMN); // Внутренний код валюты.
         java.util.Date vDate = new java.util.Date(new Date(cursor.getLong(VALDATE_COLUMN)).getTime()); // Дата курса.
         cursor.close();
-        return new Currency(vName, vNom, vCurs, vchCode, vCode, vDate);
+        return new Icurrency(vName, vNom, vCurs, vchCode, vCode, vDate);
     }
 
     /**
      * Поиск в таблице по буквенному коду валютыю
      *
      * @param valChCode - Буквенный код валюты.
-     * @return Экземпляр Currency.
+     * @return Экземпляр Icurrency.
      */
 
-    public Currency getCurency(String valChCode) {
+    public Icurrency getCurency(String valChCode) {
         Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_CHARCODE + "=" + valChCode, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
             throw new SQLiteException("No to do row found for code: " + valChCode);
@@ -226,6 +250,11 @@ public class CurrencyDbAdapter {
         return getCurrency(id);
     }
 
+    public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
+        return db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, sortOrder,null);
+    }
+
+
     /**
      * @return Дата курса в базе.
      */
@@ -233,7 +262,7 @@ public class CurrencyDbAdapter {
     public Date getCursDate() {
         Date curD;
         try {
-            Currency cur = getCurrency(1);
+            Icurrency cur = getCurrency(1);
         } catch (SQLiteException e) {
             e.printStackTrace();
             return new Date(0);

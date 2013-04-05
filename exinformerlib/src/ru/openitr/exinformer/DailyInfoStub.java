@@ -4,13 +4,14 @@
  *
  * */
 
-package ru.openitr.exinformerlib;
+package ru.openitr.exinformer;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+import ru.openitr.exinformer.exinformerlib.Icurrency;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -25,10 +26,10 @@ public class DailyInfoStub {
      * Метод запрашиват курс валют на заданную дату
      * и разбирает ответ в ArrayList.
      * Вх. параметр onDate: Дата курса валют, тип - Data
-     * Вых. параметр: массив курсов валют, тип ArrayList<Currency>
+     * Вых. параметр: массив курсов валют, тип ArrayList<Icurrency>
      */
-    public ArrayList<Currency> getCursOnDate(Date onDate) throws Exception {
-        ArrayList<Currency> result = new ArrayList<Currency>();
+    public ArrayList<Icurrency> getCursOnDate(Date onDate) throws Exception {
+        ArrayList<Icurrency> result = new ArrayList<Icurrency>();
         String methodName = "GetCursOnDate";
         String soapAction = "http://web.cbr.ru/GetCursOnDate";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T00:00:00'");
@@ -71,7 +72,7 @@ public class DailyInfoStub {
                 int valNom = Integer.parseInt((valCursArrayElement.getProperty("Vnom").toString()));
                 float valCurs = Float.parseFloat(valCursArrayElement.getProperty("Vcurs").toString());
                 int vCode = Integer.parseInt(valCursArrayElement.getProperty("Vcode").toString());
-                result.add(new Currency(valName, valNom, valCurs, valChCode, vCode, onDate));
+                result.add(new Icurrency(valName, valNom, valCurs, valChCode, vCode, onDate));
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();

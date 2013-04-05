@@ -1,4 +1,4 @@
-package ru.openitr.exinformerlib;
+package ru.openitr.exinformer;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
+import ru.openitr.exinformer.CurrencyDbAdapter;
 
 /**
  * Created by
@@ -21,12 +22,12 @@ public class ValFromDbAdapter extends SimpleCursorAdapter implements ViewBinder 
     }
 
     @Override
-    public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+     public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
         int vChCodeIndex = cursor.getColumnIndex(CurrencyDbAdapter.KEY_CHARCODE);
         if (columnIndex == vChCodeIndex) {
             String vChCode = cursor.getString(vChCodeIndex).toLowerCase();
-            String uriString = "android.resource://ru.openitr.exinformer/drawable/f_" + vChCode;
-            ((ImageView) view).setImageURI(Uri.parse(uriString));
+            String uriString = "android.resource://ru.openitr.exinformer/drawable/f_"+vChCode;
+            ((ImageView)view).setImageURI(Uri.parse(uriString));
             return false;
         }
         return false;
