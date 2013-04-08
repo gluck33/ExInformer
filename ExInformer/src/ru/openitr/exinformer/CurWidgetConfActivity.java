@@ -3,8 +3,8 @@ package ru.openitr.exinformer;
 /**
  * Created by
  * User: oleg
- * Date: 05.04.13
- * Time: 16:16
+ * Date: 08.04.13
+ * Time: 11:46
  */
-public class Widget {
+public class CurWidgetConfActivity {
 }
