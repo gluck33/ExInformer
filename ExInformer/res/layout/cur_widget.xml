@@ -2,6 +2,39 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="@dimen/widget_margin">
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EUR"
+            android:id="@+id/widgetVchCode"
+            android:layout_centerHorizontal="true" android:layout_below="@+id/flagImageView" android:autoText="true"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:singleLine="false"
+            android:textColor="@android:color/white" android:layout_marginTop="0dp"
+            android:layout_alignParentTop="false" android:layout_alignParentLeft="false"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30,70"
+            android:id="@+id/widgetVCurs"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="60dp" android:linksClickable="false" android:longClickable="false"
+            android:singleLine="true" android:textColor="@android:color/white" android:textAlignment="center"
+            />
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flagImageView"
+            android:src="@drawable/f_usd"
+            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
 </RelativeLayout>

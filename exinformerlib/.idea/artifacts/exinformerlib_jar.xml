@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="exinformerlib:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/exinformerlib_jar</output-path>
+    <root id="archive" name="exinformerlib.jar">
+      <element id="module-output" name="exinformerlib" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/ksoap2-android-assembly-3.0.0-RC.2-jar-with-dependencies.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

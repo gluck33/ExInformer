@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import ru.openitr.exinformer.exinformerlib.Icurrency;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -93,7 +92,6 @@ public class CurrencyDbAdapter {
      */
     public CurrencyDbAdapter(Context _context) {
         dbHelper = new curDbHelper(_context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.open();
     }
 
     /**
@@ -220,6 +218,7 @@ public class CurrencyDbAdapter {
      */
 
     public Icurrency getCurrency(int rowIndex) {
+        this.open();
         Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_ID + "=" + rowIndex, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
             throw new SQLiteException("No to do row found: " + rowIndex);
@@ -251,7 +250,10 @@ public class CurrencyDbAdapter {
     }
 
     public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
-        return db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, sortOrder,null);
+        this.open();
+        Cursor res = db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, null, sortOrder);
+        return res;
+
     }
 
 

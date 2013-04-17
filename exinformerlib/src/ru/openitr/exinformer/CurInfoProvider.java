@@ -7,7 +7,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
-import ru.openitr.exinformerlib.CurrencyDbAdapter;
 
 /**
  * Created by

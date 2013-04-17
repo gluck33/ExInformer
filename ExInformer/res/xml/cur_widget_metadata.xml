@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-</PreferenceScreen>
+<appwidget-provider
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:initialLayout="@layout/cur_widget"
+        android:minHeight="40dp"
+        android:minWidth="40dp"
+        android:updatePeriodMillis="2400000"
+        android:configure="ru.openitr.exinformer.CurWidgetConfActivity">
+</appwidget-provider>

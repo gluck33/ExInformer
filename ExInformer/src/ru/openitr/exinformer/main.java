@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,10 +16,6 @@ import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
-import ru.openitr.exinformerlib.Currency;
-import ru.openitr.exinformerlib.CurrencyDbAdapter;
-import ru.openitr.exinformerlib.DailyInfoStub;
-import ru.openitr.exinformerlib.ValFromDbAdapter;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -27,7 +24,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class main extends ListActivity {
-    Cursor mCursor;
     boolean customTitleSupported;
     static Date onDate = new Date();
     Calendar calendar = Calendar.getInstance();
@@ -43,8 +39,8 @@ public class main extends ListActivity {
     static final private int NOT_RESPOND = 21;
     static final private int NO_DATA = 22;
     static final private int NETWORK_DISABLE = 23;
-
-
+    static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
+    private Cursor mCursor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,15 +50,17 @@ public class main extends ListActivity {
         onDate.setMinutes(0);
         onDate.setSeconds(0);
         db = new CurrencyDbAdapter(this);
-        getExchange(onDate, (savedInstanceState == null ? true : false));
-        mCursor = db.getAllCurRowsCursor();
+        getExchange(onDate, (savedInstanceState == null));
+        mCursor = getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS,null, null,null);
+                //db.getAllCurRowsCursor();
+        startManagingCursor(mCursor);
         try {
             ListView listView = getListView();
             listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
             final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vNomView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
-             valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
+            valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
             setListAdapter(valFromDbAdapter);
             //Титл бар
 
@@ -81,6 +79,7 @@ public class main extends ListActivity {
 */
     @Override
     public void onDestroy(){
+        super.onDestroy();
         db.close();
     }
 
@@ -234,13 +233,14 @@ public class main extends ListActivity {
             int res = OK;
                 publishProgress();
                 try {
+                    db.open();
                     if (db.needUpdate(onDate)) {
                         if (internetAvailable()){
-                            ArrayList<Currency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
+                            ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
                             //db.deleteAllRows();
-                            for (Currency currencyRecord:infoStub){
-                                if (db.updateCurrencyRow(currencyRecord) == 0) {
-                                    db.insertCurrencyRow(currencyRecord);
+                            for (Icurrency icurrencyRecord :infoStub){
+                                if (db.updateCurrencyRow(icurrencyRecord) == 0) {
+                                    db.insertCurrencyRow(icurrencyRecord);
                                 }
                             }
                         }
@@ -256,8 +256,9 @@ public class main extends ListActivity {
                     res = NO_DATA;
                 } catch (Exception e){
                     e.printStackTrace();
+                    db.close();
                 }
-
+            db.close();
             return res;
         }
 

@@ -26,5 +26,6 @@
     <string name="setData">Установить дату курса</string>
     <!-- Other -->
     <string name="valItemVisible">Отображать</string>
+    <string name="Select">Выбрать</string>
 
 </resources>
