@@ -52,7 +52,6 @@ public class main extends ListActivity {
         db = new CurrencyDbAdapter(this);
         getExchange(onDate, (savedInstanceState == null));
         mCursor = getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS,null, null,null);
-                //db.getAllCurRowsCursor();
         startManagingCursor(mCursor);
         try {
             ListView listView = getListView();
@@ -65,6 +64,9 @@ public class main extends ListActivity {
             //Титл бар
 
             customTitleBar(getText(R.string.app_name).toString());
+            if (customTitleSupported){
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,6 +203,10 @@ public class main extends ListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        if (!customTitleSupported){
+            MenuItem dataSetItem = menu.findItem(R.id.setDataItem);
+            dataSetItem.setIcon(R.drawable.holo_dark_device_access_data_usage);
+        }
         return true;
     }
 

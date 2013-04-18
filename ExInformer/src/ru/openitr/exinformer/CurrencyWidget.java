@@ -74,6 +74,7 @@ public class CurrencyWidget extends AppWidgetProvider {
                 widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(cur/nominal));
                 widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
 
+
             }finally {
                 cursor.close();
             }

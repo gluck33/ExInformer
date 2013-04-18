@@ -2,22 +2,40 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/widget_margin">
+                android:layout_height="wrap_content"
+                android:id="@+id/curWidgetRLayout" android:clickable="false"
+                android:focusable="false" android:focusableInTouchMode="false"
+                android:background="@drawable/widget_bck" android:alpha="0.8"
+                android:labelFor="1" android:textAlignment="center">
 
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flagImageView"
+            android:src="@drawable/f_usd"
+            android:adjustViewBounds="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:baselineAlignBottom="false" android:clickable="false"
+            android:cropToPadding="false" android:focusable="false" android:focusableInTouchMode="false"
+            android:longClickable="true"
+            android:scaleType="center"
+            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EUR"
             android:id="@+id/widgetVchCode"
-            android:layout_centerHorizontal="true" android:layout_below="@+id/flagImageView" android:autoText="true"
+            android:autoText="false"
             android:shadowColor="@android:color/black"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
             android:singleLine="false"
-            android:textColor="@android:color/white" android:layout_marginTop="0dp"
-            android:layout_alignParentTop="false" android:layout_alignParentLeft="false"/>
+            android:textColor="@android:color/white"
+            android:editable="false" android:ellipsize="middle"
+            android:enabled="false"
+            android:focusableInTouchMode="false" android:gravity="center"
+            android:layout_centerHorizontal="true" android:layout_above="@+id/widgetVCurs"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,14 +45,10 @@
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="60dp" android:linksClickable="false" android:longClickable="false"
+            android:linksClickable="false" android:longClickable="false"
             android:singleLine="true" android:textColor="@android:color/white" android:textAlignment="center"
-            />
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/flagImageView"
-            android:src="@drawable/f_usd"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
+            android:gravity="center"
+            android:layout_centerHorizontal="true" android:layout_alignParentBottom="true"
+            android:paddingBottom="5dp"/>
+
 </RelativeLayout>
