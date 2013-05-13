@@ -1,22 +1,24 @@
 package ru.openitr.exinformer;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import ru.openitr.exinformer.DailyInfoStub;
-import ru.openitr.exinformer.Icurrency;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by
- * User: Jleg Balditsyn
+ * User: Oleg Balditsyn
  * Date: 24.04.13
  * Time: 9:41
  * Сервис запрашивает информацию с сервера cbr.ru и помещает её в БД.
@@ -26,32 +28,55 @@ public class InfoRefreshService extends Service{
     static final private int NOT_RESPOND = 21;
     static final private int NO_DATA = 22;
     static final private int NETWORK_DISABLE = 23;
-    private Cursor mCursor;
+    static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
+    static final String CURRENCY_UPDATED_INTENT = "ru.openitr.exinformer.CURRENCY_UPDATED";
+    static final String NOT_RESPOND_INTENT = "ru.openitr.exinformer.NOT_RESPOND";
+    static final String NO_DATA_INTENT = "ru.openitr.exinformer.NO_DATA";
+    static final String NETWORK_DISABLE_INTENT = "ru.openitr.exinformer.NETWORK_DISABLED";
+    AlarmManager alarms;
+    PendingIntent alarmIntent;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        String ALARM_ACTION;
+        ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
+        Intent intentToFire = new Intent(ALARM_ACTION);
+        alarmIntent = PendingIntent.getBroadcast(this,0,intentToFire,0);
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        int alarmType = AlarmManager.ELAPSED_REALTIME_WAKEUP;
+        alarms.setInexactRepeating(alarmType, 24*60*60*1000, AlarmManager.INTERVAL_DAY,alarmIntent);
+        new refreshCurrencyTask().execute(new Date());
+        return Service.START_NOT_STICKY;
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    private class refreshCurrencyTask extends AsyncTask<Void, Integer, Integer> {
+    private class refreshCurrencyTask extends AsyncTask<Date, Integer, Integer> {
 
         @Override
-        protected Integer doInBackground(Void...params){
+        protected Integer doInBackground(Date...params){
             int res = OK;
             publishProgress();
-            ContentResolver cResolver = getContentResolver();
+            Date onDate = params[0];
+            ContentResolver cr = getContentResolver();
+            if (!internetAvailable()) {
+                return NETWORK_DISABLE;
+            }
             try {
-
-                    if (internetAvailable()){
                         ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
                         for (Icurrency icurrencyRecord :infoStub){
-                            if (db.updateCurrencyRow(icurrencyRecord) == 0) {
-                                db.insertCurrencyRow(icurrencyRecord);
+                            ContentValues _cv = icurrencyRecord.toContentValues();
+                            if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
+                                Uri resultUri = cr.insert(Uri.parse(CURRENCY_URI), _cv);
                             }
                         }
-
-                    else res = NETWORK_DISABLE;
-                }
-
             } catch (IOException e) {
                 e.printStackTrace();
                 res = NOT_RESPOND;
@@ -61,9 +86,7 @@ public class InfoRefreshService extends Service{
                 res = NO_DATA;
             } catch (Exception e){
                 e.printStackTrace();
-                db.close();
             }
-            db.close();
             return res;
         }
 
@@ -75,19 +98,19 @@ public class InfoRefreshService extends Service{
         @Override
         protected void onPostExecute (Integer result){
             super.onPostExecute(result);
-            removeDialog(PROGRESS_DIALOG);
+            Intent resIntent = new Intent();
             switch (result) {
                 case NOT_RESPOND:
-                    removeDialog(NOT_RESPOND);
-                    showDialog(NOT_RESPOND);
+                    resIntent.setAction(NOT_RESPOND_INTENT);
                 case NETWORK_DISABLE:
-                    showDialog(NETSETTINGS_DIALOG);
+                    resIntent.setAction(NETWORK_DISABLE_INTENT);
                 case NO_DATA:
-//                    removeDialog(DATA_DIALOG);
-                    showDialog(ILLEGAL_DATA_DIALOD);
+                    resIntent.setAction(NO_DATA_INTENT);
+                default:
+                    resIntent.setAction(CURRENCY_UPDATED_INTENT);
             }
-            mCursor.requery();
-            setDateOnTitle(onDate);
+            sendBroadcast (resIntent);
+            stopSelf();
         }
 
     }

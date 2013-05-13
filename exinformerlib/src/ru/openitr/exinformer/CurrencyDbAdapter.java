@@ -114,25 +114,6 @@ public class CurrencyDbAdapter {
     }
 
     /**
-     * Запихивает экземпляр Icurrency в ContentValues для дальнейшего использования в
-     * разных запросах.
-     * @param _icurrency
-     * @return Запихнутые в ContentValues данные о валюте.
-     */
-
-    private ContentValues currencyToContentValues(Icurrency _icurrency){
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_CODE, _icurrency.getvCode());
-        cv.put(KEY_CHARCODE, _icurrency.getVchCode());
-        cv.put(KEY_NOMINAL, _icurrency.getvNom());
-        cv.put(KEY_VCURS, _icurrency.getvCurs());
-        cv.put(KEY_VNAME, _icurrency.getvName());
-        cv.put(KEY_DATE, _icurrency.getvDate().getTime());
-        return cv;
-    }
-
-
-    /**
      * Вставить строку в таблицу
      */
 
@@ -144,7 +125,7 @@ public class CurrencyDbAdapter {
         if (cursor.getCount() != 0 && cursor.moveToFirst()) {
             rowId = cursor.getInt(0);
         }
-        ContentValues newCurRow = currencyToContentValues(icurrency);
+        ContentValues newCurRow = icurrency.toContentValues();
         newCurRow.put(KEY_IMAGE_URI, imageURI);
         newCurRow.put(KEY_VISIBLE, 1);
         newCurRow.put(KEY_ORDER, rowId + 1);
@@ -157,7 +138,7 @@ public class CurrencyDbAdapter {
      * @return
      */
     public long insertCurrencyRow(ContentValues _cv) {
-        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString("vChCode");
+        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString("vchCode").toLowerCase();
         Integer rowId = 0;
         Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
         if (cursor.getCount() != 0 && cursor.moveToFirst()) {
@@ -179,8 +160,10 @@ public class CurrencyDbAdapter {
 
 
     public int updateCurrencyRow (Icurrency _icurrency){
-        ContentValues cv = currencyToContentValues(_icurrency);
-        return db.update(CURRENCY_TABLE, cv, KEY_CHARCODE+" = ?", new String[]{_icurrency.getVchCode()});
+        ContentValues _cv = _icurrency.toContentValues();
+        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString("vchCode").toLowerCase();
+        _cv.put(KEY_IMAGE_URI, imageURI);
+        return db.update(CURRENCY_TABLE, _cv, KEY_CHARCODE+" = ?", new String[]{_icurrency.getVchCode()});
     }
 
     public int updateCurrencyRow(ContentValues _cv, String selection, String[] selectionArgs){
@@ -234,7 +217,7 @@ public class CurrencyDbAdapter {
     }
 
     /**
-     * Поиск в таблице по буквенному коду валютыю
+     * Поиск в таблице по буквенному коду валюты.
      *
      * @param valChCode - Буквенный код валюты.
      * @return Экземпляр Icurrency.

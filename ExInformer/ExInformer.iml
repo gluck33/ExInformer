@@ -19,6 +19,7 @@
     <orderEntry type="jdk" jdkName="Android 4.2 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ru.openitr.exinformerlib" />
+    <orderEntry type="library" name="ksoap2-android-assembly-3.0.0-RC.2-jar-with-dependencies" level="project" />
   </component>
 </module>
 

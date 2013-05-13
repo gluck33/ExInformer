@@ -104,7 +104,7 @@ public class CurInfoProvider extends ContentProvider {
             case URI_CURRENCY_ID:
                 String _vchCode = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)){
-                  selection = CurrencyDbAdapter.KEY_CHARCODE + " = " + _vchCode;
+                  selection = CurrencyDbAdapter.KEY_CHARCODE + " = " + "'" +_vchCode + "'";
                 } else {
                   selection = selection + " AND " + CurrencyDbAdapter.KEY_CHARCODE + " = " + _vchCode;
                 }

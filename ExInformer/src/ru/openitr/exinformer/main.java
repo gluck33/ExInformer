@@ -225,7 +225,7 @@ public class main extends ListActivity {
         onDate = newDate;
         if (newInstance || db.needUpdate(onDate))
             try {
-                new refreshCurrencyTask().execute();
+              startService(new Intent(this, InfoRefreshService.class));
             } catch (Exception e) {
                 e.printStackTrace();
             }

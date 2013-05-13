@@ -37,7 +37,7 @@
             </action>
         </intent-filter>
         <intent-filter>
-            <action android:name="ru.openitr.exinformer.CURRENCY_WIDGET_UPDATE"/>
+            <action android:name="ru.openitr.exinformer.CURRENCY_UPDATED"/>
         </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
@@ -45,5 +45,6 @@
 
             </meta-data>
         </receiver>
+        <service android:enabled="true" android:name=".InfoRefreshService"/>
     </application>
 </manifest> 

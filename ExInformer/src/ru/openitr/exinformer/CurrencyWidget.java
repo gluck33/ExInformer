@@ -20,7 +20,7 @@ import android.widget.RemoteViews;
 public class CurrencyWidget extends AppWidgetProvider {
 
     static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
-    public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.exinformer.CURRENCY_WIDGET_UPDATE";
+    public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.exinformer.CURRENCY_UPDATED";
 
     @Override
     public void onEnabled(Context context) {

@@ -155,4 +155,23 @@ public class Icurrency {
         return this;
     }
 
+    /**
+     * Запихивает экземпляр Icurrency в ContentValues для дальнейшего использования в
+     * разных запросах.
+     * @param
+     * @return Запихнутые в ContentValues данные о валюте.
+     */
+
+    public ContentValues toContentValues() {
+        ContentValues cv = new ContentValues();
+        cv.put(CurrencyDbAdapter.KEY_CODE, this.getvCode());
+        cv.put(CurrencyDbAdapter.KEY_CHARCODE, this.getVchCode());
+        cv.put(CurrencyDbAdapter.KEY_NOMINAL, this.getvNom());
+        cv.put(CurrencyDbAdapter.KEY_VCURS, this.getvCurs());
+        cv.put(CurrencyDbAdapter.KEY_VNAME, this.getvName());
+        cv.put(CurrencyDbAdapter.KEY_DATE, this.getvDate().getTime());
+        return cv;
+    }
+
+
 }
