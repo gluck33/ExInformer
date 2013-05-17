@@ -6,6 +6,7 @@
 
 package ru.openitr.exinformer;
 
+import android.util.Log;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
@@ -20,6 +21,7 @@ import java.util.Date;
 public class DailyInfoStub {
     private static final String namespace = "http://web.cbr.ru/";
     private static final String url = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
+    private static final String LOG_TAG = "CBInfo";
 
     /**
      * Метод запрашиват курс валют на заданную дату
@@ -49,7 +51,9 @@ public class DailyInfoStub {
 
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
+            Log.d(LOG_TAG, "InfoStub: Getting info from CB server.");
             androidHttpTransport.call(soapAction, envelope);
+            Log.d(LOG_TAG, "InfoStub: Info recieved from SB server. ");
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
@@ -59,6 +63,7 @@ public class DailyInfoStub {
         }
 
         /* Разбор ответа сервера */
+        Log.d(LOG_TAG, "InfoStub: Begin data parsing.");
         try {
             SoapObject resultRequest = (SoapObject) envelope.bodyIn;
             SoapObject array = (SoapObject) resultRequest.getProperty(0);
@@ -80,6 +85,7 @@ public class DailyInfoStub {
             e.printStackTrace();
             throw e;
         }
+        Log.d(LOG_TAG, "InfoStub: Return result data.");
         return result;
     }
 

@@ -87,7 +87,7 @@ public class CurInfoProvider extends ContentProvider {
         }
         long rowId = db.insertCurrencyRow(_cv);
         Uri resultUri = ContentUris.withAppendedId(CURRENCY_CONTENT_URI, rowId);
-        getContext().getContentResolver().notifyChange(resultUri,null);
+//        getContext().getContentResolver().notifyChange(resultUri,null);
         return resultUri;
     }
 
@@ -113,7 +113,7 @@ public class CurInfoProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong URI: "+ uri);
         }
         int result = db.updateCurrencyRow(contentValues, selection, selectionArgs);
-        getContext().getContentResolver().notifyChange(uri, null);
+//        getContext().getContentResolver().notifyChange(uri, null);
         return result;
     }
 }

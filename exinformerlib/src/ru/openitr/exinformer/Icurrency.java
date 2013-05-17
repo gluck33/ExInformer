@@ -1,7 +1,6 @@
 package ru.openitr.exinformer;
 
 import android.content.ContentValues;
-import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +14,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Icurrency {
-    static final String LOG_TAG = "CB informer";
+    static final String LOG_TAG = "CBInfo";
     private String vName;   // Наименование валюты.
     private int vNom;     // Номинал.
     private Float vCurs;    // Курс.
@@ -148,7 +147,6 @@ public class Icurrency {
                 this.vDate = new SimpleDateFormat("yyyy-MM-dd").parse(_cv.getAsString("vDate"));
             } catch (ParseException e) {
                 e.printStackTrace();
-                Log.d(LOG_TAG,"vDate must be as yyyy-MM-dd");
             }
         }
         else throw new IllegalArgumentException("The argument must contain a key vDate...");

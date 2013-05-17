@@ -4,7 +4,7 @@
     <string name="server_url">www.cbr.ru</string>
 
 <!-- Activitys items -->
-    <string name="app_name">Информер ЦБ РФ</string>
+    <string name="app_name">Информация ЦБ РФ</string>
     <string name ="app_title">Информация ЦБ РФ</string>
     <string name="vChcodeHead">Код</string>
     <string name="vNomHead">Номинал</string>

@@ -1,15 +1,15 @@
 package ru.openitr.exinformer;
 
 import android.app.*;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -27,8 +27,27 @@ public class main extends ListActivity {
     boolean customTitleSupported;
     static Date onDate = new Date();
     Calendar calendar = Calendar.getInstance();
-    ValFromDbAdapter valFromDbAdapter;
+
+     ValFromDbAdapter valFromDbAdapter;
     CurrencyDbAdapter db;
+    public static final boolean DEBUG = true;
+    public static final String LOG_TAG = "CBInfo";
+    public static final int STATUS_BEGIN_REFRESH = 10;
+    public static final int FIN_STATUS_OK = 20;
+    public static final int FIN_STATUS_NOT_RESPOND = 21;
+    public static final int FIN_STATUS_NO_DATA = 22;
+    public static final int FINS_STATUS_NETWORK_DISABLE = 23;
+    public static final int FINS_STATUS_DATA_UPDATED = 23;
+    public static final int FINS_STATUS_DATA_NOT_UPDATED = 23;
+
+
+    public static final String PARAM_STATUS = "status";
+    public static final String PARAM_DATE = "date";
+    public static final String PARAM_FROM = "from";
+
+//    public static final String INFO_BEGIN_UPDATE_INTENT = "ru.openitr.exinformer.INFO_REFRESH_BEGIN";
+    static final String INFO_REFRESH_INTENT = "ru.openitr.exinformer.INFO_UPDATE";
+
     static final private int DATA_DIALOG = 1;
     static final private int NETSETTINGS_DIALOG = 2;
     static final private int PROGRESS_DIALOG = 3;
@@ -41,18 +60,24 @@ public class main extends ListActivity {
     static final private int NETWORK_DISABLE = 23;
     static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
     private Cursor mCursor;
+    Intent refreshServiceIntent;
+    boolean bound = false;
+    BroadcastReceiver br;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(LOG_TAG, "onCreate");
         customTitleSupported = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         onDate.setHours(0);
         onDate.setMinutes(0);
         onDate.setSeconds(0);
         db = new CurrencyDbAdapter(this);
-        getExchange(onDate, (savedInstanceState == null));
-        mCursor = getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS,null, null,null);
+        refreshServiceIntent = new Intent(this, InfoRefreshService.class);
+//        mCursor = getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS,null, null,null);
+        mCursor = managedQuery(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, null);
         startManagingCursor(mCursor);
+        br = new MainActivityBroadcastReceiever();
         try {
             ListView listView = getListView();
             listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
@@ -61,34 +86,47 @@ public class main extends ListActivity {
             //Адаптер к листу
             valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
             setListAdapter(valFromDbAdapter);
+            getInfo(onDate);
             //Титл бар
-
             customTitleBar(getText(R.string.app_name).toString());
-            if (customTitleSupported){
-
-            }
-
+            setInfoDateToTitle();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-/*    @Override
-    public void onResume(){
+    @Override
+    protected void onResume() {
         super.onResume();
+        IntentFilter intF = new IntentFilter(INFO_REFRESH_INTENT);
+        registerReceiver(br, intF);
+
+
     }
-*/
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(br);
+    }
+
     @Override
     public void onDestroy(){
         super.onDestroy();
         db.close();
+        Log.d(LOG_TAG, "onDestroy");
     }
 
-    private DatePickerDialog.OnDateSetListener cDateSetListener = new DatePickerDialog.OnDateSetListener() {
+    private OnDateSetListener cDateSetListener = new OnDateSetListener() {
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            getExchange(new Date(year-1900, month, day), false);
+            Date newDate = new Date(year - 1900, month, day);
+            if (!newDate.equals(onDate)){
+                onDate = newDate;
+                getInfo(newDate);
+            }
         }
+
     };
 
 
@@ -99,8 +137,10 @@ public class main extends ListActivity {
 
             case (DATA_DIALOG) :
                 calendar.setTime(onDate);
-                return  new DatePickerDialog (this, cDateSetListener, calendar.get(Calendar.YEAR),
-                                              calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+                DatePickerDialog dpd;
+                dpd = new DatePickerDialog (this, cDateSetListener, calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+                return  dpd;
 
             case (NETSETTINGS_DIALOG) :
                 AlertDialog.Builder netSettingsDialog = new AlertDialog.Builder(this);
@@ -154,12 +194,12 @@ public class main extends ListActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        getExchange(onDate, false);
+                        getInfo(onDate);
                     }
                 });
                 return notRespondDlg.create();
         }
-        return null;
+        return null; //super.onCreateDialog(id);
     }
 
 
@@ -190,6 +230,12 @@ public class main extends ListActivity {
 
     }
 
+    public void setInfoDateToTitle(){
+        Cursor cursor = (getContentResolver().query(CURRENCY_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
+        if (cursor.moveToFirst())
+            setDateOnTitle(new Date(cursor.getLong(0)));
+    }
+
     private boolean internetAvailable(){
         ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isConnectedOrConnecting();
@@ -197,7 +243,7 @@ public class main extends ListActivity {
     private void goToNetsettings(){
         Intent netSettings = new Intent("android.settings.WIRELESS_SETTINGS");
         startActivity(netSettings);
-        getExchange(onDate,false);
+        getInfo(onDate);
     }
 
     @Override
@@ -220,17 +266,68 @@ public class main extends ListActivity {
         return true;
     }
 
-
-    private void getExchange(Date newDate, boolean newInstance){
-        onDate = newDate;
-        if (newInstance || db.needUpdate(onDate))
-            try {
-              startService(new Intent(this, InfoRefreshService.class));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public boolean datesIsEqual(Date oneDate, Date twoDate){
+        Calendar firstDate = Calendar.getInstance();
+        firstDate.setTime((oneDate));
+        Calendar secondDate = Calendar.getInstance();
+        secondDate.setTime(twoDate);
+        firstDate.set(Calendar.MILLISECOND, 0);
+        firstDate.set(Calendar.SECOND, 0);
+        firstDate.set(Calendar.MINUTE, 0);
+        firstDate.set(Calendar.HOUR, 0);
+        secondDate.set(Calendar.MILLISECOND, 0);
+        secondDate.set(Calendar.SECOND, 0);
+        secondDate.set(Calendar.MINUTE, 0);
+        secondDate.set(Calendar.HOUR, 0);
+        return firstDate.compareTo(secondDate) == 0;
     }
 
+    private void getInfo(Date newDate){
+        onDate = newDate;
+        boolean isNeedUpdate = db.isNeedUpdate(onDate);
+        refreshServiceIntent.putExtra(PARAM_DATE,onDate.getTime());
+        if (isNeedUpdate){
+            startService(refreshServiceIntent);
+        }
+    }
+
+
+
+     private class MainActivityBroadcastReceiever extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(INFO_REFRESH_INTENT)){
+                int status = intent.getIntExtra(PARAM_STATUS,0);
+                switch (status){
+                    case STATUS_BEGIN_REFRESH:
+                        Log.d(LOG_TAG,"Main: Begin updating info.");
+                        showDialog(PROGRESS_DIALOG);
+                        break;
+                    case NO_DATA:
+                        Log.d(LOG_TAG, "No data receive.");
+
+                        break;
+                    case NOT_RESPOND:
+                        Log.d(LOG_TAG, "Server not respond.");
+                        removeDialog(NOT_RESPOND);
+                        showDialog(NOT_RESPOND);
+                        break;
+                    case NETWORK_DISABLE:
+                        Log.d(LOG_TAG, "Network disabled.");
+                        showDialog(NETSETTINGS_DIALOG);
+                        break;
+                    default:
+                        Log.d(LOG_TAG, "Refreshing OK.");
+                        mCursor.requery();
+                        setInfoDateToTitle();
+                        removeDialog(PROGRESS_DIALOG);
+                        break;
+                }
+            }
+
+        }
+    }
 
     private class refreshCurrencyTask extends AsyncTask<Void, Integer, Integer> {
 
@@ -240,10 +337,9 @@ public class main extends ListActivity {
                 publishProgress();
                 try {
                     db.open();
-                    if (db.needUpdate(onDate)) {
+                    if (db.isNeedUpdate(onDate)) {
                         if (internetAvailable()){
                             ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
-                            //db.deleteAllRows();
                             for (Icurrency icurrencyRecord :infoStub){
                                 if (db.updateCurrencyRow(icurrencyRecord) == 0) {
                                     db.insertCurrencyRow(icurrencyRecord);
@@ -285,7 +381,7 @@ public class main extends ListActivity {
                 case NETWORK_DISABLE:
                     showDialog(NETSETTINGS_DIALOG);
                 case NO_DATA:
-//                    removeDialog(DATA_DIALOG);
+                    removeDialog(DATA_DIALOG);
                     showDialog(ILLEGAL_DATA_DIALOD);
             }
             mCursor.requery();

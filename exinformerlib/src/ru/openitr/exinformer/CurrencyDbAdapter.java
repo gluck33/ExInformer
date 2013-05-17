@@ -110,7 +110,8 @@ public class CurrencyDbAdapter {
      * Закрыть базу
      */
     public void close() {
-        db.close();
+        if (db!=null)
+            db.close();
     }
 
     /**
@@ -138,7 +139,7 @@ public class CurrencyDbAdapter {
      * @return
      */
     public long insertCurrencyRow(ContentValues _cv) {
-        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString("vchCode").toLowerCase();
+        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString(KEY_CHARCODE).toLowerCase();
         Integer rowId = 0;
         Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
         if (cursor.getCount() != 0 && cursor.moveToFirst()) {
@@ -161,7 +162,7 @@ public class CurrencyDbAdapter {
 
     public int updateCurrencyRow (Icurrency _icurrency){
         ContentValues _cv = _icurrency.toContentValues();
-        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString("vchCode").toLowerCase();
+        String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString(KEY_CHARCODE).toLowerCase();
         _cv.put(KEY_IMAGE_URI, imageURI);
         return db.update(CURRENCY_TABLE, _cv, KEY_CHARCODE+" = ?", new String[]{_icurrency.getVchCode()});
     }
@@ -179,7 +180,7 @@ public class CurrencyDbAdapter {
      */
 
     public boolean removeCurRow(int _rowIndex) {
-        return db.delete(CURRENCY_TABLE, KEY_CODE + "=" + _rowIndex, null) > 0;
+        return db.delete(CURRENCY_TABLE, KEY_CODE + " = " + _rowIndex, null) > 0;
     }
 
     /**
@@ -260,7 +261,7 @@ public class CurrencyDbAdapter {
         return (db.delete(CURRENCY_TABLE, null, null) > 0) & (db.delete("sqlite_sequence", "name='" + CURRENCY_TABLE + "'", null) > 0);
     }
 
-    public boolean needUpdate(java.util.Date onDate) {
+    public boolean isNeedUpdate(java.util.Date onDate) {
         Calendar cursDate = Calendar.getInstance();
         cursDate.setTime(getCursDate());
         Calendar date = Calendar.getInstance();
