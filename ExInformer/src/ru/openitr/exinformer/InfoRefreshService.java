@@ -23,12 +23,6 @@ import java.util.Date;
  * Сервис запрашивает информацию с сервера cbr.ru и помещает её в БД.
  */
 public class InfoRefreshService extends Service {
-    static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
-    static final String REFRESH_INFO_INTENT = "ru.openitr.exinformer.REFRESH_INFO";
-
-    static final String NOT_RESPOND_INTENT = "ru.openitr.exinformer.NOT_RESPOND";
-    static final String NO_DATA_INTENT = "ru.openitr.exinformer.NO_DATA";
-    static final String NETWORK_DISABLE_INTENT = "ru.openitr.exinformer.NETWORK_DISABLED_";
     private Date onDate;
 
     AlarmManager alarms;
@@ -37,7 +31,7 @@ public class InfoRefreshService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(main.LOG_TAG, "Service: Service created");
+        if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Service created");
         alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         String ALARM_ACTION;
         ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
@@ -47,12 +41,16 @@ public class InfoRefreshService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        int alarmType = AlarmManager.ELAPSED_REALTIME_WAKEUP;
-        alarms.setInexactRepeating(alarmType, 24 * 60 * 60 * 1000, AlarmManager.INTERVAL_DAY, alarmIntent);
+        int alarmType = AlarmManager.RTC;
+//        alarms.setInexactRepeating(alarmType, 24 * 60 * 60 * 1000, AlarmManager.INTERVAL_DAY, alarmIntent);
+//        alarms.cancel(alarmIntent);
         Date newDate = new Date(intent.getLongExtra(main.PARAM_DATE, new Date().getTime()));
         onDate = newDate;
-        Log.d(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
+        if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
         new refreshCurrencyTask().execute(newDate);
+        // Запуск аларма...
+        alarms.setInexactRepeating(alarmType,  System.currentTimeMillis() + 1000*60*3, AlarmManager.INTERVAL_HOUR * 3, alarmIntent);
+        //
         return Service.START_NOT_STICKY;
     }
 
@@ -64,7 +62,7 @@ public class InfoRefreshService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(main.LOG_TAG, "Service: Destroy service.");
+        if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Destroy service.");
     }
 
     private class refreshCurrencyTask extends AsyncTask<Date, Integer, Integer> {
@@ -82,12 +80,13 @@ public class InfoRefreshService extends Service {
             db.open();
             int res = OK;
             if (db.isNeedUpdate(onDate)) {
+                if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Info need to update.");
                 if (!internetAvailable()) {
                     return STATUS_NETWORK_DISABLE;
                 }
                 try {
                     ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
-                    Log.d(main.LOG_TAG, "Service: Start update base.");
+                    if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Start update base.");
                     for (Icurrency icurrencyRecord : infoStub) {
 //                        ContentValues _cv = icurrencyRecord.toContentValues();
                         if (db.updateCurrencyRow(icurrencyRecord) == 0){
@@ -95,7 +94,7 @@ public class InfoRefreshService extends Service {
                         }
 
                     }
-                    Log.d(main.LOG_TAG, "Service: Stop update base.");
+                    if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Stop update base.");
                 } catch (IOException e) {
                     e.printStackTrace();
                     res = STATUS_NOT_RESPOND;
@@ -144,7 +143,7 @@ public class InfoRefreshService extends Service {
             today.setSeconds(0);
             int curExRange = onDate.compareTo(today);
             // Если получен курс на сегодня, то обновить информацию на виджетах
-//            if (datesIsEqual(onDate, new Date()))
+            if (datesIsEqual(onDate, new Date()))
                     sendBroadcast(widgetUpdateIntent);
             stopSelf();
         }
@@ -156,16 +155,13 @@ public class InfoRefreshService extends Service {
         firstDate.setTime((oneDate));
         Calendar secondDate = Calendar.getInstance();
         secondDate.setTime(twoDate);
-        firstDate.set(Calendar.MILLISECOND, 0);
-        firstDate.set(Calendar.SECOND, 0);
-        firstDate.set(Calendar.MINUTE, 0);
-        firstDate.set(Calendar.HOUR, 0);
-        secondDate.set(Calendar.MILLISECOND, 0);
-        secondDate.set(Calendar.SECOND, 0);
-        secondDate.set(Calendar.MINUTE, 0);
-        secondDate.set(Calendar.HOUR, 0);
-        int range = firstDate.compareTo(secondDate);
-        return range == 0;
+        if (firstDate.get(Calendar.YEAR) != secondDate.get(Calendar.YEAR))
+            return false;
+        if (firstDate.get(Calendar.MONTH) != secondDate.get(Calendar.MONTH))
+            return false;
+        if (firstDate.get(Calendar.DAY_OF_MONTH) != secondDate.get(Calendar.DAY_OF_MONTH))
+            return false;
+        return true;
     }
 
     private boolean internetAvailable() {

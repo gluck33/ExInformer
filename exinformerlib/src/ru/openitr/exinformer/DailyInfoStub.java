@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class DailyInfoStub {
+    public static final Boolean DEBUG = true;
     private static final String namespace = "http://web.cbr.ru/";
     private static final String url = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
     private static final String LOG_TAG = "CBInfo";
@@ -51,9 +52,9 @@ public class DailyInfoStub {
 
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
-            Log.d(LOG_TAG, "InfoStub: Getting info from CB server.");
+            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Getting info from CB server.");
             androidHttpTransport.call(soapAction, envelope);
-            Log.d(LOG_TAG, "InfoStub: Info recieved from SB server. ");
+            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Info recieved from SB server. ");
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
@@ -63,7 +64,7 @@ public class DailyInfoStub {
         }
 
         /* Разбор ответа сервера */
-        Log.d(LOG_TAG, "InfoStub: Begin data parsing.");
+        if (DEBUG) Log.d(LOG_TAG, "InfoStub: Begin data parsing.");
         try {
             SoapObject resultRequest = (SoapObject) envelope.bodyIn;
             SoapObject array = (SoapObject) resultRequest.getProperty(0);
@@ -85,7 +86,7 @@ public class DailyInfoStub {
             e.printStackTrace();
             throw e;
         }
-        Log.d(LOG_TAG, "InfoStub: Return result data.");
+        if (DEBUG) Log.d(LOG_TAG, "InfoStub: Return result data.");
         return result;
     }
 

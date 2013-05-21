@@ -266,23 +266,7 @@ public class main extends ListActivity {
         return true;
     }
 
-    public boolean datesIsEqual(Date oneDate, Date twoDate){
-        Calendar firstDate = Calendar.getInstance();
-        firstDate.setTime((oneDate));
-        Calendar secondDate = Calendar.getInstance();
-        secondDate.setTime(twoDate);
-        firstDate.set(Calendar.MILLISECOND, 0);
-        firstDate.set(Calendar.SECOND, 0);
-        firstDate.set(Calendar.MINUTE, 0);
-        firstDate.set(Calendar.HOUR, 0);
-        secondDate.set(Calendar.MILLISECOND, 0);
-        secondDate.set(Calendar.SECOND, 0);
-        secondDate.set(Calendar.MINUTE, 0);
-        secondDate.set(Calendar.HOUR, 0);
-        return firstDate.compareTo(secondDate) == 0;
-    }
-
-    private void getInfo(Date newDate){
+     private void getInfo(Date newDate){
         onDate = newDate;
         boolean isNeedUpdate = db.isNeedUpdate(onDate);
         refreshServiceIntent.putExtra(PARAM_DATE,onDate.getTime());
