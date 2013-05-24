@@ -1,10 +1,10 @@
 package ru.openitr.exinformer;
 
 import android.app.*;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.*;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.app.DatePickerDialog.OnDateSetListener;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -93,7 +93,6 @@ public class main extends ListActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

@@ -2,6 +2,10 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
  <ListPreference>
-
+     android:key="WIDGET_CURRENCY_CHARCODE"
+     android:title="Currency"
+     android:summary="Currency in widget"
+     android:dialogTitle="@strings/vNameHead"
+     android:defaultValue="60"
  </ListPreference>
 </PreferenceScreen>
