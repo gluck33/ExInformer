@@ -10,7 +10,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/curSpinner"
             android:spinnerMode="dialog"
-            android:background="#000000" android:visibility="visible"/>
+            android:alpha="50"
+            android:prompt="@string/Select"
+            android:drawSelectorOnTop="true"
+            />
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

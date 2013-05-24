@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -60,7 +61,18 @@ public class CurWidgetConfActivity extends Activity{
 
         Spinner curSpinner = (Spinner) findViewById(R.id.curSpinner);
         curSpinner.setAdapter(curListAdapter);
-        curSpinner.setSelection(0);
+        curSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                ((TextView) parent.getChildAt(0)).setTextColor(Color.RED);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //curSpinner.setSelection(0);
         cursor.close();
 
     }
@@ -77,6 +89,7 @@ public class CurWidgetConfActivity extends Activity{
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         CurrencyWidget.updateWidget(this,appWidgetManager,sp,widgetID);
         finish();
-
     }
+
+
 }
