@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -31,10 +32,12 @@ public class CurWidgetConfActivity extends Activity {
     public final static int WIDGET_CONF_DIALOG = 1;
     public final static int CUR_ITEMS_DIALOG = 2;
     private ArrayAdapter <String> curListAdapter;
-    private String curCurrency;
+    private String widgetDisplayInfo;
     int widgetID = AppWidgetManager.INVALID_APPWIDGET_ID;
     Intent resultValue;
     final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
+    TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +55,10 @@ public class CurWidgetConfActivity extends Activity {
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 
         setResult(RESULT_CANCELED, resultValue);
-        setContentView(R.xml.cur_widget_conf);
+        //setContentView(R.layout.cur_widget_conf);
      //*************************************************
 
-
+//        tv = (TextView) findViewById(R.id.widgetObject);
         ArrayList<String> curList = new ArrayList<String>();
         Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CurrencyDbAdapter.KEY_CHARCODE,CurrencyDbAdapter.KEY_VNAME},null, null,null);
         cursor.moveToFirst();
@@ -64,46 +67,68 @@ public class CurWidgetConfActivity extends Activity {
         }
         curListAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice, curList);
         cursor.close();
+        showDialog(WIDGET_CONF_DIALOG);
 
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        return super.onCreateDialog(id);
-        AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
-
-//        AlertDialog confDialog = ()
+        AlertDialog resDialog = null;
         switch (id){
             case WIDGET_CONF_DIALOG:
-                LayoutInflater dialogInflater = LayoutInflater.from(this);
-                View dialogView = dialogInflater.inflate(R.layout.cur_widget_conf,null);
-                dialogbuilder.setTitle(R.string.Select+"...");
-                dialogbuilder.setView(dialogView);
-                AlertDialog confDialog = dialogbuilder.create();
-                return confDialog;
+                LayoutInflater inflater = LayoutInflater.from(this);
+                View dialogView = inflater.inflate(R.layout.cur_widget_conf, null);
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+                dialogBuilder.setTitle(R.string.Select);
+                dialogBuilder.setView(dialogView);
+                resDialog = dialogBuilder.create();
+
+                return resDialog;
 
             case CUR_ITEMS_DIALOG:
-                dialogbuilder.setTitle(R.string.Select+"...");
-                dialogbuilder.setSingleChoiceItems(curListAdapter, -1, new DialogInterface.OnClickListener() {
+                AlertDialog.Builder itemsBuilder = new AlertDialog.Builder(this);
+                itemsBuilder.setTitle(R.string.Select);
+                itemsBuilder.setSingleChoiceItems(curListAdapter, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ListView lv = ((AlertDialog) dialog).getListView();
-                        curCurrency = curListAdapter.getItem(lv.getCheckedItemPosition());
+//                        if (which == Dialog.BUTTON_POSITIVE){
+                            int checkedPosition = lv.getCheckedItemPosition();
+                            widgetDisplayInfo = curListAdapter.getItem(checkedPosition);
+                            tv.setText(widgetDisplayInfo);
+
+                            dialog.dismiss();
+//                        }
+
                     }
                 });
-                break;
-                return dialogbuilder.create();
-            default:
-                return null;
+                resDialog = itemsBuilder.create();
+                return resDialog;
 
         }
 
+        return null;
+    }
+
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        switch (id){
+            case WIDGET_CONF_DIALOG:
+                tv = (TextView) dialog.findViewById(R.id.widgetObject);
+                tv.setText(curListAdapter.getItem(1));
+                break;
+        }
+
+    }
+
+    public void onChoseButtonClick(View view){
+        showDialog(CUR_ITEMS_DIALOG);
     }
 
     public void onClickSaveButton(View view) {
         // Берем выбранную строку из curSpinner и
         // отрезаем от нее полное наменование, оставляя только буквенный код валюты
-        String _vChCode = curCurrency.split(" - ")[0];
+        String _vChCode = widgetDisplayInfo.split(" - ")[0];
         SharedPreferences sp = getSharedPreferences(WIDGET_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(WIDGET_CURRENCY_CHARCODE +widgetID, _vChCode);

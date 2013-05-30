@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton" android:layout_gravity="right|top" android:adjustViewBounds="false"
-                android:background="@drawable/expander_ic_maximized"/>
+                android:background="@drawable/expander_ic_maximized" android:onClick="onChoseButtonClick"/>
     </LinearLayout>
     <Button
             android:layout_width="wrap_content"
