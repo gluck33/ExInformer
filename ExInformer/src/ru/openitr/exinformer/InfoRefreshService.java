@@ -3,9 +3,12 @@ package ru.openitr.exinformer;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.util.Log;
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by
@@ -42,14 +46,22 @@ public class InfoRefreshService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         int alarmType = AlarmManager.RTC;
-//        alarms.setInexactRepeating(alarmType, 24 * 60 * 60 * 1000, AlarmManager.INTERVAL_DAY, alarmIntent);
-//        alarms.cancel(alarmIntent);
+        boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(new Date());
+        Calendar nextExecuteTime = Calendar.getInstance();
+        nextExecuteTime.set(Calendar.DAY_OF_YEAR, nextExecuteTime.get(Calendar.DAY_OF_YEAR)+1);
+        nextExecuteTime.set(Calendar.HOUR, 3);
+        nextExecuteTime.set(Calendar.MINUTE,0);
+        nextExecuteTime.setTimeZone(TimeZone.getTimeZone("GMT + 4"));
+        long nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
         Date newDate = new Date(intent.getLongExtra(main.PARAM_DATE, new Date().getTime()));
         onDate = newDate;
         if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
-        new refreshCurrencyTask().execute(newDate);
+        // Если в базе информация не на текущее время, запускаем обновление данных
+        if (infoNeedUpdate){
+            new refreshCurrencyTask().execute(newDate);
+        }
         // Запуск аларма...
-        alarms.setInexactRepeating(alarmType,  System.currentTimeMillis() + 1000*60*3, AlarmManager.INTERVAL_HOUR * 3, alarmIntent);
+        alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills + 1000*60*3, AlarmManager.INTERVAL_DAY, alarmIntent);
         //
         return Service.START_NOT_STICKY;
     }
@@ -70,16 +82,14 @@ public class InfoRefreshService extends Service {
         private static final int STATUS_NETWORK_DISABLE = 30;
         private static final int STATUS_NOT_RESPOND = 40;
         private static final int STATUS_NO_DATA = 50;
-
+        static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
         @Override
         protected Integer doInBackground(Date... params) {
             publishProgress();
             Date onDate = params[0];
-//            ContentResolver cr = getContentResolver();
-            CurrencyDbAdapter db = new CurrencyDbAdapter(getBaseContext());
-            db.open();
+            ContentResolver cr = getContentResolver();
             int res = OK;
-            if (db.isNeedUpdate(onDate)) {
+
                 if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Info need to update.");
                 if (!internetAvailable()) {
                     return STATUS_NETWORK_DISABLE;
@@ -88,11 +98,11 @@ public class InfoRefreshService extends Service {
                     ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
                     if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Start update base.");
                     for (Icurrency icurrencyRecord : infoStub) {
-//                        ContentValues _cv = icurrencyRecord.toContentValues();
-                        if (db.updateCurrencyRow(icurrencyRecord) == 0){
-                            db.insertCurrencyRow(icurrencyRecord);
+                        ContentValues _cv = icurrencyRecord.toContentValues();
+                        if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
+                            Uri resultUri = cr.insert(Uri.parse(CURRENCY_URI), _cv);
+                            if (main.DEBUG) Log.d(main.LOG_TAG, "resultUri = " + resultUri.toString());
                         }
-
                     }
                     if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Stop update base.");
                 } catch (IOException e) {
@@ -104,10 +114,6 @@ public class InfoRefreshService extends Service {
                     res = STATUS_NO_DATA;
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                finally {
-                    db.close();
-                }
             }
 
             return res;
@@ -137,32 +143,28 @@ public class InfoRefreshService extends Service {
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
             }
             sendBroadcast(resIntent);
-            Date today = new Date();
-            today.setHours(0);
-            today.setMinutes(0);
-            today.setSeconds(0);
-            int curExRange = onDate.compareTo(today);
-            // Если получен курс на сегодня, то обновить информацию на виджетах
-            if (datesIsEqual(onDate, new Date()))
-                    sendBroadcast(widgetUpdateIntent);
+            boolean todayInfo = !new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(new Date());
+               if (todayInfo)
+                sendBroadcast(widgetUpdateIntent);
             stopSelf();
         }
 
     }
 
-    public boolean datesIsEqual(Date oneDate, Date twoDate){
-        Calendar firstDate = Calendar.getInstance();
-        firstDate.setTime((oneDate));
-        Calendar secondDate = Calendar.getInstance();
-        secondDate.setTime(twoDate);
-        if (firstDate.get(Calendar.YEAR) != secondDate.get(Calendar.YEAR))
-            return false;
-        if (firstDate.get(Calendar.MONTH) != secondDate.get(Calendar.MONTH))
-            return false;
-        if (firstDate.get(Calendar.DAY_OF_MONTH) != secondDate.get(Calendar.DAY_OF_MONTH))
-            return false;
-        return true;
-    }
+//
+//    public boolean datesIsEqual(Date oneDate, Date twoDate){
+//        Calendar firstDate = Calendar.getInstance();
+//        firstDate.setTime((oneDate));
+//        Calendar secondDate = Calendar.getInstance();
+//        secondDate.setTime(twoDate);
+//        if (firstDate.get(Calendar.YEAR) != secondDate.get(Calendar.YEAR))
+//            return false;
+//        if (firstDate.get(Calendar.MONTH) != secondDate.get(Calendar.MONTH))
+//            return false;
+//        if (firstDate.get(Calendar.DAY_OF_MONTH) != secondDate.get(Calendar.DAY_OF_MONTH))
+//            return false;
+//        return true;
+//    }
 
     private boolean internetAvailable() {
         ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

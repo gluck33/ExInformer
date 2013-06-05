@@ -34,6 +34,7 @@ public class CurInfoProvider extends ContentProvider {
     static final int URI_CURRENCY_ID = 2;
 
     private static final UriMatcher uriMatcher;
+
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY,CURRENCY_PATH,URI_CURRENCY);
@@ -44,6 +45,7 @@ public class CurInfoProvider extends ContentProvider {
         db = new CurrencyDbAdapter(getContext());
         return true;
     }
+
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
@@ -115,5 +117,9 @@ public class CurInfoProvider extends ContentProvider {
         int result = db.updateCurrencyRow(contentValues, selection, selectionArgs);
 //        getContext().getContentResolver().notifyChange(uri, null);
         return result;
+    }
+    public boolean infoNeedUpdate(){
+
+        return false;
     }
 }
