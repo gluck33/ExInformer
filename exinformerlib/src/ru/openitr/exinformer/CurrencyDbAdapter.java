@@ -260,21 +260,22 @@ public class CurrencyDbAdapter {
     public boolean deleteAllRows() {
         return (db.delete(CURRENCY_TABLE, null, null) > 0) & (db.delete("sqlite_sequence", "name='" + CURRENCY_TABLE + "'", null) > 0);
     }
-
+     /**
+      * Метод сравнивает дату данных в базе с параметром.
+      * @param onDate - Дата с которой нужно сравнить.
+      *
+      * @return Если Год и день года равны возвращает false. В остальных случаях true.
+     * */
     public boolean isNeedUpdate(java.util.Date onDate) {
         Calendar cursDate = Calendar.getInstance();
         cursDate.setTime(getCursDate());
-        Calendar date = Calendar.getInstance();
+        Calendar date = null;
+        date = Calendar.getInstance();
         date.setTime(onDate);
-        cursDate.set(Calendar.MILLISECOND, 0);
-        cursDate.set(Calendar.SECOND, 0);
-        cursDate.set(Calendar.MINUTE, 0);
-        cursDate.set(Calendar.HOUR, 0);
-        date.set(Calendar.MILLISECOND, 0);
-        date.set(Calendar.SECOND, 0);
-        date.set(Calendar.MINUTE, 0);
-        date.set(Calendar.HOUR, 0);
-        return cursDate.compareTo(date) != 0;
+        boolean yearIsEQ = cursDate.get(Calendar.YEAR) == date.get(Calendar.YEAR);
+        boolean dayOfYearIsEQ = cursDate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR);
+        boolean result = !(yearIsEQ & dayOfYearIsEQ);
+        return result;
     }
 
 }

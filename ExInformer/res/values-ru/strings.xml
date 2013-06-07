@@ -21,6 +21,7 @@
     <string name="futureTitle">Неверная дата.</string>
     <string name="notRespondDlgTitle">Запрос данных</string>
     <string name="notRespondDlgMsg">Сервер недоступен или не отвечает. Повторить?</string>
+    <string name="selectInfoItem">Выберите отображаемую информацию…</string>
     <!-- Menu strings -->
     <string name="settings">Настройки</string>
     <string name="setData">Установить дату курса</string>

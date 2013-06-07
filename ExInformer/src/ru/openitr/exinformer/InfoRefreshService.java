@@ -46,22 +46,23 @@ public class InfoRefreshService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         int alarmType = AlarmManager.RTC;
-        boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(new Date());
         Calendar nextExecuteTime = Calendar.getInstance();
-        nextExecuteTime.set(Calendar.DAY_OF_YEAR, nextExecuteTime.get(Calendar.DAY_OF_YEAR)+1);
-        nextExecuteTime.set(Calendar.HOUR, 3);
-        nextExecuteTime.set(Calendar.MINUTE,0);
-        nextExecuteTime.setTimeZone(TimeZone.getTimeZone("GMT + 4"));
+        nextExecuteTime.set(Calendar.HOUR_OF_DAY, 3);
+        nextExecuteTime.set(Calendar.MINUTE, 0);
+        nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
+        TimeZone tz = TimeZone.getTimeZone("GMT+4");
+        nextExecuteTime.setTimeZone(tz);
         long nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
         Date newDate = new Date(intent.getLongExtra(main.PARAM_DATE, new Date().getTime()));
         onDate = newDate;
+        boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(newDate);
         if (main.DEBUG) Log.d(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
         // Если в базе информация не на текущее время, запускаем обновление данных
         if (infoNeedUpdate){
             new refreshCurrencyTask().execute(newDate);
         }
         // Запуск аларма...
-        alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills + 1000*60*3, AlarmManager.INTERVAL_DAY, alarmIntent);
+        alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
         //
         return Service.START_NOT_STICKY;
     }
@@ -150,21 +151,6 @@ public class InfoRefreshService extends Service {
         }
 
     }
-
-//
-//    public boolean datesIsEqual(Date oneDate, Date twoDate){
-//        Calendar firstDate = Calendar.getInstance();
-//        firstDate.setTime((oneDate));
-//        Calendar secondDate = Calendar.getInstance();
-//        secondDate.setTime(twoDate);
-//        if (firstDate.get(Calendar.YEAR) != secondDate.get(Calendar.YEAR))
-//            return false;
-//        if (firstDate.get(Calendar.MONTH) != secondDate.get(Calendar.MONTH))
-//            return false;
-//        if (firstDate.get(Calendar.DAY_OF_MONTH) != secondDate.get(Calendar.DAY_OF_MONTH))
-//            return false;
-//        return true;
-//    }
 
     private boolean internetAvailable() {
         ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

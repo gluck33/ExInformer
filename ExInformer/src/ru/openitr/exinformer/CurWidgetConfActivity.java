@@ -87,7 +87,7 @@ public class CurWidgetConfActivity extends Activity {
 
             case CUR_ITEMS_DIALOG:
                 AlertDialog.Builder itemsBuilder = new AlertDialog.Builder(this);
-                itemsBuilder.setTitle(R.string.Select);
+                itemsBuilder.setTitle(R.string.selectInfoItem);
                 itemsBuilder.setSingleChoiceItems(curListAdapter, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

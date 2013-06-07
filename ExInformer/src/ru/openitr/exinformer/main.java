@@ -61,7 +61,6 @@ public class main extends ListActivity {
     static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
     private Cursor mCursor;
     Intent refreshServiceIntent;
-    boolean bound = false;
     BroadcastReceiver br;
 
     @Override
@@ -174,6 +173,7 @@ public class main extends ListActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         onDate = new Date();
+
                         dialogInterface.dismiss();
                     }
                 });
@@ -267,11 +267,11 @@ public class main extends ListActivity {
 
      private void getInfo(Date newDate){
         onDate = newDate;
-        boolean isNeedUpdate = db.isNeedUpdate(onDate);
+//        boolean isNeedUpdate = db.isNeedUpdate(onDate);
         refreshServiceIntent.putExtra(PARAM_DATE,onDate.getTime());
-        if (isNeedUpdate){
+//        if (isNeedUpdate){
             startService(refreshServiceIntent);
-        }
+//        }
     }
 
 
