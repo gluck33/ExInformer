@@ -65,6 +65,7 @@ public class CurrencyDbAdapter {
     //    private static final String DELETE_AUTO_INCREMENT = "DELETE FROM sqlite_sequence WHERE name='"+CURRENCY_TABLE+"';";
     private SQLiteDatabase db;
     private curDbHelper dbHelper;
+    private boolean cursorOpened;
 
 
     private static class curDbHelper extends SQLiteOpenHelper {
@@ -92,6 +93,7 @@ public class CurrencyDbAdapter {
      */
     public CurrencyDbAdapter(Context _context) {
         dbHelper = new curDbHelper(_context, DATABASE_NAME, null, DATABASE_VERSION);
+        cursorOpened = false;
     }
 
     /**
@@ -100,6 +102,7 @@ public class CurrencyDbAdapter {
     public CurrencyDbAdapter open() throws SQLiteException {
         try {
             db = dbHelper.getWritableDatabase();
+            cursorOpened = true;
         } catch (SQLiteException e) {
             db = dbHelper.getReadableDatabase();
         }
@@ -234,7 +237,8 @@ public class CurrencyDbAdapter {
     }
 
     public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
-        this.open();
+        if (!cursorOpened)
+            this.open();
         Cursor res = db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, null, sortOrder);
         return res;
 
@@ -248,13 +252,12 @@ public class CurrencyDbAdapter {
     public Date getCursDate() {
         Date curD;
         try {
-            Icurrency cur = getCurrency(1);
+            curD = new Date(getCurrency(1).getvDate().getTime());
+            return curD;
         } catch (SQLiteException e) {
             e.printStackTrace();
             return new Date(0);
         }
-        curD = new Date(getCurrency(1).getvDate().getTime());
-        return curD;//new Date(getCurrency(1).getvDate().getTime());
     }
 
     public boolean deleteAllRows() {
@@ -267,6 +270,7 @@ public class CurrencyDbAdapter {
       * @return Если Год и день года равны возвращает false. В остальных случаях true.
      * */
     public boolean isNeedUpdate(java.util.Date onDate) {
+
         Calendar cursDate = Calendar.getInstance();
         cursDate.setTime(getCursDate());
         Calendar date = null;
@@ -276,6 +280,7 @@ public class CurrencyDbAdapter {
         boolean dayOfYearIsEQ = cursDate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR);
         boolean result = !(yearIsEQ & dayOfYearIsEQ);
         return result;
+
     }
 
 }

@@ -145,7 +145,7 @@ public class InfoRefreshService extends Service {
             }
             sendBroadcast(resIntent);
             boolean todayInfo = !new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(new Date());
-               if (todayInfo)
+//               if (todayInfo)
                 sendBroadcast(widgetUpdateIntent);
             stopSelf();
         }
