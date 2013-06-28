@@ -61,6 +61,8 @@ public class InfoRefreshService extends Service {
         if (infoNeedUpdate){
             new refreshCurrencyTask().execute(newDate);
         }
+        intent.removeExtra(main.PARAM_DATE);
+
         // Запуск аларма...
         alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
         //

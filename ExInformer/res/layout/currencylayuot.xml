@@ -36,4 +36,8 @@
             android:text="New Text"
             android:id="@+id/vNameView" android:layout_gravity="center_vertical|right" android:inputType="textMultiLine"
             android:layout_marginLeft="5dp"/>
+    <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+    </TableLayout>
 </LinearLayout>
