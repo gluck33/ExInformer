@@ -24,6 +24,7 @@ public class CurrencyWidget extends AppWidgetProvider {
 
     static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
     public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.exinformer.CURRENCY_UPDATED";
+    public Long cursTime = Long.valueOf(0);
 
     @Override
     public void onEnabled(Context context) {
@@ -50,6 +51,7 @@ public class CurrencyWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
         if (CURRENCY_WIDGET_UPDATE.equals(intent.getAction())){
            updateWidgets(context);
+           cursTime = intent.getLongExtra("CURS_TIME",1000*60*60*24);
         }
     }
 
@@ -73,10 +75,11 @@ public class CurrencyWidget extends AppWidgetProvider {
                 String uriString = "android.resource://ru.openitr.exinformer/drawable/f_"+vChCode;
                 int nominal = cursor.getInt(CurrencyDbAdapter.VALNOMINAL_COLUMN);
                 float cur = cursor.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
+                long curTime = cursor.getLong(CurrencyDbAdapter.VALDATE_COLUMN);
                 widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
                 widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(cur/nominal));
                 widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
-                widgetView.setTextViewText(R.id.widgetDataView,new Date().toLocaleString());
+                widgetView.setTextViewText(R.id.widgetDataView,new Date(curTime).toLocaleString());
 
 
             }finally {

@@ -6,7 +6,6 @@ import android.content.*;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +16,7 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -34,9 +31,9 @@ public class main extends ListActivity {
     public static final String LOG_TAG = "CBInfo";
     public static final int STATUS_BEGIN_REFRESH = 10;
     public static final int FIN_STATUS_OK = 20;
-    public static final int FIN_STATUS_NOT_RESPOND = 21;
-    public static final int FIN_STATUS_NO_DATA = 22;
-    public static final int FINS_STATUS_NETWORK_DISABLE = 23;
+    public static final int FIN_STATUS_NOT_RESPOND = 40;
+    public static final int FIN_STATUS_NO_DATA = 50;
+    public static final int FINS_STATUS_NETWORK_DISABLE = 30;
     public static final int FINS_STATUS_DATA_UPDATED = 23;
     public static final int FINS_STATUS_DATA_NOT_UPDATED = 23;
 
@@ -268,7 +265,7 @@ public class main extends ListActivity {
      private void getInfo(Date newDate){
         onDate = newDate;
 //        boolean isNeedUpdate = db.isNeedUpdate(onDate);
-        refreshServiceIntent.putExtra(PARAM_DATE,onDate.getTime());
+        refreshServiceIntent.putExtra(PARAM_DATE,newDate.getTime());
 //        if (isNeedUpdate){
             startService(refreshServiceIntent);
 //        }
@@ -282,21 +279,22 @@ public class main extends ListActivity {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(INFO_REFRESH_INTENT)){
                 int status = intent.getIntExtra(PARAM_STATUS,0);
+                if (DEBUG) LogSystem.logInFile(LOG_TAG, "main: (OnRecieve) Result of service run status: " + status);
                 switch (status){
                     case STATUS_BEGIN_REFRESH:
                         Log.d(LOG_TAG,"Main: Begin updating info.");
                         showDialog(PROGRESS_DIALOG);
                         break;
-                    case NO_DATA:
+                    case FIN_STATUS_NO_DATA:
                         Log.d(LOG_TAG, "No data receive.");
 
                         break;
-                    case NOT_RESPOND:
+                    case FIN_STATUS_NOT_RESPOND:
                         Log.d(LOG_TAG, "Server not respond.");
                         removeDialog(NOT_RESPOND);
                         showDialog(NOT_RESPOND);
                         break;
-                    case NETWORK_DISABLE:
+                    case FINS_STATUS_NETWORK_DISABLE:
                         Log.d(LOG_TAG, "Network disabled.");
                         showDialog(NETSETTINGS_DIALOG);
                         break;
@@ -312,64 +310,4 @@ public class main extends ListActivity {
         }
     }
 
-    private class refreshCurrencyTask extends AsyncTask<Void, Integer, Integer> {
-
-        @Override
-        protected Integer doInBackground(Void...params){
-            int res = OK;
-                publishProgress();
-                try {
-                    db.open();
-                    if (db.isNeedUpdate(onDate)) {
-                        if (internetAvailable()){
-                            ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
-                            for (Icurrency icurrencyRecord :infoStub){
-                                if (db.updateCurrencyRow(icurrencyRecord) == 0) {
-                                    db.insertCurrencyRow(icurrencyRecord);
-                                }
-                            }
-                        }
-                        else res = NETWORK_DISABLE;
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    res = NOT_RESPOND;
-
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
-                    res = NO_DATA;
-                } catch (Exception e){
-                    e.printStackTrace();
-                    db.close();
-                }
-            db.close();
-            return res;
-        }
-
-        @Override
-        protected void onProgressUpdate (Integer... progress){
-            super.onProgressUpdate(progress);
-            showDialog(PROGRESS_DIALOG);
-        }
-
-        @Override
-        protected void onPostExecute (Integer result){
-            super.onPostExecute(result);
-            removeDialog(PROGRESS_DIALOG);
-            switch (result) {
-                case NOT_RESPOND:
-                    removeDialog(NOT_RESPOND);
-                    showDialog(NOT_RESPOND);
-                case NETWORK_DISABLE:
-                    showDialog(NETSETTINGS_DIALOG);
-                case NO_DATA:
-                    removeDialog(DATA_DIALOG);
-                    showDialog(ILLEGAL_DATA_DIALOD);
-            }
-            mCursor.requery();
-            setDateOnTitle(onDate);
-        }
-
-    }
 }
