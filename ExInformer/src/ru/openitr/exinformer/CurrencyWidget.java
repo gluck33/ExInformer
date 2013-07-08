@@ -79,7 +79,8 @@ public class CurrencyWidget extends AppWidgetProvider {
                 widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
                 widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(cur/nominal));
                 widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
-                widgetView.setTextViewText(R.id.widgetDataView,new Date(curTime).toLocaleString());
+                //widgetView.setTextViewText(R.id.widgetDataView,new Date(curTime).toLocaleString());
+                widgetView.setTextViewText(R.id.widgetDataView,new Date().toLocaleString());
 
 
             }finally {

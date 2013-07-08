@@ -31,7 +31,8 @@ public class InfoRefreshService extends Service {
 
     AlarmManager alarms;
     PendingIntent alarmIntent;
-
+    protected Calendar nextExecuteTime = Calendar.getInstance();
+    protected long nextExecuteTimeInMills;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,19 +41,17 @@ public class InfoRefreshService extends Service {
         String ALARM_ACTION;
         ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
         Intent intentToFire = new Intent(ALARM_ACTION);
-        alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, 0);
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        int alarmType = AlarmManager.RTC;
-        Calendar nextExecuteTime = Calendar.getInstance();
+        alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
         nextExecuteTime.set(Calendar.HOUR_OF_DAY, 3);
         nextExecuteTime.set(Calendar.MINUTE, 0);
         nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
         TimeZone tz = TimeZone.getTimeZone("GMT+4");
         nextExecuteTime.setTimeZone(tz);
-        long nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
+        nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
         Date newDate = new Date(intent.getLongExtra(main.PARAM_DATE, new Date().getTime()));
         onDate = newDate;
         boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(newDate);
@@ -62,12 +61,6 @@ public class InfoRefreshService extends Service {
             if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Data need to update. newDate = " + newDate.toString() + " onDate = " + onDate.toString() + " infoNeedUpdate = "+infoNeedUpdate);
             new refreshCurrencyTask().execute(newDate);
         }
-        intent.removeExtra(main.PARAM_DATE);
-        // Запуск аларма...
-        alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
-        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG,"Alarm is set to " + nextExecuteTime.getTime().toLocaleString());
-        //
-        newDate = null;
         return Service.START_NOT_STICKY;
     }
 
@@ -133,28 +126,38 @@ public class InfoRefreshService extends Service {
 
         @Override
         protected void onPostExecute(Integer result) {
+            int alarmType = AlarmManager.RTC;
             super.onPostExecute(result);
             Intent resIntent = new Intent(main.INFO_REFRESH_INTENT);
             Intent widgetUpdateIntent = new Intent(CurrencyWidget.CURRENCY_WIDGET_UPDATE);
             switch (result) {
                 case STATUS_NOT_RESPOND:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NOT_RESPOND);
+                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_FIFTEEN_MINUTES, alarmIntent);
                     break;
                 case STATUS_NETWORK_DISABLE:
                     resIntent.putExtra(main.PARAM_STATUS, main.FINS_STATUS_NETWORK_DISABLE);
+                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_HOUR, alarmIntent);
                     break;
                 case STATUS_NO_DATA:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NO_DATA);
                     break;
                 default:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
+                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
             }
-            if (main.DEBUG) LogSystem.logInFile (main.LOG_TAG, "Service: (onPostExecute) Result of service: " + result);
+            if (main.DEBUG) {
+                LogSystem.logInFile(main.LOG_TAG, "Service: (onPostExecute) Result of service: " + result);
+                LogSystem.logInFile(main.LOG_TAG, "Alarm is set to " + nextExecuteTime.getTime().toLocaleString());
+            }
             sendBroadcast(resIntent);
             boolean todayInfo = !new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(new Date());
 //               if (todayInfo)
                 widgetUpdateIntent.putExtra("CURS_TIME",onDate.getTime());
                 sendBroadcast(widgetUpdateIntent);
+
+
+
             stopSelf();
         }
 
