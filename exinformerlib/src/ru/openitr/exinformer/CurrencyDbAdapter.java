@@ -37,13 +37,12 @@ public class CurrencyDbAdapter {
     public static final int VALINDEX_COLUMN = 0;
     public static final int VALCODE_COLUMN = 1;
     public static final int VALCHARCODE_COLUMN = 2;
-    public static final int VALNOMINAL_COLUMN = 3;
-    public static final int VALCURS_COLUMN = 4;
-    public static final int VALNAME_COLUMN = 5;
-    public static final int VALDATE_COLUMN = 6;
-    public static final int FLAGURI_COLUMN = 7;
-    public static final int VISIBLE_COLUMN = 8;
-    public static final int ORDER_COLUMN = 9;
+    public static final int VALCURS_COLUMN = 3;
+    public static final int VALNAME_COLUMN = 4;
+    public static final int VALDATE_COLUMN = 5;
+    public static final int FLAGURI_COLUMN = 6;
+    public static final int VISIBLE_COLUMN = 7;
+    public static final int ORDER_COLUMN = 8;
 
 
     private static final String CREATE_CUR_TABLE = "create table " +
@@ -209,7 +208,6 @@ public class CurrencyDbAdapter {
             throw new SQLiteException("No to do row found: " + rowIndex);
         }
         String vName = cursor.getString(VALNAME_COLUMN);   // Наименование валюты.
-        int vNom = cursor.getInt(VALNOMINAL_COLUMN);     // Номинал.
         Float vCurs = cursor.getFloat(VALCURS_COLUMN);    // Курс.
         String vchCode = cursor.getString(VALCHARCODE_COLUMN); // Код валюты.
         int vCode = cursor.getInt(VALCODE_COLUMN); // Внутренний код валюты.
