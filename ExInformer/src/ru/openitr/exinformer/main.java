@@ -26,7 +26,7 @@ public class main extends ListActivity {
     Calendar calendar = Calendar.getInstance();
 
      ValFromDbAdapter valFromDbAdapter;
-    CurrencyDbAdapter db;
+//    CurrencyDbAdapter db;
     public static final boolean DEBUG = true;
     public static final String LOG_TAG = "CBInfo";
     public static final int STATUS_BEGIN_REFRESH = 10;
@@ -51,10 +51,6 @@ public class main extends ListActivity {
     static final private int ILLEGAL_DATA_DIALOD = 4;
     static final private int NOT_RESPOND_DIALOG = 5;
 
-    static final private int OK = 20;
-    static final private int NOT_RESPOND = 21;
-    static final private int NO_DATA = 22;
-    static final private int NETWORK_DISABLE = 23;
     static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
     private Cursor mCursor;
     Intent refreshServiceIntent;
@@ -68,7 +64,7 @@ public class main extends ListActivity {
         onDate.setHours(0);
         onDate.setMinutes(0);
         onDate.setSeconds(0);
-        db = new CurrencyDbAdapter(this);
+//        db = new CurrencyDbAdapter(this);
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
 //        mCursor = getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS,null, null,null);
         mCursor = managedQuery(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, null);
@@ -78,7 +74,7 @@ public class main extends ListActivity {
             ListView listView = getListView();
             listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
-            final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vNomView, R.id.vCursView, R.id.vNameView};
+            final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
             valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
             setListAdapter(valFromDbAdapter);
@@ -109,8 +105,8 @@ public class main extends ListActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        db.close();
-        Log.d(LOG_TAG, "onDestroy");
+//        db.close();
+        if (DEBUG) Log.d(LOG_TAG, "onDestroy");
     }
 
     private OnDateSetListener cDateSetListener = new OnDateSetListener() {
@@ -291,8 +287,8 @@ public class main extends ListActivity {
                         break;
                     case FIN_STATUS_NOT_RESPOND:
                         Log.d(LOG_TAG, "Server not respond.");
-                        removeDialog(NOT_RESPOND);
-                        showDialog(NOT_RESPOND);
+                        removeDialog(NOT_RESPOND_DIALOG);
+                        showDialog(NOT_RESPOND_DIALOG);
                         break;
                     case FINS_STATUS_NETWORK_DISABLE:
                         Log.d(LOG_TAG, "Network disabled.");

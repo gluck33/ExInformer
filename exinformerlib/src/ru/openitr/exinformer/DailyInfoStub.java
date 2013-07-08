@@ -77,7 +77,8 @@ public class DailyInfoStub {
                 int valNom = Integer.parseInt((valCursArrayElement.getProperty("Vnom").toString()));
                 float valCurs = Float.parseFloat(valCursArrayElement.getProperty("Vcurs").toString());
                 int vCode = Integer.parseInt(valCursArrayElement.getProperty("Vcode").toString());
-                result.add(new Icurrency(valName, valNom, valCurs, valChCode, vCode, onDate));
+                valCurs = valCurs/valNom;
+                result.add(new Icurrency(valName, valCurs, valChCode, vCode, onDate));
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();

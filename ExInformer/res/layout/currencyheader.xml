@@ -19,13 +19,6 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/vNomHead"
-            android:id="@+id/vNomHead" android:layout_gravity="center|top"
-            android:width="@dimen/vNomColDim" android:layout_marginLeft="@dimen/rowTextLeftMargin"
-            />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/vCursHead"
             android:id="@+id/vCursHead" android:layout_gravity="center_horizontal|top"
             android:width="@dimen/vCursColDim" android:layout_marginLeft="@dimen/rowTextLeftMargin"/>

@@ -21,12 +21,11 @@ public class CurrencyDbAdapter {
     //private static final String TAG = "exInformer";
     private static final String DATABASE_NAME = "exInformer.db";
     private static String CURRENCY_TABLE = "curtable";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     // Имена столбцов
     public static final String KEY_ID = "_id";
     public static final String KEY_CODE = "vCode";
     public static final String KEY_CHARCODE = "vchCode";
-    public static final String KEY_NOMINAL = "vNom";
     public static final String KEY_VCURS = "vCurs";
     public static final String KEY_VNAME = "vName";
     public static final String KEY_DATE = "vDate";
@@ -52,7 +51,6 @@ public class CurrencyDbAdapter {
             KEY_ID + " integer primary key autoincrement, " +
             KEY_CODE + " ineger, " +
             KEY_CHARCODE + " text," +
-            KEY_NOMINAL + " integer," +
             KEY_VCURS + " real," +
             KEY_VNAME + " text," +
             KEY_DATE + " long, " +
@@ -60,8 +58,8 @@ public class CurrencyDbAdapter {
             KEY_VISIBLE + " integer," +
             KEY_ORDER + " integer" +
             ");";
-    public static final String[] ALL_COLUMNS = {KEY_ID, KEY_CODE, KEY_CHARCODE, KEY_NOMINAL, KEY_VCURS, KEY_VNAME, KEY_DATE, KEY_IMAGE_URI, KEY_VISIBLE, KEY_ORDER};
-    public static final String[] ALL_VISIBLE_COLUMNS = {KEY_IMAGE_URI, KEY_CHARCODE, KEY_NOMINAL, KEY_VCURS, KEY_VNAME};
+    public static final String[] ALL_COLUMNS = {KEY_ID, KEY_CODE, KEY_CHARCODE, KEY_VCURS , KEY_VNAME, KEY_DATE, KEY_IMAGE_URI, KEY_VISIBLE, KEY_ORDER};
+    public static final String[] ALL_VISIBLE_COLUMNS = {KEY_IMAGE_URI, KEY_CHARCODE, KEY_VCURS, KEY_VNAME};
     //    private static final String DELETE_AUTO_INCREMENT = "DELETE FROM sqlite_sequence WHERE name='"+CURRENCY_TABLE+"';";
     private SQLiteDatabase db;
     private curDbHelper dbHelper;
@@ -217,7 +215,7 @@ public class CurrencyDbAdapter {
         int vCode = cursor.getInt(VALCODE_COLUMN); // Внутренний код валюты.
         java.util.Date vDate = new java.util.Date(new Date(cursor.getLong(VALDATE_COLUMN)).getTime()); // Дата курса.
         cursor.close();
-        return new Icurrency(vName, vNom, vCurs, vchCode, vCode, vDate);
+        return new Icurrency(vName, vCurs, vchCode, vCode, vDate);
     }
 
     /**

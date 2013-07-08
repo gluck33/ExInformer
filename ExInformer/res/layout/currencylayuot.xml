@@ -20,13 +20,6 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:id="@+id/vNomView" android:layout_gravity="center_vertical" android:singleLine="true"
-            android:layout_marginLeft="5dp" android:autoText="true" android:clickable="false" android:editable="false"
-            android:linksClickable="false" android:longClickable="false" android:width="@dimen/vNomColDim"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="30.721"
             android:id="@+id/vCursView" android:layout_gravity="center_vertical" android:editable="false"
             android:layout_marginLeft="5dp" android:width="@dimen/vCursColDim"/>

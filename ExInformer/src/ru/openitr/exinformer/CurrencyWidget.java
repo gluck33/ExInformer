@@ -73,11 +73,10 @@ public class CurrencyWidget extends AppWidgetProvider {
                 cursor.moveToFirst();
                 String vChCode = cursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN);
                 String uriString = "android.resource://ru.openitr.exinformer/drawable/f_"+vChCode;
-                int nominal = cursor.getInt(CurrencyDbAdapter.VALNOMINAL_COLUMN);
-                float cur = cursor.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
+                float curs = cursor.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
                 long curTime = cursor.getLong(CurrencyDbAdapter.VALDATE_COLUMN);
                 widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
-                widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(cur/nominal));
+                widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(curs));
                 widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
                 //widgetView.setTextViewText(R.id.widgetDataView,new Date(curTime).toLocaleString());
                 widgetView.setTextViewText(R.id.widgetDataView,new Date().toLocaleString());

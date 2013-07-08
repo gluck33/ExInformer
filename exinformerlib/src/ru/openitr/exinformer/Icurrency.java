@@ -16,7 +16,6 @@ import java.util.Date;
 public class Icurrency {
     static final String LOG_TAG = "CBInfo";
     private String vName;   // Наименование валюты.
-    private int vNom;     // Номинал.
     private Float vCurs;    // Курс.
     private String vchCode; // Код валюты.
     private int vCode; // Внутренний код валюты.
@@ -24,7 +23,6 @@ public class Icurrency {
 
     public Icurrency() {
         this.vName = "";
-        this.vNom = 0;
         this.vCurs = 0f;
         this.vchCode = "";
         this.vCode = 0;
@@ -32,9 +30,8 @@ public class Icurrency {
 
 
 
-    public Icurrency(String vName, int vNom, Float vCurs, String vchCode, int vCode, Date vDate) {
+    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Date vDate) {
         this.vName = vName;
-        this.vNom = vNom;
         this.vCurs = vCurs;
         this.vchCode = vchCode;
         this.vCode = vCode;
@@ -45,9 +42,6 @@ public class Icurrency {
         return this.vName;
     }
 
-    public int getvNom() {
-        return this.vNom;
-    }
 
     public Float getvCurs() {
         return this.vCurs;
@@ -61,9 +55,6 @@ public class Icurrency {
         this.vName = vName;
     }
 
-    public void setvNom(int vNom) {
-        this.vNom = vNom;
-    }
 
     public void setvCurs(Float vCurs) {
         this.vCurs = vCurs;
@@ -84,11 +75,7 @@ public class Icurrency {
     @Override
     // TODO Продумать и переделать toString
     public String toString() {
-        return String.format("%s %s %s %s", this.vchCode, this.vNom, this.vCurs, this.vName);
-    }
-
-    public String vNomAsString() {
-        return Integer.toString(this.vNom);
+        return String.format("%s %s %s %s", this.vchCode, this.vCurs, this.vName);
     }
 
     public String vCursAsString() {
@@ -125,10 +112,6 @@ public class Icurrency {
         if (_cv.containsKey("vName")) {
             this.vName = _cv.getAsString("vName");
         }
-        else throw new IllegalArgumentException("The argument must contain a key vName...");
-        if (_cv.containsKey("vNom")) {
-            this.vNom = _cv.getAsInteger("vNom");
-        }
         else throw new IllegalArgumentException("The argument must contain a key vNom...");
         if (_cv.containsKey("vCurs")) {
             this.vCurs = _cv.getAsFloat("vCurs");
@@ -164,7 +147,6 @@ public class Icurrency {
         ContentValues cv = new ContentValues();
         cv.put(CurrencyDbAdapter.KEY_CODE, this.getvCode());
         cv.put(CurrencyDbAdapter.KEY_CHARCODE, this.getVchCode());
-        cv.put(CurrencyDbAdapter.KEY_NOMINAL, this.getvNom());
         cv.put(CurrencyDbAdapter.KEY_VCURS, this.getvCurs());
         cv.put(CurrencyDbAdapter.KEY_VNAME, this.getvName());
         cv.put(CurrencyDbAdapter.KEY_DATE, this.getvDate().getTime());
