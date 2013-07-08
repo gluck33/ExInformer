@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +25,6 @@ public class main extends ListActivity {
     Calendar calendar = Calendar.getInstance();
 
      ValFromDbAdapter valFromDbAdapter;
-//    CurrencyDbAdapter db;
     public static final boolean DEBUG = true;
     public static final String LOG_TAG = "CBInfo";
     public static final int STATUS_BEGIN_REFRESH = 10;
@@ -42,7 +40,6 @@ public class main extends ListActivity {
     public static final String PARAM_DATE = "date";
     public static final String PARAM_FROM = "from";
 
-//    public static final String INFO_BEGIN_UPDATE_INTENT = "ru.openitr.exinformer.INFO_REFRESH_BEGIN";
     static final String INFO_REFRESH_INTENT = "ru.openitr.exinformer.INFO_UPDATE";
 
     static final private int DATA_DIALOG = 1;
@@ -64,15 +61,13 @@ public class main extends ListActivity {
         onDate.setHours(0);
         onDate.setMinutes(0);
         onDate.setSeconds(0);
-//        db = new CurrencyDbAdapter(this);
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
-//        mCursor = getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS,null, null,null);
         mCursor = managedQuery(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, null);
         startManagingCursor(mCursor);
         br = new MainActivityBroadcastReceiever();
         try {
-            ListView listView = getListView();
-            listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
+//            ListView listView = getListView();
+//            listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
             final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
@@ -105,7 +100,6 @@ public class main extends ListActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
-//        db.close();
         if (DEBUG) Log.d(LOG_TAG, "onDestroy");
     }
 
