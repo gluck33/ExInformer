@@ -133,11 +133,13 @@ public class InfoRefreshService extends Service {
             switch (result) {
                 case STATUS_NOT_RESPOND:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NOT_RESPOND);
+                    nextExecuteTimeInMills = System.currentTimeMillis() + 1000*60*60;
                     alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_FIFTEEN_MINUTES, alarmIntent);
                     break;
                 case STATUS_NETWORK_DISABLE:
                     resIntent.putExtra(main.PARAM_STATUS, main.FINS_STATUS_NETWORK_DISABLE);
-                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_HOUR, alarmIntent);
+                    nextExecuteTimeInMills = System.currentTimeMillis() + 1000*60*60;
+                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills , AlarmManager.INTERVAL_HOUR, alarmIntent);
                     break;
                 case STATUS_NO_DATA:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NO_DATA);
