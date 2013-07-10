@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
-import ru.openitr.exinformer.CurrencyDbAdapter;
 
 /**
  * Created by
@@ -32,4 +31,6 @@ public class ValFromDbAdapter extends SimpleCursorAdapter implements ViewBinder 
         }
         return false;
     }
+
+
 }

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -53,9 +54,27 @@ public class main extends ListActivity {
     Intent refreshServiceIntent;
     BroadcastReceiver br;
 
+    private DragSortListView.DropListener onDrop =
+            new DragSortListView.DropListener() {
+                @Override
+                public void drop(int from, int to) {
+                    if (from != to) {
+                        DragSortListView list = getListView();
+                        //String item = (String) valFromDbAdapter.getItem(from);
+                        //adapter.remove(item);
+                        //adapter.insert(item, to);
+                        //list.moveCheckState(from, to);
+                        Log.d(LOG_TAG, "Selected item is " + list.getCheckedItemPosition());
+                    }
+                }
+            };
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
         Log.d(LOG_TAG, "onCreate");
         customTitleSupported = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         onDate.setHours(0);
@@ -66,13 +85,15 @@ public class main extends ListActivity {
         startManagingCursor(mCursor);
         br = new MainActivityBroadcastReceiever();
         try {
-//            ListView listView = getListView();
 //            listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
             final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
             valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
             setListAdapter(valFromDbAdapter);
+            DragSortListView listView = getListView();
+            listView.setDropListener(onDrop);
+            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             getInfo(onDate);
             //Титл бар
             customTitleBar(getText(R.string.app_name).toString());
@@ -81,6 +102,12 @@ public class main extends ListActivity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public DragSortListView getListView(){
+        return (DragSortListView) super.getListView();
+    }
+
 
     @Override
     protected void onResume() {
