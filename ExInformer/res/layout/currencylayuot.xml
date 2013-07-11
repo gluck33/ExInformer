@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ru.openitr.exinformer.DragSortListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-<!--suppress AndroidLintContentDescription -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/currencyListView"
               android:orientation="horizontal"
@@ -10,7 +14,7 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/flag_image" android:focusableInTouchMode="false"
+            android:id="@id/drag_handle" android:focusableInTouchMode="false"
             android:scaleType="center" android:visibility="visible" android:baselineAlignBottom="true"
             android:maxWidth="@dimen/vFlagColDim"
             />
@@ -41,3 +45,4 @@
         </TableRow>
     </LinearLayout>
 </LinearLayout>
+</ru.openitr.exinformer.DragSortListView>

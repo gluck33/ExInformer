@@ -5,7 +5,7 @@
                                           android:layout_width="fill_parent"
                                           android:layout_height="fill_parent"
                                           android:layout_margin="3dp"
-                                          android:choiceMode="multipleChoice"
+                                          android:choiceMode="singleChoice"
                                           android:dividerHeight="1px"
                                           android:padding="3dp"
                                           dslv:click_remove_id="@id/click_remove"

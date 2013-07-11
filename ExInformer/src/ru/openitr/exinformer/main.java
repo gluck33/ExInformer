@@ -58,17 +58,17 @@ public class main extends ListActivity {
             new DragSortListView.DropListener() {
                 @Override
                 public void drop(int from, int to) {
+                    if (DEBUG)Log.d("ru.openitr.exinformer","Drop...");
                     if (from != to) {
                         DragSortListView list = getListView();
                         //String item = (String) valFromDbAdapter.getItem(from);
                         //adapter.remove(item);
                         //adapter.insert(item, to);
                         //list.moveCheckState(from, to);
-                        Log.d(LOG_TAG, "Selected item is " + list.getCheckedItemPosition());
+                        if (DEBUG)Log.d("ru.openitr.exinformer", "Selected item is " + list.getCheckedItemPosition());
                     }
                 }
             };
-
 
 
     @Override
@@ -87,7 +87,7 @@ public class main extends ListActivity {
         try {
 //            listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
-            final int [] to = {R.id.flag_image, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
+            final int [] to = {R.id.drag_handle, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
             valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
             setListAdapter(valFromDbAdapter);
