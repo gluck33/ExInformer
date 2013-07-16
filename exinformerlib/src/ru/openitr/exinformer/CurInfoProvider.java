@@ -52,9 +52,9 @@ public class CurInfoProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         switch (uriMatcher.match(uri)) {
             case URI_CURRENCY :
-                if (TextUtils.isEmpty(sortOrder)) {
-                    sortOrder = CurrencyDbAdapter.KEY_ORDER + " ASC";
-                }
+//                if (TextUtils.isEmpty(sortOrder)) {
+//                    sortOrder = CurrencyDbAdapter.KEY_ORDER + " ASC";
+//                }
                 break;
 
             case URI_CURRENCY_ID:
@@ -116,11 +116,7 @@ public class CurInfoProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong URI: "+ uri);
         }
         int result = db.updateCurrencyRow(contentValues, selection, selectionArgs);
-//        getContext().getContentResolver().notifyChange(uri, null);
+        //getContext().getContentResolver().notifyChange(uri, null);
         return result;
-    }
-    public boolean infoNeedUpdate(){
-
-        return false;
     }
 }

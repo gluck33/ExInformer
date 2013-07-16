@@ -1,3 +1,4 @@
+
 package ru.openitr.exinformer;
 
 import android.app.*;
@@ -15,10 +16,12 @@ import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.mobeta.android.dslv.DragSortListView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class main extends ListActivity {
     boolean customTitleSupported;
@@ -49,7 +52,8 @@ public class main extends ListActivity {
     static final private int ILLEGAL_DATA_DIALOD = 4;
     static final private int NOT_RESPOND_DIALOG = 5;
 
-    static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
+    static final Uri CURRENCYS_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
+    static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/");
     private Cursor mCursor;
     Intent refreshServiceIntent;
     BroadcastReceiver br;
@@ -58,14 +62,13 @@ public class main extends ListActivity {
             new DragSortListView.DropListener() {
                 @Override
                 public void drop(int from, int to) {
-                    if (DEBUG)Log.d("ru.openitr.exinformer","Drop...");
+                    Log.d(LOG_TAG,"Drop from: "+Integer.toString(from)+", to: " +Integer.toString(to));
                     if (from != to) {
-                        DragSortListView list = getListView();
+                        moveItem(from, to);
                         //String item = (String) valFromDbAdapter.getItem(from);
                         //adapter.remove(item);
                         //adapter.insert(item, to);
                         //list.moveCheckState(from, to);
-                        if (DEBUG)Log.d("ru.openitr.exinformer", "Selected item is " + list.getCheckedItemPosition());
                     }
                 }
             };
@@ -74,18 +77,17 @@ public class main extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        customTitleSupported = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         Log.d(LOG_TAG, "onCreate");
-        customTitleSupported = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         onDate.setHours(0);
         onDate.setMinutes(0);
         onDate.setSeconds(0);
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
-        mCursor = managedQuery(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, null);
+        mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         startManagingCursor(mCursor);
         br = new MainActivityBroadcastReceiever();
         try {
-//            listView.addHeaderView(getLayoutInflater().inflate(R.layout.currencyheader,null));
             final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
             final int [] to = {R.id.drag_handle, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
             //Адаптер к листу
@@ -244,7 +246,7 @@ public class main extends ListActivity {
     }
 
     public void setInfoDateToTitle(){
-        Cursor cursor = (getContentResolver().query(CURRENCY_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
+        Cursor cursor = (getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
         if (cursor.moveToFirst())
             setDateOnTitle(new Date(cursor.getLong(0)));
     }
@@ -288,7 +290,28 @@ public class main extends ListActivity {
 //        }
     }
 
+     private void moveItem (int from, int to){
 
+         ContentResolver cr = getContentResolver();
+         ContentValues cv = new ContentValues();
+         LinkedList<String> items = new LinkedList<String>();
+         Cursor itemsCursor = cr.query(CURRENCYS_URI,CurrencyDbAdapter.ALL_COLUMNS,null,null,CurrencyDbAdapter.KEY_ORDER);
+         itemsCursor.moveToFirst();
+         do {
+             items.add(itemsCursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN));
+         }
+         while (itemsCursor.moveToNext());
+         String item = items.get(from);
+         items.remove(from);
+         items.add(to, item);
+         for (String itemCode: items){
+             int index = items.indexOf(itemCode);
+             cv.put(CurrencyDbAdapter.KEY_ORDER, index);
+             cr.update(Uri.parse(CURRENCYS_URI.toString() + "/" + itemCode), cv, null, null);
+         }
+         //getContentResolver().notifyChange(CURRENCYS_URI, null);
+         mCursor.requery();
+     }
 
      private class MainActivityBroadcastReceiever extends BroadcastReceiver {
 

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ru.openitr.exinformer.DragSortListView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-
+<!--suppress AndroidLintContentDescription -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content" android:baselineAligned="false">
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,7 +19,7 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Currency fullname"
+                android:text="New Text"
                 android:id="@+id/vNameView" android:layout_gravity="center_vertical|right" android:inputType="textMultiLine"
                 android:layout_marginLeft="5dp" android:textSize="12dp"/>
         <TableRow
@@ -39,4 +38,4 @@
                     android:layout_marginLeft="5dp" android:width="@dimen/vCursColDim"/>
         </TableRow>
     </LinearLayout>
-</ru.openitr.exinformer.DragSortListView>
+</LinearLayout>

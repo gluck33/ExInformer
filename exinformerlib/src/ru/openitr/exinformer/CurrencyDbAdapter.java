@@ -141,13 +141,19 @@ public class CurrencyDbAdapter {
     public long insertCurrencyRow(ContentValues _cv) {
         String imageURI = "android.resource://ru.openitr.exinformer/drawable/f_" + _cv.getAsString(KEY_CHARCODE).toLowerCase();
         Integer rowId = 0;
-        Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
-        if (cursor.getCount() != 0 && cursor.moveToFirst()) {
-            rowId = cursor.getInt(0);
-        }
         _cv.put(KEY_IMAGE_URI, imageURI);
         _cv.put(KEY_VISIBLE, 1);
-        _cv.put(KEY_ORDER, rowId + 1);
+        if (!_cv.containsKey(KEY_ORDER)){
+            Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
+            if (cursor.getCount() != 0 && cursor.moveToFirst()) {
+                rowId = cursor.getInt(0);
+            }
+
+            _cv.put(KEY_ORDER, rowId + 1);
+        }
+        else{
+
+        }
         return db.insert(CURRENCY_TABLE, null, _cv);
     }
 

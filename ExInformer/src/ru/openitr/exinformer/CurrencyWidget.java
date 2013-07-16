@@ -11,8 +11,6 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import java.util.Date;
-
 
 /**
  * Created by
@@ -69,18 +67,18 @@ public class CurrencyWidget extends AppWidgetProvider {
         String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE +id, null);
         if (_vChCode != null){
             Cursor cursor = context.getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, CurrencyDbAdapter.KEY_CHARCODE+" = ?", new String[]{_vChCode}, null);
+            if (cursor.getCount()<=0) {
+                cursor.close();
+                return;
+            }
             try {
                 cursor.moveToFirst();
                 String vChCode = cursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN);
                 String uriString = "android.resource://ru.openitr.exinformer/drawable/f_"+vChCode;
                 float curs = cursor.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
-                long curTime = cursor.getLong(CurrencyDbAdapter.VALDATE_COLUMN);
                 widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
                 widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(curs));
                 widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
-                //widgetView.setTextViewText(R.id.widgetDataView,new Date(curTime).toLocaleString());
-                widgetView.setTextViewText(R.id.widgetDataView,new Date().toLocaleString());
-
 
             }finally {
                 cursor.close();

@@ -41,7 +41,7 @@ public class CurWidgetConfActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-             Intent intent = getIntent();
+        Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null){
             widgetID = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
@@ -60,12 +60,14 @@ public class CurWidgetConfActivity extends Activity {
 
 //        tv = (TextView) findViewById(R.id.widgetObject);
         ArrayList<String> curList = new ArrayList<String>();
-        Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CurrencyDbAdapter.KEY_CHARCODE,CurrencyDbAdapter.KEY_VNAME},null, null,null);
+        Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CurrencyDbAdapter.KEY_CHARCODE,CurrencyDbAdapter.KEY_VNAME},null, null,CurrencyDbAdapter.KEY_ORDER);
         cursor.moveToFirst();
-        while (cursor.moveToNext()){
+        do {
            curList.add(cursor.getString(0)+" - "+cursor.getString(1));
         }
+        while (cursor.moveToNext());
         curListAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice, curList);
+        widgetDisplayInfo = curList.get(0);
         cursor.close();
         showDialog(WIDGET_CONF_DIALOG);
 
@@ -82,7 +84,6 @@ public class CurWidgetConfActivity extends Activity {
                 dialogBuilder.setTitle(R.string.Select);
                 dialogBuilder.setView(dialogView);
                 resDialog = dialogBuilder.create();
-
                 return resDialog;
 
             case CUR_ITEMS_DIALOG:
@@ -103,6 +104,7 @@ public class CurWidgetConfActivity extends Activity {
                     }
                 });
                 resDialog = itemsBuilder.create();
+
                 return resDialog;
 
         }
@@ -115,7 +117,7 @@ public class CurWidgetConfActivity extends Activity {
         switch (id){
             case WIDGET_CONF_DIALOG:
                 tv = (TextView) dialog.findViewById(R.id.widgetObject);
-                tv.setText(curListAdapter.getItem(1));
+                tv.setText(curListAdapter.getItem(0));
                 break;
         }
 

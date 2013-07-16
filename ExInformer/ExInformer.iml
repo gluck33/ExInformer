@@ -20,6 +20,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ru.openitr.exinformerlib" />
     <orderEntry type="library" name="ksoap2-android-assembly-3.0.0-RC.2-jar-with-dependencies" level="project" />
+    <orderEntry type="library" name="com.mobeta.android.dslv" level="project" />
   </component>
 </module>
 

@@ -24,7 +24,7 @@
     <string name="selectInfoItem">Выберите отображаемую информацию…</string>
     <!-- Menu strings -->
     <string name="settings">Настройки</string>
-    <string name="setData">Установить дату курса</string>
+    <string name="setData">Информация на дату</string>
     <!-- Other -->
     <string name="valItemVisible">Отображать</string>
     <string name="Select">Выбрать</string>
