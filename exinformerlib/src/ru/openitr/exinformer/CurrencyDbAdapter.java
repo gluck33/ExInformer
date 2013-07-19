@@ -219,6 +219,7 @@ public class CurrencyDbAdapter {
         int vCode = cursor.getInt(VALCODE_COLUMN); // Внутренний код валюты.
         java.util.Date vDate = new java.util.Date(new Date(cursor.getLong(VALDATE_COLUMN)).getTime()); // Дата курса.
         cursor.close();
+        this.close();
         return new Icurrency(vName, vCurs, vchCode, vCode, vDate);
     }
 
@@ -272,7 +273,6 @@ public class CurrencyDbAdapter {
       * @return Если Год и день года равны возвращает false. В остальных случаях true.
      * */
     public boolean isNeedUpdate(java.util.Date onDate) {
-
         Calendar cursDate = Calendar.getInstance();
         cursDate.setTime(getCursDate());
         Calendar date = null;

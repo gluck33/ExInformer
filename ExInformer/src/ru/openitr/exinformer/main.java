@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.LinkedList;
 
 public class main extends ListActivity {
-    boolean customTitleSupported;
+    boolean OldAPIVersion;
     static Date onDate = new Date();
     Calendar calendar = Calendar.getInstance();
 
@@ -80,7 +80,7 @@ public class main extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        customTitleSupported = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         Log.d(LOG_TAG, "onCreate");
         onDate.setHours(0);
@@ -225,7 +225,7 @@ public class main extends ListActivity {
        Title bar для вывода даты курса.
      */
     private void customTitleBar(String left) {
-        if (customTitleSupported) {
+        if (OldAPIVersion) {
              getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
                     R.layout.apptitle);
             TextView titleLeft = (TextView) findViewById(R.id.titleLeft);
@@ -237,7 +237,7 @@ public class main extends ListActivity {
     private void setDateOnTitle(Date onDate){
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String stringDate = sdf.format(onDate);
-        if (customTitleSupported) {
+        if (OldAPIVersion) {
             TextView titleTvRight = (TextView) findViewById(R.id.titleRight);
             titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": "+stringDate);
         }
@@ -263,17 +263,14 @@ public class main extends ListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
 
-        if (customTitleSupported) {
+        if (OldAPIVersion) {
             getMenuInflater().inflate(R.menu.main_menu, menu);
             return true;
         }
-//        MenuItem dataSetItem = menu.findItem(R.id.setDataItem);
-//        MenuItem settingsItem = menu.findItem(R.id.settingsItem);
-//        dataSetItem.setIcon(R.drawable.holo_dark_device_access_data_usage);
-//        settingsItem.setIcon(R.drawable.holo_dark_action_settings);
-        getMenuInflater().inflate(R.menu.root_menu, menu);
-
-        return true;
+        else{
+            getMenuInflater().inflate(R.menu.root_menu, menu);
+            return true;
+        }
     }
 
     @Override
@@ -294,17 +291,16 @@ public class main extends ListActivity {
         return false;
     }
 
-    private PopupMenu.OnMenuItemClickListener popUpListener = new PopupMenu.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-                 onOptionsItemSelected(item);
-                 return false;
-        }
-    };
 
     public void showMenu(View view){
         PopupMenu popupMenu = new PopupMenu(this, view);
-        popupMenu.setOnMenuItemClickListener(popUpListener);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                onOptionsItemSelected(item);
+                return false;
+            }
+        });
         popupMenu.inflate(R.menu.main_menu);
         popupMenu.show();
 
@@ -312,11 +308,8 @@ public class main extends ListActivity {
 
     private void getInfo(Date newDate){
         onDate = newDate;
-//        boolean isNeedUpdate = db.isNeedUpdate(onDate);
         refreshServiceIntent.putExtra(PARAM_DATE,newDate.getTime());
-//        if (isNeedUpdate){
-            startService(refreshServiceIntent);
-//        }
+        startService(refreshServiceIntent);
     }
 
      private void moveItem (int from, int to){

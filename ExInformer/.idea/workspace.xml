@@ -50,31 +50,21 @@
     </option>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="CBInfo" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="ru.openitr.exinformer" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/BasePreferencesActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/TimePreference.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/xml/base_preferences.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/menu/root_menu.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/time_base_pref.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/time_preference.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/CurrencyDbAdapter.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/CurrencyDbAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/main.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/main_menu.xml" afterPath="$PROJECT_DIR$/res/menu/main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-ru/strings.xml" afterPath="$PROJECT_DIR$/res/values-ru/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/main.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1374218411434" ignored="false" />
+    <file path="/main.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1374233232068" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1370950061006" ignored="false" />
     <file path="/strings.xml" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1374144848381" ignored="false" />
     <file path="/Dummy.txt" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1374211335077" ignored="false" />
-    <file path="/CurrencyDbAdapter.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1373632683759" ignored="false" />
+    <file path="/CurrencyDbAdapter.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1374231382031" ignored="false" />
     <file path="/fragment.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1374217271637" ignored="false" />
     <file path="$PROJECT_DIR$/../exinformerlib/.idea/ant.xml" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1363764879874" ignored="false" />
     <file path="$PROJECT_DIR$/../exinformerlib/.idea/artifacts/exinformerlib_jar.xml" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1363764879874" ignored="false" />
@@ -176,11 +166,11 @@
       <file leaf-file-name="main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="303" column="6" selection-start="11479" selection-end="11479" vertical-scroll-proportion="0.78503186">
+            <state line="333" column="9" selection-start="12433" selection-end="12433" vertical-scroll-proportion="0.48726115">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11269#11477#0" expanded="true" />
-                <element signature="e#11470#11471#0" expanded="true" />
+                <element signature="e#11061#11283#0" expanded="true" />
+                <element signature="e#11272#11273#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -252,6 +242,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CurrencyDbAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/CurrencyDbAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="221" column="12" selection-start="7567" selection-end="7567" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -275,7 +274,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/CurWidgetConfActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/CurrencyWidget.java" />
         <option value="$PROJECT_DIR$/res/layout/cur_widget.xml" />
@@ -290,6 +288,7 @@
         <option value="$PROJECT_DIR$/res/xml/base_preferences.xml" />
         <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
         <option value="$PROJECT_DIR$/res/menu/root_menu.xml" />
+        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/CurrencyDbAdapter.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/main.java" />
       </list>
     </option>
@@ -479,7 +478,7 @@
     <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
     <property name="AndroidLayoutSelectedEditor" value="android-designer" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="HT034NX03451" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
@@ -687,7 +686,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1297" y="351" width="1263" height="644" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1296" y="195" width="1263" height="799" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3243874" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -784,13 +783,6 @@
         <state line="56" column="2" selection-start="1848" selection-end="1848" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/CurrencyDbAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="49" selection-start="5477" selection-end="5477" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-normal/action_settings.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -882,13 +874,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/CurrencyDbAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="221" column="12" selection-start="7567" selection-end="7567" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="6" selection-start="11479" selection-end="11479" vertical-scroll-proportion="0.78503186">
+        <state line="333" column="9" selection-start="12433" selection-end="12433" vertical-scroll-proportion="0.48726115">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11269#11477#0" expanded="true" />
-            <element signature="e#11470#11471#0" expanded="true" />
+            <element signature="e#11061#11283#0" expanded="true" />
+            <element signature="e#11272#11273#0" expanded="true" />
           </folding>
         </state>
       </provider>
