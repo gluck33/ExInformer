@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/root_menu"
+        android:icon="@drawable/holo_dark_collections_view_as_list"
+        android:showAsAction="ifRoom"
+        android:title="@string/rootmenu_title">
+    </item>
+</menu>

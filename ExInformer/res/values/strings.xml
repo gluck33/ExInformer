@@ -27,4 +27,11 @@
     <string name="setData">Set exchange date</string>
     <!-- Other -->
     <string name="valItemVisible">Visible</string><string name="Select">Select</string>
+    <string name="preference_title">Update preferences</string>
+    <string name="auto_update">Auto refresh</string>
+    <string name="autoupdate_summary">Select to turn on automatic updating</string>
+    <string name="preference_time_title">Refresh time</string>
+    <string name="preference_time_summary">Time of updating information</string>
+    <string name="preference_uprate_category_title">Preferences of autorefresh</string>
+    <string name="rootmenu_title">Menu and settings</string>
 </resources>

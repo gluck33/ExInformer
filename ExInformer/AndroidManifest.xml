@@ -27,7 +27,12 @@
              </intent-filter>
         </activity>
 
-    <provider android:name="CurInfoProvider"
+        <activity android:name=".BasePreferencesActivity"
+                  android:label="@string/preference_title">
+        </activity>
+
+
+        <provider android:name="CurInfoProvider"
               android:authorities="ru.openitr.exinformer.currency"/>
     <receiver
         android:name=".CurrencyWidget"

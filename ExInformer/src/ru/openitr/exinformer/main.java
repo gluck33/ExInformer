@@ -5,16 +5,17 @@ import android.app.*;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.*;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import com.mobeta.android.dslv.DragSortListView;
 
@@ -51,6 +52,8 @@ public class main extends ListActivity {
     static final private int PROGRESS_DIALOG = 3;
     static final private int ILLEGAL_DATA_DIALOD = 4;
     static final private int NOT_RESPOND_DIALOG = 5;
+
+    private static final int SHOW_PREFERENCES = 1;
 
     static final Uri CURRENCYS_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
     static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/");
@@ -251,10 +254,6 @@ public class main extends ListActivity {
             setDateOnTitle(new Date(cursor.getLong(0)));
     }
 
-    private boolean internetAvailable(){
-        ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
     private void goToNetsettings(){
         Intent netSettings = new Intent("android.settings.WIRELESS_SETTINGS");
         startActivity(netSettings);
@@ -263,11 +262,17 @@ public class main extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        if (!customTitleSupported){
-            MenuItem dataSetItem = menu.findItem(R.id.setDataItem);
-            dataSetItem.setIcon(R.drawable.holo_dark_device_access_data_usage);
+
+        if (customTitleSupported) {
+            getMenuInflater().inflate(R.menu.main_menu, menu);
+            return true;
         }
+//        MenuItem dataSetItem = menu.findItem(R.id.setDataItem);
+//        MenuItem settingsItem = menu.findItem(R.id.settingsItem);
+//        dataSetItem.setIcon(R.drawable.holo_dark_device_access_data_usage);
+//        settingsItem.setIcon(R.drawable.holo_dark_action_settings);
+        getMenuInflater().inflate(R.menu.root_menu, menu);
+
         return true;
     }
 
@@ -277,11 +282,35 @@ public class main extends ListActivity {
         switch (item.getItemId()){
                 case (R.id.setDataItem):
                     showDialog(DATA_DIALOG);
-            }
-        return true;
+                    return true;
+                case (R.id.settingsItem):
+                    Intent i = new Intent(this, BasePreferencesActivity.class);
+                    startActivityForResult(i, SHOW_PREFERENCES);
+                    return true;
+                case (R.id.root_menu):
+                    showMenu(findViewById(R.id.root_menu));
+                    return true;
+        }
+        return false;
     }
 
-     private void getInfo(Date newDate){
+    private PopupMenu.OnMenuItemClickListener popUpListener = new PopupMenu.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+                 onOptionsItemSelected(item);
+                 return false;
+        }
+    };
+
+    public void showMenu(View view){
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.setOnMenuItemClickListener(popUpListener);
+        popupMenu.inflate(R.menu.main_menu);
+        popupMenu.show();
+
+    }
+
+    private void getInfo(Date newDate){
         onDate = newDate;
 //        boolean isNeedUpdate = db.isNeedUpdate(onDate);
         refreshServiceIntent.putExtra(PARAM_DATE,newDate.getTime());

@@ -2,9 +2,8 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         android:name="Basic menu"
-
         >
-<!--    <item
+    <item
         android:id="@+id/settingsItem"
         android:icon="@drawable/action_settings"
         android:title="@string/settings"
@@ -13,7 +12,7 @@
         >
 
     </item>
--->
+
     <item
         android:id="@+id/setDataItem"
         android:icon="@drawable/device_access_data_usage"

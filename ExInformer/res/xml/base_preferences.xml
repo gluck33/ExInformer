@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preference_uprate_category_title">
+        <CheckBoxPreference
+                android:key="PREF_AUTO_UPDATE"
+                android:title="@string/auto_update"
+                android:summary="@string/autoupdate_summary"
+                android:defaultValue="true"
+                >
+        </CheckBoxPreference>
+        <ru.openitr.exinformer.TimePreference
+                android:name="UpdateTime"
+                android:summary="@string/preference_time_summary"
+                android:dialogLayout="@layout/time_preference"
+                android:title="@string/preference_time_title"
+                android:key="PREF_UPDITE_TIME"
+                android:dependency="PREF_AUTO_UPDATE"
+                >
+        </ru.openitr.exinformer.TimePreference>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
