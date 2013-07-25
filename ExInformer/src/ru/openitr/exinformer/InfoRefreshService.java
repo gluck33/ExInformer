@@ -3,21 +3,18 @@ package ru.openitr.exinformer;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by
@@ -33,33 +30,42 @@ public class InfoRefreshService extends Service {
     PendingIntent alarmIntent;
     protected Calendar nextExecuteTime = Calendar.getInstance();
     protected long nextExecuteTimeInMills;
+    private boolean autoupdate = false;
     @Override
     public void onCreate() {
         super.onCreate();
+        nextExecuteTimeInMills = 0;
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service created");
-        alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        String ALARM_ACTION;
-        ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
-        Intent intentToFire = new Intent(ALARM_ACTION);
-        alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
-        nextExecuteTime.set(Calendar.HOUR_OF_DAY, 3);
-        nextExecuteTime.set(Calendar.MINUTE, 0);
-        nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
-        TimeZone tz = TimeZone.getTimeZone("GMT+4");
-        nextExecuteTime.setTimeZone(tz);
-        nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
+        Context context = getApplicationContext();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        autoupdate = sharedPreferences.getBoolean("PREF_AUTO_UPDATE", false);
+        int hourOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.hour", 0);
+        int minuteOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.minute", 0);
+        if (autoupdate) {
+            alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            String ALARM_ACTION;
+            ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
+            Intent intentToFire = new Intent(ALARM_ACTION);
+            alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
+            nextExecuteTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
+            nextExecuteTime.set(Calendar.MINUTE, minuteOfRefresh);
+            nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
+            nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Date newDate = new Date(intent.getLongExtra(main.PARAM_DATE, new Date().getTime()));
-        onDate = newDate;
-        boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(newDate);
+        Calendar onDate = Calendar.getInstance();
+        Long extraParam = intent.getLongExtra(main.PARAM_DATE,0);
+        onDate.setTimeInMillis(extraParam);
+
+        boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(onDate);
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
         // Если в базе информация не на текущее время, запускаем обновление данных
         if (infoNeedUpdate){
-            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Data need to update. newDate = " + newDate.toString() + " onDate = " + onDate.toString() + " infoNeedUpdate = "+infoNeedUpdate);
-            new refreshCurrencyTask().execute(newDate);
+            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Data need to update. newDate = " + onDate.toString() + " onDate = " + onDate.toString() + " infoNeedUpdate = "+infoNeedUpdate);
+            new refreshCurrencyTask().execute(onDate);
         }
         return Service.START_NOT_STICKY;
     }
@@ -75,45 +81,17 @@ public class InfoRefreshService extends Service {
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Destroy service.");
     }
 
-    private class refreshCurrencyTask extends AsyncTask<Date, Integer, Integer> {
+    private class refreshCurrencyTask extends AsyncTask<Calendar, Integer, Integer> {
         private static final int OK = 20;
         private static final int STATUS_NETWORK_DISABLE = 30;
         private static final int STATUS_NOT_RESPOND = 40;
         private static final int STATUS_NO_DATA = 50;
         static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
+        private DailyInfoStub dailyInfo = new DailyInfoStub();
         @Override
-        protected Integer doInBackground(Date... params) {
+        protected Integer doInBackground(Calendar... params) {
             publishProgress();
-            Date onDate = params[0];
-            ContentResolver cr = getContentResolver();
-            int res = OK;
-                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Info need to update.");
-                if (!internetAvailable()) {
-                    return STATUS_NETWORK_DISABLE;
-                }
-                try {
-                    ArrayList<Icurrency> infoStub = new DailyInfoStub().getCursOnDate(onDate);
-                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Start update base.");
-                    for (Icurrency icurrencyRecord : infoStub) {
-                        ContentValues _cv = icurrencyRecord.toContentValues();
-                        if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
-                            Uri resultUri = cr.insert(Uri.parse(CURRENCY_URI), _cv);
-                            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "resultUri = " + resultUri.toString());
-                        }
-                    }
-                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Stop update base.");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    res = STATUS_NOT_RESPOND;
-
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
-                    res = STATUS_NO_DATA;
-                } catch (Exception e) {
-                    e.printStackTrace();
-            }
-
-            return res;
+            return getCursOnDate(params[0]);
         }
 
         @Override
@@ -146,21 +124,53 @@ public class InfoRefreshService extends Service {
                     break;
                 default:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
-                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
+                    if (autoupdate) alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
             }
             if (main.DEBUG) {
                 LogSystem.logInFile(main.LOG_TAG, "Service: (onPostExecute) Result of service: " + result);
                 LogSystem.logInFile(main.LOG_TAG, "Alarm is set to " + nextExecuteTime.getTime().toLocaleString());
             }
             sendBroadcast(resIntent);
-            boolean todayInfo = !new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(new Date());
-//               if (todayInfo)
-                widgetUpdateIntent.putExtra("CURS_TIME",onDate.getTime());
+            boolean todayInfo = !new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(Calendar.getInstance());
+               if (todayInfo){
+                widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
                 sendBroadcast(widgetUpdateIntent);
-
+               }
 
 
             stopSelf();
+        }
+
+        private int getCursOnDate(Calendar onDate){
+            ContentResolver cr = getContentResolver();
+            int res = OK;
+            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Info need to update.");
+            if (!internetAvailable()) {
+                return STATUS_NETWORK_DISABLE;
+            }
+            try {
+                ArrayList <Icurrency> infoStub = dailyInfo.getCursOnDate(onDate);
+                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Start update base.");
+                for (Icurrency icurrencyRecord : infoStub) {
+                    ContentValues _cv = icurrencyRecord.toContentValues();
+                    if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
+                        Uri resultUri = cr.insert(Uri.parse(CURRENCY_URI), _cv);
+                        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "resultUri = " + resultUri.toString());
+                    }
+                }
+                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Stop update base.");
+            } catch (IOException e) {
+                e.printStackTrace();
+                res = STATUS_NOT_RESPOND;
+
+            } catch (ArrayIndexOutOfBoundsException e) {
+                e.printStackTrace();
+                res = STATUS_NO_DATA;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return res;
         }
 
     }
@@ -190,5 +200,7 @@ public class InfoRefreshService extends Service {
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: Network conncetion not found");
         return false;
     }
+
+
 
 }

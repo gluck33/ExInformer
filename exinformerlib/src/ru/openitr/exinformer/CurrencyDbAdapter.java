@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 /**
@@ -217,7 +216,8 @@ public class CurrencyDbAdapter {
         Float vCurs = cursor.getFloat(VALCURS_COLUMN);    // Курс.
         String vchCode = cursor.getString(VALCHARCODE_COLUMN); // Код валюты.
         int vCode = cursor.getInt(VALCODE_COLUMN); // Внутренний код валюты.
-        java.util.Date vDate = new java.util.Date(new Date(cursor.getLong(VALDATE_COLUMN)).getTime()); // Дата курса.
+        Calendar vDate = Calendar.getInstance();
+        vDate.setTimeInMillis(cursor.getLong(VALDATE_COLUMN)); // Дата курса.
         cursor.close();
         this.close();
         return new Icurrency(vName, vCurs, vchCode, vCode, vDate);
@@ -252,14 +252,15 @@ public class CurrencyDbAdapter {
      * @return Дата курса в базе.
      */
 
-    public Date getCursDate() {
-        Date curD;
+    public Calendar getCursDate() {
+        Calendar curD = Calendar.getInstance();
         try {
-            curD = new Date(getCurrency(1).getvDate().getTime());
+            curD = getCurrency(1).getvDate();
             return curD;
         } catch (SQLiteException e) {
             e.printStackTrace();
-            return new Date(0);
+            curD.setTimeInMillis(0);
+            return curD;
         }
     }
 
@@ -272,16 +273,11 @@ public class CurrencyDbAdapter {
       *
       * @return Если Год и день года равны возвращает false. В остальных случаях true.
      * */
-    public boolean isNeedUpdate(java.util.Date onDate) {
-        Calendar cursDate = Calendar.getInstance();
-        cursDate.setTime(getCursDate());
-        Calendar date = null;
-        date = Calendar.getInstance();
-        date.setTime(onDate);
-        boolean yearIsEQ = cursDate.get(Calendar.YEAR) == date.get(Calendar.YEAR);
-        boolean dayOfYearIsEQ = cursDate.get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR);
-        boolean result = !(yearIsEQ & dayOfYearIsEQ);
-        return result;
+    public boolean isNeedUpdate(Calendar onDate) {
+        Calendar cursDate = getCursDate();
+        boolean yearIsEQ = cursDate.get(Calendar.YEAR) == onDate.get(Calendar.YEAR);
+        boolean dayOfYearIsEQ = cursDate.get(Calendar.DAY_OF_YEAR) == onDate.get(Calendar.DAY_OF_YEAR);
+        return !(yearIsEQ & dayOfYearIsEQ);
 
     }
 

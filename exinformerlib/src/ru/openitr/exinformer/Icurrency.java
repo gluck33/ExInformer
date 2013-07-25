@@ -4,7 +4,7 @@ import android.content.ContentValues;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +19,7 @@ public class Icurrency {
     private Float vCurs;    // Курс.
     private String vchCode; // Код валюты.
     private int vCode; // Внутренний код валюты.
-    private Date vDate; // Дата курса.
+    private Calendar vDate; // Дата курса.
 
     public Icurrency() {
         this.vName = "";
@@ -30,7 +30,7 @@ public class Icurrency {
 
 
 
-    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Date vDate) {
+    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Calendar vDate) {
         this.vName = vName;
         this.vCurs = vCurs;
         this.vchCode = vchCode;
@@ -82,11 +82,11 @@ public class Icurrency {
         return Float.toString(this.vCurs);
     }
 
-    public Date getvDate() {
+    public Calendar getvDate() {
         return vDate;
     }
 
-    public void setvDate(Date vDate) {
+    public void setvDate(Calendar vDate) {
         this.vDate = vDate;
     }
 
@@ -126,10 +126,13 @@ public class Icurrency {
         }
         else throw new IllegalArgumentException("The argument must contain a key vCode...");
         if (_cv.containsKey("vDate")) {
+            //this.vDate = new SimpleDateFormat("yyyy-MM-dd").parse(_cv.getAsString("vDate"));
             try {
-                this.vDate = new SimpleDateFormat("yyyy-MM-dd").parse(_cv.getAsString("vDate"));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                sdf.parse(_cv.getAsString("vDate"));
+                this.vDate = sdf.getCalendar();
             } catch (ParseException e) {
-                e.printStackTrace();
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
         }
         else throw new IllegalArgumentException("The argument must contain a key vDate...");
@@ -149,7 +152,7 @@ public class Icurrency {
         cv.put(CurrencyDbAdapter.KEY_CHARCODE, this.getVchCode());
         cv.put(CurrencyDbAdapter.KEY_VCURS, this.getvCurs());
         cv.put(CurrencyDbAdapter.KEY_VNAME, this.getvName());
-        cv.put(CurrencyDbAdapter.KEY_DATE, this.getvDate().getTime());
+        cv.put(CurrencyDbAdapter.KEY_DATE, this.getvDate().getTimeInMillis());
         return cv;
     }
 

@@ -21,12 +21,11 @@ import com.mobeta.android.dslv.DragSortListView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class main extends ListActivity {
     boolean OldAPIVersion;
-    static Date onDate = new Date();
+    static Calendar onDate = Calendar.getInstance();
     Calendar calendar = Calendar.getInstance();
 
      ValFromDbAdapter valFromDbAdapter;
@@ -83,9 +82,9 @@ public class main extends ListActivity {
         OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         Log.d(LOG_TAG, "onCreate");
-        onDate.setHours(0);
-        onDate.setMinutes(0);
-        onDate.setSeconds(0);
+//        onDate.setHours(0);
+//        onDate.setMinutes(0);
+//        onDate.setSeconds(0);
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
         mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         startManagingCursor(mCursor);
@@ -137,7 +136,10 @@ public class main extends ListActivity {
 
     private OnDateSetListener cDateSetListener = new OnDateSetListener() {
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            Date newDate = new Date(year - 1900, month, day);
+            Calendar newDate = Calendar.getInstance();
+            newDate.set(Calendar.YEAR,year);
+            newDate.set(Calendar.MONTH,month);
+            newDate.set(Calendar.DAY_OF_MONTH, day);
             if (!newDate.equals(onDate)){
                 onDate = newDate;
                 getInfo(newDate);
@@ -153,9 +155,8 @@ public class main extends ListActivity {
         switch (id){
 
             case (DATA_DIALOG) :
-                calendar.setTime(onDate);
                 DatePickerDialog dpd;
-                dpd = new DatePickerDialog (this, cDateSetListener, calendar.get(Calendar.YEAR),
+                dpd = new DatePickerDialog (this, cDateSetListener, onDate.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
                 return  dpd;
 
@@ -167,6 +168,7 @@ public class main extends ListActivity {
                 netSettingsDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i){
+                        removeDialog(PROGRESS_DIALOG);
                         dialogInterface.cancel();
                     }
                 });
@@ -191,7 +193,7 @@ public class main extends ListActivity {
                 msgDlg.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        onDate = new Date();
+                        onDate.setTimeInMillis(System.currentTimeMillis());
 
                         dialogInterface.dismiss();
                     }
@@ -234,9 +236,9 @@ public class main extends ListActivity {
         }
     }
 
-    private void setDateOnTitle(Date onDate){
+    private void setDateOnTitle(Calendar onDate){
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        String stringDate = sdf.format(onDate);
+        String stringDate = sdf.format(onDate.getTime());
         if (OldAPIVersion) {
             TextView titleTvRight = (TextView) findViewById(R.id.titleRight);
             titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": "+stringDate);
@@ -250,8 +252,11 @@ public class main extends ListActivity {
 
     public void setInfoDateToTitle(){
         Cursor cursor = (getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
-        if (cursor.moveToFirst())
-            setDateOnTitle(new Date(cursor.getLong(0)));
+        if (cursor.moveToFirst()){
+            Calendar onDate = Calendar.getInstance();
+            onDate.setTimeInMillis(cursor.getLong(0));
+            setDateOnTitle(onDate);
+        }
     }
 
     private void goToNetsettings(){
@@ -306,9 +311,9 @@ public class main extends ListActivity {
 
     }
 
-    private void getInfo(Date newDate){
+    private void getInfo(Calendar newDate){
         onDate = newDate;
-        refreshServiceIntent.putExtra(PARAM_DATE,newDate.getTime());
+        refreshServiceIntent.putExtra(PARAM_DATE,newDate.getTimeInMillis());
         startService(refreshServiceIntent);
     }
 

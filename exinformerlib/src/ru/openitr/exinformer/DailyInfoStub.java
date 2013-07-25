@@ -16,7 +16,7 @@ import org.ksoap2.transport.HttpTransportSE;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 public class DailyInfoStub {
     public static final Boolean DEBUG = true;
@@ -30,7 +30,7 @@ public class DailyInfoStub {
      * Вх. параметр onDate: Дата курса валют, тип - Data
      * Вых. параметр: массив курсов валют, тип ArrayList<Icurrency>
      */
-    public ArrayList<Icurrency> getCursOnDate(Date onDate) throws Exception {
+    public ArrayList<Icurrency> getCursOnDate(Calendar onDate) throws Exception {
         ArrayList<Icurrency> result = new ArrayList<Icurrency>();
         String methodName = "GetCursOnDate";
         String soapAction = "http://web.cbr.ru/GetCursOnDate";
@@ -39,7 +39,7 @@ public class DailyInfoStub {
         SoapObject request = new SoapObject(namespace, methodName);
         /* Устанавливаем параметры */
         onDateIn.setName("On_date");
-        onDateIn.setValue(sdf.format(onDate));
+        onDateIn.setValue(sdf.format(onDate.getTime()));
         request.addProperty(onDateIn);
         /*Готовим запрос*/
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -89,6 +89,45 @@ public class DailyInfoStub {
         }
         if (DEBUG) Log.d(LOG_TAG, "InfoStub: Return result data.");
         return result;
+    }
+
+    public Calendar getLatestDate() throws Exception {
+        String soapAction = "http://web.cbr.ru/GetLatestDateTime";
+        String methodName = "GetLatestDateTime";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'mm:hh:ss");
+        SoapObject request = new SoapObject(namespace, methodName);
+
+        /*Готовим запрос*/
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.implicitTypes = true;
+        envelope.dotNet = true;
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE androidHttpTransport = new HttpTransportSE(url);
+        androidHttpTransport.debug = true;
+
+        androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+        try {
+            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
+            androidHttpTransport.call(soapAction, envelope);
+            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+           /* Разбор ответа сервера */
+        if (DEBUG) Log.d(LOG_TAG, "InfoStub: Begin data parsing.");
+        try {
+            SoapObject resultRequest = (SoapObject) envelope.bodyIn;
+            String result = resultRequest.getPropertyAsString(0);
+            sdf.parse(result);
+            return sdf.getCalendar();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 }
