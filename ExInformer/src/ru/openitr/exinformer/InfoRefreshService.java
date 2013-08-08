@@ -24,16 +24,18 @@ import java.util.Date;
  * Сервис запрашивает информацию с сервера cbr.ru и помещает её в БД.
  */
 public class InfoRefreshService extends Service {
-    private Date onDate;
 
     AlarmManager alarms;
     PendingIntent alarmIntent;
     protected Calendar nextExecuteTime = Calendar.getInstance();
     protected long nextExecuteTimeInMills;
     private boolean autoupdate = false;
+    private boolean lastInfo = false;
+    private DailyInfoStub dailyInfo;
     @Override
     public void onCreate() {
         super.onCreate();
+        dailyInfo = new DailyInfoStub();
         nextExecuteTimeInMills = 0;
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service created");
         Context context = getApplicationContext();
@@ -47,9 +49,10 @@ public class InfoRefreshService extends Service {
             ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
             Intent intentToFire = new Intent(ALARM_ACTION);
             alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
+            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "alarmIntent is: "+alarmIntent);
             nextExecuteTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
             nextExecuteTime.set(Calendar.MINUTE, minuteOfRefresh);
-            nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
+//            nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
             nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
         }
     }
@@ -57,16 +60,10 @@ public class InfoRefreshService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Calendar onDate = Calendar.getInstance();
-        Long extraParam = intent.getLongExtra(main.PARAM_DATE,0);
-        onDate.setTimeInMillis(extraParam);
-
-        boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(onDate);
+        Long dateFromExtraParam = intent.getLongExtra(main.PARAM_DATE,0);
+        onDate.setTimeInMillis(dateFromExtraParam);
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
-        // Если в базе информация не на текущее время, запускаем обновление данных
-        if (infoNeedUpdate){
-            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Data need to update. newDate = " + onDate.toString() + " onDate = " + onDate.toString() + " infoNeedUpdate = "+infoNeedUpdate);
-            new refreshCurrencyTask().execute(onDate);
-        }
+        new refreshCurrencyTask().execute(onDate);
         return Service.START_NOT_STICKY;
     }
 
@@ -86,12 +83,32 @@ public class InfoRefreshService extends Service {
         private static final int STATUS_NETWORK_DISABLE = 30;
         private static final int STATUS_NOT_RESPOND = 40;
         private static final int STATUS_NO_DATA = 50;
+        private static final int STATUS_NOT_FRESH_DATA = 60;
         static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
-        private DailyInfoStub dailyInfo = new DailyInfoStub();
+
         @Override
         protected Integer doInBackground(Calendar... params) {
-            publishProgress();
-            return getCursOnDate(params[0]);
+            Calendar onDate = Calendar.getInstance();
+            if (params[0].getTimeInMillis() == 0 ){
+                try {
+                    onDate = dailyInfo.getLatestDate();
+                    lastInfo = true;
+                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: onDate = 0. getLastDate return: " + onDate.getTime().toLocaleString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                onDate = params[0];
+            }
+            boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(onDate);
+            if (infoNeedUpdate){
+                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Data need to update. newDate = " + onDate.getTime().toString() + " onDate = " + onDate.getTime().toString() + " infoNeedUpdate = "+infoNeedUpdate);
+                publishProgress();
+                return getCursOnDate(onDate);
+
+            }
+            return OK;
         }
 
         @Override
@@ -111,51 +128,61 @@ public class InfoRefreshService extends Service {
             switch (result) {
                 case STATUS_NOT_RESPOND:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NOT_RESPOND);
-                    nextExecuteTimeInMills = System.currentTimeMillis() + 1000*60*60;
-                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_FIFTEEN_MINUTES, alarmIntent);
+                    nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_FIFTEEN_MINUTES;
                     break;
                 case STATUS_NETWORK_DISABLE:
                     resIntent.putExtra(main.PARAM_STATUS, main.FINS_STATUS_NETWORK_DISABLE);
-                    nextExecuteTimeInMills = System.currentTimeMillis() + 1000*60*60;
-                    alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills , AlarmManager.INTERVAL_HOUR, alarmIntent);
+                    nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR;
                     break;
                 case STATUS_NO_DATA:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NO_DATA);
+                    nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_FIFTEEN_MINUTES;
                     break;
+                case STATUS_NOT_FRESH_DATA:
+                    resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
+                    if ((System.currentTimeMillis() - nextExecuteTime.getTimeInMillis()) < (AlarmManager.INTERVAL_HOUR*4))
+                        nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR;
                 default:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
-                    if (autoupdate) alarms.setInexactRepeating(alarmType,  nextExecuteTimeInMills, AlarmManager.INTERVAL_DAY, alarmIntent);
+                    if (nextExecuteTime.get(Calendar.HOUR_OF_DAY)<Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+                        nextExecuteTime.roll(Calendar.DAY_OF_YEAR,true);
+                    nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
             }
-            if (main.DEBUG) {
-                LogSystem.logInFile(main.LOG_TAG, "Service: (onPostExecute) Result of service: " + result);
-                LogSystem.logInFile(main.LOG_TAG, "Alarm is set to " + nextExecuteTime.getTime().toLocaleString());
+            //alarms.cancel(alarmIntent);
+            if (autoupdate) {
+                //nextExecuteTimeInMills = System.currentTimeMillis()+1000*60*10;
+                alarms.set(alarmType, nextExecuteTimeInMills, alarmIntent);
+                if (main.DEBUG) {
+                    LogSystem.logInFile(main.LOG_TAG, "Service: (onPostExecute) Result of service: " + result);
+                    LogSystem.logInFile(main.LOG_TAG, "Alarm is set to " + new Date(nextExecuteTimeInMills).toLocaleString());
+                }
             }
             sendBroadcast(resIntent);
-            boolean todayInfo = !new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(Calendar.getInstance());
-               if (todayInfo){
-                widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
-                sendBroadcast(widgetUpdateIntent);
-               }
+            if (lastInfo){
+              widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
+              sendBroadcast(widgetUpdateIntent);
+            }
 
 
             stopSelf();
         }
 
-        private int getCursOnDate(Calendar onDate){
+        private int getCursOnDate(Calendar onDate) {
             ContentResolver cr = getContentResolver();
+
             int res = OK;
             if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Info need to update.");
             if (!internetAvailable()) {
                 return STATUS_NETWORK_DISABLE;
             }
+            if (ExtraCalendar.isToday(onDate)) res = STATUS_NOT_FRESH_DATA;
             try {
                 ArrayList <Icurrency> infoStub = dailyInfo.getCursOnDate(onDate);
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Start update base.");
                 for (Icurrency icurrencyRecord : infoStub) {
                     ContentValues _cv = icurrencyRecord.toContentValues();
                     if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
-                        Uri resultUri = cr.insert(Uri.parse(CURRENCY_URI), _cv);
-                        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "resultUri = " + resultUri.toString());
+                        cr.insert(Uri.parse(CURRENCY_URI), _cv);
                     }
                 }
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Stop update base.");
@@ -176,7 +203,7 @@ public class InfoRefreshService extends Service {
     }
 
     private boolean internetAvailable() {
-        ConnectivityManager cm =        (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null) {
             return false;
         }
@@ -197,7 +224,7 @@ public class InfoRefreshService extends Service {
                     return true;
                 }
         }
-        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: Network conncetion not found");
+        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: Network connection not found");
         return false;
     }
 

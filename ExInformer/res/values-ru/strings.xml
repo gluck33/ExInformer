@@ -32,7 +32,7 @@
     <string name="auto_update">Автоматическое обновление информации</string>
     <string name="autoupdate_summary">Выберите для установки автоматического обновления</string>
     <string name="preference_time_title">Время обновления</string>
-    <string name="preference_time_summary">Время обновления данных</string>
+    <string name="preference_time_summary">00:00</string>
     <string name="preference_uprate_category_title">Настройки автообновления</string>
     <string name="rootmenu_title">Menu and settings</string>
 </resources>

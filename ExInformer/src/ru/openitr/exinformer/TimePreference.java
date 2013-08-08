@@ -18,14 +18,14 @@ import android.widget.TimePicker;
  */
 public class TimePreference extends DialogPreference{
     private TimePicker timePicker;
-    private static final int DEFAULT_HOUR = 8;
+    private static final int DEFAULT_HOUR = 13;
     private static final int DEFAULT_MINUTE = 0;
 
     public TimePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(context);
-        int hour = p.getInt(getKey()+".hour",0);
-        int minute = p.getInt(getKey()+".minute",0);
+        int hour = p.getInt(getKey()+".hour", DEFAULT_HOUR);
+        int minute = p.getInt(getKey()+".minute",DEFAULT_MINUTE);
         setSummary(String.format("%d:%02d",hour,minute));
 
 //        setSummary(getTimeString());

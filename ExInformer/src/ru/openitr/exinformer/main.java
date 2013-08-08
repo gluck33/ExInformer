@@ -25,8 +25,8 @@ import java.util.LinkedList;
 
 public class main extends ListActivity {
     boolean OldAPIVersion;
-    static Calendar onDate = Calendar.getInstance();
-    Calendar calendar = Calendar.getInstance();
+    static Calendar onDate;
+//    Calendar calendar = Calendar.getInstance();
 
      ValFromDbAdapter valFromDbAdapter;
     public static final boolean DEBUG = true;
@@ -79,12 +79,10 @@ public class main extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        onDate = Calendar.getInstance();
         OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         Log.d(LOG_TAG, "onCreate");
-//        onDate.setHours(0);
-//        onDate.setMinutes(0);
-//        onDate.setSeconds(0);
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
         mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         startManagingCursor(mCursor);
@@ -98,7 +96,7 @@ public class main extends ListActivity {
             DragSortListView listView = getListView();
             listView.setDropListener(onDrop);
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            getInfo(onDate);
+            getInfo(0);
             //Титл бар
             customTitleBar(getText(R.string.app_name).toString());
             setInfoDateToTitle();
@@ -157,7 +155,7 @@ public class main extends ListActivity {
             case (DATA_DIALOG) :
                 DatePickerDialog dpd;
                 dpd = new DatePickerDialog (this, cDateSetListener, onDate.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+                        onDate.get(Calendar.MONTH), onDate.get(Calendar.DATE));
                 return  dpd;
 
             case (NETSETTINGS_DIALOG) :
@@ -209,8 +207,7 @@ public class main extends ListActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
                         dialogInterface.dismiss();
                     }
-                });
-                notRespondDlg.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                }).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -232,7 +229,7 @@ public class main extends ListActivity {
                     R.layout.apptitle);
             TextView titleLeft = (TextView) findViewById(R.id.titleLeft);
             titleLeft.setText(left);
-            setDateOnTitle(onDate);
+//            setDateOnTitle(onDate);
         }
     }
 
@@ -253,7 +250,6 @@ public class main extends ListActivity {
     public void setInfoDateToTitle(){
         Cursor cursor = (getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
         if (cursor.moveToFirst()){
-            Calendar onDate = Calendar.getInstance();
             onDate.setTimeInMillis(cursor.getLong(0));
             setDateOnTitle(onDate);
         }
@@ -317,7 +313,15 @@ public class main extends ListActivity {
         startService(refreshServiceIntent);
     }
 
-     private void moveItem (int from, int to){
+    private void getInfo(long timeInMillis) {
+        refreshServiceIntent.putExtra(PARAM_DATE,timeInMillis);
+        startService(refreshServiceIntent);
+
+    }
+
+
+
+    private void moveItem (int from, int to){
 
          ContentResolver cr = getContentResolver();
          ContentValues cv = new ContentValues();
@@ -349,24 +353,26 @@ public class main extends ListActivity {
                 if (DEBUG) LogSystem.logInFile(LOG_TAG, "main: (OnRecieve) Result of service run status: " + status);
                 switch (status){
                     case STATUS_BEGIN_REFRESH:
-                        Log.d(LOG_TAG,"Main: Begin updating info.");
+                        Log.d(LOG_TAG,"main: Begin updating info.");
                         showDialog(PROGRESS_DIALOG);
                         break;
                     case FIN_STATUS_NO_DATA:
-                        Log.d(LOG_TAG, "No data receive.");
+                        removeDialog(PROGRESS_DIALOG);
+                        Log.d(LOG_TAG, "main: No data receive.");
 
                         break;
                     case FIN_STATUS_NOT_RESPOND:
-                        Log.d(LOG_TAG, "Server not respond.");
+                        Log.d(LOG_TAG, "main: Server not respond.");
+                        removeDialog(PROGRESS_DIALOG);
                         removeDialog(NOT_RESPOND_DIALOG);
                         showDialog(NOT_RESPOND_DIALOG);
                         break;
                     case FINS_STATUS_NETWORK_DISABLE:
-                        Log.d(LOG_TAG, "Network disabled.");
+                        Log.d(LOG_TAG, "main: Network disabled.");
                         showDialog(NETSETTINGS_DIALOG);
                         break;
                     default:
-                        Log.d(LOG_TAG, "Refreshing OK.");
+                        Log.d(LOG_TAG, "main: Refreshing OK.");
                         mCursor.requery();
                         setInfoDateToTitle();
                         removeDialog(PROGRESS_DIALOG);

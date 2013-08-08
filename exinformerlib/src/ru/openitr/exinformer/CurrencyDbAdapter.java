@@ -275,9 +275,7 @@ public class CurrencyDbAdapter {
      * */
     public boolean isNeedUpdate(Calendar onDate) {
         Calendar cursDate = getCursDate();
-        boolean yearIsEQ = cursDate.get(Calendar.YEAR) == onDate.get(Calendar.YEAR);
-        boolean dayOfYearIsEQ = cursDate.get(Calendar.DAY_OF_YEAR) == onDate.get(Calendar.DAY_OF_YEAR);
-        return !(yearIsEQ & dayOfYearIsEQ);
+        return !(ExtraCalendar.isEqualDays(cursDate, onDate));
 
     }
 

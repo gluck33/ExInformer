@@ -129,6 +129,7 @@ public final class LogSystem {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.d(tag,msg);
         return result;
     }
 
