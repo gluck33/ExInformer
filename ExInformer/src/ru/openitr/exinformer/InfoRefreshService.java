@@ -31,6 +31,7 @@ public class InfoRefreshService extends Service {
     protected long nextExecuteTimeInMills;
     private boolean autoupdate = false;
     private boolean lastInfo = false;
+    private boolean onlySetAlarm;
     private DailyInfoStub dailyInfo;
     @Override
     public void onCreate() {
@@ -49,7 +50,6 @@ public class InfoRefreshService extends Service {
             ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
             Intent intentToFire = new Intent(ALARM_ACTION);
             alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
-            if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "alarmIntent is: "+alarmIntent);
             nextExecuteTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
             nextExecuteTime.set(Calendar.MINUTE, minuteOfRefresh);
 //            nextExecuteTime.roll(Calendar.DAY_OF_YEAR, true);
@@ -62,6 +62,7 @@ public class InfoRefreshService extends Service {
         Calendar onDate = Calendar.getInstance();
         Long dateFromExtraParam = intent.getLongExtra(main.PARAM_DATE,0);
         onDate.setTimeInMillis(dateFromExtraParam);
+        onlySetAlarm = intent.getBooleanExtra(main.PARAM_ONLY_SET_ALARM, false);
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
         new refreshCurrencyTask().execute(onDate);
         return Service.START_NOT_STICKY;
@@ -88,6 +89,10 @@ public class InfoRefreshService extends Service {
 
         @Override
         protected Integer doInBackground(Calendar... params) {
+            if (onlySetAlarm){
+                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Only need update alarmSet");
+                return OK;
+            }
             Calendar onDate = Calendar.getInstance();
             if (params[0].getTimeInMillis() == 0 ){
                 try {
@@ -144,11 +149,10 @@ public class InfoRefreshService extends Service {
                         nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR;
                 default:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
-                    if (nextExecuteTime.get(Calendar.HOUR_OF_DAY)<Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+                    if (nextExecuteTime.getTimeInMillis() < Calendar.getInstance().getTimeInMillis())
                         nextExecuteTime.roll(Calendar.DAY_OF_YEAR,true);
                     nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
             }
-            //alarms.cancel(alarmIntent);
             if (autoupdate) {
                 //nextExecuteTimeInMills = System.currentTimeMillis()+1000*60*10;
                 alarms.set(alarmType, nextExecuteTimeInMills, alarmIntent);
@@ -228,6 +232,14 @@ public class InfoRefreshService extends Service {
         return false;
     }
 
+    public void setAlarm(long executeTime){
+        AlarmManager alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        String ALARM_ACTION;
+        ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
+        Intent intentToFire = new Intent(ALARM_ACTION);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
 
+
+    }
 
 }

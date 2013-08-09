@@ -1,5 +1,6 @@
 package ru.openitr.exinformer;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
@@ -14,9 +15,11 @@ public class BasePreferencesActivity extends PreferenceActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.base_preferences);
-        //TextView summary = findViewById(R.xml.base_preferences);
-
     }
 
-
+    @Override
+    public void onContentChanged() {
+        super.onContentChanged();
+        this.setResult(Activity.RESULT_OK);
+    }
 }

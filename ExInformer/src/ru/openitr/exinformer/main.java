@@ -42,6 +42,7 @@ public class main extends ListActivity {
 
     public static final String PARAM_STATUS = "status";
     public static final String PARAM_DATE = "date";
+    public static final String PARAM_ONLY_SET_ALARM = "only_set";
     public static final String PARAM_FROM = "from";
 
     static final String INFO_REFRESH_INTENT = "ru.openitr.exinformer.INFO_UPDATE";
@@ -292,6 +293,15 @@ public class main extends ListActivity {
         return false;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SHOW_PREFERENCES)
+            if (resultCode == Activity.RESULT_OK) {
+                refreshPreferences();
+            }
+    }
+
 
     public void showMenu(View view){
         PopupMenu popupMenu = new PopupMenu(this, view);
@@ -319,6 +329,10 @@ public class main extends ListActivity {
 
     }
 
+    private void refreshPreferences(){
+        refreshServiceIntent.putExtra(PARAM_ONLY_SET_ALARM, true);
+        startService(refreshServiceIntent);
+    }
 
 
     private void moveItem (int from, int to){
