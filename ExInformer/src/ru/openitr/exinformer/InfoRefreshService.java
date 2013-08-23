@@ -219,12 +219,12 @@ public class InfoRefreshService extends Service {
         {
             if (ni.getTypeName().equalsIgnoreCase("WIFI"))
                 if (ni.isConnected()) {
-                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: wifi conncetion found");
+                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: wifi connection found");
                     return true;
                 }
             if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
                 if (ni.isConnected()) {
-                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: mobile conncetion found");
+                    if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "test: mobile connection found");
                     return true;
                 }
         }
