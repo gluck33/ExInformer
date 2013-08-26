@@ -11,6 +11,9 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 
 /**
  * Created by
@@ -76,9 +79,12 @@ public class CurrencyWidget extends AppWidgetProvider {
                 String vChCode = cursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN);
                 String uriString = "android.resource://ru.openitr.exinformer/drawable/f_"+vChCode;
                 float curs = cursor.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
+                long cursDate = cursor.getLong(CurrencyDbAdapter.VALDATE_COLUMN);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
                 widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
                 widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(curs));
                 widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
+                widgetView.setTextViewText(R.id.cursDateTv,sdf.format(new Date(cursDate)));
 
             }finally {
                 cursor.close();

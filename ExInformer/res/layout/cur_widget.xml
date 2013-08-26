@@ -50,5 +50,12 @@
             android:gravity="center"
             android:layout_centerHorizontal="true" android:layout_alignParentBottom="true"
             android:paddingBottom="5dp"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="30.02.2000"
+              android:id="@+id/cursDateTv" android:autoText="false" android:shadowColor="@android:color/black"
+              android:shadowDx="1" android:shadowDy="1" android:shadowRadius="2" android:singleLine="false"
+              android:textColor="@android:color/white" android:editable="false" android:ellipsize="middle"
+              android:enabled="false" android:focusableInTouchMode="false" android:gravity="center"
+              android:layout_above="@+id/widgetVchCode"
+              android:layout_centerHorizontal="true" android:textSize="12dp"/>
 
 </RelativeLayout>
