@@ -121,7 +121,7 @@ public final class LogSystem {
                 file.createNewFile();
 
             }
-            String timeLog = new SimpleDateFormat("dd.MM.yy hh:mm:ss").format(new Date());
+            String timeLog = new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(new Date());
             BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
             bw.append(timeLog+" (" + tag + ")\t" + msg + "\n");
             bw.close();

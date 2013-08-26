@@ -54,9 +54,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/CurrencyWidget.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/CurrencyWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/cur_widget.xml" afterPath="$PROJECT_DIR$/res/layout/cur_widget.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/LogSystem.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/LogSystem.java" />
     </list>
     <ignored path="ExInformer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -379,7 +377,7 @@
       <file leaf-file-name="LogSystem.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/LogSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="19" selection-start="2828" selection-end="2828" vertical-scroll-proportion="0.575">
+            <state line="123" column="62" selection-start="2871" selection-end="2871" vertical-scroll-proportion="0.575">
               <folding />
             </state>
           </provider>
@@ -427,7 +425,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/DailyInfoStub.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/LogSystem.java" />
         <option value="$PROJECT_DIR$/res/xml/base_preferences.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
@@ -442,6 +439,7 @@
         <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshService.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/CurrencyWidget.java" />
         <option value="$PROJECT_DIR$/res/layout/cur_widget.xml" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/exinformer/LogSystem.java" />
       </list>
     </option>
   </component>
@@ -1031,7 +1029,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/LogSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="19" selection-start="2828" selection-end="2828" vertical-scroll-proportion="0.575">
+        <state line="123" column="62" selection-start="2871" selection-end="2871" vertical-scroll-proportion="0.575">
           <folding />
         </state>
       </provider>
