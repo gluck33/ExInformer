@@ -86,15 +86,17 @@ public class InfoRefreshService extends Service {
         private static final int STATUS_NO_DATA = 50;
         private static final int STATUS_NOT_FRESH_DATA = 60;
         static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
-
+        boolean startFromNulldate = false;
         @Override
         protected Integer doInBackground(Calendar... params) {
+
             if (onlySetAlarm){
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Only need update alarmSet");
                 return OK;
             }
             Calendar onDate = Calendar.getInstance();
             if (params[0].getTimeInMillis() == 0 ){
+                startFromNulldate = true;
                 try {
                     onDate = dailyInfo.getLatestDate();
                     lastInfo = true;
@@ -107,12 +109,12 @@ public class InfoRefreshService extends Service {
                 onDate = params[0];
             }
             boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(onDate);
-            if (infoNeedUpdate){
+            if (infoNeedUpdate ){
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Data need to update. newDate = " + onDate.getTime().toString() + " onDate = " + onDate.getTime().toString() + " infoNeedUpdate = "+infoNeedUpdate);
                 publishProgress();
                 return getCursOnDate(onDate);
-
             }
+            if (ExtraCalendar.isToday(onDate)) return STATUS_NOT_FRESH_DATA;
             return OK;
         }
 
@@ -163,8 +165,9 @@ public class InfoRefreshService extends Service {
             }
             sendBroadcast(resIntent);
             if (lastInfo){
-              widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
-              sendBroadcast(widgetUpdateIntent);
+                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: lastInfo = " + lastInfo);
+                widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
+                sendBroadcast(widgetUpdateIntent);
             }
 
 
@@ -179,7 +182,7 @@ public class InfoRefreshService extends Service {
             if (!internetAvailable()) {
                 return STATUS_NETWORK_DISABLE;
             }
-            if (ExtraCalendar.isToday(onDate)) res = STATUS_NOT_FRESH_DATA;
+            if (ExtraCalendar.isToday(onDate) && startFromNulldate) res = STATUS_NOT_FRESH_DATA;
             try {
                 ArrayList <Icurrency> infoStub = dailyInfo.getCursOnDate(onDate);
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Start update base.");

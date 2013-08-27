@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.sql.Date;
@@ -100,6 +99,6 @@ public class CurrencyWidget extends AppWidgetProvider {
         for (int widgetId: appWidgetsIds){
             updateWidget(context,appWidgetManager,sp,widgetId);
         }
-        if (main.DEBUG) Log.d(main.LOG_TAG, "Widget: Widget info updated.");
+        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Widget: Widget info updated.");
     }
 }

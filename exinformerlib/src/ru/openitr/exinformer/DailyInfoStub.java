@@ -6,7 +6,6 @@
 
 package ru.openitr.exinformer;
 
-import android.util.Log;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
@@ -52,19 +51,21 @@ public class DailyInfoStub {
 
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
-            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Getting info from CB server.");
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Getting info from CB server on date "+ sdf.format(onDate.getTime()) + ".");
             androidHttpTransport.call(soapAction, envelope);
-            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Info recieved from SB server. ");
+            if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
         } catch (IOException e) {
             e.printStackTrace();
+            if (DEBUG) LogSystem.logInFile(LOG_TAG,e.getMessage());
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            if (DEBUG) LogSystem.logInFile(LOG_TAG,e.getMessage());
             throw e;
         }
 
         /* Разбор ответа сервера */
-        if (DEBUG) Log.d(LOG_TAG, "InfoStub: Begin data parsing.");
+        if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Begin data parsing.");
         try {
             SoapObject resultRequest = (SoapObject) envelope.bodyIn;
             SoapObject array = (SoapObject) resultRequest.getProperty(0);
@@ -87,7 +88,7 @@ public class DailyInfoStub {
             e.printStackTrace();
             throw e;
         }
-        if (DEBUG) Log.d(LOG_TAG, "InfoStub: Return result data.");
+        if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Return result data.");
         return result;
     }
 
@@ -107,9 +108,9 @@ public class DailyInfoStub {
 
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
-            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
             androidHttpTransport.call(soapAction, envelope);
-            if (DEBUG) Log.d(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
+            if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
         } catch (IOException e) {
             e.printStackTrace();
             throw e;
@@ -118,7 +119,7 @@ public class DailyInfoStub {
             throw e;
         }
            /* Разбор ответа сервера */
-        if (DEBUG) Log.d(LOG_TAG, "InfoStub: Begin data parsing.");
+        if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Begin data parsing.");
         try {
             SoapObject resultRequest = (SoapObject) envelope.bodyIn;
             String result = resultRequest.getPropertyAsString(0);
