@@ -97,7 +97,7 @@ public class main extends ListActivity {
             DragSortListView listView = getListView();
             listView.setDropListener(onDrop);
             listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            getInfo(0);
+//            getInfo(0);
             //Титл бар
             customTitleBar(getText(R.string.app_name).toString());
             setInfoDateToTitle();

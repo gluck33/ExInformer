@@ -149,6 +149,7 @@ public class InfoRefreshService extends Service {
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
                     if ((System.currentTimeMillis() - nextExecuteTime.getTimeInMillis()) < (AlarmManager.INTERVAL_HOUR*4))
                         nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR;
+                    break;
                 default:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
                     if (nextExecuteTime.getTimeInMillis() < Calendar.getInstance().getTimeInMillis())
