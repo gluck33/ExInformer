@@ -117,6 +117,7 @@ public class CurInfoProvider extends ContentProvider {
         }
         int result = db.updateCurrencyRow(contentValues, selection, selectionArgs);
         //getContext().getContentResolver().notifyChange(uri, null);
+        //db.close();
         return result;
     }
 }

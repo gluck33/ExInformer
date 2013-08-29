@@ -20,15 +20,15 @@ import android.widget.TextView;
 import com.mobeta.android.dslv.DragSortListView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 
 public class main extends ListActivity {
     boolean OldAPIVersion;
     static Calendar onDate;
-//    Calendar calendar = Calendar.getInstance();
 
-     ValFromDbAdapter valFromDbAdapter;
+    ValFromDbAdapter valFromDbAdapter;
     public static final boolean DEBUG = true;
     public static final String LOG_TAG = "CBInfo";
     public static final int STATUS_BEGIN_REFRESH = 10;
@@ -56,16 +56,18 @@ public class main extends ListActivity {
     private static final int SHOW_PREFERENCES = 1;
 
     static final Uri CURRENCYS_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
-    static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/");
+    //    static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/");
     private Cursor mCursor;
     Intent refreshServiceIntent;
     BroadcastReceiver br;
+    CurrencyArrayAdapter ca;
+    ArrayList<Icurrency> icurrencies = new ArrayList<Icurrency>();
 
     private DragSortListView.DropListener onDrop =
             new DragSortListView.DropListener() {
                 @Override
                 public void drop(int from, int to) {
-                    Log.d(LOG_TAG,"Drop from: "+Integer.toString(from)+", to: " +Integer.toString(to));
+                    Log.d(LOG_TAG, "Drop from: " + Integer.toString(from) + ", to: " + Integer.toString(to));
                     if (from != to) {
                         moveItem(from, to);
                         //String item = (String) valFromDbAdapter.getItem(from);
@@ -88,26 +90,23 @@ public class main extends ListActivity {
         mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         startManagingCursor(mCursor);
         br = new MainActivityBroadcastReceiever();
-        try {
-            final String[] from = CurrencyDbAdapter.ALL_VISIBLE_COLUMNS;
-            final int [] to = {R.id.drag_handle, R.id.vChСodeView, R.id.vCursView, R.id.vNameView};
-            //Адаптер к листу
-            valFromDbAdapter = new ValFromDbAdapter(this,R.layout.currencylayuot, mCursor, from, to);
-            setListAdapter(valFromDbAdapter);
-            DragSortListView listView = getListView();
-            listView.setDropListener(onDrop);
-            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        //Адаптер к листу
+        // **************************************************
+        loadCurrencysFromProvider();
+        ca = new CurrencyArrayAdapter(main.this, icurrencies);
+        setListAdapter(ca);
+        // **************************************************
+        DragSortListView listView = getListView();
+        listView.setDropListener(onDrop);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 //            getInfo(0);
-            //Титл бар
-            customTitleBar(getText(R.string.app_name).toString());
-            setInfoDateToTitle();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //Титл бар
+        customTitleBar(getText(R.string.app_name).toString());
+        setInfoDateToTitle();
     }
 
     @Override
-    public DragSortListView getListView(){
+    public DragSortListView getListView() {
         return (DragSortListView) super.getListView();
     }
 
@@ -128,7 +127,7 @@ public class main extends ListActivity {
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         if (DEBUG) Log.d(LOG_TAG, "onDestroy");
     }
@@ -136,10 +135,10 @@ public class main extends ListActivity {
     private OnDateSetListener cDateSetListener = new OnDateSetListener() {
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
             Calendar newDate = Calendar.getInstance();
-            newDate.set(Calendar.YEAR,year);
-            newDate.set(Calendar.MONTH,month);
+            newDate.set(Calendar.YEAR, year);
+            newDate.set(Calendar.MONTH, month);
             newDate.set(Calendar.DAY_OF_MONTH, day);
-            if (!newDate.equals(onDate)){
+            if (!newDate.equals(onDate)) {
                 onDate = newDate;
                 getInfo(newDate);
             }
@@ -148,25 +147,24 @@ public class main extends ListActivity {
     };
 
 
-
     @Override
-    public Dialog onCreateDialog (int id){
-        switch (id){
+    public Dialog onCreateDialog(int id) {
+        switch (id) {
 
-            case (DATA_DIALOG) :
+            case (DATA_DIALOG):
                 DatePickerDialog dpd;
-                dpd = new DatePickerDialog (this, cDateSetListener, onDate.get(Calendar.YEAR),
+                dpd = new DatePickerDialog(this, cDateSetListener, onDate.get(Calendar.YEAR),
                         onDate.get(Calendar.MONTH), onDate.get(Calendar.DATE));
-                return  dpd;
+                return dpd;
 
-            case (NETSETTINGS_DIALOG) :
+            case (NETSETTINGS_DIALOG):
                 AlertDialog.Builder netSettingsDialog = new AlertDialog.Builder(this);
                 netSettingsDialog.setTitle(R.string.app_name);
                 netSettingsDialog.setMessage(R.string.netSettingsDlgMessage);
                 netSettingsDialog.setCancelable(false);
                 netSettingsDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i){
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         removeDialog(PROGRESS_DIALOG);
                         dialogInterface.cancel();
                     }
@@ -179,7 +177,7 @@ public class main extends ListActivity {
                 });
                 return netSettingsDialog.create();
 
-            case (PROGRESS_DIALOG) :
+            case (PROGRESS_DIALOG):
                 ProgressDialog progressDialog = new ProgressDialog(this);
                 progressDialog.setMessage(getText(R.string.loading));
                 return progressDialog;
@@ -222,11 +220,11 @@ public class main extends ListActivity {
 
 
     /**
-       Title bar для вывода даты курса.
+     * Title bar для вывода даты курса.
      */
     private void customTitleBar(String left) {
         if (OldAPIVersion) {
-             getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
                     R.layout.apptitle);
             TextView titleLeft = (TextView) findViewById(R.id.titleLeft);
             titleLeft.setText(left);
@@ -234,61 +232,59 @@ public class main extends ListActivity {
         }
     }
 
-    private void setDateOnTitle(Calendar onDate){
+    private void setDateOnTitle(Calendar onDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String stringDate = sdf.format(onDate.getTime());
         if (OldAPIVersion) {
             TextView titleTvRight = (TextView) findViewById(R.id.titleRight);
-            titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": "+stringDate);
-        }
-        else {
+            titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": " + stringDate);
+        } else {
             ActionBar bar = getActionBar();
-            bar.setSubtitle(getString(R.string.appTitleDatePrefix)+ ": " + stringDate);
+            bar.setSubtitle(getString(R.string.appTitleDatePrefix) + ": " + stringDate);
         }
 
     }
 
-    public void setInfoDateToTitle(){
+    public void setInfoDateToTitle() {
         Cursor cursor = (getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             onDate.setTimeInMillis(cursor.getLong(0));
             setDateOnTitle(onDate);
         }
     }
 
-    private void goToNetsettings(){
+    private void goToNetsettings() {
         Intent netSettings = new Intent("android.settings.WIRELESS_SETTINGS");
         startActivity(netSettings);
         getInfo(onDate);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         if (OldAPIVersion) {
             getMenuInflater().inflate(R.menu.main_menu, menu);
             return true;
-        }
-        else{
+        } else {
             getMenuInflater().inflate(R.menu.root_menu, menu);
             return true;
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
-                case (R.id.setDataItem):
-                    showDialog(DATA_DIALOG);
-                    return true;
-                case (R.id.settingsItem):
-                    Intent i = new Intent(this, BasePreferencesActivity.class);
-                    startActivityForResult(i, SHOW_PREFERENCES);
-                    return true;
-                case (R.id.root_menu):
-                    showMenu(findViewById(R.id.root_menu));
-                    return true;
+        switch (item.getItemId()) {
+            case (R.id.setDataItem):
+                showDialog(DATA_DIALOG);
+                return true;
+            case (R.id.settingsItem):
+                Intent i = new Intent(this, BasePreferencesActivity.class);
+                startActivityForResult(i, SHOW_PREFERENCES);
+                return true;
+            case (R.id.root_menu):
+                showMenu(findViewById(R.id.root_menu));
+                return true;
         }
         return false;
     }
@@ -303,7 +299,7 @@ public class main extends ListActivity {
     }
 
 
-    public void showMenu(View view){
+    public void showMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -317,57 +313,75 @@ public class main extends ListActivity {
 
     }
 
-    private void getInfo(Calendar newDate){
+    private void getInfo(Calendar newDate) {
         onDate = newDate;
-        refreshServiceIntent.putExtra(PARAM_DATE,newDate.getTimeInMillis());
+        refreshServiceIntent.putExtra(PARAM_DATE, newDate.getTimeInMillis());
         startService(refreshServiceIntent);
     }
 
     private void getInfo(long timeInMillis) {
-        refreshServiceIntent.putExtra(PARAM_DATE,timeInMillis);
+        refreshServiceIntent.putExtra(PARAM_DATE, timeInMillis);
         startService(refreshServiceIntent);
 
     }
 
-    private void refreshPreferences(){
+    private void refreshPreferences() {
         refreshServiceIntent.putExtra(PARAM_ONLY_SET_ALARM, true);
         startService(refreshServiceIntent);
     }
 
+    private void loadCurrencysFromProvider() {
+        icurrencies.clear();
+        ContentResolver cr = getContentResolver();
+        Cursor c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
+        if (c.moveToFirst()) {
+            do {
+                String vName = c.getString(CurrencyDbAdapter.VALNAME_COLUMN);
+                Float vCurs = c.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
+                String vchCode = c.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN);
+                int vCode = c.getInt(CurrencyDbAdapter.VALCODE_COLUMN);
+                Calendar vDate = Calendar.getInstance();
+                vDate.setTimeInMillis(c.getLong(CurrencyDbAdapter.VALDATE_COLUMN));
+                Icurrency ic = new Icurrency(vName, vCurs, vchCode, vCode, vDate);
+                icurrencies.add(ic);
+            } while (c.moveToNext());
+        }
+        if (ca != null) ca.notifyDataSetChanged();
+    }
 
-    private void moveItem (int from, int to){
+    private void moveItem(int from, int to) {
+        ContentResolver cr = getContentResolver();
+        ContentValues cv = new ContentValues();
+        LinkedList<String> items = new LinkedList<String>();
+        Cursor itemsCursor = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER);
+        itemsCursor.moveToFirst();
+        do {
+            items.add(itemsCursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN));
+        }
+        while (itemsCursor.moveToNext());
+        String item = items.get(from);
+        items.remove(from);
+        items.add(to, item);
+        for (String itemCode : items) {
+            int index = items.indexOf(itemCode);
+            cv.put(CurrencyDbAdapter.KEY_ORDER, index);
+            cr.update(Uri.parse(CURRENCYS_URI.toString() + "/" + itemCode), cv, null, null);
 
-         ContentResolver cr = getContentResolver();
-         ContentValues cv = new ContentValues();
-         LinkedList<String> items = new LinkedList<String>();
-         Cursor itemsCursor = cr.query(CURRENCYS_URI,CurrencyDbAdapter.ALL_COLUMNS,null,null,CurrencyDbAdapter.KEY_ORDER);
-         itemsCursor.moveToFirst();
-         do {
-             items.add(itemsCursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN));
-         }
-         while (itemsCursor.moveToNext());
-         String item = items.get(from);
-         items.remove(from);
-         items.add(to, item);
-         for (String itemCode: items){
-             int index = items.indexOf(itemCode);
-             cv.put(CurrencyDbAdapter.KEY_ORDER, index);
-             cr.update(Uri.parse(CURRENCYS_URI.toString() + "/" + itemCode), cv, null, null);
-         }
-         //getContentResolver().notifyChange(CURRENCYS_URI, null);
-         mCursor.requery();
-     }
+        }
+        loadCurrencysFromProvider();
+    }
 
-     private class MainActivityBroadcastReceiever extends BroadcastReceiver {
+
+    private class MainActivityBroadcastReceiever extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(INFO_REFRESH_INTENT)){
-                int status = intent.getIntExtra(PARAM_STATUS,0);
+            if (intent.getAction().equals(INFO_REFRESH_INTENT)) {
+                int status = intent.getIntExtra(PARAM_STATUS, 0);
                 if (DEBUG) LogSystem.logInFile(LOG_TAG, "main: (OnRecieve) Result of service run status: " + status);
-                switch (status){
+                switch (status) {
                     case STATUS_BEGIN_REFRESH:
-                        Log.d(LOG_TAG,"main: Begin updating info.");
+                        Log.d(LOG_TAG, "main: Begin updating info.");
                         showDialog(PROGRESS_DIALOG);
                         break;
                     case FIN_STATUS_NO_DATA:

@@ -20,6 +20,7 @@ public class Icurrency {
     private String vchCode; // Код валюты.
     private int vCode; // Внутренний код валюты.
     private Calendar vDate; // Дата курса.
+    private String vFlag; // Ресурс где хранится изображение флага.
 
     public Icurrency() {
         this.vName = "";
@@ -75,7 +76,7 @@ public class Icurrency {
     @Override
     // TODO Продумать и переделать toString
     public String toString() {
-        return String.format("%s %s %s %s", this.vchCode, this.vCurs, this.vName);
+        return String.format("%s %s %s", this.vchCode, this.vName, this.vCurs);
     }
 
     public String vCursAsString() {
