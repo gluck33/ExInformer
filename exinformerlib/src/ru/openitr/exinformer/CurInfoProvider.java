@@ -46,7 +46,11 @@ public class CurInfoProvider extends ContentProvider {
         return true;
     }
 
-
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        db.close();
+    }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {

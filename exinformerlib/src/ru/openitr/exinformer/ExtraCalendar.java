@@ -1,5 +1,6 @@
 package ru.openitr.exinformer;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -11,13 +12,17 @@ import java.util.Calendar;
 public class ExtraCalendar {
 
     public static boolean isToday(Calendar onDate){
+        if (onDate == null) return false;
         Calendar today = Calendar.getInstance();
         return ((onDate.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR))) & (onDate.get(Calendar.YEAR) == today.get(Calendar.YEAR));
     }
 
     public static boolean isFuture(Calendar onDate){
-        Calendar today = Calendar.getInstance();
-        return ((onDate.get(Calendar.DAY_OF_YEAR) > today.get(Calendar.DAY_OF_YEAR)) && (onDate.get(Calendar.YEAR) > today.get(Calendar.YEAR)));
+        if (onDate != null){
+            Calendar today = Calendar.getInstance();
+            return ((onDate.get(Calendar.DAY_OF_YEAR) > today.get(Calendar.DAY_OF_YEAR)) && (onDate.get(Calendar.YEAR) > today.get(Calendar.YEAR)));
+        }
+        return false;
     }
 
     public static boolean isPast(Calendar onDate){
@@ -29,5 +34,9 @@ public class ExtraCalendar {
         boolean dayOfYearIsEQ = d1.get(Calendar.DAY_OF_YEAR) == d2.get(Calendar.DAY_OF_YEAR);
         return yearIsEQ & dayOfYearIsEQ;
 
+    }
+
+    public static String getSimpleDateString(Calendar onDate){
+        return new SimpleDateFormat("dd.MM.yy").format(onDate.getTime());
     }
 }

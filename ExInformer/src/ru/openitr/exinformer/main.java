@@ -28,7 +28,7 @@ public class main extends ListActivity {
     boolean OldAPIVersion;
     static Calendar onDate;
 
-    ValFromDbAdapter valFromDbAdapter;
+    //ValFromDbAdapter valFromDbAdapter;
     public static final boolean DEBUG = true;
     public static final String LOG_TAG = "CBInfo";
     public static final int STATUS_BEGIN_REFRESH = 10;
@@ -53,16 +53,16 @@ public class main extends ListActivity {
     static final private int ILLEGAL_DATA_DIALOD = 4;
     static final private int NOT_RESPOND_DIALOG = 5;
 
+    public static final int NOTIFICATION_ID = 1;
     private static final int SHOW_PREFERENCES = 1;
 
     static final Uri CURRENCYS_URI = Uri.parse("content://ru.openitr.exinformer.currency/currencys");
-    //    static final Uri CURRENCY_URI = Uri.parse("content://ru.openitr.exinformer.currency/");
     private Cursor mCursor;
     Intent refreshServiceIntent;
     BroadcastReceiver br;
     CurrencyArrayAdapter ca;
     ArrayList<Icurrency> icurrencies = new ArrayList<Icurrency>();
-
+    NotificationManager notificationManager;
     private DragSortListView.DropListener onDrop =
             new DragSortListView.DropListener() {
                 @Override
@@ -85,10 +85,11 @@ public class main extends ListActivity {
         onDate = Calendar.getInstance();
         OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
-        Log.d(LOG_TAG, "onCreate");
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Log.d(LOG_TAG, "main:  onCreate");
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
-        mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
-        startManagingCursor(mCursor);
+//        mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
+//        startManagingCursor(mCursor);
         br = new MainActivityBroadcastReceiever();
         //Адаптер к листу
         // **************************************************
@@ -116,14 +117,14 @@ public class main extends ListActivity {
         super.onResume();
         IntentFilter intF = new IntentFilter(INFO_REFRESH_INTENT);
         registerReceiver(br, intF);
-
+        notificationManager.cancel(NOTIFICATION_ID);
 
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
         unregisterReceiver(br);
+        super.onPause();
     }
 
     @Override
@@ -350,6 +351,8 @@ public class main extends ListActivity {
     }
 
     private void moveItem(int from, int to) {
+        // TODO Сделать сначала перемещние элемента в массиве потом в базе и убрать loadCurrencysFromProvider.
+        // TODO Перемещение в базе убрать в отдельный поток.
         ContentResolver cr = getContentResolver();
         ContentValues cv = new ContentValues();
         LinkedList<String> items = new LinkedList<String>();
@@ -401,7 +404,7 @@ public class main extends ListActivity {
                         break;
                     default:
                         Log.d(LOG_TAG, "main: Refreshing OK.");
-                        mCursor.requery();
+//                        mCursor.requery();
                         setInfoDateToTitle();
                         removeDialog(PROGRESS_DIALOG);
                         break;

@@ -88,7 +88,7 @@ public class DailyInfoStub {
             e.printStackTrace();
             throw e;
         }
-        if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Return result data.");
+        if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");
         return result;
     }
 
@@ -112,9 +112,11 @@ public class DailyInfoStub {
             androidHttpTransport.call(soapAction, envelope);
             if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
         } catch (IOException e) {
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Error "+e.getMessage());
             e.printStackTrace();
             throw e;
         } catch (Exception e) {
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Error "+e.getMessage());
             e.printStackTrace();
             throw e;
         }
