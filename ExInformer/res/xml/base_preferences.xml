@@ -9,6 +9,17 @@
                 android:defaultValue="true"
                 >
         </CheckBoxPreference>
+
+        <CheckBoxPreference
+                android:key="PREF_SOUND_NOTIFY"
+                android:title="@string/sound_notify"
+                android:summary="@string/sound_notify_summary"
+                android:defaultValue="true"
+                android:dependency="PREF_AUTO_UPDATE"
+                >
+        </CheckBoxPreference>
+
+
         <ru.openitr.exinformer.TimePreference
                 android:name="UpdateTime"
                 android:summary="@string/preference_time_summary"

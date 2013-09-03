@@ -22,4 +22,11 @@
         >
     </item>
 
+    <item
+        android:id="@+id/refreshItem"
+        android:icon="@drawable/navigation_refresh"
+        android:title="@string/refresh"
+        android:orderInCategory="300"
+        android:showAsAction="ifRoom">
+    </item>
 </menu>

@@ -33,22 +33,26 @@ public class InfoRefreshService extends Service {
     private DailyInfoStub dailyInfo;
     private Notification newExchangeRateNotification;
     NotificationManager notificationManager;
+    SharedPreferences sharedPreferences;
     public static final int NOTIFICATION_ID = 1;
-
+    long lastSavedDateOfExchange;
+    boolean soundNotification;
+    boolean fromActivity;
     @Override
     public void onCreate() {
         super.onCreate();
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         dailyInfo = new DailyInfoStub();
         nextExecuteTimeInMills = 0;
-
-
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service created");
         Context context = getApplicationContext();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         autoupdate = sharedPreferences.getBoolean("PREF_AUTO_UPDATE", false);
         int hourOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.hour", 0);
         int minuteOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.minute", 0);
+        soundNotification = sharedPreferences.getBoolean("PREF_SOUND_NOTIFY", false);
+        lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_DATE",0);
+        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Saved last date: "+ new Date(lastSavedDateOfExchange).toLocaleString());
         if (autoupdate) {
             alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             String ALARM_ACTION;
@@ -68,7 +72,9 @@ public class InfoRefreshService extends Service {
         Long dateFromExtraParam = intent.getLongExtra(main.PARAM_DATE,0);
         onDate.setTimeInMillis(dateFromExtraParam);
         onlySetAlarm = intent.getBooleanExtra(main.PARAM_ONLY_SET_ALARM, false);
+        fromActivity = intent.getBooleanExtra(main.PARAM_FROM_ACTIVITY, false);
         if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
+
         new refreshCurrencyTask().execute(onDate);
         return Service.START_NOT_STICKY;
     }
@@ -79,9 +85,9 @@ public class InfoRefreshService extends Service {
     }
 
     private void notifyNewExchange(Calendar onDate){
+        if (fromActivity) return;
         int icon = R.drawable.money;
         String tickerText = getString(R.string.exchange_rate_change);
-
         if (newExchangeRateNotification == null)
             newExchangeRateNotification = new Notification(icon, tickerText, System.currentTimeMillis());
         Context context = getApplicationContext();
@@ -94,7 +100,8 @@ public class InfoRefreshService extends Service {
 
         newExchangeRateNotification.setLatestEventInfo(context,expandedTitle,expandedText,launchIntent);
 
-        //newExchangeRateNotification.defaults = Notification.DEFAULT_SOUND;
+        if (soundNotification)
+            newExchangeRateNotification.defaults |= Notification.DEFAULT_SOUND;
         newExchangeRateNotification.flags |= Notification.FLAG_AUTO_CANCEL;
 
         notificationManager.notify(NOTIFICATION_ID, newExchangeRateNotification);
@@ -115,12 +122,14 @@ public class InfoRefreshService extends Service {
         private static final int STATUS_NOT_RESPOND = 40;
         private static final int STATUS_NO_DATA = 50;
         private static final int STATUS_NOT_FRESH_DATA = 60;
+        private static final int STATUS_BAD_DATA = 70;
+        SharedPreferences.Editor editor;
         static final String CURRENCY_URI = "content://ru.openitr.exinformer.currency/currencys";
         boolean startFromNulldate = false;
         Calendar onDate;
         @Override
         protected Integer doInBackground(Calendar... params) {
-
+            editor = sharedPreferences.edit();
             if (onlySetAlarm){
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Only need update alarmSet");
                 return OK;
@@ -130,10 +139,13 @@ public class InfoRefreshService extends Service {
                 startFromNulldate = true;
                 try {
                     onDate = dailyInfo.getLatestDate();
-                    lastInfo = true;
+                    editor.putLong("PREF_LAST_DATE", onDate.getTimeInMillis());
+                    editor.commit();
+                    if (onDate.getTimeInMillis()>=lastSavedDateOfExchange) lastInfo = true;
                     if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: onDate = 0. getLastDate return: " + onDate.getTime().toLocaleString());
                 } catch (Exception e) {
                     e.printStackTrace();
+                    return STATUS_BAD_DATA;
                 }
             }
             else {
@@ -180,7 +192,14 @@ public class InfoRefreshService extends Service {
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
                     if ((System.currentTimeMillis() - nextExecuteTime.getTimeInMillis()) < (AlarmManager.INTERVAL_HOUR*4))
                         nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_HALF_HOUR;
+                    else nextExecuteTime.roll(Calendar.DAY_OF_YEAR,true);
                     break;
+                case STATUS_BAD_DATA:
+                    resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_NO_DATA);
+                    nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_FIFTEEN_MINUTES/3;
+                    lastInfo = false;
+                    break;
+
                 default:
                     resIntent.putExtra(main.PARAM_STATUS, main.FIN_STATUS_OK);
                     if (nextExecuteTime.getTimeInMillis() < Calendar.getInstance().getTimeInMillis())
@@ -196,7 +215,7 @@ public class InfoRefreshService extends Service {
                 }
             }
             sendBroadcast(resIntent);
-            if (lastInfo){
+            if (lastInfo & result == OK){
                 if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: lastInfo = " + lastInfo);
                 widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
                 sendBroadcast(widgetUpdateIntent);
@@ -241,7 +260,8 @@ public class InfoRefreshService extends Service {
                 res = STATUS_NO_DATA;
             } catch (Exception e) {
                 e.printStackTrace();
-                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Stop update base with error "+e.getMessage()+"!!!");
+                res = STATUS_BAD_DATA;
+                if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Service: Stop update base with error: "+e.getLocalizedMessage()+"!!!");
             }
 
 

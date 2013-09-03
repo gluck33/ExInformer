@@ -36,4 +36,7 @@
     <string name="rootmenu_title">Menu and settings</string>
     <string name="exchange_rate_change">Exchange rate change.</string>
     <string name="obtained_change_in_exchange_rates">Obtained change in exchange rates.</string>
+    <string name="refresh">Load last data.</string>
+    <string name="sound_notify">Sound notification.</string>
+    <string name="sound_notify_summary">Sound notification in case of an update of exchange rates.</string>
 </resources>

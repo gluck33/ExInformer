@@ -56,11 +56,11 @@ public class DailyInfoStub {
             if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
         } catch (IOException e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile(LOG_TAG,e.getMessage());
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate IOException: "+e.getMessage());
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile(LOG_TAG,e.getMessage());
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate Exception: "+e.getMessage());
             throw e;
         }
 
@@ -112,11 +112,11 @@ public class DailyInfoStub {
             androidHttpTransport.call(soapAction, envelope);
             if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
         } catch (IOException e) {
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Error "+e.getMessage());
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
             e.printStackTrace();
             throw e;
         } catch (Exception e) {
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Error "+e.getMessage());
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
             e.printStackTrace();
             throw e;
         }
@@ -129,6 +129,7 @@ public class DailyInfoStub {
             return sdf.getCalendar();
         } catch (Exception e) {
             e.printStackTrace();
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: getLastDate Exception: "+e.getMessage());
             throw e;
         }
     }

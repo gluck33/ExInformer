@@ -43,7 +43,7 @@ public class main extends ListActivity {
     public static final String PARAM_STATUS = "status";
     public static final String PARAM_DATE = "date";
     public static final String PARAM_ONLY_SET_ALARM = "only_set";
-    public static final String PARAM_FROM = "from";
+    public static final String PARAM_FROM_ACTIVITY = "from_activity";
 
     static final String INFO_REFRESH_INTENT = "ru.openitr.exinformer.INFO_UPDATE";
 
@@ -286,6 +286,9 @@ public class main extends ListActivity {
             case (R.id.root_menu):
                 showMenu(findViewById(R.id.root_menu));
                 return true;
+            case (R.id.refreshItem):
+                getInfo(0);
+                return true;
         }
         return false;
     }
@@ -322,6 +325,7 @@ public class main extends ListActivity {
 
     private void getInfo(long timeInMillis) {
         refreshServiceIntent.putExtra(PARAM_DATE, timeInMillis);
+        if (timeInMillis == 0) refreshServiceIntent.putExtra(PARAM_FROM_ACTIVITY, true);
         startService(refreshServiceIntent);
 
     }
@@ -335,6 +339,10 @@ public class main extends ListActivity {
         icurrencies.clear();
         ContentResolver cr = getContentResolver();
         Cursor c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
+        if (c.getCount() == 0 ){
+            getInfo(0);
+            c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
+        }
         if (c.moveToFirst()) {
             do {
                 String vName = c.getString(CurrencyDbAdapter.VALNAME_COLUMN);
