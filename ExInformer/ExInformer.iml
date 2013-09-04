@@ -21,6 +21,15 @@
     <orderEntry type="module" module-name="ru.openitr.exinformerlib" />
     <orderEntry type="library" name="ksoap2-android-assembly-3.0.0-RC.2-jar-with-dependencies" level="project" />
     <orderEntry type="library" name="com.mobeta.android.dslv" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/support-v4-18.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 
