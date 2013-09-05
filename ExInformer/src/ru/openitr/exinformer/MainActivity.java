@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 
-public class main extends ListActivity {
+public class MainActivity extends ListActivity {
     boolean OldAPIVersion;
     static Calendar onDate;
 
@@ -94,7 +94,7 @@ public class main extends ListActivity {
         //Адаптер к листу
         // **************************************************
         loadCurrencysFromProvider();
-        ca = new CurrencyArrayAdapter(main.this, icurrencies);
+        ca = new CurrencyArrayAdapter(MainActivity.this, icurrencies);
         setListAdapter(ca);
         // **************************************************
         DragSortListView listView = getListView();

@@ -83,9 +83,11 @@ public class DailyInfoStub {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
+            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
             throw e;
         }
         if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");

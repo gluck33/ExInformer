@@ -70,8 +70,8 @@ public class CurrencyWidget extends AppWidgetProvider {
         if (_vChCode != null){
             Cursor cursor = context.getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, CurrencyDbAdapter.KEY_CHARCODE+" = ?", new String[]{_vChCode}, null);
             if (cursor.getCount()<=0) {
-                cursor.close();
-                return;
+                Intent startServiceIntent = new Intent (context, InfoRefreshService.class);
+                context.startService(startServiceIntent);
             }
             try {
                 cursor.moveToFirst();
@@ -99,6 +99,6 @@ public class CurrencyWidget extends AppWidgetProvider {
         for (int widgetId: appWidgetsIds){
             updateWidget(context,appWidgetManager,sp,widgetId);
         }
-        if (main.DEBUG) LogSystem.logInFile(main.LOG_TAG, "Widget: Widget info updated.");
+        if (MainActivity.DEBUG) LogSystem.logInFile(MainActivity.LOG_TAG, "Widget: Widget info updated.");
     }
 }

@@ -22,9 +22,18 @@
     <orderEntry type="library" name="ksoap2-android-assembly-3.0.0-RC.2-jar-with-dependencies" level="project" />
     <orderEntry type="library" name="com.mobeta.android.dslv" level="project" />
     <orderEntry type="module-library">
+      <library name="android-support">
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file:///usr/local/lib/android-sdk-linux/extras/android/support/v7/appcompat" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/support-v4-18.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/android-support-v7-appcompat.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
