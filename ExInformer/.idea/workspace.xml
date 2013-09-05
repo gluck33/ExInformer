@@ -54,13 +54,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/main.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/CurrencyWidget.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/CurrencyWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/DailyInfoStub.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer/DailyInfoStub.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformer.iml" afterPath="$PROJECT_DIR$/ExInformer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshReciever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -68,7 +62,7 @@
     <file path="/main.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378289291065" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1370950061006" ignored="false" />
     <file path="/strings.xml" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378187759523" ignored="false" />
-    <file path="/Dummy.txt" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378356909749" ignored="false" />
+    <file path="/Dummy.txt" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378381020307" ignored="false" />
     <file path="/CurrencyDbAdapter.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1375959102411" ignored="false" />
     <file path="/fragment.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1377751762580" ignored="false" />
     <file path="$PROJECT_DIR$/../exinformerlib/.idea/ant.xml" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1363764879874" ignored="false" />
@@ -300,6 +294,7 @@
     <file path="/main_menu.xml" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378185365264" ignored="false" />
     <file path="/MainAction.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378359150499" ignored="false" />
     <file path="$PROJECT_DIR$/gen/ru/openitr/exinformer/BuildConfig.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378359479589" ignored="false" />
+    <file path="$PROJECT_DIR$/gen/ru/openitr/exinformer/R.java" changelist="6eeb610b-a795-48ed-aaa7-e3624129e221" time="1378381254121" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,6 +309,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -351,7 +347,6 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -364,7 +359,7 @@
       <file leaf-file-name="InfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="20" selection-start="9483" selection-end="9483" vertical-scroll-proportion="-45.0">
+            <state line="199" column="20" selection-start="9483" selection-end="9483" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -382,7 +377,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="90" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.5638474">
+            <state line="119" column="75" selection-start="4682" selection-end="4682" vertical-scroll-proportion="4.5333333">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2278#2289#0" expanded="true" />
@@ -395,7 +390,7 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="978" selection-end="978" vertical-scroll-proportion="0.0">
+            <state line="17" column="27" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -524,6 +519,8 @@
     <ignored-problems>
       <problem id="invalid-module-dependency(module:ExInformer,&lt; Android 4.2 &gt;)" />
       <problem id="invalid-module-dependency(module:ExInformer,&lt; Android 4.2 Platform &gt;)" />
+      <problem id="unused-library(library:project:android-support-v4)" />
+      <problem id="unused-library(library:project:android-support-v7-appcompat)" />
     </ignored-problems>
   </component>
   <component name="ProjectView">
@@ -539,6 +536,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -656,22 +654,21 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="73" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="93" />
-    <property name="project.structure.proportion" value="0.2020548" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="73" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="project.structure.proportion" value="0.2020548" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="93" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="73" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="ExportedApkPath" value="$PROJECT_DIR$/CBInfo.apk" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="73" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="ExportedModule" value="ExInformer" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/android-support-v7-appcompat.jar!/" />
@@ -688,16 +685,16 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/exinformer" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="preferences.pathVariables" />
     <property name="AndroidLayoutSelectedEditor" value="text-editor" />
     <property name="project.structure.side.proportion" value="0.40432432" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="HT034NX03451" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="AndroidRunProguardForReleaseBuild" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
@@ -751,19 +748,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -790,6 +774,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -897,21 +894,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="45" width="1280" height="953" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="45" width="1280" height="953" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1292" y="453" width="1263" height="567" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1296" y="474" width="1263" height="567" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3243874" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282532" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18786465" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41540256" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924694" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -919,7 +916,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22265625" sideWeight="0.81213534" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22265625" sideWeight="0.5845974" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33722287" sideWeight="0.49921876" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22890624" sideWeight="0.80980164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1064,16 +1061,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="53" selection-start="770" selection-end="770" vertical-scroll-proportion="0.3919129">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="978" selection-end="978" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="17" column="53" selection-start="770" selection-end="770" vertical-scroll-proportion="0.3919129" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshReciever.java">
@@ -1085,7 +1073,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/InfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="20" selection-start="9483" selection-end="9483" vertical-scroll-proportion="-45.0">
+        <state line="199" column="20" selection-start="9483" selection-end="9483" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1104,9 +1092,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="27" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/exinformer/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="90" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.5638474">
+        <state line="119" column="75" selection-start="4682" selection-end="4682" vertical-scroll-proportion="4.5333333">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2278#2289#0" expanded="true" />
@@ -1168,7 +1163,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>ru.openitr.exinformerlib</last-edited>
+          <last-edited>ExInformer</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
