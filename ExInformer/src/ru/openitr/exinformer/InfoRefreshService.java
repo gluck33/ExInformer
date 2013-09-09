@@ -68,6 +68,7 @@ public class InfoRefreshService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        lastInfo = false;
         Calendar onDate = Calendar.getInstance();
         Long dateFromExtraParam = intent.getLongExtra(MainActivity.PARAM_DATE,0);
         onDate.setTimeInMillis(dateFromExtraParam);
@@ -142,7 +143,10 @@ public class InfoRefreshService extends Service {
                     onDate = dailyInfo.getLatestDate();
                     editor.putLong("PREF_LAST_DATE", onDate.getTimeInMillis());
                     editor.commit();
-                    if (onDate.getTimeInMillis() >= lastSavedDateOfExchange) lastInfo = true;
+                    if (onDate.getTimeInMillis() >= lastSavedDateOfExchange) {
+                        lastInfo = true;
+                        if (MainActivity.DEBUG) LogSystem.logInFile(MainActivity.LOG_TAG,"lastInfo is set to true.");
+                    }
                     if (MainActivity.DEBUG) LogSystem.logInFile(MainActivity.LOG_TAG, "Service: onDate = 0. getLastDate return: " + onDate.getTime().toLocaleString());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -215,6 +219,9 @@ public class InfoRefreshService extends Service {
                     LogSystem.logInFile(MainActivity.LOG_TAG, "Alarm is set to " + new Date(nextExecuteTimeInMills).toLocaleString());
                 }
             }
+
+            else alarms.cancel(alarmIntent);
+
             sendBroadcast(resIntent);
             if (lastInfo & result == OK){
                 if (MainActivity.DEBUG) LogSystem.logInFile(MainActivity.LOG_TAG, "Service: lastInfo = " + lastInfo);
