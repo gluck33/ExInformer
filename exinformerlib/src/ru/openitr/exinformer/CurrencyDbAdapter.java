@@ -18,9 +18,9 @@ import java.util.Calendar;
  */
 public class CurrencyDbAdapter {
     //private static final String TAG = "exInformer";
-    private static final String DATABASE_NAME = "exInformer.db";
-    private static String CURRENCY_TABLE = "curtable";
-    private static final int DATABASE_VERSION = 4;
+    public static final String DATABASE_NAME = "exInformer.db";
+    public static String CURRENCY_TABLE = "curtable";
+    public static final int DATABASE_VERSION = 4;
     // Имена столбцов
     public static final String KEY_ID = "_id";
     public static final String KEY_CODE = "vCode";
@@ -44,7 +44,7 @@ public class CurrencyDbAdapter {
     public static final int ORDER_COLUMN = 8;
 
 
-    private static final String CREATE_CUR_TABLE = "create table " +
+    protected static final String CREATE_CUR_TABLE = "create table " +
             CURRENCY_TABLE + " (" +
             KEY_ID + " integer primary key autoincrement, " +
             KEY_CODE + " ineger, " +
@@ -239,13 +239,13 @@ public class CurrencyDbAdapter {
         return getCurrency(id);
     }
 
-    public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
-        if (!cursorOpened)
-            this.open();
-        Cursor res = db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, null, sortOrder);
-        return res;
-
-    }
+//    public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
+//        if (!cursorOpened)
+//            this.open();
+//        Cursor res = db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, null, sortOrder);
+//        return res;
+//
+//    }
 
 
     /**

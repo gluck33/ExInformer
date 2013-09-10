@@ -99,6 +99,6 @@ public class CurrencyWidget extends AppWidgetProvider {
         for (int widgetId: appWidgetsIds){
             updateWidget(context,appWidgetManager,sp,widgetId);
         }
-        if (MainActivity.DEBUG) LogSystem.logInFile(MainActivity.LOG_TAG, "Widget: Widget info updated.");
+        if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Widget: Widget info updated.");
     }
 }

@@ -27,8 +27,6 @@ import java.util.LinkedList;
 public class MainInfoActivity extends ListActivity {
     boolean OldAPIVersion;
     static Calendar onDate;
-
-    //ValFromDbAdapter valFromDbAdapter;
     public static final boolean DEBUG = true;
     public static final String LOG_TAG = "CBInfo";
     public static final int STATUS_BEGIN_REFRESH = 10;
@@ -251,6 +249,7 @@ public class MainInfoActivity extends ListActivity {
         if (cursor.moveToFirst()) {
             onDate.setTimeInMillis(cursor.getLong(0));
             setDateOnTitle(onDate);
+            cursor.close();
         }
     }
 
@@ -356,6 +355,7 @@ public class MainInfoActivity extends ListActivity {
             } while (c.moveToNext());
         }
         if (ca != null) ca.notifyDataSetChanged();
+        c.close();
     }
 
     private void moveItem(int from, int to) {
@@ -379,6 +379,7 @@ public class MainInfoActivity extends ListActivity {
             cr.update(Uri.parse(CURRENCYS_URI.toString() + "/" + itemCode), cv, null, null);
 
         }
+        itemsCursor.close();
         loadCurrencysFromProvider();
     }
 
@@ -412,8 +413,8 @@ public class MainInfoActivity extends ListActivity {
                         break;
                     default:
                         Log.d(LOG_TAG, "main: Refreshing OK.");
-//                        mCursor.requery();
                         setInfoDateToTitle();
+                        loadCurrencysFromProvider();
                         removeDialog(PROGRESS_DIALOG);
                         break;
                 }

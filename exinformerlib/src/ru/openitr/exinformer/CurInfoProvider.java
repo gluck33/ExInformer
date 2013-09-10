@@ -1,10 +1,9 @@
 package ru.openitr.exinformer;
 
-import android.content.ContentProvider;
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.content.UriMatcher;
+import android.content.*;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.text.TextUtils;
 
@@ -15,7 +14,7 @@ import android.text.TextUtils;
  * Time: 11:06
  */
 public class CurInfoProvider extends ContentProvider {
-    static CurrencyDbAdapter db;
+    SQLiteDatabase db;
     //URI
         static final String AUTHORITY = "ru.openitr.exinformer.currency";
     //PATH
@@ -40,16 +39,17 @@ public class CurInfoProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY,CURRENCY_PATH,URI_CURRENCY);
         uriMatcher.addURI(AUTHORITY,CURRENCY_PATH+"/*",URI_CURRENCY_ID);
     }
+    DBHelper dbHelper;
     @Override
     public boolean onCreate() {
-        db = new CurrencyDbAdapter(getContext());
+        dbHelper = new DBHelper(getContext());
         return true;
     }
 
     @Override
     protected void finalize() throws Throwable {
-        super.finalize();
         db.close();
+        super.finalize();
     }
 
     @Override
@@ -71,7 +71,8 @@ public class CurInfoProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong URI: "+uri);
 
         }
-        Cursor cursor = db.query(projection, selection, selectionArgs,sortOrder);
+        db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(CurrencyDbAdapter.CURRENCY_TABLE,projection, selection, selectionArgs,null,null,sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(),CURRENCY_CONTENT_URI);
         return cursor;
     }
@@ -92,7 +93,8 @@ public class CurInfoProvider extends ContentProvider {
         if (uriMatcher.match(uri) != URI_CURRENCY) {
             throw new IllegalArgumentException("Wrong URI: " + uri);
         }
-        long rowId = db.insertCurrencyRow(_cv);
+        db = dbHelper.getWritableDatabase();
+        long rowId = db.insert(CurrencyDbAdapter.CURRENCY_TABLE, null,_cv);
         Uri resultUri = ContentUris.withAppendedId(CURRENCY_CONTENT_URI, rowId);
 //        getContext().getContentResolver().notifyChange(resultUri,null);
         return resultUri;
@@ -119,9 +121,34 @@ public class CurInfoProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Wrong URI: "+ uri);
         }
-        int result = db.updateCurrencyRow(contentValues, selection, selectionArgs);
+        db = dbHelper.getWritableDatabase();
+        int result = db.update(CurrencyDbAdapter.CURRENCY_TABLE, contentValues, selection, selectionArgs);
         //getContext().getContentResolver().notifyChange(uri, null);
         //db.close();
         return result;
     }
+private class DBHelper extends SQLiteOpenHelper {
+
+    public DBHelper(Context context) {
+        super(context, CurrencyDbAdapter.DATABASE_NAME, null, CurrencyDbAdapter.DATABASE_VERSION);
+    }
+
+    @Override
+    public synchronized void close() {
+        super.close();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CurrencyDbAdapter.CREATE_CUR_TABLE);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i2) {
+        db.execSQL("drop table if exists "+CurrencyDbAdapter.CURRENCY_TABLE);
+        onCreate(db);
+    }
+}
+
+
 }

@@ -27,6 +27,7 @@
                 android:title="@string/preference_time_title"
                 android:key="PREF_UPDITE_TIME"
                 android:dependency="PREF_AUTO_UPDATE"
+                android:defaultValue="13:00"
                 >
         </ru.openitr.exinformer.TimePreference>
     </PreferenceCategory>
