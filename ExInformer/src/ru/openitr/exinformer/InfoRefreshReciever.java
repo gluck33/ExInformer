@@ -3,7 +3,6 @@ package ru.openitr.exinformer;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,6 +17,7 @@ public class InfoRefreshReciever extends BroadcastReceiver  {
     public void onReceive(Context context, Intent intent) {
         Intent startIntent = new Intent (context, InfoRefreshService.class);
         context.startService(startIntent);
-        Log.d(MainInfoActivity.LOG_TAG, "InfoRefreshReciever: Recieve 'ru.openitr.exinformer.ACTION_REFRESH_INFO_ALARM'");
+        if (MainInfoActivity.DEBUG)
+        LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName()+ ": Recieve 'ru.openitr.exinformer.ACTION_REFRESH_INFO_ALARM'");
     }
 }

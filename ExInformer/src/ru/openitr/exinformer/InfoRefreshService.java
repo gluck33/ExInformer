@@ -73,7 +73,6 @@ public class InfoRefreshService extends Service {
         onlySetAlarm = intent.getBooleanExtra(MainInfoActivity.PARAM_ONLY_SET_ALARM, false);
         fromActivity = intent.getBooleanExtra(MainInfoActivity.PARAM_FROM_ACTIVITY, false);
         if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: Service onStartCommand execute refresh task.");
-
         new refreshCurrencyTask().execute(onDate);
         return Service.START_NOT_STICKY;
     }
@@ -132,7 +131,7 @@ public class InfoRefreshService extends Service {
             editor = sharedPreferences.edit();
             DailyInfoStub lastDateOnServer = new DailyInfoStub();
             if (onlySetAlarm){
-                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: Only need update alarmSet");
+                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : Only need update alarmSet");
                 return OK;
             }
             onDate = Calendar.getInstance();
@@ -142,12 +141,12 @@ public class InfoRefreshService extends Service {
                     onDate = lastDateOnServer.getLatestDate();
                     editor.putLong("PREF_LAST_DATE", onDate.getTimeInMillis());
                     editor.commit();
-                    if (onDate.getTimeInMillis() >= lastSavedDateOfExchange) {
+                    if (onDate.getTimeInMillis() > lastSavedDateOfExchange) {
                         lastInfo = true;
-                        if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG,"lastInfo is set to true.");
+                        if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG,this.getClass().getSimpleName() + " lastInfo is set to true.");
                     }
                     if (MainInfoActivity.DEBUG)
-                        LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: onDate = "+ new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(onDate.getTime())+". getLastDate =" + onDate.getTime().toLocaleString());
+                        LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : onDate = "+ new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(onDate.getTime())+". getLastDate =" + onDate.getTime().toLocaleString());
                 } catch (Exception e) {
                     e.printStackTrace();
                     return STATUS_BAD_DATA;
@@ -158,11 +157,11 @@ public class InfoRefreshService extends Service {
             }
             boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(onDate);
             if (infoNeedUpdate ){
-                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Data need to update. newDate = " + onDate.getTime().toString() + " onDate = " + onDate.getTime().toString());
+                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : Data need to update. newDate = " + onDate.getTime().toString() + " onDate = " + onDate.getTime().toString());
                 publishProgress();
                 return getCursOnDate(onDate);
             }
-            if (ExtraCalendar.isToday(onDate)) return STATUS_NOT_FRESH_DATA;
+            if (!ExtraCalendar.isFuture(onDate)) return STATUS_NOT_FRESH_DATA;
             return OK;
         }
 
@@ -176,6 +175,8 @@ public class InfoRefreshService extends Service {
 
         @Override
         protected void onPostExecute(Integer result) {
+            if (MainInfoActivity.DEBUG)
+                LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : (onPostExecute) Result of service: " + result);
             int alarmType = AlarmManager.RTC;
             super.onPostExecute(result);
             Intent resIntent = new Intent(MainInfoActivity.INFO_REFRESH_INTENT);
@@ -197,14 +198,20 @@ public class InfoRefreshService extends Service {
                     resIntent.putExtra(MainInfoActivity.PARAM_STATUS, MainInfoActivity.FIN_STATUS_OK);
                     if ((System.currentTimeMillis() - nextExecuteTime.getTimeInMillis()) < (AlarmManager.INTERVAL_HOUR*4))
                         nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_HALF_HOUR;
-                    else nextExecuteTime.roll(Calendar.DAY_OF_YEAR,true);
+                    else {
+                        nextExecuteTime.roll(Calendar.DAY_OF_YEAR,true);
+                        if (MainInfoActivity.DEBUG)
+                            LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + ":  End of today refreshing. Next update is tomorrow.");
+
+                    }
+                    if (MainInfoActivity.DEBUG)
+                        LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + ":  nextExecuteTim"+ new Date(nextExecuteTimeInMills).toLocaleString());
                     break;
                 case STATUS_BAD_DATA:
                     resIntent.putExtra(MainInfoActivity.PARAM_STATUS, MainInfoActivity.FIN_STATUS_NO_DATA);
-                    nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_FIFTEEN_MINUTES/15;
+                    nextExecuteTimeInMills = System.currentTimeMillis() + AlarmManager.INTERVAL_FIFTEEN_MINUTES;
                     lastInfo = false;
                     break;
-
                 default:
                     resIntent.putExtra(MainInfoActivity.PARAM_STATUS, MainInfoActivity.FIN_STATUS_OK);
                     if (nextExecuteTime.getTimeInMillis() < Calendar.getInstance().getTimeInMillis())
@@ -213,18 +220,18 @@ public class InfoRefreshService extends Service {
             }
             if (autoupdate) {
                 //nextExecuteTimeInMills = System.currentTimeMillis()+1000*60*10;
+                if (nextExecuteTimeInMills < System.currentTimeMillis())
+                    nextExecuteTimeInMills = nextExecuteTimeInMills + AlarmManager.INTERVAL_DAY;
                 alarms.set(alarmType, nextExecuteTimeInMills, alarmIntent);
-                if (MainInfoActivity.DEBUG) {
-                    LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: (onPostExecute) Result of service: " + result);
-                    LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Alarm is set to " + new Date(nextExecuteTimeInMills).toLocaleString());
-                }
+                if (MainInfoActivity.DEBUG)
+                    LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + ": Alarm is set to " + new Date(nextExecuteTimeInMills).toLocaleString());
             }
 
             else if (alarms != null) alarms.cancel(alarmIntent);
 
             sendBroadcast(resIntent);
             if (lastInfo & result == OK){
-                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: lastInfo = " + lastInfo);
+                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : lastInfo = " + lastInfo);
                 widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
                 sendBroadcast(widgetUpdateIntent);
                 notifyNewExchange(onDate);
@@ -243,14 +250,14 @@ public class InfoRefreshService extends Service {
             ContentResolver cr = getContentResolver();
             DailyInfoStub dailyInfoStub = new DailyInfoStub();
             int res = OK;
-            if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: Info need to update.");
+            if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : Info need to update.");
             if (!internetAvailable()) {
                 return STATUS_NETWORK_DISABLE;
             }
             if (ExtraCalendar.isToday(onDate) && startFromNulldate) res = STATUS_NOT_FRESH_DATA;
             try {
                 ArrayList <Icurrency> infoStub = dailyInfoStub.getCursOnDate(onDate);
-                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: Start update base.");
+                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : Start update base.");
                 for (Icurrency icurrencyRecord : infoStub) {
                     ContentValues _cv = icurrencyRecord.toContentValues();
                     if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
@@ -258,7 +265,7 @@ public class InfoRefreshService extends Service {
                     }
 
                 }
-                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: Stop update base.");
+                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, " : Stop update base.");
             } catch (IOException e) {
                 e.printStackTrace();
                 res = STATUS_NOT_RESPOND;
@@ -269,7 +276,7 @@ public class InfoRefreshService extends Service {
             } catch (Exception e) {
                 e.printStackTrace();
                 res = STATUS_BAD_DATA;
-                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Service: Stop update base with error: "+e.getLocalizedMessage()+"!!!");
+                if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, " : Stop update base with error: "+e.getLocalizedMessage()+"!!!");
             }
 
 
@@ -291,16 +298,16 @@ public class InfoRefreshService extends Service {
         {
             if (ni.getTypeName().equalsIgnoreCase("WIFI"))
                 if (ni.isConnected()) {
-                    if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "test: wifi connection found");
+                    if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : wifi connection found");
                     return true;
                 }
             if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
                 if (ni.isConnected()) {
-                    if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "test: mobile connection found");
+                    if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : mobile connection found");
                     return true;
                 }
         }
-        if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, "test: Network connection not found");
+        if (MainInfoActivity.DEBUG) LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName() + " : Network connection not found");
         return false;
     }
 

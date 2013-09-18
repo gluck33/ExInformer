@@ -84,7 +84,7 @@ public class MainInfoActivity extends ListActivity {
         OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Log.d(LOG_TAG, "main:  onCreate");
+        Log.d(LOG_TAG, this.getClass().getSimpleName() + ":  onCreate");
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
 //        mCursor = managedQuery(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
 //        startManagingCursor(mCursor);
@@ -128,7 +128,7 @@ public class MainInfoActivity extends ListActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (DEBUG) Log.d(LOG_TAG, "onDestroy");
+        if (DEBUG) Log.d(LOG_TAG, this.getClass().getSimpleName() + ": onDestroy");
     }
 
     private OnDateSetListener cDateSetListener = new OnDateSetListener() {
@@ -390,29 +390,29 @@ public class MainInfoActivity extends ListActivity {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(INFO_REFRESH_INTENT)) {
                 int status = intent.getIntExtra(PARAM_STATUS, 0);
-                if (DEBUG) LogSystem.logInFile(LOG_TAG, "main: (OnRecieve) Result of service run status: " + status);
+                if (DEBUG) LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": (OnRecieve) Result of service run status: " + status);
                 switch (status) {
                     case STATUS_BEGIN_REFRESH:
-                        Log.d(LOG_TAG, "main: Begin updating info.");
+                        Log.d(LOG_TAG, this.getClass().getSimpleName() + " : Begin updating info.");
                         showDialog(PROGRESS_DIALOG);
                         break;
                     case FIN_STATUS_NO_DATA:
                         removeDialog(PROGRESS_DIALOG);
-                        Log.d(LOG_TAG, "main: No data receive.");
+                        Log.d(LOG_TAG, this.getClass().getSimpleName() + " : No data receive.");
 
                         break;
                     case FIN_STATUS_NOT_RESPOND:
-                        Log.d(LOG_TAG, "main: Server not respond.");
+                        Log.d(LOG_TAG, this.getClass().getSimpleName() + " : Server not respond.");
                         removeDialog(PROGRESS_DIALOG);
                         removeDialog(NOT_RESPOND_DIALOG);
                         showDialog(NOT_RESPOND_DIALOG);
                         break;
                     case FINS_STATUS_NETWORK_DISABLE:
-                        Log.d(LOG_TAG, "main: Network disabled.");
+                        Log.d(LOG_TAG, this.getClass().getSimpleName() + " : Network disabled.");
                         showDialog(NETSETTINGS_DIALOG);
                         break;
                     default:
-                        Log.d(LOG_TAG, "main: Refreshing OK.");
+                        Log.d(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
                         setInfoDateToTitle();
                         loadCurrencysFromProvider();
                         removeDialog(PROGRESS_DIALOG);

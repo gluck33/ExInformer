@@ -19,7 +19,6 @@
                 >
         </CheckBoxPreference>
 
-
         <ru.openitr.exinformer.TimePreference
                 android:name="UpdateTime"
                 android:summary="@string/preference_time_summary"
@@ -30,6 +29,17 @@
                 android:defaultValue="13:00"
                 >
         </ru.openitr.exinformer.TimePreference>
+
+        <ListPreference name="UpdateFrequency"
+            android:key="PREF_UPDATE_FREQ"
+            android:title="@string/update_pref_freq_title"
+            android:summary="@string/update_pref_freq_summary"
+            android:defaultValue="15"
+            android:dependency="PREF_AUTO_UPDATE"
+            android:dialogTitle="@string/update_pref_freq_title"
+            android:entries="@array/update_freq_opts"
+            android:entryValues="@array/update_freq_vals">
+         </ListPreference>
     </PreferenceCategory>
 
 

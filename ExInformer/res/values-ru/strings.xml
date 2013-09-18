@@ -40,4 +40,6 @@
     <string name="refresh">Обновить.</string>
     <string name="sound_notify">Звуковое уведомление.</string>
     <string name="sound_notify_summary">Звуковое уведомление при поступлении свежих данных</string>
+    <string name="update_pref_freq_title">Период обновления</string>
+    <string name="update_pref_freq_summary">Период с которым будут производится запросы при неудачной попытке обновления</string>
 </resources>

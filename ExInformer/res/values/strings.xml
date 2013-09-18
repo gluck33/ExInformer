@@ -39,4 +39,6 @@
     <string name="refresh">Load last data.</string>
     <string name="sound_notify">Sound notification</string>
     <string name="sound_notify_summary">Sound notification in case of an update of exchange rates</string>
+    <string name="update_pref_freq_title">Refresh frequency</string>
+    <string name="update_pref_freq_summary">The frequency with which requests are made ​​when an attempt to refresh</string>
 </resources>
