@@ -17,7 +17,6 @@ public class InfoRefreshReciever extends BroadcastReceiver  {
     public void onReceive(Context context, Intent intent) {
         Intent startIntent = new Intent (context, InfoRefreshService.class);
         context.startService(startIntent);
-        if (MainInfoActivity.DEBUG)
         LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName()+ ": Recieve 'ru.openitr.exinformer.ACTION_REFRESH_INFO_ALARM'");
     }
 }

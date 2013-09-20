@@ -51,21 +51,21 @@ public class DailyInfoStub {
 
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Getting info from CB server on date "+ sdf.format(onDate.getTime()) + ".");
+             LogSystem.logInFile (LOG_TAG, "InfoStub: Getting info from CB server on date "+ sdf.format(onDate.getTime()) + ".");
             androidHttpTransport.call(soapAction, envelope);
-            if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
+             LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
         } catch (IOException e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate IOException: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate IOException: "+e.getMessage());
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate Exception: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate Exception: "+e.getMessage());
             throw e;
         }
 
         /* Разбор ответа сервера */
-        if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Begin data parsing.");
+         LogSystem.logInFile (LOG_TAG, "InfoStub: Begin data parsing.");
         try {
             SoapObject resultRequest = (SoapObject) envelope.bodyIn;
             SoapObject array = (SoapObject) resultRequest.getProperty(0);
@@ -83,14 +83,14 @@ public class DailyInfoStub {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
             throw e;
         }
-        if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");
+         LogSystem.logInFile (LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");
         return result;
     }
 
@@ -110,20 +110,20 @@ public class DailyInfoStub {
 
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
+             LogSystem.logInFile (LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
             androidHttpTransport.call(soapAction, envelope);
-            if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
+             LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
         } catch (IOException e) {
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
             e.printStackTrace();
             throw e;
         } catch (Exception e) {
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
             e.printStackTrace();
             throw e;
         }
            /* Разбор ответа сервера */
-        if (DEBUG) LogSystem.logInFile(LOG_TAG, "InfoStub: Begin data parsing.");
+         LogSystem.logInFile(LOG_TAG, "InfoStub: Begin data parsing.");
         try {
             SoapObject resultRequest = (SoapObject) envelope.bodyIn;
             String result = resultRequest.getPropertyAsString(0);
@@ -131,7 +131,7 @@ public class DailyInfoStub {
             return sdf.getCalendar();
         } catch (Exception e) {
             e.printStackTrace();
-            if (DEBUG) LogSystem.logInFile (LOG_TAG, "InfoStub: getLastDate Exception: "+e.getMessage());
+             LogSystem.logInFile (LOG_TAG, "InfoStub: getLastDate Exception: "+e.getMessage());
             throw e;
         }
     }
