@@ -13,7 +13,7 @@
     <string name="appTitleDatePrefix">данные на</string>
 <!-- Dialogs strings -->
     <string name="dataDlgMessage">Задать дату курса</string>
-    <string name="netSettingsDlgMessage">Приложению требуется доступ к интернет. Для загрузки данных включите GPRS или WiFi</string>
+    <string name="netSettingsDlgMessage">Приложению требуется доступ к интернет. Перейти в настройки беспроводных сетей?</string>
     <string name="ok">Да</string>
     <string name="cancel">Отмена</string>
     <string name="loading">Загрузка данных с сервера…</string>
