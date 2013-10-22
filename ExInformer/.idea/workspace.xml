@@ -58,25 +58,7 @@
     </layouts>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/Dialogs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/activity_main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/header_footer.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/ids.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_18_0_0.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main_currency.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainInfoActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CBInfo.iml" afterPath="$PROJECT_DIR$/CBInfo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyWidget.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshReciever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/arrays.xml" afterPath="$PROJECT_DIR$/res/values/arrays.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-ru/arrays.xml" afterPath="$PROJECT_DIR$/res/values-ru/arrays.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimens.xml" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency" />
     <ignored path="ExInformer.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -173,7 +155,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="43" selection-start="4112" selection-end="4116" vertical-scroll-proportion="0.19416244" vertical-offset="1785" max-vertical-offset="4709">
+            <state line="148" column="0" selection-start="5290" selection-end="5290" vertical-scroll-proportion="0.9923858" vertical-offset="1734" max-vertical-offset="4709">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -885,7 +867,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="43" selection-start="4112" selection-end="4116" vertical-scroll-proportion="0.19416244" vertical-offset="1785" max-vertical-offset="4709">
+        <state line="148" column="0" selection-start="5290" selection-end="5290" vertical-scroll-proportion="0.9923858" vertical-offset="1734" max-vertical-offset="4709">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
