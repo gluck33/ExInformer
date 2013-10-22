@@ -12,4 +12,10 @@
         <item>30</item>
         <item>60</item>
     </string-array>
+    <string-array name="page_titles">
+        <item>Курсы валют</item>
+        <item>Металлы</item>
+        <item>Новости</item>
+    </string-array>
+
 </resources>

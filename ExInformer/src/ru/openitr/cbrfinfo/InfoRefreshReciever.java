@@ -17,6 +17,6 @@ public class InfoRefreshReciever extends BroadcastReceiver  {
     public void onReceive(Context context, Intent intent) {
         Intent startIntent = new Intent (context, InfoRefreshService.class);
         context.startService(startIntent);
-        LogSystem.logInFile(MainInfoActivity.LOG_TAG, this.getClass().getSimpleName()+ ": Recieve 'ru.openitr.cbrfinfo.ACTION_REFRESH_INFO_ALARM'");
+        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName()+ ": Recieve 'ru.openitr.cbrfinfo.ACTION_REFRESH_INFO_ALARM'");
     }
 }

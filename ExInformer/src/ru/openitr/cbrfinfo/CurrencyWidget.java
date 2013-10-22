@@ -13,8 +13,6 @@ import android.widget.RemoteViews;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import ru.openitr.cbrfinfo.R;
-
 
 /**
  * Created by
@@ -101,6 +99,6 @@ public class CurrencyWidget extends AppWidgetProvider {
         for (int widgetId: appWidgetsIds){
             updateWidget(context,appWidgetManager,sp,widgetId);
         }
-         LogSystem.logInFile(MainInfoActivity.LOG_TAG, "Widget: Widget info updated.");
+         LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Widget: Widget info updated.");
     }
 }
