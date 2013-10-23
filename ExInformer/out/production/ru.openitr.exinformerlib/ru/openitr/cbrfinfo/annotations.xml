@@ -1,0 +1,7 @@
+<root>
+    <item name='ru.openitr.cbrfinfo.MainActivity void showMenu(android.view.View)'>
+        <annotation name='android.annotation.TargetApi'>
+            <val val="android.os.Build.VERSION_CODES.HONEYCOMB" />
+        </annotation>
+    </item>
+</root>

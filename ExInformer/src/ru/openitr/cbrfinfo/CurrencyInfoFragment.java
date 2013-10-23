@@ -41,7 +41,7 @@ public class CurrencyInfoFragment extends ListFragment {
     public int removeMode = DragSortController.FLING_REMOVE;
     public boolean sortEnabled = true;
     public boolean dragEnabled = true;
-
+    BroadcastReceiver br;
     CurrencyArrayAdapter ca;
 
     ArrayList<Icurrency> icurrencies = new ArrayList<Icurrency>();
@@ -104,6 +104,7 @@ public class CurrencyInfoFragment extends ListFragment {
         onDate = Calendar.getInstance();
 //        context.setContentView(R.layout.main_currency);
         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ":  onCreate");
+        br = new CurrencyInfoBroadcastReceiever();
 //        refreshServiceIntent = new Intent(this, InfoRefreshService.class);
 
     }
@@ -168,11 +169,13 @@ public class CurrencyInfoFragment extends ListFragment {
     public void onResume() {
         super.onResume();
         IntentFilter intF = new IntentFilter(INFO_REFRESH_INTENT);
+        getActivity().registerReceiver(br, intF);
     }
 
 
     @Override
     public void onDestroy() {
+        getActivity().unregisterReceiver(br);
         super.onDestroy();
         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": onDestroy");
     }
@@ -181,12 +184,12 @@ public class CurrencyInfoFragment extends ListFragment {
      * Загружает курсы валют из базы данных в массив для адаптера.
      */
 
-    private void loadCurrencysFromProvider() {
+    public void loadCurrencysFromProvider() {
         icurrencies.clear();
         ContentResolver cr = getActivity().getContentResolver();
         Cursor c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         if (c.getCount() == 0) {
-            //getInfo(0);
+//            getInfo(0);
             c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         }
         if (c.moveToFirst()) {
@@ -230,5 +233,21 @@ public class CurrencyInfoFragment extends ListFragment {
         loadCurrencysFromProvider();
     }
 
+
+    private class CurrencyInfoBroadcastReceiever extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(MainActivity.INFO_REFRESH_INTENT)) {
+                int status = intent.getIntExtra(MainActivity.PARAM_STATUS, 0);
+                LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": (OnRecieve) Result of service run status: " + status);
+                switch (status) {
+                    case (MainActivity.FIN_STATUS_OK):
+                        loadCurrencysFromProvider();
+                        break;
+                }
+            }
+        }
+    }
 
 }

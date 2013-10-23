@@ -1,38 +1,77 @@
 package ru.openitr.cbrfinfo;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
 
 import java.util.Calendar;
 
 /**
  * Created by oleg on 22.10.13.
  */
-public class Dialogs extends DialogFragment {
+public abstract class AppDialog extends DialogFragment {
     static final public int DATA_DIALOG = 1;
     static final public int NETSETTINGS_DIALOG = 2;
     static final public int PROGRESS_DIALOG = 3;
     static final public int ILLEGAL_DATA_DIALOD = 4;
     static final public int NOT_RESPOND_DIALOG = 5;
     static Calendar onDate;
+    Context appContext;
+    protected int dialogId;
+    public AppDialog(Context context) {
+
+    }
 
 
 
+    public AppDialog newInstance (Context context, int id){
+        switch (id) {
+            case (PROGRESS_DIALOG):
+                this.dialogId = id;
+                return new AppProgressDialog(context);
+                //break;
+            case (DATA_DIALOG):
+                //break;
+        }
+        return null;
+    }
 
-    public Dialog onCreatedialog(/*Bundle savedInstanceState, */int id, Context context){
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        return super.onCreateDialog(savedInstanceState);
+
+        switch (dialogId){
+            case (PROGRESS_DIALOG):
+                return new ProgressDialog(getActivity());
+        }
+        return new ProgressDialog(getActivity());
+    }
+
+    private static class AppProgressDialog extends AppDialog {
+
+        public AppProgressDialog(Context context) {
+            super(context);
+        }
+
+        public Dialog onCreatedialog(Bundle savedInstanceState) {
+            ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getText(R.string.loading));
+            progressDialog.setCancelable(false);
+            return progressDialog;
+        }
+    }
+}
+
+/*
+
+    public Dialog onCreatedialog(Bundle savedInstanceState){
         switch (id) {
 
             case (DATA_DIALOG):
                 DatePickerDialog dpd;
-                dpd = new DatePickerDialog(context, cDateSetListener, onDate.get(Calendar.YEAR),
+                dpd = new DatePickerDialog(getActivity(), cDateSetListener, onDate.get(Calendar.YEAR),
                         onDate.get(Calendar.MONTH), onDate.get(Calendar.DATE));
                 return dpd;
 
@@ -98,25 +137,25 @@ public class Dialogs extends DialogFragment {
         return null; //super.onCreateDialog(id);
     }
 
+*/
+//    private void goToNetsettings() {
+//        Intent netSettings = new Intent("android.settings.WIRELESS_SETTINGS");
+//        startActivity(netSettings);
+////        getInfo(onDate);
+//    }
+//    private DatePickerDialog.OnDateSetListener cDateSetListener = new DatePickerDialog.OnDateSetListener() {
+//        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//            Calendar newDate = Calendar.getInstance();
+//            newDate.set(Calendar.YEAR, year);
+//            newDate.set(Calendar.MONTH, month);
+//            newDate.set(Calendar.DAY_OF_MONTH, day);
+//            if (!newDate.equals(onDate)) {
+//                onDate = newDate;
+////                getInfo(newDate);
+//            }
+//        }
+//
+//    };
 
-    private void goToNetsettings() {
-        Intent netSettings = new Intent("android.settings.WIRELESS_SETTINGS");
-        startActivity(netSettings);
-//        getInfo(onDate);
-    }
-    private DatePickerDialog.OnDateSetListener cDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            Calendar newDate = Calendar.getInstance();
-            newDate.set(Calendar.YEAR, year);
-            newDate.set(Calendar.MONTH, month);
-            newDate.set(Calendar.DAY_OF_MONTH, day);
-            if (!newDate.equals(onDate)) {
-                onDate = newDate;
-//                getInfo(newDate);
-            }
-        }
-
-    };
 
 
-}

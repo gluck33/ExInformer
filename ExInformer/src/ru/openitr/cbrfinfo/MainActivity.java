@@ -3,6 +3,7 @@ package ru.openitr.cbrfinfo;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -21,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.DatePicker;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
@@ -90,7 +93,7 @@ public class MainActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(fragmentPagerAdapter);
         viewPager.setCurrentItem(CURRENCY_FRAGMENT);
-        customTitleBar("");
+        setInfoDateToTitle();
     }
 
     @Override
@@ -176,7 +179,9 @@ public class MainActivity extends FragmentActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case (R.id.setDataItem):
-                showDialog(Dialogs.DATA_DIALOG);
+                //DialogFragment dateDialog = AppDialog.newInstance(this, AppDialog.DATA_DIALOG);
+                //dateDialog.show(getSupportFragmentManager(),"date");
+                showDatePicker();
                 return true;
             case (R.id.settingsItem):
                 Intent i = new Intent(this, BasePreferencesActivity.class);
@@ -186,7 +191,7 @@ public class MainActivity extends FragmentActivity {
                 showMenu(findViewById(R.id.root_menu));
                 return true;
             case (R.id.refreshItem):
-                //getInfo(0);
+                getInfo(0);
                 return true;
         }
         return false;
@@ -226,6 +231,28 @@ public class MainActivity extends FragmentActivity {
 
     }
 
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        date.setCallBack(ondate);
+        date.show(getSupportFragmentManager(), "Date Picker");
+    }
+
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            onDate.set(Calendar.YEAR, year);
+            onDate.set(Calendar.MONTH, monthOfYear);
+            onDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            getInfo(onDate);
+        }
+    };
 
     /**
      *
@@ -233,7 +260,7 @@ public class MainActivity extends FragmentActivity {
 
     public class MainActivityBroadcastReceiever extends BroadcastReceiver {
         public static final String LOG_TAG = "CBInfo";
-
+        AppDialog pDialog;
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MainActivity.INFO_REFRESH_INTENT)) {
@@ -242,28 +269,30 @@ public class MainActivity extends FragmentActivity {
                 switch (status) {
                     case STATUS_BEGIN_REFRESH:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Begin updating info.");
-                        showDialog(Dialogs.PROGRESS_DIALOG);
+                        pDialog = AppDialog.newInstance(context, AppDialog.PROGRESS_DIALOG);
+                        pDialog.show(getSupportFragmentManager(), "");
                         break;
                     case FIN_STATUS_NO_DATA:
-                        removeDialog(Dialogs.PROGRESS_DIALOG);
+                        removeDialog(AppDialog.PROGRESS_DIALOG);
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : No data receive.");
 
                         break;
                     case FIN_STATUS_NOT_RESPOND:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Server not respond.");
-                        removeDialog(Dialogs.PROGRESS_DIALOG);
-                        removeDialog(Dialogs.NOT_RESPOND_DIALOG);
-                        showDialog(Dialogs.NOT_RESPOND_DIALOG);
+                        removeDialog(AppDialog.PROGRESS_DIALOG);
+                        removeDialog(AppDialog.NOT_RESPOND_DIALOG);
+                        showDialog(AppDialog.NOT_RESPOND_DIALOG);
                         break;
                     case FINS_STATUS_NETWORK_DISABLE:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Network disabled.");
-                        showDialog(Dialogs.NETSETTINGS_DIALOG);
+                        showDialog(AppDialog.NETSETTINGS_DIALOG);
                         break;
                     default:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
                         setInfoDateToTitle();
                         //loadCurrencysFromProvider();
-                        removeDialog(Dialogs.PROGRESS_DIALOG);
+                        if (pDialog != null)
+                            pDialog.dismiss();
                         break;
                 }
             }
