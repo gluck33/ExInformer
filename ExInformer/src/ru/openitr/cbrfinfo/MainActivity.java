@@ -179,8 +179,6 @@ public class MainActivity extends FragmentActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case (R.id.setDataItem):
-                //DialogFragment dateDialog = AppDialog.newInstance(this, AppDialog.DATA_DIALOG);
-                //dateDialog.show(getSupportFragmentManager(),"date");
                 showDatePicker();
                 return true;
             case (R.id.settingsItem):
@@ -232,7 +230,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void showDatePicker() {
-        DatePickerFragment date = new DatePickerFragment();
+        AppDialog date = AppDialog.newInstance(AppDialog.DATA_DIALOG);
         Calendar calender = Calendar.getInstance();
         Bundle args = new Bundle();
         args.putInt("year", calender.get(Calendar.YEAR));
@@ -269,7 +267,7 @@ public class MainActivity extends FragmentActivity {
                 switch (status) {
                     case STATUS_BEGIN_REFRESH:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Begin updating info.");
-                        pDialog = AppDialog.newInstance(context, AppDialog.PROGRESS_DIALOG);
+                        pDialog = AppDialog.newInstance(AppDialog.PROGRESS_DIALOG);
                         pDialog.show(getSupportFragmentManager(), "");
                         break;
                     case FIN_STATUS_NO_DATA:
@@ -290,7 +288,6 @@ public class MainActivity extends FragmentActivity {
                     default:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
                         setInfoDateToTitle();
-                        //loadCurrencysFromProvider();
                         if (pDialog != null)
                             pDialog.dismiss();
                         break;

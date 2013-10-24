@@ -1,17 +1,18 @@
 package ru.openitr.cbrfinfo;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-
+import android.support.v4.app.FragmentActivity;
 import java.util.Calendar;
 
 /**
  * Created by oleg on 22.10.13.
  */
-public abstract class AppDialog extends DialogFragment {
+public class AppDialog extends DialogFragment {
     static final public int DATA_DIALOG = 1;
     static final public int NETSETTINGS_DIALOG = 2;
     static final public int PROGRESS_DIALOG = 3;
@@ -20,49 +21,60 @@ public abstract class AppDialog extends DialogFragment {
     static Calendar onDate;
     Context appContext;
     protected int dialogId;
-    public AppDialog(Context context) {
+    int year;
+    int month;
+    int day;
 
+
+    DatePickerDialog.OnDateSetListener ondateSet;
+
+    public AppDialog() {
     }
 
+    public AppDialog(Context context) {
+    }
 
+    protected AppDialog(int dialogId) {
+        this.dialogId = dialogId;
+    }
 
-    public AppDialog newInstance (Context context, int id){
-        switch (id) {
-            case (PROGRESS_DIALOG):
-                this.dialogId = id;
-                return new AppProgressDialog(context);
-                //break;
-            case (DATA_DIALOG):
-                //break;
-        }
-        return null;
+    public static AppDialog newInstance (int id){
+                AppDialog dialog = new AppDialog(id);
+                return dialog;
+    }
+
+    public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
+        ondateSet = ondate;
+    }
+
+    @Override
+    public void setArguments(Bundle args) {
+        super.setArguments(args);
+        year = args.getInt("year");
+        month = args.getInt("month");
+        day = args.getInt("day");
+
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return super.onCreateDialog(savedInstanceState);
-
+//        return super.onCreateDialog(savedInstanceState);
         switch (dialogId){
             case (PROGRESS_DIALOG):
-                return new ProgressDialog(getActivity());
+                final ProgressDialog dialog = new ProgressDialog(getActivity());
+                dialog.setMessage(getString(R.string.loading));
+                dialog.setIndeterminate(true);
+                dialog.setCancelable(false);
+                return dialog;
+            case DATA_DIALOG:
+                return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
         }
-        return new ProgressDialog(getActivity());
+        return null;
     }
 
-    private static class AppProgressDialog extends AppDialog {
-
-        public AppProgressDialog(Context context) {
-            super(context);
-        }
-
-        public Dialog onCreatedialog(Bundle savedInstanceState) {
-            ProgressDialog progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage(getText(R.string.loading));
-            progressDialog.setCancelable(false);
-            return progressDialog;
-        }
-    }
 }
+
+
 
 /*
 
