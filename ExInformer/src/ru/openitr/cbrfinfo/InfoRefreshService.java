@@ -54,7 +54,7 @@ public class InfoRefreshService extends Service {
         lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_DATE",0);
         updateInterval = Integer.parseInt(sharedPreferences.getString ("PREF_UPDATE_FREQ","30"));
         updateInterval = updateInterval * 1000 * 60;
-         LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Service: Saved last date: "+ new Date(lastSavedDateOfExchange).toLocaleString());
+        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Service: Saved last date: "+ new Date(lastSavedDateOfExchange).toLocaleString());
         if (autoupdate) {
             alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             String ALARM_ACTION;
@@ -131,6 +131,7 @@ public class InfoRefreshService extends Service {
 
         @Override
         protected Integer doInBackground(Calendar... params) {
+            //return OK;
             editor = sharedPreferences.edit();
             DailyInfoStub lastDateOnServer = new DailyInfoStub();
             if (onlySetAlarm){
@@ -150,7 +151,7 @@ public class InfoRefreshService extends Service {
                         lastInfo = true;
                          LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,this.getClass().getSimpleName() + " lastInfo is set to true.");
                     }
-                    
+
                         LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : onDate = "+ new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(onDate.getTime())+". getLastDate =" + onDate.getTime().toLocaleString());
                 } catch (IOException e){
                     if (!internetAvailable()){

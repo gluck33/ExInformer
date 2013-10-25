@@ -17,7 +17,7 @@ import java.util.Calendar;
  * Created by oleg on 22.10.13.
  */
 public class AppDialog extends DialogFragment {
-    static final public int DATA_DIALOG = 1;
+    static final public int DATE_DIALOG = 1;
     static final public int NETSETTINGS_DIALOG = 2;
     static final public int PROGRESS_DIALOG = 3;
     static final public int ILLEGAL_DATA_DIALOD = 4;
@@ -65,7 +65,7 @@ public class AppDialog extends DialogFragment {
                 dialog.setIndeterminate(true);
                 dialog.setCancelable(false);
                 return dialog;
-            case DATA_DIALOG:
+            case DATE_DIALOG:
                 return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
             case NETSETTINGS_DIALOG:
                 return new AlertDialog.Builder(getActivity())

@@ -62,6 +62,7 @@ public class MainActivity extends FragmentActivity {
     NotificationManager notificationManager;
     BroadcastReceiver br;
     Intent refreshServiceIntent;
+    boolean onDateSet;
 
     @Override
 
@@ -172,6 +173,7 @@ public class MainActivity extends FragmentActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case (R.id.setDataItem):
+                onDateSet = false;
                 showDatePicker();
                 return true;
             case (R.id.settingsItem):
@@ -223,7 +225,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void showDatePicker() {
-        AppDialog date = AppDialog.newInstance(AppDialog.DATA_DIALOG);
+        AppDialog date = AppDialog.newInstance(AppDialog.DATE_DIALOG);
         Calendar calender = Calendar.getInstance();
         Bundle args = new Bundle();
         args.putInt("year", calender.get(Calendar.YEAR));
@@ -238,6 +240,10 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
+            if (onDateSet){
+                return;
+            }
+            onDateSet = true;
             onDate.set(Calendar.YEAR, year);
             onDate.set(Calendar.MONTH, monthOfYear);
             onDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -253,6 +259,7 @@ public class MainActivity extends FragmentActivity {
         public static final String LOG_TAG = "CBInfo";
         AppDialog progressDialog;
         AppDialog notRespondDialog;
+        AppDialog netSettingsDialog;
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MainActivity.INFO_REFRESH_INTENT)) {
@@ -286,7 +293,8 @@ public class MainActivity extends FragmentActivity {
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Network disabled.");
                         if (progressDialog != null)
                             progressDialog.dismiss();
-                        AppDialog netSettingsDialog = AppDialog.newInstance(AppDialog.NETSETTINGS_DIALOG);
+
+                        netSettingsDialog = AppDialog.newInstance(AppDialog.NETSETTINGS_DIALOG);
                         netSettingsDialog.show(getSupportFragmentManager(),Integer.toString(AppDialog.NETSETTINGS_DIALOG));
                         break;
                     default:
