@@ -1,12 +1,16 @@
 package ru.openitr.cbrfinfo;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+
 import java.util.Calendar;
 
 /**
@@ -19,28 +23,24 @@ public class AppDialog extends DialogFragment {
     static final public int ILLEGAL_DATA_DIALOD = 4;
     static final public int NOT_RESPOND_DIALOG = 5;
     static Calendar onDate;
-    Context appContext;
     protected int dialogId;
     int year;
     int month;
     int day;
-
-
     DatePickerDialog.OnDateSetListener ondateSet;
 
-    public AppDialog() {
+    public void setNotRespondPositiveOnClick(DialogInterface.OnClickListener notRespondPositiveOnClick) {
+        this.notRespondPositiveOnClick = notRespondPositiveOnClick;
     }
 
-    public AppDialog(Context context) {
-    }
-
+    DialogInterface.OnClickListener notRespondPositiveOnClick;
     protected AppDialog(int dialogId) {
         this.dialogId = dialogId;
     }
 
-    public static AppDialog newInstance (int id){
-                AppDialog dialog = new AppDialog(id);
-                return dialog;
+    public static AppDialog newInstance(int id) {
+        AppDialog dialog = new AppDialog(id);
+        return dialog;
     }
 
     public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {
@@ -58,8 +58,7 @@ public class AppDialog extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        return super.onCreateDialog(savedInstanceState);
-        switch (dialogId){
+        switch (dialogId) {
             case (PROGRESS_DIALOG):
                 final ProgressDialog dialog = new ProgressDialog(getActivity());
                 dialog.setMessage(getString(R.string.loading));
@@ -68,8 +67,60 @@ public class AppDialog extends DialogFragment {
                 return dialog;
             case DATA_DIALOG:
                 return new DatePickerDialog(getActivity(), ondateSet, year, month, day);
+            case NETSETTINGS_DIALOG:
+                return new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.app_name)
+                        .setMessage(R.string.netSettingsDlgMessage)
+                        .setCancelable(false)
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                dialogInterface.cancel();
+                            }
+                        }).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                goToNetsettings();
+                            }
+                        })
+
+                        .create();
+            case ILLEGAL_DATA_DIALOD:
+                return new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.futureTitle)
+                        .setMessage(R.string.futureMsg)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                onDate.setTimeInMillis(System.currentTimeMillis());
+
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .create();
+            case NOT_RESPOND_DIALOG:
+                return new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.notRespondDlgTitle)
+                        .setMessage(R.string.notRespondDlgMsg)
+                        .setCancelable(true)
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                dialogInterface.dismiss();
+                            }
+                        }).setPositiveButton(R.string.ok, notRespondPositiveOnClick)
+                        .create();
         }
         return null;
+    }
+
+        private void goToNetsettings() {
+        Intent netSettings = new Intent("android.settings.WIRELESS_SETTINGS");
+        startActivity(netSettings);
+//        getInfo(onDate);
     }
 
 }

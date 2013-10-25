@@ -57,15 +57,11 @@
       </layout>
     </layouts>
   </component>
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="CBInfo" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/DatePickerFragment.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -133,7 +129,7 @@
       <file leaf-file-name="InfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="255" column="40" selection-start="12931" selection-end="12931" vertical-scroll-proportion="0.0" vertical-offset="4335" max-vertical-offset="5797">
+            <state line="181" column="81" selection-start="8462" selection-end="8462" vertical-scroll-proportion="0.0" vertical-offset="3077" max-vertical-offset="5797">
               <folding />
             </state>
           </provider>
@@ -142,7 +138,7 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="45" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1224">
+            <state line="40" column="30" selection-start="1878" selection-end="1878" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1224">
               <folding />
             </state>
           </provider>
@@ -151,7 +147,19 @@
       <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="10" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="323">
+            <state line="12" column="10" selection-start="456" selection-end="456" vertical-scroll-proportion="-7.285714" vertical-offset="0" max-vertical-offset="323">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="currencylayuot.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/layout/currencylayuot.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
@@ -163,42 +171,16 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="182" column="28" selection-start="6309" selection-end="6309" vertical-scroll-proportion="0.0" vertical-offset="2499" max-vertical-offset="4573">
-              <folding>
-                <element signature="e#4855#4891#0" expanded="true" />
-                <element signature="e#5014#5052#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CurrencyInfoFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="32" selection-start="6633" selection-end="6633" vertical-scroll-proportion="0.33156028" vertical-offset="2652" max-vertical-offset="4012">
+            <state line="287" column="53" selection-start="10921" selection-end="10921" vertical-scroll-proportion="0.0" vertical-offset="1634" max-vertical-offset="4624">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java">
+      <file leaf-file-name="CurrencyInfoFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="5" selection-start="2483" selection-end="2483" vertical-scroll-proportion="0.0" vertical-offset="1309" max-vertical-offset="3043">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1196#1197#0" expanded="true" />
-                <element signature="e#1230#1231#0" expanded="true" />
-                <element signature="e#1754#1781#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DialogFragment.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/android/support/v4/app/DialogFragment.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="30" selection-start="2552" selection-end="2552" vertical-scroll-proportion="-18.28" vertical-offset="563" max-vertical-offset="1377">
+            <state line="252" column="5" selection-start="9553" selection-end="9553" vertical-scroll-proportion="0.0" vertical-offset="4284" max-vertical-offset="4437">
               <folding />
             </state>
           </provider>
@@ -207,8 +189,20 @@
       <file leaf-file-name="CurrencyArrayAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="15" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="1071">
+            <state line="34" column="72" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1071">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppDialog.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="111" column="58" selection-start="4543" selection-end="4543" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="3638">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4296#4311#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -255,9 +249,9 @@
         <option value="$PROJECT_DIR$/res/layout/header_footer.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/Dialogs.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/DatePickerFragment.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
       </list>
     </option>
   </component>
@@ -358,7 +352,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cbrfinfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,6 +424,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -444,19 +475,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -483,6 +501,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -607,21 +638,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="45" width="1280" height="953" extended-state="6" />
+    <frame x="0" y="45" width="1280" height="953" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22890624" sideWeight="0.80980164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21640626" sideWeight="0.80980164" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1293" y="506" width="1272" height="535" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1284" y="572" width="1272" height="490" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33722287" sideWeight="0.50078124" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32733813" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29205608" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32905483" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="1288" y="47" width="1272" height="999" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -639,8 +669,9 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29205608" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -675,26 +706,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="15" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="901">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main_currency.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="800">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="10" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
@@ -733,61 +747,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="45" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="255" column="40" selection-start="12931" selection-end="12931" vertical-scroll-proportion="0.0" vertical-offset="4692" max-vertical-offset="5576">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/android/support/v4/app/Fragment.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="16" selection-start="2842" selection-end="2842" vertical-scroll-proportion="0.3484252" vertical-offset="1132" max-vertical-offset="4573">
-          <folding />
-        </state>
+        <state line="78" column="16" selection-start="2842" selection-end="2842" vertical-scroll-proportion="0.3484252" vertical-offset="1132" max-vertical-offset="4573" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/android/support/v4/app/DialogFragment.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="30" selection-start="2552" selection-end="2552" vertical-scroll-proportion="-18.28" vertical-offset="563" max-vertical-offset="1377">
+        <state line="61" column="30" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.8478664" vertical-offset="563" max-vertical-offset="1377" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="81" selection-start="8462" selection-end="8462" vertical-scroll-proportion="0.0" vertical-offset="2564" max-vertical-offset="5576">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="30" selection-start="1878" selection-end="1878" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="72" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1071">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="252" column="5" selection-start="9553" selection-end="9553" vertical-scroll-proportion="0.0" vertical-offset="3232" max-vertical-offset="4046">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="5" selection-start="2483" selection-end="2483" vertical-scroll-proportion="0.0" vertical-offset="1309" max-vertical-offset="3043">
+        <state line="111" column="58" selection-start="4543" selection-end="4543" vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="3638">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1230#1231#0" expanded="true" />
-            <element signature="e#1754#1781#0" expanded="true" />
+            <element signature="e#4296#4311#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="28" selection-start="6309" selection-end="6309" vertical-scroll-proportion="0.0" vertical-offset="2499" max-vertical-offset="4573">
-          <folding>
-            <element signature="e#4855#4891#0" expanded="true" />
-            <element signature="e#5014#5052#0" expanded="true" />
-          </folding>
+        <state line="287" column="53" selection-start="10921" selection-end="10921" vertical-scroll-proportion="0.0" vertical-offset="1634" max-vertical-offset="4624">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="32" selection-start="6633" selection-end="6633" vertical-scroll-proportion="0.33156028" vertical-offset="2652" max-vertical-offset="4012">
+        <state line="12" column="10" selection-start="456" selection-end="456" vertical-scroll-proportion="-7.285714" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/currencylayuot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

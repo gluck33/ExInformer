@@ -189,7 +189,9 @@ public class CurrencyInfoFragment extends ListFragment {
         ContentResolver cr = getActivity().getContentResolver();
         Cursor c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         if (c.getCount() == 0) {
-//            getInfo(0);
+            FragmentActivity curActivity = getActivity();
+            Intent refreshServiceIntent = new Intent(curActivity, InfoRefreshService.class).putExtra(PARAM_FROM_ACTIVITY, true);
+            curActivity.startService(refreshServiceIntent);
             c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         }
         if (c.moveToFirst()) {

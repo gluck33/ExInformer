@@ -7,12 +7,12 @@ import android.app.DatePickerDialog;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -39,13 +39,15 @@ public class MainActivity extends FragmentActivity {
     public static final int NEWS_FRAGMENT = 3;
     public static final int FRAGMENTS = 1;
     static final String INFO_REFRESH_INTENT = "ru.openitr.cbrfinfo.INFO_UPDATE";
+    static final String INFO_NEED_REFRESH_INTENT = "ru.openitr.cbrfinfo.INFO_NEED_UPDATE";
     public static final int NOTIFICATION_ID = 1;
     public static final String PARAM_STATUS = "status";
     public static final int STATUS_BEGIN_REFRESH = 10;
     public static final int FIN_STATUS_OK = 20;
+    public static final int FINS_STATUS_NETWORK_DISABLE = 30;
     public static final int FIN_STATUS_NOT_RESPOND = 40;
     public static final int FIN_STATUS_NO_DATA = 50;
-    public static final int FINS_STATUS_NETWORK_DISABLE = 30;
+    public static final int GET_INFO = 80;
     private static final int SHOW_PREFERENCES = 1;
     public static final String PARAM_DATE = "date";
     public static final String PARAM_ONLY_SET_ALARM = "only_set";
@@ -113,17 +115,8 @@ public class MainActivity extends FragmentActivity {
 
 
     /**
-     * Title bar для вывода даты курса.
+     * Вывод даты курса в заголовок.
      */
-    private void customTitleBar(String left) {
-        if (OldAPIVersion) {
-            getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
-                    R.layout.apptitle);
-            TextView titleLeft = (TextView) findViewById(R.id.titleLeft);
-            titleLeft.setText(left);
-            setDateOnTitle(onDate);
-        }
-    }
 
     private void setDateOnTitle(Calendar onDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -258,7 +251,8 @@ public class MainActivity extends FragmentActivity {
 
     public class MainActivityBroadcastReceiever extends BroadcastReceiver {
         public static final String LOG_TAG = "CBInfo";
-        AppDialog pDialog;
+        AppDialog progressDialog;
+        AppDialog notRespondDialog;
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MainActivity.INFO_REFRESH_INTENT)) {
@@ -267,33 +261,45 @@ public class MainActivity extends FragmentActivity {
                 switch (status) {
                     case STATUS_BEGIN_REFRESH:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Begin updating info.");
-                        pDialog = AppDialog.newInstance(AppDialog.PROGRESS_DIALOG);
-                        pDialog.show(getSupportFragmentManager(), "");
+                        progressDialog = AppDialog.newInstance(AppDialog.PROGRESS_DIALOG);
+                        progressDialog.show(getSupportFragmentManager(), "");
                         break;
                     case FIN_STATUS_NO_DATA:
-                        removeDialog(AppDialog.PROGRESS_DIALOG);
+                        progressDialog.dismiss();
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : No data receive.");
 
                         break;
                     case FIN_STATUS_NOT_RESPOND:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Server not respond.");
-                        removeDialog(AppDialog.PROGRESS_DIALOG);
-                        removeDialog(AppDialog.NOT_RESPOND_DIALOG);
-                        showDialog(AppDialog.NOT_RESPOND_DIALOG);
+                        progressDialog.dismiss();
+                        notRespondDialog = AppDialog.newInstance(AppDialog.NOT_RESPOND_DIALOG);
+                        notRespondDialog.setNotRespondPositiveOnClick(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                getInfo(0);
+                            }
+                        });
+                        notRespondDialog.show(getSupportFragmentManager(), Integer.toString(AppDialog.NOT_RESPOND_DIALOG));
                         break;
                     case FINS_STATUS_NETWORK_DISABLE:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Network disabled.");
-                        showDialog(AppDialog.NETSETTINGS_DIALOG);
+                        if (progressDialog != null)
+                            progressDialog.dismiss();
+                        AppDialog netSettingsDialog = AppDialog.newInstance(AppDialog.NETSETTINGS_DIALOG);
+                        netSettingsDialog.show(getSupportFragmentManager(),Integer.toString(AppDialog.NETSETTINGS_DIALOG));
                         break;
                     default:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
                         setInfoDateToTitle();
-                        if (pDialog != null)
-                            pDialog.dismiss();
+                        if (progressDialog != null)
+                            progressDialog.dismiss();
                         break;
                 }
             }
-
+            if (intent.getAction().equals(MainActivity.INFO_NEED_REFRESH_INTENT)) {
+                getInfo(0);
+            }
         }
     }
 
