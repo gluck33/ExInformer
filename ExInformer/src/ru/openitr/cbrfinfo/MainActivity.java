@@ -3,7 +3,6 @@ package ru.openitr.cbrfinfo;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-//import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -17,16 +16,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
-import android.widget.PopupMenu;
+//import android.widget.PopupMenu;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ import java.util.Calendar;
 import java.util.List;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-
+import android.support.v7.widget.PopupMenu;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -78,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OldAPIVersion = false;//Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+//        OldAPIVersion = false;//Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
         mContentView = findViewById(R.id.pager);
         mLoadingView = findViewById(R.id.loading_spinner);
@@ -106,8 +105,6 @@ public class MainActivity extends ActionBarActivity {
                 return pagesTitles[position];
             }
         };
-        //******************************
-        //*****************************
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(fragmentPagerAdapter);
         viewPager.setCurrentItem(CURRENCY_FRAGMENT);
@@ -136,29 +133,11 @@ public class MainActivity extends ActionBarActivity {
      */
 
 
-
-    private void customTitleBar(String left) {
-        if (OldAPIVersion) {
-            getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
-                    R.layout.apptitle);
-            TextView titleLeft = (TextView) findViewById(R.id.titleLeft);
-            titleLeft.setText(left);
-//            setDateOnTitle(onDate);
-        }
-    }
-
     private void setDateOnTitle(Calendar onDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String stringDate = sdf.format(onDate.getTime());
-        if (OldAPIVersion) {
-            customTitleBar(getText(R.string.app_name).toString());
-            TextView titleTvRight = (TextView) findViewById(R.id.titleRight);
-            titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": " + stringDate);
-        } else {
-//            ActionBar bar = getActionBar();
-//            bar.setSubtitle(getString(R.string.appTitleDatePrefix) + ": " + stringDate);
-        }
-
+            ActionBar bar = getSupportActionBar();
+            bar.setSubtitle(getString(R.string.appTitleDatePrefix) + ": " + stringDate);
     }
 
     @Override
@@ -174,7 +153,6 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void setInfoDateToTitle() {
-
         Cursor cursor = (getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
         if (cursor.moveToFirst()) {
             onDate.setTimeInMillis(cursor.getLong(0));
@@ -184,15 +162,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreatePanelMenu(int featureId, Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.root_menu, menu);
+        return super.onCreatePanelMenu(featureId, menu);
+    }
 
-        if (OldAPIVersion) {
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-            return true;
-        } else {
-            getMenuInflater().inflate(R.menu.root_menu, menu);
-            return true;
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.root_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.root_menu, menu);
+//        return true;
     }
 
 
@@ -290,28 +272,27 @@ public class MainActivity extends ActionBarActivity {
     private void endProgress() {
         // Set the content view to 0% opacity but visible, so that it is visible
         // (but fully transparent) during the animation.
-        mContentView.setAlpha(0f);
+        //mContentView.setAlpha(0f);
         mContentView.setVisibility(View.VISIBLE);
-
         // Animate the content view to 100% opacity, and clear any animation
         // listener set on the view.
-        mContentView.animate()
-                .alpha(1f)
-                .setDuration(mShortAnimationDuration)
-                .setListener(null);
-
-        // Animate the loading view to 0% opacity. After the animation ends,
-        // set its visibility to GONE as an optimization step (it won't
-        // participate in layout passes, etc.)
-        mLoadingView.animate()
-                .alpha(0f)
-                .setDuration(mShortAnimationDuration)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
+//        mContentView.animate()
+//                .alpha(1f)
+//                .setDuration(mShortAnimationDuration)
+//                .setListener(null);
+//
+//        // Animate the loading view to 0% opacity. After the animation ends,
+//        // set its visibility to GONE as an optimization step (it won't
+//        // participate in layout passes, etc.)
+//        mLoadingView.animate()
+//                .alpha(0f)
+//                .setDuration(mShortAnimationDuration)
+//                .setListener(new AnimatorListenerAdapter() {
+//                    @Override
+//                    public void onAnimationEnd(Animator animation) {
                         mLoadingView.setVisibility(View.GONE);
-                    }
-                });
+//                    }
+//                });
     }
 
     /**
