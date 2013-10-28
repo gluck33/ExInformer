@@ -59,7 +59,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_support_v7_appcompat.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../supportlib_v7/appcompat/appcompat.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../dragsortlistview/dragsortlistview.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/styles.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_mobeta_android_dslv.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/actionbarsherlock.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../exinformerlib/res/values/dslv_attrs.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CBInfo.iml" afterPath="$PROJECT_DIR$/CBInfo.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -133,6 +145,17 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="52" selection-start="1015" selection-end="1015" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
+              <folding>
+                <element signature="e#1924#1942#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
           <provider editor-type-id="text-editor">
@@ -160,11 +183,13 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="290" column="0" selection-start="10038" selection-end="10038" vertical-scroll-proportion="0.33292383" vertical-offset="3996" max-vertical-offset="5746">
+            <state line="223" column="8" selection-start="7670" selection-end="7670" vertical-scroll-proportion="0.41769043" vertical-offset="3417" max-vertical-offset="6341">
               <folding>
-                <element signature="e#5420#5446#0" expanded="true" />
-                <element signature="e#5571#5607#0" expanded="true" />
-                <element signature="e#5730#5768#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#5521#5547#0" expanded="true" />
+                <element signature="e#5672#5708#0" expanded="true" />
+                <element signature="e#7764#7986#0" expanded="true" />
+                <element signature="e#7975#7976#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -173,8 +198,10 @@
       <file leaf-file-name="CurrencyInfoFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="252" column="5" selection-start="9553" selection-end="9553" vertical-scroll-proportion="0.0" vertical-offset="4284" max-vertical-offset="4437">
-              <folding />
+            <state line="21" column="54" selection-start="585" selection-end="597" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4318">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -226,22 +253,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/res/values-ru/arrays.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivityBroadcastReciever.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivityBroadcastReceiever.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/values/ids.xml" />
         <option value="$PROJECT_DIR$/res/layout/header_footer.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/Dialogs.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/DatePickerFragment.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
         <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/values/styles.xml" />
       </list>
     </option>
   </component>
@@ -288,6 +315,7 @@
       <problem id="invalid-module-dependency(module:ExInformer,ksoap2-android-assembly-3.0.0-RC.2-jar-with-dependencies)" />
       <problem id="unused-library(library:project:android-support-v4)" />
       <problem id="unused-library(library:project:android-support-v7-appcompat)" />
+      <problem id="unused-library(library:project:com.mobeta.android.dslv1)" />
       <problem id="unused-library(library:project:libs)" />
     </ignored-problems>
   </component>
@@ -320,35 +348,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="exinformerlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CBInfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CBInfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cbrfinfo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -390,7 +390,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="ExportedApkPath" value="$PROJECT_DIR$/CBInfo.apk" />
@@ -411,7 +411,7 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dragsortlistview" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
@@ -636,19 +636,19 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21640626" sideWeight="0.80980164" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1310" y="590" width="1271" height="490" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1289" y="463" width="1271" height="490" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33722287" sideWeight="0.50078124" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32733813" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29205608" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32905483" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="1292" y="455" width="1272" height="544" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.32905483" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="1285" y="553" width="1272" height="465" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2140625" sideWeight="0.70711786" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33722287" sideWeight="0.49921876" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364486" sideWeight="0.49921876" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -723,20 +723,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/values-ru/arrays.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="21" selection-start="509" selection-end="509" vertical-scroll-proportion="0.3490338" vertical-offset="0" max-vertical-offset="828">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values-ru/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="4" selection-start="606" selection-end="606" vertical-scroll-proportion="0.26503068" vertical-offset="39" max-vertical-offset="867">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/android/support/v4/app/Fragment.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="16" selection-start="2842" selection-end="2842" vertical-scroll-proportion="0.3484252" vertical-offset="1132" max-vertical-offset="4573" />
@@ -745,13 +731,6 @@
     <entry file="jar://$PROJECT_DIR$/libs/support-v4-18.0.0.jar!/android/support/v4/app/DialogFragment.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="30" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.8478664" vertical-offset="563" max-vertical-offset="1377" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="30" selection-start="1878" selection-end="1878" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
@@ -767,13 +746,6 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="5" selection-start="9553" selection-end="9553" vertical-scroll-proportion="0.0" vertical-offset="3232" max-vertical-offset="4046">
           <folding />
         </state>
       </provider>
@@ -817,13 +789,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="52" selection-start="1015" selection-end="1015" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
+          <folding>
+            <element signature="e#1924#1942#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/lib/android-sdk-linux/platforms/android-8/android.jar!/android/view/LayoutInflater.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="2214" selection-end="2214" vertical-scroll-proportion="0.8060837" vertical-offset="307" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dragsortlistview/src/com/mobeta/android/dslv/DragSortCursorAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="32" selection-start="252" selection-end="252" vertical-scroll-proportion="0.26516464" vertical-offset="0" max-vertical-offset="4199">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="54" selection-start="585" selection-end="597" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="4318">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="57" selection-start="108" selection-end="108" vertical-scroll-proportion="0.041112456" vertical-offset="0" max-vertical-offset="827">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="290" column="0" selection-start="10038" selection-end="10038" vertical-scroll-proportion="0.33292383" vertical-offset="3996" max-vertical-offset="5746">
+        <state line="223" column="8" selection-start="7670" selection-end="7670" vertical-scroll-proportion="0.41769043" vertical-offset="3417" max-vertical-offset="6341">
           <folding>
-            <element signature="e#5420#5446#0" expanded="true" />
-            <element signature="e#5571#5607#0" expanded="true" />
-            <element signature="e#5730#5768#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#5521#5547#0" expanded="true" />
+            <element signature="e#5672#5708#0" expanded="true" />
+            <element signature="e#7764#7986#0" expanded="true" />
+            <element signature="e#7975#7976#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -880,7 +893,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Android|ru.openitr.exinformerlib</last-edited>
+          <last-edited>dragsortlistview</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -904,7 +917,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>support-v4-18.0.0</last-edited>
+          <last-edited>android-support-v7-appcompat</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

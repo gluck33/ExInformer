@@ -3,7 +3,7 @@ package ru.openitr.cbrfinfo;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.ActionBar;
+//import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -32,10 +32,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
 
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends ActionBarActivity {
     public static final int CURRENCY_FRAGMENT = 0;
     public static final int METALL_FRAGMENT = 1;
     public static final int NEWS_FRAGMENT = 3;
@@ -76,7 +78,7 @@ public class MainActivity extends FragmentActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        OldAPIVersion = false;//Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
         mContentView = findViewById(R.id.pager);
         mLoadingView = findViewById(R.id.loading_spinner);
@@ -153,8 +155,8 @@ public class MainActivity extends FragmentActivity {
             TextView titleTvRight = (TextView) findViewById(R.id.titleRight);
             titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": " + stringDate);
         } else {
-            ActionBar bar = getActionBar();
-            bar.setSubtitle(getString(R.string.appTitleDatePrefix) + ": " + stringDate);
+//            ActionBar bar = getActionBar();
+//            bar.setSubtitle(getString(R.string.appTitleDatePrefix) + ": " + stringDate);
         }
 
     }
