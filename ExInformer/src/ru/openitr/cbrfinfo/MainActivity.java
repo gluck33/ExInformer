@@ -76,6 +76,7 @@ public class MainActivity extends FragmentActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
         mContentView = findViewById(R.id.pager);
         mLoadingView = findViewById(R.id.loading_spinner);
@@ -84,7 +85,6 @@ public class MainActivity extends FragmentActivity {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         fragments.add(CURRENCY_FRAGMENT, new CurrencyInfoFragment());
         br = new MainActivityBroadcastReceiever();
-        OldAPIVersion = Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         refreshServiceIntent = new Intent(this, InfoRefreshService.class);
         fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -133,10 +133,23 @@ public class MainActivity extends FragmentActivity {
      * Вывод даты курса в заголовок.
      */
 
+
+
+    private void customTitleBar(String left) {
+        if (OldAPIVersion) {
+            getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+                    R.layout.apptitle);
+            TextView titleLeft = (TextView) findViewById(R.id.titleLeft);
+            titleLeft.setText(left);
+//            setDateOnTitle(onDate);
+        }
+    }
+
     private void setDateOnTitle(Calendar onDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String stringDate = sdf.format(onDate.getTime());
         if (OldAPIVersion) {
+            customTitleBar(getText(R.string.app_name).toString());
             TextView titleTvRight = (TextView) findViewById(R.id.titleRight);
             titleTvRight.setText(getText(R.string.appTitleDatePrefix).toString() + ": " + stringDate);
         } else {
