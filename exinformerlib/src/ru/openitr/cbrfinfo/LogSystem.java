@@ -135,5 +135,13 @@ public final class LogSystem {
         return result;
     }
 
+    public static int logInFile(String tag, Object object ,String msg){
+        String msgWithClassName = getClassName(object)+ ": " + msg;
+        return logInFile(tag, msgWithClassName);
+    }
+
+    public static String getClassName(Object object){
+        return object.getClass().getSimpleName().toString();
+    }
 
 }

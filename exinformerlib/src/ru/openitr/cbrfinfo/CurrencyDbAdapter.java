@@ -58,7 +58,6 @@ public class CurrencyDbAdapter {
             ");";
     public static final String[] ALL_COLUMNS = {KEY_ID, KEY_CODE, KEY_CHARCODE, KEY_VCURS , KEY_VNAME, KEY_DATE, KEY_IMAGE_URI, KEY_VISIBLE, KEY_ORDER};
     public static final String[] ALL_VISIBLE_COLUMNS = {KEY_IMAGE_URI, KEY_CHARCODE, KEY_VCURS, KEY_VNAME};
-    //    private static final String DELETE_AUTO_INCREMENT = "DELETE FROM sqlite_sequence WHERE name='"+CURRENCY_TABLE+"';";
     private SQLiteDatabase db;
     private curDbHelper dbHelper;
     private boolean cursorOpened;
@@ -239,13 +238,6 @@ public class CurrencyDbAdapter {
         return getCurrency(id);
     }
 
-//    public Cursor query(String[] projection, String selection, String[] selectionArgs, String sortOrder){
-//        if (!cursorOpened)
-//            this.open();
-//        Cursor res = db.query(CURRENCY_TABLE,projection, selection , selectionArgs, null, null, sortOrder);
-//        return res;
-//
-//    }
 
 
     /**
