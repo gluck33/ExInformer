@@ -197,6 +197,8 @@ public class MainActivity extends ActionBarActivity {
             case (R.id.refreshItem):
                 getInfo(0);
                 return true;
+            case (R.id.exiItem):
+                finish();
         }
         return false;
     }
