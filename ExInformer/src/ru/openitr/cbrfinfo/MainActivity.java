@@ -142,12 +142,6 @@ public class MainActivity extends ActionBarActivity {
      */
 
 
-    private void setDateOnTitle(Calendar onDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        String stringDate = sdf.format(onDate.getTime());
-            ActionBar bar = getSupportActionBar();
-            bar.setSubtitle(getString(R.string.appTitleDatePrefix) + ": " + stringDate);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -160,15 +154,6 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-
-    public void setInfoDateToTitle() {
-        Cursor cursor = (getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
-        if (cursor.moveToFirst()) {
-            onDate.setTimeInMillis(cursor.getLong(0));
-            setDateOnTitle(onDate);
-            cursor.close();
-        }
-    }
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
@@ -361,7 +346,6 @@ public class MainActivity extends ActionBarActivity {
                         break;
                     default:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
-                        setInfoDateToTitle();
                         endProgress();
 //                        if (progressDialog != null)
 //                            progressDialog.dismiss();

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortListView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -45,7 +46,7 @@ public class CurrencyInfoFragment extends ListFragment {
     CurrencyArrayAdapter ca;
 
     ArrayList<Icurrency> icurrencies = new ArrayList<Icurrency>();
-
+    TextView header;
     private DragSortListView.DropListener onDrop =
             new DragSortListView.DropListener() {
                 @Override
@@ -154,9 +155,8 @@ public class CurrencyInfoFragment extends ListFragment {
 
     private void addHeader(FragmentActivity activity, DragSortListView mDslv) {
         LayoutInflater inflater = activity.getLayoutInflater();
-        int count = mDslv.getHeaderViewsCount();
-        TextView header  = (TextView) inflater.inflate(R.layout.header_footer, null);
-        header.setText(getText(R.string.currency_page_header));
+        header  = (TextView) inflater.inflate(R.layout.header_footer, null);
+        header.setText(getExchangeDate(activity));
         mDslv.addHeaderView(header, null, false);
     }
 
@@ -174,6 +174,26 @@ public class CurrencyInfoFragment extends ListFragment {
         super.onDestroy();
         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": onDestroy");
     }
+
+    public  static String getExchangeDate(FragmentActivity activity) {
+        String result = "";
+        Calendar exDate = Calendar.getInstance();
+        Cursor cursor = (activity.getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            cursor.moveToFirst();
+            exDate.setTimeInMillis(cursor.getLong(0));
+            result = sdf.format(exDate.getTime());
+        }
+        finally {
+            cursor.close();
+            return result;
+        }
+
+    }
+
+
+
 
     /**
      * Загружает курсы валют из базы данных в массив для адаптера.
@@ -242,6 +262,7 @@ public class CurrencyInfoFragment extends ListFragment {
                 switch (status) {
                     case (MainActivity.FIN_STATUS_OK):
                         loadCurrencysFromProvider();
+                        header.setText(getExchangeDate(getActivity()));
                         break;
                 }
             }
