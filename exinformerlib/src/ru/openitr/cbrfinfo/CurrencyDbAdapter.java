@@ -20,7 +20,7 @@ public class CurrencyDbAdapter {
     //private static final String TAG = "exInformer";
     public static final String DATABASE_NAME = "exInformer.db";
     public static String CURRENCY_TABLE = "curtable";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
     // Имена столбцов
     public static final String KEY_ID = "_id";
     public static final String KEY_CODE = "vCode";
@@ -124,7 +124,7 @@ public class CurrencyDbAdapter {
         if (cursor.getCount() != 0 && cursor.moveToFirst()) {
             rowId = cursor.getInt(0);
         }
-        ContentValues newCurRow = icurrency.toContentValues();
+        ContentValues newCurRow = icurrency.asContentValues();
         newCurRow.put(KEY_IMAGE_URI, imageURI);
         newCurRow.put(KEY_VISIBLE, 1);
         newCurRow.put(KEY_ORDER, rowId + 1);
@@ -165,7 +165,7 @@ public class CurrencyDbAdapter {
 
 
     public int updateCurrencyRow (Icurrency _icurrency){
-        ContentValues _cv = _icurrency.toContentValues();
+        ContentValues _cv = _icurrency.asContentValues();
         String imageURI = "android.resource://ru.openitr.cbrfinfo/drawable/f_" + _cv.getAsString(KEY_CHARCODE).toLowerCase();
         _cv.put(KEY_IMAGE_URI, imageURI);
         return db.update(CURRENCY_TABLE, _cv, KEY_CHARCODE+" = ?", new String[]{_icurrency.getVchCode()});
@@ -209,6 +209,7 @@ public class CurrencyDbAdapter {
         this.open();
         Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_ID + "=" + rowIndex, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
+            cursor.close();
             throw new SQLiteException("No to do row found: " + rowIndex);
         }
         String vName = cursor.getString(VALNAME_COLUMN);   // Наименование валюты.
@@ -232,9 +233,11 @@ public class CurrencyDbAdapter {
     public Icurrency getCurency(String valChCode) {
         Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_CHARCODE + "=" + valChCode, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
+            cursor.close();
             throw new SQLiteException("No to do row found for code: " + valChCode);
         }
         int id = cursor.getInt(VALINDEX_COLUMN);
+        cursor.close();
         return getCurrency(id);
     }
 

@@ -143,7 +143,7 @@ public class DailyInfoStub {
      * Вх. параметр onDate: Дата, тип - Data
      * Вых. параметр: массив объектов типа DragMetal
      */
-    public ArrayList <DragMetal> getMetPrice(Calendar onDate) throws Exception {
+    public ArrayList <DragMetal> getMetPrice(Calendar fromDate, Calendar toDate) throws Exception {
         ArrayList<DragMetal> result = new ArrayList<DragMetal>();
         String methodName = "DragMetDynamic";
         String soapAction = "http://web.cbr.ru/DragMetDynamic";
@@ -155,11 +155,10 @@ public class DailyInfoStub {
         /* Устанавливаем параметры */
 
         toDateIn.setName("ToDate");
-        toDateIn.setValue(sdf.format(onDate.getTime()));
+        toDateIn.setValue(sdf.format(toDate.getTime()));
 
-        onDate.roll(Calendar.DAY_OF_YEAR, -1);
         fromDateIn.setName("fromDate");
-        fromDateIn.setValue(sdf.format(onDate.getTime()));
+        fromDateIn.setValue(sdf.format(fromDate.getTime()));
 
         request.addProperty(fromDateIn);
         request.addProperty(toDateIn);
@@ -176,7 +175,7 @@ public class DailyInfoStub {
         try
 
         {
-            LogSystem.logInFile(LOG_TAG, this, "Getting info from CB server on date " + sdf.format(onDate.getTime()) + ".");
+            LogSystem.logInFile(LOG_TAG, this, "Getting info from CB server on date " + sdf.format(fromDate.getTime()) + ".");
             androidHttpTransport.call(soapAction, envelope);
             LogSystem.logInFile(LOG_TAG, this,"Info recieved from SB server. ");
         } catch (
@@ -237,7 +236,7 @@ public class DailyInfoStub {
         }
 
         //LogSystem.logInFile(LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");
-        LogSystem.logInFile(LOG_TAG, this,"Returning result data on date " + sdf.format(onDate.getTime()) + ".");
+        LogSystem.logInFile(LOG_TAG, this,"Returning result data on date " + sdf.format(fromDate.getTime()) + ".");
         return result;
     }
 

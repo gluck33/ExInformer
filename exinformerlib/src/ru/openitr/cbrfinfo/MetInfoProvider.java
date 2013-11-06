@@ -24,8 +24,8 @@ public class MetInfoProvider extends ContentProvider {
     public static final String KEY_PRICE = "mPrice";
     public static final String KEY_DATE = "mDate";
     private static final String KEY_IMAGE_URI = "mImageUri";
-    public static final String KEY_VISIBLE = "vVisible";
-    public static final String KEY_ORDER = "vOrder";
+    public static final String KEY_VISIBLE = "mVisible";
+    public static final String KEY_ORDER = "mOrder";
 
     // Индексы столбцов
 
@@ -35,11 +35,13 @@ public class MetInfoProvider extends ContentProvider {
     public static final int DATE_COL_NUM = 3;
     public static final int IMAGE_COL_NUM = 4;
 
+    public static final String[] ALL_COLUMNS = {KEY_ID, KEY_CODE, KEY_PRICE, KEY_DATE, KEY_IMAGE_URI, KEY_VISIBLE, KEY_ORDER};
+
     // База данных
 
     public static final String DATABASE_NAME = "exInformer.db";
     public static String METAL_TABLE = "metaltable";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = CurrencyDbAdapter.DATABASE_VERSION;
 
     // Скрипт создания
 
@@ -57,9 +59,9 @@ public class MetInfoProvider extends ContentProvider {
 
     SQLiteDatabase db;
     //URI
-        static final String AUTHORITY = "ru.openitr.cbrfinfo.metal";
+        static final String AUTHORITY = "ru.openitr.cbrfinfo.metals";
     //PATH
-    static final String METAL_PATH = "metals";
+    static final String METAL_PATH = "metal";
     //Общий URI
     public static final Uri METAL_CONTENT_URI = Uri.parse("content://"+AUTHORITY+"/"+ METAL_PATH);
     // Типы данных
@@ -80,10 +82,10 @@ public class MetInfoProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, METAL_PATH, URI_METALL);
         uriMatcher.addURI(AUTHORITY, METAL_PATH +"/*", URI_METAL_ID);
     }
-    DBHelper dbHelper;
+    InfoDBHelper dbHelper;
     @Override
     public boolean onCreate() {
-        dbHelper = new DBHelper(getContext());
+        dbHelper = new InfoDBHelper(getContext(), DATABASE_NAME, null, DATABASE_VERSION);
         return true;
     }
 
@@ -112,7 +114,7 @@ public class MetInfoProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong URI: "+uri);
 
         }
-        db = dbHelper.getReadableDatabase();
+        db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query(METAL_TABLE,projection, selection, selectionArgs,null,null,sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(), METAL_CONTENT_URI);
         return cursor;
@@ -137,7 +139,7 @@ public class MetInfoProvider extends ContentProvider {
         db = dbHelper.getWritableDatabase();
         long rowId = db.insert(METAL_TABLE, null,_cv);
         Uri resultUri = ContentUris.withAppendedId(METAL_CONTENT_URI, rowId);
-//        getContext().getContentResolver().notifyChange(resultUri,null);
+        getContext().getContentResolver().notifyChange(resultUri,null);
         return resultUri;
     }
 
@@ -167,11 +169,11 @@ public class MetInfoProvider extends ContentProvider {
             case URI_METALL:
                 break;
             case URI_METAL_ID:
-                String _vchCode = uri.getLastPathSegment();
+                String _mCode = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)){
-                  selection = CurrencyDbAdapter.KEY_CHARCODE + " = " + "'" +_vchCode + "'";
+                  selection = KEY_CODE + " = " + "'" +_mCode + "'";
                 } else {
-                  selection = selection + " AND " + CurrencyDbAdapter.KEY_CHARCODE + " = " + _vchCode;
+                  selection = selection + " AND " + KEY_CODE + " = " + _mCode;
                 }
             break;
             default:
@@ -182,10 +184,10 @@ public class MetInfoProvider extends ContentProvider {
         db.close();
         return result;
     }
-private class DBHelper extends SQLiteOpenHelper {
+private class InfoDBHelper extends SQLiteOpenHelper {
 
-    public DBHelper(Context context) {
-        super(context, CurrencyDbAdapter.DATABASE_NAME, null, CurrencyDbAdapter.DATABASE_VERSION);
+    public InfoDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
     }
 
     @Override
@@ -200,7 +202,7 @@ private class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
-        db.execSQL("drop table if exists "+CurrencyDbAdapter.CURRENCY_TABLE);
+        db.execSQL("drop table if exists "+METAL_TABLE);
         onCreate(db);
     }
 }

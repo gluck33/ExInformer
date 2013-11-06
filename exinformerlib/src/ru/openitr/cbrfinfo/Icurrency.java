@@ -147,7 +147,7 @@ public class Icurrency {
      * @return Запихнутые в ContentValues данные о валюте.
      */
 
-    public ContentValues toContentValues() {
+    public ContentValues asContentValues() {
         ContentValues cv = new ContentValues();
         cv.put(CurrencyDbAdapter.KEY_CODE, this.getvCode());
         cv.put(CurrencyDbAdapter.KEY_CHARCODE, this.getVchCode());

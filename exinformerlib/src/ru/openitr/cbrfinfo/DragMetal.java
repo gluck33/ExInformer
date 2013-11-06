@@ -1,4 +1,6 @@
 package ru.openitr.cbrfinfo;
+import android.content.ContentValues;
+
 import java.util.Calendar;
 
 /**
@@ -26,6 +28,8 @@ public class DragMetal {
         return code;
     }
 
+    public String getCodeAsString() {return String.valueOf(code);}
+
     public String getMetallEngName() {
         return MetallEngNames [this.code];
     }
@@ -49,5 +53,13 @@ public class DragMetal {
 
     public void setOnDate(Calendar onDate) {
         this.onDate = onDate;
+    }
+
+    public ContentValues asContentValues() {
+        ContentValues result = new ContentValues();
+        result.put(MetInfoProvider.KEY_CODE, this.code);
+        result.put(MetInfoProvider.KEY_PRICE, this.price);
+        result.put(MetInfoProvider.KEY_DATE, this.onDate.getTimeInMillis());
+        return result;
     }
 }

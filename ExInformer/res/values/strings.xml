@@ -35,12 +35,15 @@
     <string name="autoupdate_summary">Select to turn on automatic updating</string>
     <string name="preference_time_title">Refresh time</string>
     <string name="preference_time_summary">00:00</string>
-    <string name="preference_uprate_category_title">Preferences of autorefresh</string>
+    <string name="preference_uprate_category_title">Set autorefresh of exchanges</string>
     <string name="exchange_rate_change">Exchange rate change.</string>
     <string name="obtained_change_in_exchange_rates">Obtained change in exchange rates.</string>
     <string name="sound_notify">Sound notification</string>
     <string name="sound_notify_summary">Sound notification in case of an update of exchange rates</string>
     <string name="update_pref_freq_title">Refresh frequency</string>
     <string name="update_pref_freq_summary">The frequency with which requests are made ​​when an attempt to refresh</string>
-
+    <string name="preference_met_time_summary">Set autorefresh of metals prices</string>
+    <string name="preference_update_met_group_title">Update metal information</string>
+    <string name="currency_page_header">Exchange</string>
+    <string name="metal_page_header">Metals</string>
 </resources>

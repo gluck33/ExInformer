@@ -71,7 +71,7 @@ public class CurInfoProvider extends ContentProvider {
                 throw new IllegalArgumentException("Wrong URI: "+uri);
 
         }
-        db = dbHelper.getReadableDatabase();
+        db = dbHelper.getWritableDatabase();
         Cursor cursor = db.query(CurrencyDbAdapter.CURRENCY_TABLE,projection, selection, selectionArgs,null,null,sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(),CURRENCY_CONTENT_URI);
         return cursor;

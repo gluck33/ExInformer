@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:id="@id/drag_handle" android:focusableInTouchMode="false"
             android:scaleType="center" android:visibility="visible" android:baselineAlignBottom="true"
-            android:maxWidth="@dimen/vFlagColDim"
+            android:maxWidth="@dimen/metalRowHeight"
             android:src="@drawable/f_usd"/>
     <LinearLayout
             android:orientation="vertical"

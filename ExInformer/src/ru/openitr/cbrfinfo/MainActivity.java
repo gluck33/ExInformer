@@ -1,8 +1,6 @@
 package ru.openitr.cbrfinfo;
 
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -12,8 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -23,10 +21,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.DatePicker;
 //import android.widget.PopupMenu;
-import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     public static final int CURRENCY_FRAGMENT = 0;
     public static final int METALL_FRAGMENT = 1;
     public static final int NEWS_FRAGMENT = 3;
-    public static final int FRAGMENTS = 1;
+    public static final int FRAGMENTS = 2;
     static final String INFO_REFRESH_INTENT = "ru.openitr.cbrfinfo.INFO_UPDATE";
     static final String INFO_NEED_REFRESH_INTENT = "ru.openitr.cbrfinfo.INFO_NEED_UPDATE";
     public static final int NOTIFICATION_ID = 1;
@@ -65,19 +63,21 @@ public class MainActivity extends ActionBarActivity {
     NotificationManager notificationManager;
     BroadcastReceiver br;
     Intent refreshServiceIntent;
+    Intent refreshMetInfoService;
     boolean onDateSet;
 
     //****************************
     private View mContentView;
     private View mLoadingView;
+    AlphaAnimation alpha;
     private int mShortAnimationDuration;
+    private int currentPage;
 
     //****************************
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        OldAPIVersion = false;//Build.VERSION.SDK_INT >= 11 ? false : requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
         mContentView = findViewById(R.id.pager);
         mLoadingView = findViewById(R.id.loading_spinner);
@@ -85,8 +85,11 @@ public class MainActivity extends ActionBarActivity {
         onDate = Calendar.getInstance();
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         fragments.add(CURRENCY_FRAGMENT, new CurrencyInfoFragment());
+        fragments.add(METALL_FRAGMENT, new MetalInfoFragment());
+//        fragments.add(0, new MetalInfoFragment());
         br = new MainActivityBroadcastReceiever();
-        refreshServiceIntent = new Intent(this, InfoRefreshService.class);
+        refreshServiceIntent = new Intent(this, CurInfoRefreshService.class);
+        refreshMetInfoService = new Intent(this, MetInfoRefreshService.class);
         fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
@@ -104,11 +107,17 @@ public class MainActivity extends ActionBarActivity {
                 pagesTitles = getResources().getStringArray(R.array.page_titles);
                 return pagesTitles[position];
             }
+
+            @Override
+            public void notifyDataSetChanged() {
+                super.notifyDataSetChanged();
+                currentPage = 1;
+            }
         };
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(fragmentPagerAdapter);
         viewPager.setCurrentItem(CURRENCY_FRAGMENT);
-        setInfoDateToTitle();
+//        setInfoDateToTitle();
 
     }
 
@@ -220,7 +229,9 @@ public class MainActivity extends ActionBarActivity {
 
     private void refreshPreferences() {
         refreshServiceIntent.putExtra(PARAM_ONLY_SET_ALARM, true);
+        refreshMetInfoService.putExtra(PARAM_ONLY_SET_ALARM, true);
         startService(refreshServiceIntent);
+        startService(refreshMetInfoService);
     }
 
 
@@ -231,10 +242,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void getInfo(long timeInMillis) {
-        refreshServiceIntent.putExtra(PARAM_DATE, timeInMillis);
         if (timeInMillis == 0) refreshServiceIntent.putExtra(PARAM_FROM_ACTIVITY, true);
-       startService(refreshServiceIntent);
-
+            switch (viewPager.getCurrentItem()){
+                case (CURRENCY_FRAGMENT):
+                    refreshServiceIntent.putExtra(PARAM_FROM_ACTIVITY, true);
+                    refreshServiceIntent.putExtra(PARAM_DATE, timeInMillis);
+                    startService(refreshServiceIntent);
+                    break;
+                case (METALL_FRAGMENT):
+                    refreshMetInfoService.putExtra(PARAM_FROM_ACTIVITY, true);
+                    refreshMetInfoService.putExtra(PARAM_DATE, timeInMillis);
+                    startService(refreshMetInfoService);
+                    break;
+            }
     }
 
     private void showDatePicker() {
@@ -265,36 +285,33 @@ public class MainActivity extends ActionBarActivity {
     };
 
     private void beginProgress(){
-        mContentView.setVisibility(View.GONE);
+        alpha = new AlphaAnimation(0.5F, 0.5F);
+        alpha.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mLoadingView.setVisibility(View.GONE);
+                mContentView.clearAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        alpha.setDuration(60*1000);
+        alpha.setFillAfter(false);
         mLoadingView.setVisibility(View.VISIBLE);
+        mContentView.startAnimation(alpha);
         mShortAnimationDuration = getResources().getInteger(
         android.R.integer.config_shortAnimTime);
     }
 
     private void endProgress() {
-        // Set the content view to 0% opacity but visible, so that it is visible
-        // (but fully transparent) during the animation.
-        //mContentView.setAlpha(0f);
-        mContentView.setVisibility(View.VISIBLE);
-        // Animate the content view to 100% opacity, and clear any animation
-        // listener set on the view.
-//        mContentView.animate()
-//                .alpha(1f)
-//                .setDuration(mShortAnimationDuration)
-//                .setListener(null);
-//
-//        // Animate the loading view to 0% opacity. After the animation ends,
-//        // set its visibility to GONE as an optimization step (it won't
-//        // participate in layout passes, etc.)
-//        mLoadingView.animate()
-//                .alpha(0f)
-//                .setDuration(mShortAnimationDuration)
-//                .setListener(new AnimatorListenerAdapter() {
-//                    @Override
-//                    public void onAnimationEnd(Animator animation) {
-                        mLoadingView.setVisibility(View.GONE);
-//                    }
-//                });
+        if (alpha != null)  alpha.cancel();
     }
 
     /**
@@ -303,7 +320,6 @@ public class MainActivity extends ActionBarActivity {
 
     public class MainActivityBroadcastReceiever extends BroadcastReceiver {
         public static final String LOG_TAG = "CBInfo";
-        AppDialog progressDialog;
         AppDialog notRespondDialog;
         AppDialog netSettingsDialog;
         @Override
@@ -319,13 +335,14 @@ public class MainActivity extends ActionBarActivity {
                         beginProgress();
                         break;
                     case FIN_STATUS_NO_DATA:
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
+                        endProgress();
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : No data receive.");
 
                         break;
                     case FIN_STATUS_NOT_RESPOND:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Server not respond.");
-                        progressDialog.dismiss();
+                        endProgress();
                         notRespondDialog = AppDialog.newInstance(AppDialog.NOT_RESPOND_DIALOG);
                         notRespondDialog.setNotRespondPositiveOnClick(new DialogInterface.OnClickListener() {
                             @Override
@@ -338,9 +355,7 @@ public class MainActivity extends ActionBarActivity {
                         break;
                     case FINS_STATUS_NETWORK_DISABLE:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Network disabled.");
-                        if (progressDialog != null)
-                            progressDialog.dismiss();
-
+                        endProgress();
                         netSettingsDialog = AppDialog.newInstance(AppDialog.NETSETTINGS_DIALOG);
                         netSettingsDialog.show(getSupportFragmentManager(),Integer.toString(AppDialog.NETSETTINGS_DIALOG));
                         break;

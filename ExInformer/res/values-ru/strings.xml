@@ -33,7 +33,7 @@
     <string name="autoupdate_summary">Выберите для установки автоматического обновления</string>
     <string name="preference_time_title">Время обновления</string>
     <string name="preference_time_summary">00:00</string>
-    <string name="preference_uprate_category_title">Настройки автообновления</string>
+    <string name="preference_uprate_category_title">Настройки автообновления курсов валют</string>
     <string name="rootmenu_title">Menu and settings</string>
     <string name="exchange_rate_change">Курс валют изменился.</string>
     <string name="obtained_change_in_exchange_rates">Получено изменение курса валют.</string>
@@ -43,4 +43,8 @@
     <string name="update_pref_freq_title">Период обновления</string>
     <string name="update_pref_freq_summary">Период с которым будут производится запросы при неудачной попытке обновления</string>
     <string name="exit">Выход</string>
+    <string name="preference_met_time_summary">Настройки автообновления цен на металлы</string>
+    <string name="preference_update_met_group_title">Обновление информации о ценах на металлы</string>
+    <string name="currency_page_header">Курсы валют</string>
+    <string name="metal_page_header">Цены на драгоценные металлы</string>
 </resources>

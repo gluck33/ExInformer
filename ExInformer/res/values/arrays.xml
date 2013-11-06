@@ -18,5 +18,11 @@
         <item>Metalls</item>
         <item>News</item>
     </string-array>
+    <string-array name="metall_names">
+        <item>Gold</item>
+        <item>Silver</item>
+        <item>Platinum</item>
+        <item>Palladium</item>
+    </string-array>
 
 </resources>

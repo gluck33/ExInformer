@@ -22,7 +22,7 @@ import java.util.Date;
  * Time: 9:41
  * Сервис запрашивает информацию с сервера cbr.ru и помещает её в БД.
  */
-public class InfoRefreshService extends Service {
+public class CurInfoRefreshService extends Service {
 
     AlarmManager alarms;
     PendingIntent alarmIntent;
@@ -58,7 +58,7 @@ public class InfoRefreshService extends Service {
         if (autoupdate) {
             alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             String ALARM_ACTION;
-            ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
+            ALARM_ACTION = CurInfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
             Intent intentToFire = new Intent(ALARM_ACTION);
             alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
             nextExecuteTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
@@ -95,7 +95,7 @@ public class InfoRefreshService extends Service {
         String expandedText = getString(R.string.obtained_change_in_exchange_rates);// + "  "+ ExtraCalendar.getSimpleDateString(onDate);
         String expandedTitle = tickerText;
 
-        Intent startActivityIntent = new Intent(InfoRefreshService.this, CurrencyInfoFragment.class);
+        Intent startActivityIntent = new Intent(CurInfoRefreshService.this, CurrencyInfoFragment.class);
 
         PendingIntent launchIntent = PendingIntent.getActivity(context,0 ,startActivityIntent,0);
 
@@ -180,8 +180,8 @@ public class InfoRefreshService extends Service {
         @Override
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate(progress);
-            Intent intent = new Intent(CurrencyInfoFragment.INFO_REFRESH_INTENT);
-            intent.putExtra(MainActivity.PARAM_STATUS, CurrencyInfoFragment.STATUS_BEGIN_REFRESH);
+            Intent intent = new Intent(MainActivity.INFO_REFRESH_INTENT);
+            intent.putExtra(MainActivity.PARAM_STATUS, MainActivity.STATUS_BEGIN_REFRESH);
             sendBroadcast(intent);
         }
 
@@ -191,7 +191,7 @@ public class InfoRefreshService extends Service {
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : (onPostExecute) Result of service: " + result);
             int alarmType = AlarmManager.RTC;
             super.onPostExecute(result);
-            Intent resIntent = new Intent(CurrencyInfoFragment.INFO_REFRESH_INTENT);
+            Intent resIntent = new Intent(MainActivity.INFO_REFRESH_INTENT);
             Intent widgetUpdateIntent = new Intent(CurrencyWidget.CURRENCY_WIDGET_UPDATE);
             switch (result) {
                 case STATUS_NOT_RESPOND:
@@ -249,12 +249,6 @@ public class InfoRefreshService extends Service {
                 notifyNewExchange(onDate);
             }
 
-//            if (ExtraCalendar.isFuture(onDate)){
-//                sendBroadcast(widgetUpdateIntent);
-//                notifyNewExchange(onDate);
-//            }
-
-//            notifyNewExchange(onDate);
             stopSelf();
         }
 
@@ -271,7 +265,7 @@ public class InfoRefreshService extends Service {
                 ArrayList <Icurrency> infoStub = dailyInfoStub.getCursOnDate(onDate);
                  LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : Start update base.");
                 for (Icurrency icurrencyRecord : infoStub) {
-                    ContentValues _cv = icurrencyRecord.toContentValues();
+                    ContentValues _cv = icurrencyRecord.asContentValues();
                     if (cr.update(Uri.parse(CURRENCY_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
                         cr.insert(Uri.parse(CURRENCY_URI), _cv);
                     }
@@ -326,7 +320,7 @@ public class InfoRefreshService extends Service {
     public void setAlarm(long executeTime){
         AlarmManager alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         String ALARM_ACTION;
-        ALARM_ACTION = InfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
+        ALARM_ACTION = CurInfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
         Intent intentToFire = new Intent(ALARM_ACTION);
         PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
 

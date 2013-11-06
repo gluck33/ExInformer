@@ -68,7 +68,6 @@ public class CurrencyInfoFragment extends ListFragment {
 
     public static CurrencyInfoFragment newInstance(int headers, int footers) {
         CurrencyInfoFragment f = new CurrencyInfoFragment();
-
         Bundle args = new Bundle();
         args.putInt("headers", headers);
         args.putInt("footers", footers);
@@ -102,10 +101,9 @@ public class CurrencyInfoFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onDate = Calendar.getInstance();
-//        context.setContentView(R.layout.main_currency);
         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ":  onCreate");
         br = new CurrencyInfoBroadcastReceiever();
-//        refreshServiceIntent = new Intent(this, InfoRefreshService.class);
+
 
     }
 
@@ -117,7 +115,6 @@ public class CurrencyInfoFragment extends ListFragment {
         mDslv.setFloatViewManager(mController);
         mDslv.setOnTouchListener(mController);
         mDslv.setDragEnabled(dragEnabled);
-
         return mDslv;
 
     }
@@ -129,9 +126,8 @@ public class CurrencyInfoFragment extends ListFragment {
         mDslv.setDropListener(onDrop);
 
         Bundle args = getArguments();
-        int headers = 0;
+        int headers = 1;
         int footers = 0;
-
         if (args != null){
             headers = args.getInt("headers");
             footers = args.getInt("footers");
@@ -160,8 +156,7 @@ public class CurrencyInfoFragment extends ListFragment {
         LayoutInflater inflater = activity.getLayoutInflater();
         int count = mDslv.getHeaderViewsCount();
         TextView header  = (TextView) inflater.inflate(R.layout.header_footer, null);
-        header.setText("Header #" + count + 1);
-
+        header.setText(getText(R.string.currency_page_header));
         mDslv.addHeaderView(header, null, false);
     }
 
@@ -190,8 +185,9 @@ public class CurrencyInfoFragment extends ListFragment {
         Cursor c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         if (c.getCount() == 0) {
             FragmentActivity curActivity = getActivity();
-            Intent refreshServiceIntent = new Intent(curActivity, InfoRefreshService.class).putExtra(PARAM_FROM_ACTIVITY, true);
+            Intent refreshServiceIntent = new Intent(curActivity, CurInfoRefreshService.class).putExtra(PARAM_FROM_ACTIVITY, true);
             curActivity.startService(refreshServiceIntent);
+            c.close();
             c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
         }
         if (c.moveToFirst()) {
@@ -242,7 +238,7 @@ public class CurrencyInfoFragment extends ListFragment {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MainActivity.INFO_REFRESH_INTENT)) {
                 int status = intent.getIntExtra(MainActivity.PARAM_STATUS, 0);
-                LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": (OnRecieve) Result of service run status: " + status);
+                LogSystem.logInFile(LOG_TAG, this, "Result of service run status: " + status);
                 switch (status) {
                     case (MainActivity.FIN_STATUS_OK):
                         loadCurrencysFromProvider();

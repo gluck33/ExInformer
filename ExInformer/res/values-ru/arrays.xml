@@ -17,5 +17,11 @@
         <item>Металлы</item>
         <item>Новости</item>
     </string-array>
+    <string-array name="metall_names">
+        <item>Золото</item>
+        <item>Серебро</item>
+        <item>Платина</item>
+        <item>Палладий</item>
+    </string-array>
 
 </resources>

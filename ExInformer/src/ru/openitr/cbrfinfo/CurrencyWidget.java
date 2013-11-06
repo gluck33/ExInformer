@@ -70,7 +70,7 @@ public class CurrencyWidget extends AppWidgetProvider {
         if (_vChCode != null){
             Cursor cursor = context.getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, CurrencyDbAdapter.KEY_CHARCODE+" = ?", new String[]{_vChCode}, null);
             if (cursor.getCount()<=0) {
-                Intent startServiceIntent = new Intent (context, InfoRefreshService.class);
+                Intent startServiceIntent = new Intent (context, CurInfoRefreshService.class);
                 context.startService(startServiceIntent);
             }
             try {
