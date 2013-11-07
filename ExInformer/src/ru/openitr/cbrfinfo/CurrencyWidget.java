@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
  */
 public class CurrencyWidget extends AppWidgetProvider {
 
-    static final Uri CURRENCY_URI = CurInfoProvider.CURRENCY_CONTENT_URI;
+    static final Uri CURRENCY_URI = CBInfoProvider.CURRENCY_CONTENT_URI;
     public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.cbrfinfo.CURRENCY_UPDATED";
     public Long cursTime = Long.valueOf(0);
 

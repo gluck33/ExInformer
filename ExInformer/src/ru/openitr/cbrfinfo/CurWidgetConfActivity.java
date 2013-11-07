@@ -35,7 +35,7 @@ public class CurWidgetConfActivity extends Activity {
     private String widgetDisplayInfo;
     int widgetID = AppWidgetManager.INVALID_APPWIDGET_ID;
     Intent resultValue;
-    final Uri CURRENCY_URI = CurInfoProvider.CURRENCY_CONTENT_URI;
+    final Uri CURRENCY_URI = CBInfoProvider.CURRENCY_CONTENT_URI;
     TextView tv;
 
     @Override
