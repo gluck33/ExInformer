@@ -68,17 +68,17 @@ public class CurrencyWidget extends AppWidgetProvider {
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
         String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE +id, null);
         if (_vChCode != null){
-            Cursor cursor = context.getContentResolver().query(CURRENCY_URI, CurrencyDbAdapter.ALL_COLUMNS, CurrencyDbAdapter.KEY_CHARCODE+" = ?", new String[]{_vChCode}, null);
+            Cursor cursor = context.getContentResolver().query(CURRENCY_URI, CbInfoDb.CUR_ALL_COLUMNS, CbInfoDb.CUR_KEY_CHARCODE +" = ?", new String[]{_vChCode}, null);
             if (cursor.getCount()<=0) {
                 Intent startServiceIntent = new Intent (context, CurInfoRefreshService.class);
                 context.startService(startServiceIntent);
             }
             try {
                 cursor.moveToFirst();
-                String vChCode = cursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN);
+                String vChCode = cursor.getString(CbInfoDb.VALCHARCODE_COLUMN);
                 String uriString = "android.resource://ru.openitr.cbrfinfo/drawable/f_"+vChCode;
-                float curs = cursor.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
-                long cursDate = cursor.getLong(CurrencyDbAdapter.VALDATE_COLUMN);
+                float curs = cursor.getFloat(CbInfoDb.VALCURS_COLUMN);
+                long cursDate = cursor.getLong(CbInfoDb.VALDATE_COLUMN);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
                 widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
                 widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(curs));

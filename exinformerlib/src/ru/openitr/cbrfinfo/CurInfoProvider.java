@@ -16,16 +16,16 @@ import android.text.TextUtils;
 public class CurInfoProvider extends ContentProvider {
     SQLiteDatabase db;
     //URI
-        static final String AUTHORITY = "ru.openitr.cbrfinfo.currency";
+        static final String CUR_AUTHORITY = "ru.openitr.cbrfinfo.currency";
     //PATH
     static final String CURRENCY_PATH = "currencys";
     //Общий URI
-    public static final Uri CURRENCY_CONTENT_URI = Uri.parse("content://"+AUTHORITY+"/"+ CURRENCY_PATH);
+    public static final Uri CURRENCY_CONTENT_URI = Uri.parse("content://"+ CUR_AUTHORITY +"/"+ CURRENCY_PATH);
     // Типы данных
     // набор строк
-    static final String CURRENCY_CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + AUTHORITY + "." + CURRENCY_PATH;
+    static final String CURRENCY_CONTENT_TYPE = "vnd.android.cursor.dir/vnd." + CUR_AUTHORITY + "." + CURRENCY_PATH;
     // Одна строка
-    static final String CURRENCY_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." + AUTHORITY + "." + CURRENCY_PATH;
+    static final String CURRENCY_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." + CUR_AUTHORITY + "." + CURRENCY_PATH;
     // UriMatcher
     // общий Uri
     static final int URI_CURRENCY = 1;
@@ -36,8 +36,8 @@ public class CurInfoProvider extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(AUTHORITY,CURRENCY_PATH,URI_CURRENCY);
-        uriMatcher.addURI(AUTHORITY,CURRENCY_PATH+"/*",URI_CURRENCY_ID);
+        uriMatcher.addURI(CUR_AUTHORITY,CURRENCY_PATH,URI_CURRENCY);
+        uriMatcher.addURI(CUR_AUTHORITY,CURRENCY_PATH+"/*",URI_CURRENCY_ID);
     }
     DBHelper dbHelper;
     @Override
@@ -56,15 +56,12 @@ public class CurInfoProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         switch (uriMatcher.match(uri)) {
             case URI_CURRENCY :
-//                if (TextUtils.isEmpty(sortOrder)) {
-//                    sortOrder = CurrencyDbAdapter.KEY_ORDER + " ASC";
-//                }
                 break;
 
             case URI_CURRENCY_ID:
                 String vcode = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    selection = selection + " AND " + CurrencyDbAdapter.KEY_CHARCODE +" = " + vcode;
+                    selection = selection + " AND " + CbInfoDb.CUR_KEY_CHARCODE +" = " + vcode;
                 }
                 break;
             default:
@@ -72,7 +69,7 @@ public class CurInfoProvider extends ContentProvider {
 
         }
         db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.query(CurrencyDbAdapter.CURRENCY_TABLE,projection, selection, selectionArgs,null,null,sortOrder);
+        Cursor cursor = db.query(CbInfoDb.CURRENCY_TABLE,projection, selection, selectionArgs,null,null,sortOrder);
         cursor.setNotificationUri(getContext().getContentResolver(),CURRENCY_CONTENT_URI);
         return cursor;
     }
@@ -94,7 +91,7 @@ public class CurInfoProvider extends ContentProvider {
             throw new IllegalArgumentException("Wrong URI: " + uri);
         }
         db = dbHelper.getWritableDatabase();
-        long rowId = db.insert(CurrencyDbAdapter.CURRENCY_TABLE, null,_cv);
+        long rowId = db.insert(CbInfoDb.CURRENCY_TABLE, null,_cv);
         Uri resultUri = ContentUris.withAppendedId(CURRENCY_CONTENT_URI, rowId);
 //        getContext().getContentResolver().notifyChange(resultUri,null);
         return resultUri;
@@ -113,16 +110,16 @@ public class CurInfoProvider extends ContentProvider {
             case URI_CURRENCY_ID:
                 String _vchCode = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)){
-                  selection = CurrencyDbAdapter.KEY_CHARCODE + " = " + "'" +_vchCode + "'";
+                  selection = CbInfoDb.CUR_KEY_CHARCODE + " = " + "'" +_vchCode + "'";
                 } else {
-                  selection = selection + " AND " + CurrencyDbAdapter.KEY_CHARCODE + " = " + _vchCode;
+                  selection = selection + " AND " + CbInfoDb.CUR_KEY_CHARCODE + " = " + _vchCode;
                 }
             break;
             default:
                 throw new IllegalArgumentException("Wrong URI: "+ uri);
         }
         db = dbHelper.getWritableDatabase();
-        int result = db.update(CurrencyDbAdapter.CURRENCY_TABLE, contentValues, selection, selectionArgs);
+        int result = db.update(CbInfoDb.CURRENCY_TABLE, contentValues, selection, selectionArgs);
         //getContext().getContentResolver().notifyChange(uri, null);
         //db.close();
         return result;
@@ -130,7 +127,7 @@ public class CurInfoProvider extends ContentProvider {
 private class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
-        super(context, CurrencyDbAdapter.DATABASE_NAME, null, CurrencyDbAdapter.DATABASE_VERSION);
+        super(context, CbInfoDb.DATABASE_NAME, null, CbInfoDb.DATABASE_VERSION);
     }
 
     @Override
@@ -140,12 +137,12 @@ private class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CurrencyDbAdapter.CREATE_CUR_TABLE);
+        db.execSQL(CbInfoDb.CREATE_CUR_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i2) {
-        db.execSQL("drop table if exists "+CurrencyDbAdapter.CURRENCY_TABLE);
+        db.execSQL("drop table if exists "+ CbInfoDb.CURRENCY_TABLE);
         onCreate(db);
     }
 }

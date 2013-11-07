@@ -149,11 +149,11 @@ public class Icurrency {
 
     public ContentValues asContentValues() {
         ContentValues cv = new ContentValues();
-        cv.put(CurrencyDbAdapter.KEY_CODE, this.getvCode());
-        cv.put(CurrencyDbAdapter.KEY_CHARCODE, this.getVchCode());
-        cv.put(CurrencyDbAdapter.KEY_VCURS, this.getvCurs());
-        cv.put(CurrencyDbAdapter.KEY_VNAME, this.getvName());
-        cv.put(CurrencyDbAdapter.KEY_DATE, this.getvDate().getTimeInMillis());
+        cv.put(CbInfoDb.CUR_KEY_CODE, this.getvCode());
+        cv.put(CbInfoDb.CUR_KEY_CHARCODE, this.getVchCode());
+        cv.put(CbInfoDb.CUR_KEY_VCURS, this.getvCurs());
+        cv.put(CbInfoDb.CUR_KEY_VNAME, this.getvName());
+        cv.put(CbInfoDb.CUR_KEY_DATE, this.getvDate().getTimeInMillis());
         return cv;
     }
 

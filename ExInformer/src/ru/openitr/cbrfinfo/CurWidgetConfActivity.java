@@ -18,8 +18,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ru.openitr.cbrfinfo.R;
-
 /**
  * Created by
  * User: oleg
@@ -62,7 +60,7 @@ public class CurWidgetConfActivity extends Activity {
 
 //        tv = (TextView) findViewById(R.id.widgetObject);
         ArrayList<String> curList = new ArrayList<String>();
-        Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CurrencyDbAdapter.KEY_CHARCODE,CurrencyDbAdapter.KEY_VNAME},null, null,CurrencyDbAdapter.KEY_ORDER);
+        Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CbInfoDb.CUR_KEY_CHARCODE, CbInfoDb.CUR_KEY_VNAME},null, null, CbInfoDb.CUR_KEY_ORDER);
         cursor.moveToFirst();
         do {
            curList.add(cursor.getString(0)+" - "+cursor.getString(1));

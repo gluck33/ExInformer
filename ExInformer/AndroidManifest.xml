@@ -34,10 +34,10 @@
         </activity>
 
 
-        <provider android:name="ru.openitr.cbrfinfo.CurInfoProvider"
+        <provider android:name=".CBInfoProvider"
               android:authorities="ru.openitr.cbrfinfo.currency"/>
 
-        <provider android:name="ru.openitr.cbrfinfo.MetInfoProvider"
+        <provider android:name=".CBInfoProvider"
             android:authorities="ru.openitr.cbrfinfo.metals"/>
 
         <receiver

@@ -167,7 +167,7 @@ public class CurInfoRefreshService extends Service {
             else {
                 onDate = params[0];
             }
-            boolean infoNeedUpdate = new CurrencyDbAdapter(getBaseContext()).isNeedUpdate(onDate);
+            boolean infoNeedUpdate = new CbInfoDb(getBaseContext()).isNeedUpdate(onDate);
             if (infoNeedUpdate ){
                  LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : Data need to update. newDate = " + onDate.getTime().toString() + " onDate = " + onDate.getTime().toString());
                 publishProgress();

@@ -10,29 +10,30 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Calendar;
 
 /**
- * Db adapter for currency.
- * <p/>
+ * Db adapter for cache information.
+ *
  * User: Oleg Balditsyn
  * Date: 18.12.12
  * Time: 15:17
  */
-public class CurrencyDbAdapter {
+public class CbInfoDb {
     //private static final String TAG = "exInformer";
     public static final String DATABASE_NAME = "exInformer.db";
     public static String CURRENCY_TABLE = "curtable";
+    public static String METAL_TABLE = "metaltable";
     public static final int DATABASE_VERSION = 5;
-    // Имена столбцов
-    public static final String KEY_ID = "_id";
-    public static final String KEY_CODE = "vCode";
-    public static final String KEY_CHARCODE = "vchCode";
-    public static final String KEY_VCURS = "vCurs";
-    public static final String KEY_VNAME = "vName";
-    public static final String KEY_DATE = "vDate";
-    private static final String KEY_IMAGE_URI = "vFlagImageUri";
-    public static final String KEY_VISIBLE = "vVisible";
-    public static final String KEY_ORDER = "vOrder";
+    // Имена столбцов таблицы валют
+    public static final String CUR_KEY_ID = "_id";
+    public static final String CUR_KEY_CODE = "vCode";
+    public static final String CUR_KEY_CHARCODE = "vchCode";
+    public static final String CUR_KEY_VCURS = "vCurs";
+    public static final String CUR_KEY_VNAME = "vName";
+    public static final String CUR_KEY_DATE = "vDate";
+    public static final String CUR_KEY_IMAGE_URI = "vFlagImageUri";
+    public static final String CUR_KEY_VISIBLE = "vVisible";
+    public static final String CUR_KEY_ORDER = "vOrder";
 
-    // Индексы столбцов
+    // Индексы столбцов таблицы валют
     public static final int VALINDEX_COLUMN = 0;
     public static final int VALCODE_COLUMN = 1;
     public static final int VALCHARCODE_COLUMN = 2;
@@ -43,21 +44,58 @@ public class CurrencyDbAdapter {
     public static final int VISIBLE_COLUMN = 7;
     public static final int ORDER_COLUMN = 8;
 
+    // Имена столбцов таблицы металлов
+    public static final String MET_KEY_ID = "_id";
+    public static final String MET_KEY_CODE = "mCode";
+    public static final String MET_KEY_PRICE = "mPrice";
+    public static final String MET_KEY_DATE = "mDate";
+    private static final String MET_KEY_IMAGE_URI = "mImageUri";
+    public static final String MET_KEY_VISIBLE = "mVisible";
+    public static final String MET_KEY_ORDER = "mOrder";
+
+    // Индексы столбцов таблицы металлов
+
+    public static final int MET_ID_COL_NUM = 0;
+    public static final int MET_CODE_COL_NUM = 1;
+    public static final int MET_PRICE_COL_NUM = 2;
+    public static final int MET_DATE_COL_NUM = 3;
+    public static final int MET_IMAGE_COL_NUM = 4;
+
+    public static final String[] MET_ALL_COLUMNS = {MET_KEY_ID, MET_KEY_CODE, MET_KEY_PRICE, MET_KEY_DATE, MET_KEY_IMAGE_URI, MET_KEY_VISIBLE, MET_KEY_ORDER};
+
+
+
 
     protected static final String CREATE_CUR_TABLE = "create table " +
             CURRENCY_TABLE + " (" +
-            KEY_ID + " integer primary key autoincrement, " +
-            KEY_CODE + " ineger, " +
-            KEY_CHARCODE + " text," +
-            KEY_VCURS + " real," +
-            KEY_VNAME + " text," +
-            KEY_DATE + " long, " +
-            KEY_IMAGE_URI + " text," +
-            KEY_VISIBLE + " integer," +
-            KEY_ORDER + " integer" +
+            CUR_KEY_ID + " integer primary key autoincrement, " +
+            CUR_KEY_CODE + " ineger, " +
+            CUR_KEY_CHARCODE + " text," +
+            CUR_KEY_VCURS + " real," +
+            CUR_KEY_VNAME + " text," +
+            CUR_KEY_DATE + " long, " +
+            CUR_KEY_IMAGE_URI + " text," +
+            CUR_KEY_VISIBLE + " integer," +
+            CUR_KEY_ORDER + " integer" +
             ");";
-    public static final String[] ALL_COLUMNS = {KEY_ID, KEY_CODE, KEY_CHARCODE, KEY_VCURS , KEY_VNAME, KEY_DATE, KEY_IMAGE_URI, KEY_VISIBLE, KEY_ORDER};
-    public static final String[] ALL_VISIBLE_COLUMNS = {KEY_IMAGE_URI, KEY_CHARCODE, KEY_VCURS, KEY_VNAME};
+
+
+    // Скрипт создания таблицы металлов
+
+    protected static final String CREATE_METALL_TABLE = "create table " +
+            METAL_TABLE + " (" +
+            MET_KEY_ID + " integer primary key autoincrement, " +
+            MET_KEY_CODE + " ineger, " +
+            MET_KEY_PRICE + " real," +
+            MET_KEY_DATE + " long, " +
+            MET_KEY_IMAGE_URI + " text," +
+            MET_KEY_VISIBLE + " integer," +
+            MET_KEY_ORDER + " integer" +
+            ");";
+
+
+    public static final String[] CUR_ALL_COLUMNS = {CUR_KEY_ID, CUR_KEY_CODE, CUR_KEY_CHARCODE, CUR_KEY_VCURS, CUR_KEY_VNAME, CUR_KEY_DATE, CUR_KEY_IMAGE_URI, CUR_KEY_VISIBLE, CUR_KEY_ORDER};
+    public static final String[] ALL_VISIBLE_COLUMNS = {CUR_KEY_IMAGE_URI, CUR_KEY_CHARCODE, CUR_KEY_VCURS, CUR_KEY_VNAME};
     private SQLiteDatabase db;
     private curDbHelper dbHelper;
     private boolean cursorOpened;
@@ -86,7 +124,7 @@ public class CurrencyDbAdapter {
     /**
      * Конструктор
      */
-    public CurrencyDbAdapter(Context _context) {
+    public CbInfoDb(Context _context) {
         dbHelper = new curDbHelper(_context, DATABASE_NAME, null, DATABASE_VERSION);
         cursorOpened = false;
     }
@@ -94,7 +132,7 @@ public class CurrencyDbAdapter {
     /**
      * Открыть базу
      */
-    public CurrencyDbAdapter open() throws SQLiteException {
+    public CbInfoDb open() throws SQLiteException {
         try {
             db = dbHelper.getWritableDatabase();
             cursorOpened = true;
@@ -125,9 +163,9 @@ public class CurrencyDbAdapter {
             rowId = cursor.getInt(0);
         }
         ContentValues newCurRow = icurrency.asContentValues();
-        newCurRow.put(KEY_IMAGE_URI, imageURI);
-        newCurRow.put(KEY_VISIBLE, 1);
-        newCurRow.put(KEY_ORDER, rowId + 1);
+        newCurRow.put(CUR_KEY_IMAGE_URI, imageURI);
+        newCurRow.put(CUR_KEY_VISIBLE, 1);
+        newCurRow.put(CUR_KEY_ORDER, rowId + 1);
         return db.insert(CURRENCY_TABLE, null, newCurRow);
     }
 
@@ -137,17 +175,17 @@ public class CurrencyDbAdapter {
      * @return
      */
     public long insertCurrencyRow(ContentValues _cv) {
-        String imageURI = "android.resource://ru.openitr.cbrfinfo/drawable/f_" + _cv.getAsString(KEY_CHARCODE).toLowerCase();
+        String imageURI = "android.resource://ru.openitr.cbrfinfo/drawable/f_" + _cv.getAsString(CUR_KEY_CHARCODE).toLowerCase();
         Integer rowId = 0;
-        _cv.put(KEY_IMAGE_URI, imageURI);
-        _cv.put(KEY_VISIBLE, 1);
-        if (!_cv.containsKey(KEY_ORDER)){
+        _cv.put(CUR_KEY_IMAGE_URI, imageURI);
+        _cv.put(CUR_KEY_VISIBLE, 1);
+        if (!_cv.containsKey(CUR_KEY_ORDER)){
             Cursor cursor = db.rawQuery("select count (*) as rowid from " + CURRENCY_TABLE, null);
             if (cursor.getCount() != 0 && cursor.moveToFirst()) {
                 rowId = cursor.getInt(0);
             }
 
-            _cv.put(KEY_ORDER, rowId + 1);
+            _cv.put(CUR_KEY_ORDER, rowId + 1);
         }
         else{
 
@@ -166,9 +204,9 @@ public class CurrencyDbAdapter {
 
     public int updateCurrencyRow (Icurrency _icurrency){
         ContentValues _cv = _icurrency.asContentValues();
-        String imageURI = "android.resource://ru.openitr.cbrfinfo/drawable/f_" + _cv.getAsString(KEY_CHARCODE).toLowerCase();
-        _cv.put(KEY_IMAGE_URI, imageURI);
-        return db.update(CURRENCY_TABLE, _cv, KEY_CHARCODE+" = ?", new String[]{_icurrency.getVchCode()});
+        String imageURI = "android.resource://ru.openitr.cbrfinfo/drawable/f_" + _cv.getAsString(CUR_KEY_CHARCODE).toLowerCase();
+        _cv.put(CUR_KEY_IMAGE_URI, imageURI);
+        return db.update(CURRENCY_TABLE, _cv, CUR_KEY_CHARCODE +" = ?", new String[]{_icurrency.getVchCode()});
     }
 
     public int updateCurrencyRow(ContentValues _cv, String selection, String[] selectionArgs){
@@ -184,7 +222,7 @@ public class CurrencyDbAdapter {
      */
 
     public boolean removeCurRow(int _rowIndex) {
-        return db.delete(CURRENCY_TABLE, KEY_CODE + " = " + _rowIndex, null) > 0;
+        return db.delete(CURRENCY_TABLE, CUR_KEY_CODE + " = " + _rowIndex, null) > 0;
     }
 
     /**
@@ -195,7 +233,7 @@ public class CurrencyDbAdapter {
 
     public Cursor getAllCurRowsCursor() {
 
-        return db.query(CURRENCY_TABLE, ALL_COLUMNS, KEY_VISIBLE+" = ?", new String[]{"1"}, null, null, KEY_ORDER);
+        return db.query(CURRENCY_TABLE, CUR_ALL_COLUMNS, CUR_KEY_VISIBLE +" = ?", new String[]{"1"}, null, null, CUR_KEY_ORDER);
     }
 
     /**
@@ -207,7 +245,7 @@ public class CurrencyDbAdapter {
 
     public Icurrency getCurrency(int rowIndex) {
         this.open();
-        Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_ID + "=" + rowIndex, null, null, null, null, null);
+        Cursor cursor = db.query(true, CURRENCY_TABLE, CUR_ALL_COLUMNS, CUR_KEY_ID + "=" + rowIndex, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
             cursor.close();
             throw new SQLiteException("No to do row found: " + rowIndex);
@@ -231,7 +269,7 @@ public class CurrencyDbAdapter {
      */
 
     public Icurrency getCurency(String valChCode) {
-        Cursor cursor = db.query(true, CURRENCY_TABLE, ALL_COLUMNS, KEY_CHARCODE + "=" + valChCode, null, null, null, null, null);
+        Cursor cursor = db.query(true, CURRENCY_TABLE, CUR_ALL_COLUMNS, CUR_KEY_CHARCODE + "=" + valChCode, null, null, null, null, null);
         if (cursor.getCount() == 0 || !cursor.moveToFirst()) {
             cursor.close();
             throw new SQLiteException("No to do row found for code: " + valChCode);

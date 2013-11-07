@@ -127,7 +127,7 @@ public class MetInfoRefreshService extends Service {
         private static final int STATUS_NOT_FRESH_DATA = 60;
         private static final int STATUS_BAD_DATA = 70;
         SharedPreferences.Editor editor;
-        private final String METALLS_URI = MetInfoProvider.METAL_CONTENT_URI.toString();
+        private final String METALLS_URI = CBInfoProvider.METAL_CONTENT_URI.toString();
         boolean startFromNulldate = false;
         Calendar onDate;
 

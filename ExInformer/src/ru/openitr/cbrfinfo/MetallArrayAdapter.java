@@ -33,6 +33,7 @@ public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
             holder.metalImage = (ImageView) v.findViewById(R.id.metalIcon);
             holder.metalName = (TextView) v.findViewById(R.id.MetalNameView);
             holder.metalPrice = (TextView) v.findViewById(R.id.MetalPriceView);
+            holder.priceDate = (TextView) v.findViewById(R.id.priceDate);
             v.setTag(holder);
         }
 
@@ -41,12 +42,14 @@ public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
         String name = metalNames[metalItem.getCode() - 1];
         holder.metalName.setText(name);
         holder.metalPrice.setText(String.valueOf(metalItem.getPrice()));
+        holder.priceDate.setText(metalItem.getOnDateAsString());
         return v;
     }
     private class ViewHolder {
         public TextView metalName;
         public TextView metalPrice;
         public ImageView metalImage;
+        public TextView priceDate;
     }
 
 }

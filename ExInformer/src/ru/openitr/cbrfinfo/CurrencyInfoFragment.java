@@ -178,7 +178,7 @@ public class CurrencyInfoFragment extends ListFragment {
     public  static String getExchangeDate(FragmentActivity activity) {
         String result = "";
         Calendar exDate = Calendar.getInstance();
-        Cursor cursor = (activity.getContentResolver().query(CURRENCYS_URI, new String[]{CurrencyDbAdapter.KEY_DATE}, null, null, null));
+        Cursor cursor = (activity.getContentResolver().query(CURRENCYS_URI, new String[]{CbInfoDb.CUR_KEY_DATE}, null, null, null));
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
             cursor.moveToFirst();
@@ -202,22 +202,22 @@ public class CurrencyInfoFragment extends ListFragment {
     public void loadCurrencysFromProvider() {
         icurrencies.clear();
         ContentResolver cr = getActivity().getContentResolver();
-        Cursor c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
+        Cursor c = cr.query(CURRENCYS_URI, CbInfoDb.CUR_ALL_COLUMNS, null, null, CbInfoDb.CUR_KEY_ORDER + " ASC");
         if (c.getCount() == 0) {
             FragmentActivity curActivity = getActivity();
             Intent refreshServiceIntent = new Intent(curActivity, CurInfoRefreshService.class).putExtra(PARAM_FROM_ACTIVITY, true);
             curActivity.startService(refreshServiceIntent);
             c.close();
-            c = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER + " ASC");
+            c = cr.query(CURRENCYS_URI, CbInfoDb.CUR_ALL_COLUMNS, null, null, CbInfoDb.CUR_KEY_ORDER + " ASC");
         }
         if (c.moveToFirst()) {
             do {
-                String vName = c.getString(CurrencyDbAdapter.VALNAME_COLUMN);
-                Float vCurs = c.getFloat(CurrencyDbAdapter.VALCURS_COLUMN);
-                String vchCode = c.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN);
-                int vCode = c.getInt(CurrencyDbAdapter.VALCODE_COLUMN);
+                String vName = c.getString(CbInfoDb.VALNAME_COLUMN);
+                Float vCurs = c.getFloat(CbInfoDb.VALCURS_COLUMN);
+                String vchCode = c.getString(CbInfoDb.VALCHARCODE_COLUMN);
+                int vCode = c.getInt(CbInfoDb.VALCODE_COLUMN);
                 Calendar vDate = Calendar.getInstance();
-                vDate.setTimeInMillis(c.getLong(CurrencyDbAdapter.VALDATE_COLUMN));
+                vDate.setTimeInMillis(c.getLong(CbInfoDb.VALDATE_COLUMN));
                 Icurrency ic = new Icurrency(vName, vCurs, vchCode, vCode, vDate);
                 icurrencies.add(ic);
             } while (c.moveToNext());
@@ -232,10 +232,10 @@ public class CurrencyInfoFragment extends ListFragment {
         ContentResolver cr = getActivity().getContentResolver();
         ContentValues cv = new ContentValues();
         LinkedList<String> items = new LinkedList<String>();
-        Cursor itemsCursor = cr.query(CURRENCYS_URI, CurrencyDbAdapter.ALL_COLUMNS, null, null, CurrencyDbAdapter.KEY_ORDER);
+        Cursor itemsCursor = cr.query(CURRENCYS_URI, CbInfoDb.CUR_ALL_COLUMNS, null, null, CbInfoDb.CUR_KEY_ORDER);
         itemsCursor.moveToFirst();
         do {
-            items.add(itemsCursor.getString(CurrencyDbAdapter.VALCHARCODE_COLUMN));
+            items.add(itemsCursor.getString(CbInfoDb.VALCHARCODE_COLUMN));
         }
         while (itemsCursor.moveToNext());
         String item = items.get(from);
@@ -243,7 +243,7 @@ public class CurrencyInfoFragment extends ListFragment {
         items.add(to, item);
         for (String itemCode : items) {
             int index = items.indexOf(itemCode);
-            cv.put(CurrencyDbAdapter.KEY_ORDER, index);
+            cv.put(CbInfoDb.CUR_KEY_ORDER, index);
             cr.update(Uri.parse(CURRENCYS_URI.toString() + "/" + itemCode), cv, null, null);
 
         }

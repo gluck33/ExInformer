@@ -3,7 +3,6 @@ package ru.openitr.cbrfinfo;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -19,18 +18,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.mobeta.android.dslv.DragSortController;
-import com.mobeta.android.dslv.DragSortListView;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
 
 public class MetalInfoFragment extends ListFragment {
     static Calendar onDate;
     public static final String LOG_TAG = "CBInfo";
     static final String INFO_REFRESH_INTENT = "ru.openitr.cbrfinfo.INFO_UPDATE";
-    static final Uri METAL_CONTENT_URI = MetInfoProvider.METAL_CONTENT_URI;
+    static final Uri METAL_CONTENT_URI = CBInfoProvider.METAL_CONTENT_URI;
     private ListView metallListView;
     BroadcastReceiver br;
     CurrencyArrayAdapter ca;
@@ -127,20 +122,20 @@ public class MetalInfoFragment extends ListFragment {
     public void loadMetalPricesFromProvider() {
         metals.clear();
         ContentResolver cr = getActivity().getContentResolver();
-        Cursor c = cr.query(METAL_CONTENT_URI, MetInfoProvider.ALL_COLUMNS, null, null, MetInfoProvider.KEY_ORDER + " ASC");
+        Cursor c = cr.query(METAL_CONTENT_URI, CbInfoDb.MET_ALL_COLUMNS, null, null, CbInfoDb.MET_KEY_ORDER + " ASC");
         if (c.getCount() == 0) {
             FragmentActivity curActivity = getActivity();
             Intent refreshServiceIntent = new Intent(curActivity, MetalInfoFragment.class).putExtra(MainActivity.PARAM_FROM_ACTIVITY, true);
             curActivity.startService(refreshServiceIntent);
             c.close();
-            c = cr.query(METAL_CONTENT_URI, MetInfoProvider.ALL_COLUMNS, null, null, MetInfoProvider.KEY_ORDER + " ASC");
+            c = cr.query(METAL_CONTENT_URI, CbInfoDb.MET_ALL_COLUMNS, null, null, CbInfoDb.MET_KEY_ORDER + " ASC");
         }
         if (c.moveToFirst()) {
             do {
-                int code = c.getInt(MetInfoProvider.CODE_COL_NUM);
-                Float  price= c.getFloat(MetInfoProvider.PRICE_COL_NUM);
+                int code = c.getInt(CbInfoDb.MET_CODE_COL_NUM);
+                Float  price= c.getFloat(CbInfoDb.MET_PRICE_COL_NUM);
                 Calendar pDate = Calendar.getInstance();
-                pDate.setTimeInMillis(c.getLong(MetInfoProvider.DATE_COL_NUM));
+                pDate.setTimeInMillis(c.getLong(CbInfoDb.MET_DATE_COL_NUM));
                 DragMetal met = new DragMetal(code,price,pDate);
                 metals.add(met);
             } while (c.moveToNext());
