@@ -8,7 +8,7 @@ import java.util.Calendar;
  * Created by oleg on 30.10.13.
  */
 public class DragMetal {
-    private final static String [] MetallEngNames = {"Gold", "Silver", "Platinum", "Palladium"};
+    private final static String [] MetallEngNames = {"gold", "silver", "platinum", "palladium"};
     private int code;
     private float price;
     private Calendar onDate;
@@ -32,7 +32,7 @@ public class DragMetal {
     public String getCodeAsString() {return String.valueOf(code);}
 
     public String getMetallEngName() {
-        return MetallEngNames [this.code];
+        return MetallEngNames [this.code-1];
     }
 
     public float getPrice() {

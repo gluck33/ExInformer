@@ -54,8 +54,6 @@ public class MainActivity extends ActionBarActivity {
     public static final String PARAM_ONLY_SET_ALARM = "only_set";
     public static final String PARAM_FROM_ACTIVITY = "from_activity";
 
-    static final Uri CURRENCYS_URI = Uri.parse("content://ru.openitr.cbrfinfo.currency/currencys");
-    boolean OldAPIVersion;
     static Calendar onDate;
     private FragmentPagerAdapter fragmentPagerAdapter;
     private final List<ListFragment> fragments = new ArrayList<ListFragment>();
@@ -65,15 +63,10 @@ public class MainActivity extends ActionBarActivity {
     Intent refreshServiceIntent;
     Intent refreshMetInfoService;
     boolean onDateSet;
-
-    //****************************
     private View mContentView;
     private View mLoadingView;
     AlphaAnimation alpha;
-    private int mShortAnimationDuration;
-    private int currentPage;
 
-    //****************************
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +79,6 @@ public class MainActivity extends ActionBarActivity {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         fragments.add(CURRENCY_FRAGMENT, new CurrencyInfoFragment());
         fragments.add(METALL_FRAGMENT, new MetalInfoFragment());
-//        fragments.add(0, new MetalInfoFragment());
         br = new MainActivityBroadcastReceiever();
         refreshServiceIntent = new Intent(this, CurInfoRefreshService.class);
         refreshMetInfoService = new Intent(this, MetInfoRefreshService.class);
@@ -111,7 +103,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void notifyDataSetChanged() {
                 super.notifyDataSetChanged();
-                currentPage = 1;
             }
         };
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -222,8 +213,17 @@ public class MainActivity extends ActionBarActivity {
 
     private void getInfo(Calendar newDate) {
         onDate = newDate;
-        refreshServiceIntent.putExtra(PARAM_DATE, newDate.getTimeInMillis());
-        startService(refreshServiceIntent);
+        switch (viewPager.getCurrentItem()){
+            case CURRENCY_FRAGMENT:
+                refreshServiceIntent.putExtra(PARAM_DATE, newDate.getTimeInMillis());
+                startService(refreshServiceIntent);
+                break;
+            case METALL_FRAGMENT:
+                refreshMetInfoService.putExtra(PARAM_FROM_ACTIVITY, true);
+                refreshMetInfoService.putExtra(PARAM_DATE, newDate.getTimeInMillis());
+                startService(refreshMetInfoService);
+                break;
+        }
     }
 
     private void getInfo(long timeInMillis) {
@@ -291,8 +291,6 @@ public class MainActivity extends ActionBarActivity {
         alpha.setFillAfter(false);
         mLoadingView.setVisibility(View.VISIBLE);
         mContentView.startAnimation(alpha);
-        mShortAnimationDuration = getResources().getInteger(
-        android.R.integer.config_shortAnimTime);
     }
 
     private void endProgress() {

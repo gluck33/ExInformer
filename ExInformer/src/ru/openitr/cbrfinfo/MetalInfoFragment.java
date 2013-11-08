@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -28,12 +29,10 @@ public class MetalInfoFragment extends ListFragment {
     static final Uri METAL_CONTENT_URI = CBInfoProvider.METAL_CONTENT_URI;
     private ListView metallListView;
     BroadcastReceiver br;
-    CurrencyArrayAdapter ca;
-    ArrayList<DragMetal> metals = new ArrayList<DragMetal>();
+    MetallArrayAdapter metalList;
 
-    protected int getLayout() {
-        return R.layout.metall_prices_layout;
-    }
+    ArrayList<DragMetal> metals = new ArrayList<DragMetal>();
+    TextView header;
 
     public static MetalInfoFragment newInstance(int headers, int footers) {
         MetalInfoFragment f = new MetalInfoFragment();
@@ -62,7 +61,7 @@ public class MetalInfoFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ArrayAdapter<DragMetal> metalList= new MetallArrayAdapter(getActivity(), metals);
+        metalList= new MetallArrayAdapter(getActivity(), metals);
         metallListView = getListView();
         Bundle args = getArguments();
         int headers = 1;
@@ -79,7 +78,6 @@ public class MetalInfoFragment extends ListFragment {
             addFooter(getActivity(), metallListView);
         loadMetalPricesFromProvider();
         setListAdapter(metalList);
-
     }
 
     private void addFooter(FragmentActivity activity, ListView lv) {
@@ -94,9 +92,8 @@ public class MetalInfoFragment extends ListFragment {
 
     private void addHeader(FragmentActivity activity, ListView lv) {
         LayoutInflater inflater = activity.getLayoutInflater();
-        int count = lv.getHeaderViewsCount();
-        TextView header  = (TextView) inflater.inflate(R.layout.header_footer, null);
-        header.setText(getText(R.string.metal_page_header));
+        header  = (TextView) inflater.inflate(R.layout.header_footer, null);
+        header.setText(getMetalDate(getActivity()));
         lv.addHeaderView(header, null, false);
     }
 
@@ -140,10 +137,28 @@ public class MetalInfoFragment extends ListFragment {
                 metals.add(met);
             } while (c.moveToNext());
         }
-        if (ca != null) ca.notifyDataSetChanged();
+        if (metalList != null)
+            metalList.notifyDataSetChanged();
+            header.setText(getMetalDate(getActivity()));
         c.close();
     }
 
+    public  static String getMetalDate(FragmentActivity activity) {
+        String result = "";
+        Calendar exDate = Calendar.getInstance();
+        Cursor cursor = (activity.getContentResolver().query(METAL_CONTENT_URI, new String[]{CbInfoDb.MET_KEY_DATE}, null, null, null));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            cursor.moveToFirst();
+            exDate.setTimeInMillis(cursor.getLong(0));
+            result = sdf.format(exDate.getTime());
+        }
+        finally {
+            cursor.close();
+            return result;
+        }
+
+    }
 
     private class MetalInfoBroadcastReceiever extends BroadcastReceiver {
 
@@ -151,7 +166,7 @@ public class MetalInfoFragment extends ListFragment {
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(MainActivity.INFO_REFRESH_INTENT)) {
                 int status = intent.getIntExtra(MainActivity.PARAM_STATUS, 0);
-                LogSystem.logInFile(LOG_TAG, this,"(OnRecieve) Result of service run status: " + status);
+                LogSystem.logInFile(LOG_TAG, this,"(OnRecieve) MetalInfoBroadcastReceiever. Result of service run status: " + status);
                 switch (status) {
                     case (MainActivity.FIN_STATUS_OK):
                         loadMetalPricesFromProvider();

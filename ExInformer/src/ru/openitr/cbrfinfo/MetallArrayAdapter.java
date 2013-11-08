@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by
@@ -20,7 +22,7 @@ import java.util.List;
 public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
     private final String pkgName = getContext().getPackageName();
     private static String [] metalNames = new String[4];
-
+    private Currency measurement = Currency.getInstance("RUB");
     public MetallArrayAdapter(Context context, List<DragMetal> metals) {
         super(context, R.layout.metall_prices_layout, R.id.MetalNameView, metals);
         metalNames = context.getResources().getStringArray(R.array.metall_names);
@@ -30,26 +32,29 @@ public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
         View v = super.getView(position, convertView, parent);
         if (v != convertView && v != null){
             ViewHolder holder = new ViewHolder();
+
             holder.metalImage = (ImageView) v.findViewById(R.id.metalIcon);
             holder.metalName = (TextView) v.findViewById(R.id.MetalNameView);
             holder.metalPrice = (TextView) v.findViewById(R.id.MetalPriceView);
-            holder.priceDate = (TextView) v.findViewById(R.id.priceDate);
+
             v.setTag(holder);
         }
 
         ViewHolder holder = (ViewHolder) v.getTag();
         DragMetal metalItem = getItem(position);
         String name = metalNames[metalItem.getCode() - 1];
+        String measureString = measurement.getSymbol(Locale.getDefault());
+        String imageUriString = "android.resource://" + pkgName + "/drawable/" + metalItem.getMetallEngName();
+        holder.metalImage.setImageURI(Uri.parse(imageUriString));
         holder.metalName.setText(name);
-        holder.metalPrice.setText(String.valueOf(metalItem.getPrice()));
-        holder.priceDate.setText(metalItem.getOnDateAsString());
+        holder.metalPrice.setText(String.valueOf(metalItem.getPrice()) + " " +measureString);
+
         return v;
     }
     private class ViewHolder {
         public TextView metalName;
         public TextView metalPrice;
         public ImageView metalImage;
-        public TextView priceDate;
     }
 
 }

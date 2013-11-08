@@ -5,32 +5,31 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/metalIcon" />
+        android:layout_width="@dimen/metalRowHeight"
+        android:layout_height="@dimen/metalRowHeight"
+        android:id="@+id/metalIcon"
+        android:src="@drawable/gold"
+        android:layout_marginLeft="@dimen/rowTextLeftMargin"
+        android:layout_marginTop="@dimen/rowTextLeftMargin"
+        android:layout_marginBottom="@dimen/rowTextLeftMargin"
+        android:layout_gravity="center_vertical" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="MetalName"
+        android:text="Palladium"
         android:id="@+id/MetalNameView"
-        android:layout_marginLeft="10dp"
-        android:textSize="@dimen/metalTextSize" />
+        android:layout_marginLeft="@dimen/rowTextLeftMargin"
+        android:textSize="@dimen/metalTextSize"
+        android:layout_gravity="center_vertical" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Metal price"
+        android:text="11111"
         android:id="@+id/MetalPriceView"
-        android:layout_marginLeft="10dp"
-        android:minHeight="@dimen/metalRowHeight"
-        android:textSize="@dimen/metalTextSize" />
+        android:layout_marginLeft="@dimen/rowTextLeftMargin"
+        android:textSize="@dimen/metalTextSize"
+        android:layout_gravity="center_vertical" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/priceDate"
-        android:layout_marginLeft="@dimen/rowTextLeftMargin" />
 </LinearLayout>

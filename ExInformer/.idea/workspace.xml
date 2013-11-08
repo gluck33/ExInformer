@@ -62,22 +62,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/MetInfoProvider.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurrencyDbAdapter.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurInfoProvider.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurInfoProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyWidget.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyWidget.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimens.xml" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-ru/arrays.xml" afterPath="$PROJECT_DIR$/res/values-ru/arrays.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/base_preferences.xml" afterPath="$PROJECT_DIR$/res/xml/base_preferences.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/metall_prices_layout.xml" afterPath="$PROJECT_DIR$/res/layout/metall_prices_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -143,62 +136,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CbInfoDb.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="21" selection-start="423" selection-end="431" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5338">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CBInfoProvider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="4505">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="1771" selection-end="1771" vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="1462">
-              <folding>
-                <element signature="e#796#814#0" expanded="true" />
-                <element signature="e#943#962#0" expanded="true" />
-                <element signature="e#1605#1631#0" expanded="true" />
-                <element signature="e#2022#2040#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MetalInfoFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="0" selection-start="5837" selection-end="5837" vertical-scroll-proportion="0.0" vertical-offset="1838" max-vertical-offset="2550">
-              <folding>
-                <element signature="e#3372#3407#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CurInfoProvider.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurInfoProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="16" selection-start="3460" selection-end="3460" vertical-scroll-proportion="3.0141845" vertical-offset="0" max-vertical-offset="2584">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MetInfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="29" selection-start="5344" selection-end="5344" vertical-scroll-proportion="0.0" vertical-offset="1582" max-vertical-offset="4607">
+            <state line="49" column="28" selection-start="1500" selection-end="1500" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="4624">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arrays.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/values-ru/arrays.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="0" selection-start="500" selection-end="500" vertical-scroll-proportion="0.50086653" vertical-offset="0" max-vertical-offset="577">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_preferences.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="45" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1224">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TimePreference.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/TimePreference.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="13" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="918">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurInfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="21" selection-start="999" selection-end="1016" vertical-scroll-proportion="1.6296296" vertical-offset="418" max-vertical-offset="5491">
               <folding />
             </state>
           </provider>
@@ -207,7 +184,46 @@
       <file leaf-file-name="DragMetal.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="27" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0" vertical-offset="261" max-vertical-offset="1088">
+            <state line="10" column="93" selection-start="280" selection-end="289" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="metall_prices_layout.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/metall_prices_layout.xml">
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="42" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="935">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MetallArrayAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="63" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="952">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurrencyArrayAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="86" selection-start="1413" selection-end="1491" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="901">
               <folding />
             </state>
           </provider>
@@ -242,22 +258,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
-        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurrencyDbAdapter.java" />
-        <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
         <option value="$PROJECT_DIR$/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/res/layout/metall_prices_layout.xml" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurInfoProvider.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/MetInfoProvider.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
+        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
+        <option value="$PROJECT_DIR$/res/layout/metall_prices_layout.xml" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/res/xml/base_preferences.xml" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
+        <option value="$PROJECT_DIR$/res/values-ru/arrays.xml" />
       </list>
     </option>
   </component>
@@ -321,7 +337,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -387,8 +402,95 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values-ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,6 +576,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -500,19 +615,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -645,16 +747,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="45" width="1280" height="953" extended-state="7" />
-    <editor active="false" />
+    <frame x="0" y="45" width="1280" height="953" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22890624" sideWeight="0.80980164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21640626" sideWeight="0.80980164" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1298" y="505" width="1269" height="507" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.5285881" sideWeight="0.4935065" order="3" side_tool="false" content_ui="tabs" x="1291" y="529" width="1269" height="507" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364486" sideWeight="0.50078124" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32733813" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -678,20 +780,20 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22890624" sideWeight="0.80980164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33722287" sideWeight="0.50078124" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33722287" sideWeight="0.50078124" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32733813" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -711,8 +813,8 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29205608" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32905483" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="1288" y="47" width="1272" height="999" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -742,67 +844,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/currencylayuot.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_currency.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="1005" selection-end="1005" vertical-scroll-proportion="-15.178572" vertical-offset="0" max-vertical-offset="595">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/AppDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="9" selection-start="4703" selection-end="4703" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="66" selection-start="6392" selection-end="6458" vertical-scroll-proportion="0.0" vertical-offset="3077" max-vertical-offset="4726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="64" selection-start="1694" selection-end="1694" vertical-scroll-proportion="0.7376058" vertical-offset="2" max-vertical-offset="901">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/metall_prices_layout.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="12" selection-start="462" selection-end="462" vertical-scroll-proportion="0.2261185" vertical-offset="0" max-vertical-offset="827">
@@ -824,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="29" selection-start="5344" selection-end="5344" vertical-scroll-proportion="0.0" vertical-offset="1582" max-vertical-offset="4607">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="4505">
@@ -838,37 +872,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="27" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0" vertical-offset="261" max-vertical-offset="1088">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="0" selection-start="5837" selection-end="5837" vertical-scroll-proportion="0.0" vertical-offset="1838" max-vertical-offset="2550">
-          <folding>
-            <element signature="e#3372#3407#0" expanded="true" />
-          </folding>
+        <state line="164" column="0" selection-start="5841" selection-end="5841" vertical-scroll-proportion="0.0" vertical-offset="2788" max-vertical-offset="3145">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="0" selection-start="1771" selection-end="1771" vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="1462">
-          <folding>
-            <element signature="e#796#814#0" expanded="true" />
-            <element signature="e#943#962#0" expanded="true" />
-            <element signature="e#1605#1631#0" expanded="true" />
-            <element signature="e#2022#2040#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CurInfoProvider.java">
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="16" selection-start="3460" selection-end="3460" vertical-scroll-proportion="3.0141845" vertical-offset="0" max-vertical-offset="2584">
+        <state line="10" column="93" selection-start="280" selection-end="289" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="63" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="86" selection-start="1413" selection-end="1491" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="901">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/metall_prices_layout.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="42" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="21" selection-start="999" selection-end="1016" vertical-scroll-proportion="1.6296296" vertical-offset="418" max-vertical-offset="5491">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="45" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/TimePreference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="918">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="28" selection-start="1500" selection-end="1500" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="4624">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-ru/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="500" selection-end="500" vertical-scroll-proportion="0.50086653" vertical-offset="0" max-vertical-offset="577">
           <folding />
         </state>
       </provider>

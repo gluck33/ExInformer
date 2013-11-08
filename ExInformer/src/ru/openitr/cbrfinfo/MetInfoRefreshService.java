@@ -55,8 +55,8 @@ public class MetInfoRefreshService extends Service {
         Context context = getApplicationContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         autoupdate = sharedPreferences.getBoolean("PREF_MET_AUTO_UPDATE", true);
-        int hourOfRefresh = sharedPreferences.getInt("PREF_UPDITE_MET_TIME.hour", 13);
-        int minuteOfRefresh = sharedPreferences.getInt("PREF_UPDITE_MET_TIME.minute", 0);
+        int hourOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.hour", 13);
+        int minuteOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.minute", 0);
         if (autoupdate) {
             alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             String ALARM_ACTION;
@@ -207,10 +207,11 @@ public class MetInfoRefreshService extends Service {
             stopSelf();
         }
 
-        private int getMetalOnDate (Calendar onDate, int interval){
-            Calendar toDate = onDate;
-            toDate.roll(Calendar.DAY_OF_YEAR, -interval);
-            return getMetalOnDateInterval(onDate, toDate);
+        private int getMetalOnDate (Calendar toDate, int interval){
+            Calendar fromDate = Calendar.getInstance();
+            fromDate.setTimeInMillis(toDate.getTimeInMillis());
+            fromDate.roll(Calendar.DAY_OF_YEAR, -interval);
+            return getMetalOnDateInterval(fromDate, toDate);
         }
 
         private int getMetalOnDate (Calendar onDate){
