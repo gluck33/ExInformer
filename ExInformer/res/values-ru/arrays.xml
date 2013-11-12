@@ -23,5 +23,13 @@
         <item>Платина</item>
         <item>Палладий</item>
     </string-array>
+    <string-array name="interval_met_date">
+        <item>1 день></item>
+        <item>2 дня</item>
+        <item>3 дня</item>
+        <item>4 дня</item>
+        <item>5 дней</item>
+        <item>6 дней</item>
+    </string-array>
 
 </resources>

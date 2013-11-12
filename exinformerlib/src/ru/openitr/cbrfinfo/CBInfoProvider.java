@@ -146,10 +146,10 @@ public class CBInfoProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues _cv){
         String tableName = null;
         Uri resUri = null;
-        if (uriMatcher.match(uri) != URI_METALL || uriMatcher.match(uri) != URI_CURRENCY) {
+        int matchUri = uriMatcher.match(uri);
+        if (uriMatcher.match(uri) != URI_METALL & uriMatcher.match(uri) != URI_CURRENCY) {
             throw new IllegalArgumentException("Wrong URI: " + uri);
         }
-        db = dbHelper.getWritableDatabase();
         switch (uriMatcher.match(uri)){
             case URI_CURRENCY:
                 tableName = CbInfoDb.CURRENCY_TABLE;
@@ -159,6 +159,7 @@ public class CBInfoProvider extends ContentProvider {
                 tableName = CbInfoDb.METAL_TABLE;
                 resUri = METAL_CONTENT_URI;
         }
+        db = dbHelper.getWritableDatabase();
         long rowId = db.insert(tableName, null,_cv);
         Uri resultUri = ContentUris.withAppendedId(resUri, rowId);
         getContext().getContentResolver().notifyChange(resultUri,null);

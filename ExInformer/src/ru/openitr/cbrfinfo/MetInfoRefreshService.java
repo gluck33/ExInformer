@@ -33,9 +33,6 @@ public class MetInfoRefreshService extends Service {
 
     AlarmManager alarms;
     PendingIntent alarmIntent;
-    protected Calendar nextExecuteTime = Calendar.getInstance();
-    protected long nextExecuteTimeInMills;
-    private boolean autoupdate = false;
     private boolean lastInfo = false;
     private boolean onlySetAlarm;
     private Notification newExchangeRateNotification;
@@ -50,23 +47,7 @@ public class MetInfoRefreshService extends Service {
     public void onCreate() {
         super.onCreate();
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nextExecuteTimeInMills = 0;
          LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this,"Service created");
-        Context context = getApplicationContext();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        autoupdate = sharedPreferences.getBoolean("PREF_MET_AUTO_UPDATE", true);
-        int hourOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.hour", 13);
-        int minuteOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.minute", 0);
-        if (autoupdate) {
-            alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            String ALARM_ACTION;
-            ALARM_ACTION = MetInfoRefreshReciever.ACTION_REFRESH_MET_INFO_ALARM;
-            Intent intentToFire = new Intent(ALARM_ACTION);
-            alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
-            nextExecuteTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
-            nextExecuteTime.set(Calendar.MINUTE, minuteOfRefresh);
-            nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
-        }
     }
 
     @Override
@@ -134,7 +115,6 @@ public class MetInfoRefreshService extends Service {
         @Override
         protected Integer doInBackground(Calendar... params) {
             //return OK;
-            editor = sharedPreferences.edit();
             if (onlySetAlarm){
                  LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Only need update alarmSet");
                 return OK;
@@ -161,7 +141,6 @@ public class MetInfoRefreshService extends Service {
         @Override
         protected void onPostExecute(Integer result) {
             LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "(onPostExecute) Result of service: " + result);
-            int alarmType = AlarmManager.RTC;
             super.onPostExecute(result);
             Intent resIntent = new Intent(CurrencyInfoFragment.INFO_REFRESH_INTENT);
             Intent widgetUpdateIntent = new Intent(CurrencyWidget.CURRENCY_WIDGET_UPDATE);
@@ -183,19 +162,7 @@ public class MetInfoRefreshService extends Service {
                     break;
                 default:
                     resIntent.putExtra(MainActivity.PARAM_STATUS, MainActivity.FIN_STATUS_OK);
-                    if (nextExecuteTime.getTimeInMillis() < Calendar.getInstance().getTimeInMillis())
-                        nextExecuteTime.roll(Calendar.DAY_OF_YEAR,true);
-                    nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
             }
-            if (autoupdate) {
-                if (nextExecuteTimeInMills < System.currentTimeMillis())
-                    nextExecuteTimeInMills = nextExecuteTimeInMills + AlarmManager.INTERVAL_DAY;
-                alarms.set(alarmType, nextExecuteTimeInMills, alarmIntent);
-                
-                    LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Alarm is set to " + new Date(nextExecuteTimeInMills).toLocaleString());
-            }
-
-            else if (alarms != null) alarms.cancel(alarmIntent);
 
             sendBroadcast(resIntent);
             if (lastInfo & result == OK){
@@ -211,6 +178,7 @@ public class MetInfoRefreshService extends Service {
             Calendar fromDate = Calendar.getInstance();
             fromDate.setTimeInMillis(toDate.getTimeInMillis());
             fromDate.roll(Calendar.DAY_OF_YEAR, -interval);
+            toDate.roll(Calendar.DAY_OF_YEAR, 1);
             return getMetalOnDateInterval(fromDate, toDate);
         }
 
