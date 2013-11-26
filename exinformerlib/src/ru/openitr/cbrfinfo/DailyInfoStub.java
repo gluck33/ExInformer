@@ -95,7 +95,7 @@ public class DailyInfoStub {
         return result;
     }
 
-    public Calendar getLatestDate() throws Exception {
+    public Calendar getLatestCurrencyDateFromServer() throws Exception {
         String soapAction = "http://web.cbr.ru/GetLatestDateTime";
         String methodName = "GetLatestDateTime";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'mm:hh:ss");
@@ -113,7 +113,7 @@ public class DailyInfoStub {
         try {
              LogSystem.logInFile (LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
             androidHttpTransport.call(soapAction, envelope);
-             LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestDate recieved from SB server. ");
+             LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestCurrencyDate recieved from SB server. ");
         } catch (IOException e) {
              LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
             e.printStackTrace();

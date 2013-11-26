@@ -1,6 +1,9 @@
 package ru.openitr.cbrfinfo;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -156,6 +159,44 @@ public class Icurrency {
         cv.put(CbInfoDb.CUR_KEY_DATE, this.getvDate().getTimeInMillis());
         return cv;
     }
+
+    public static boolean isNeedUpdate(Calendar onDate, Context context){
+        Cursor c = context.getContentResolver().query(CBInfoProvider.CURRENCY_CONTENT_URI,CbInfoDb.CUR_ALL_COLUMNS,null,null,null);
+        if (!c.moveToFirst())
+            return true;
+        Calendar infoDate = Calendar.getInstance();
+        infoDate.setTimeInMillis(c.getLong(CbInfoDb.VALDATE_COLUMN));
+        if (onDate.get(Calendar.DAY_OF_YEAR)!= infoDate.get(Calendar.DAY_OF_YEAR))
+            return true;
+        return false;
+    }
+
+    public  static Calendar getDateInBase(Context context) {
+        Calendar exDate = Calendar.getInstance();
+        exDate.setTimeInMillis(0);
+        Cursor cursor = (context.getContentResolver().query(CBInfoProvider.CURRENCY_CONTENT_URI, new String[]{CbInfoDb.CUR_KEY_DATE}, null, null, null));
+        try {
+            cursor.moveToFirst();
+            exDate.setTimeInMillis(cursor.getLong(0));
+        }
+        finally {
+            cursor.close();
+            return exDate;
+        }
+    }
+
+    public static String getDateInBaseAsString(Context context){
+        String result = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            result = sdf.format(getDateInBase(context));
+        } catch (Exception e){
+            return result;
+        }
+        return result;
+    }
+
+
 
 
 }

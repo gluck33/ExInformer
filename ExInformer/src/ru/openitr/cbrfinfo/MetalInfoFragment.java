@@ -144,20 +144,7 @@ public class MetalInfoFragment extends ListFragment {
     }
 
     public  static String getMetalDate(FragmentActivity activity) {
-        String result = "";
-        Calendar exDate = Calendar.getInstance();
-        Cursor cursor = (activity.getContentResolver().query(METAL_CONTENT_URI, new String[]{CbInfoDb.MET_KEY_DATE}, null, null, null));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            cursor.moveToFirst();
-            exDate.setTimeInMillis(cursor.getLong(0));
-            result = sdf.format(exDate.getTime());
-        }
-        finally {
-            cursor.close();
-            return result;
-        }
-
+        return DragMetal.getDateInBaseAsString(activity);
     }
 
     private class MetalInfoBroadcastReceiever extends BroadcastReceiver {

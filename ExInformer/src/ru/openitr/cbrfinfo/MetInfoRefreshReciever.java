@@ -17,6 +17,6 @@ public class MetInfoRefreshReciever extends BroadcastReceiver  {
     public void onReceive(Context context, Intent intent) {
         Intent startIntent = new Intent (context, MetInfoRefreshService.class);
         context.startService(startIntent);
-        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName()+ ": Recieve 'ru.openitr.cbrfinfo.ACTION_REFRESH_INFO_ALARM'");
+        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName()+ ": Recieve " + ACTION_REFRESH_MET_INFO_ALARM);
     }
 }

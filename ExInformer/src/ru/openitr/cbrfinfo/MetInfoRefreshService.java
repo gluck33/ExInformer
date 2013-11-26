@@ -18,6 +18,7 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,7 +31,9 @@ import java.util.Date;
  * Сервис запрашивает информацию о ценах на драгметаллы с сервера cbr.ru и помещает её в БД.
  */
 public class MetInfoRefreshService extends Service {
-
+    protected Calendar nextExecuteTime = Calendar.getInstance();
+    protected long nextExecuteTimeInMills;
+    private boolean autoupdate = false;
     AlarmManager alarms;
     PendingIntent alarmIntent;
     private boolean lastInfo = false;
@@ -38,6 +41,7 @@ public class MetInfoRefreshService extends Service {
     private Notification newExchangeRateNotification;
     NotificationManager notificationManager;
     SharedPreferences sharedPreferences;
+
     public static final int NOTIFICATION_ID = 1;
     boolean soundNotification;
     int updateInterval;
@@ -47,7 +51,23 @@ public class MetInfoRefreshService extends Service {
     public void onCreate() {
         super.onCreate();
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-         LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this,"Service created");
+        nextExecuteTimeInMills = 0;
+        Context context = getApplicationContext();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        autoupdate = sharedPreferences.getBoolean("PREF_MET_AUTO_UPDATE", true);
+        int hourOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.hour", 13);
+        int minuteOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.minute", 0);
+        if (autoupdate) {
+            alarms = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            String ALARM_ACTION;
+            ALARM_ACTION = MetInfoRefreshReciever.ACTION_REFRESH_MET_INFO_ALARM;
+            Intent intentToFire = new Intent(ALARM_ACTION);
+            alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, PendingIntent.FLAG_UPDATE_CURRENT);
+            nextExecuteTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
+            nextExecuteTime.set(Calendar.MINUTE, minuteOfRefresh);
+            nextExecuteTimeInMills = nextExecuteTime.getTimeInMillis();
+        }
+        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this,"Service created");
     }
 
     @Override
@@ -120,14 +140,17 @@ public class MetInfoRefreshService extends Service {
                 return OK;
             }
             onDate = Calendar.getInstance();
-            if ((onDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY | onDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !fromActivity)
-                return OK;
-            if (params[0].getTimeInMillis() == 0 )
+            if (params[0].getTimeInMillis() == 0 ){
                 startFromNulldate = true;
+                onDate.roll(Calendar.DAY_OF_YEAR, 1);
+            }
             else
                 onDate = params[0];
+
                 publishProgress();
-                return getMetalOnDate(onDate, 4);
+            if ((onDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY | onDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !fromActivity)
+                return OK;
+            return getMetalOnDate(onDate, 7);
         }
 
         @Override
@@ -178,7 +201,6 @@ public class MetInfoRefreshService extends Service {
             Calendar fromDate = Calendar.getInstance();
             fromDate.setTimeInMillis(toDate.getTimeInMillis());
             fromDate.roll(Calendar.DAY_OF_YEAR, -interval);
-            toDate.roll(Calendar.DAY_OF_YEAR, 1);
             return getMetalOnDateInterval(fromDate, toDate);
         }
 
@@ -190,11 +212,18 @@ public class MetInfoRefreshService extends Service {
             ContentResolver cr = getContentResolver();
             DailyInfoStub dailyInfoStub = new DailyInfoStub();
             int res = OK;
-            if (!internetAvailable()) {
+            if (!CurInfoRefreshService.internetAvailable((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE))) {
                 return STATUS_NETWORK_DISABLE;
             }
             try {
                 ArrayList <DragMetal> infoStub = dailyInfoStub.getMetPrice(fromDate, toDate);
+                // Получаем дату последнего элемента в ответе сервера
+                Calendar lastDateInfoOnServer = infoStub.get(infoStub.size() - 1).getOnDate();
+                // Если эта дата - сегодня и сервис был запущен из аларма то это значит что данных на завтра нет.
+                // Т.е. свежих данных на сервере еще нет.
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,this,"Last date of data is:" +  new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(lastDateInfoOnServer.getTime()));
+                if (startFromNulldate & ExtraCalendar.isToday(lastDateInfoOnServer)& !fromActivity)
+                    return STATUS_NOT_FRESH_DATA;
                  LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Start update base.");
                 for (DragMetal dragMetalRecord : infoStub) {
                     ContentValues _cv = dragMetalRecord.asContentValues();
@@ -211,7 +240,9 @@ public class MetInfoRefreshService extends Service {
 
             } catch (ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Error !!! : "+e.getMessage());
                 res = STATUS_NO_DATA;
+
             } catch (Exception e) {
                 e.printStackTrace();
                 res = STATUS_BAD_DATA;
@@ -222,32 +253,6 @@ public class MetInfoRefreshService extends Service {
             return res;
         }
 
-    }
-
-    private boolean internetAvailable() {
-        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm == null) {
-            return false;
-        }
-        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
-        if (netInfo == null) {
-            return false;
-        }
-        for (NetworkInfo ni : netInfo)
-        {
-            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
-                if (ni.isConnected()) {
-                     LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "wifi connection found");
-                    return true;
-                }
-            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
-                if (ni.isConnected()) {
-                     LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "mobile connection found");
-                    return true;
-                }
-        }
-         LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Network connection not found");
-        return false;
     }
 
 

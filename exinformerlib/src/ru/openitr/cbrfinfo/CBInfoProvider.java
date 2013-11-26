@@ -84,8 +84,8 @@ public class CBInfoProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        String tableName = null;
-        Uri resUri = null;
+        String tableName;
+        Uri resUri;
         switch (uriMatcher.match(uri)) {
             case URI_CURRENCY :
                 tableName = CbInfoDb.CURRENCY_TABLE;
@@ -146,7 +146,7 @@ public class CBInfoProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues _cv){
         String tableName = null;
         Uri resUri = null;
-        int matchUri = uriMatcher.match(uri);
+        //int matchUri = uriMatcher.match(uri);
         if (uriMatcher.match(uri) != URI_METALL & uriMatcher.match(uri) != URI_CURRENCY) {
             throw new IllegalArgumentException("Wrong URI: " + uri);
         }
@@ -168,8 +168,8 @@ public class CBInfoProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        String tableName = null;
-        String code = null;
+        String tableName;
+        String code;
         switch (uriMatcher.match(uri)) {
             case URI_CURRENCY:
                 tableName = CbInfoDb.CURRENCY_TABLE;
@@ -203,7 +203,7 @@ public class CBInfoProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
-        String tableName = null;
+        String tableName;
         switch (uriMatcher.match(uri)){
             case URI_CURRENCY:
                 tableName = CbInfoDb.CURRENCY_TABLE;
@@ -254,7 +254,11 @@ private class InfoDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CbInfoDb.CREATE_CUR_TABLE);
+        for (int i = 0; i <= CbInfoDb.INSERT_CURRENCY_DATA.length - 1; i++)
+            db.execSQL(CbInfoDb.INSERT_CURRENCY_DATA[i]);
         db.execSQL(CbInfoDb.CREATE_METALL_TABLE);
+        for (int i = 0; i <= CbInfoDb.INSERT_METAL_DATA.length - 1; i++)
+            db.execSQL(CbInfoDb.INSERT_METAL_DATA[i]);
     }
 
     @Override

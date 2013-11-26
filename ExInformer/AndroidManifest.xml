@@ -61,7 +61,7 @@
 
         <receiver android:name=".CurInfoRefreshReciever">
             <intent-filter>
-                <action android:name="ru.openitr.cbrfinfo.ACTION_REFRESH_INFO_ALARM"/>
+                <action android:name="ru.openitr.cbrfinfo.ACTION_REFRESH_CUR_INFO_ALARM"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>

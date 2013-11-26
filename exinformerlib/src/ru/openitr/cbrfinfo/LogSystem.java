@@ -115,7 +115,7 @@ public final class LogSystem {
     public static int logInFile(String tag, String msg)
     {
         if (!DEBUG) return 0;
-        int result = 0;
+        int result = 1;
         File file = new File(PATH);
         try {
             if (!file.exists()) {
@@ -127,9 +127,10 @@ public final class LogSystem {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
             bw.append(timeLog+" (" + tag + ")\t" + msg + "\n");
             bw.close();
-            result = 1;
+            result = 0;
         } catch (IOException e) {
             e.printStackTrace();
+            result = 1;
         }
         Log.d(tag,msg);
         return result;

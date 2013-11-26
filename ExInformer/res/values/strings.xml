@@ -49,4 +49,5 @@
     <string name="met_info_interval_title">The number of days at the request of the dynamics of prices for precious metals</string>
     <string name="met_info_interval_summary">Query Date Range of prices for precious metals</string>
     <string name="preference_autoupdate_met_info">Auto-update of prices for precious metals</string>
+    <string name="preference_met_time_summary">00:00</string>
 </resources>

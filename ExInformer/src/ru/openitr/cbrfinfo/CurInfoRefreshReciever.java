@@ -12,7 +12,7 @@ import android.content.Intent;
  *
  */
 public class CurInfoRefreshReciever extends BroadcastReceiver  {
-    public static final String ACTION_REFRESH_INFO_ALARM = "ru.openitr.cbrfinfo.ACTION_REFRESH_MET_INFO_ALARM";
+    public static final String ACTION_REFRESH_INFO_ALARM = "ru.openitr.cbrfinfo.ACTION_REFRESH_CUR_INFO_ALARM";
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent startIntent = new Intent (context, CurInfoRefreshService.class);

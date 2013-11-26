@@ -48,6 +48,7 @@ public class MainActivity extends ActionBarActivity {
     public static final int FINS_STATUS_NETWORK_DISABLE = 30;
     public static final int FIN_STATUS_NOT_RESPOND = 40;
     public static final int FIN_STATUS_NO_DATA = 50;
+    private static final int FIN_STATUS_BAD_DATA = 70;
     public static final int GET_INFO = 80;
     private static final int SHOW_PREFERENCES = 1;
     public static final String PARAM_DATE = "date";
@@ -313,16 +314,14 @@ public class MainActivity extends ActionBarActivity {
                 switch (status) {
                     case STATUS_BEGIN_REFRESH:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Begin updating info.");
-//                        progressDialog = AppDialog.newInstance(AppDialog.PROGRESS_DIALOG);
-//                        progressDialog.show(getSupportFragmentManager(), "");
                         beginProgress();
                         break;
                     case FIN_STATUS_NO_DATA:
-//                        progressDialog.dismiss();
                         endProgress();
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : No data receive.");
-
                         break;
+                    case FIN_STATUS_BAD_DATA:
+
                     case FIN_STATUS_NOT_RESPOND:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Server not respond.");
                         endProgress();

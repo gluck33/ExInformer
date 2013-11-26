@@ -1,5 +1,7 @@
 package ru.openitr.cbrfinfo;
 import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -68,4 +70,45 @@ public class DragMetal {
         result.put(CbInfoDb.MET_KEY_DATE, this.onDate.getTimeInMillis());
         return result;
     }
+
+
+
+    public  static Calendar getDateInBase(Context context) {
+        Calendar infoDate = Calendar.getInstance();
+        infoDate.setTimeInMillis(0);
+        Cursor cursor = (context.getContentResolver().query(CBInfoProvider.METAL_CONTENT_URI, new String[]{CbInfoDb.MET_KEY_DATE}, null, null, null));
+        try {
+            cursor.moveToLast();
+            infoDate.setTimeInMillis(cursor.getLong(0));
+        }
+        finally {
+            cursor.close();
+            return infoDate;
+        }
+    }
+
+    public static String getDateInBaseAsString(Context context){
+        String result = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            result = sdf.format(getDateInBase(context));
+        } catch (Exception e){
+            return result;
+        }
+        return result;
+    }
+
+    public static boolean isNeedUpdate(Calendar onDate, Context context){
+        Cursor c = context.getContentResolver().query(CBInfoProvider.METAL_CONTENT_URI,CbInfoDb.MET_ALL_COLUMNS,null,null,null);
+        if (!c.moveToFirst())
+            return true;
+        Calendar infoDate = Calendar.getInstance();
+        infoDate.setTimeInMillis(c.getLong(CbInfoDb.MET_DATE_COL_NUM));
+        if (onDate.get(Calendar.DAY_OF_YEAR)!= infoDate.get(Calendar.DAY_OF_YEAR))
+            return true;
+        return false;
+    }
+
+
+
 }

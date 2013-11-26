@@ -51,6 +51,16 @@
             android:dependency="PREF_AUTO_UPDATE"
             >
         </CheckBoxPreference>
+        <ru.openitr.cbrfinfo.TimePreference
+            android:name="UpdateMetTime"
+            android:summary="@string/preference_time_summary"
+            android:dialogLayout="@layout/time_preference"
+            android:title="@string/preference_time_title"
+            android:key="PREF_MET_UPDATE_TIME"
+            android:dependency="PREF_MET_AUTO_UPDATE"
+            android:defaultValue="8:00"
+            >
+        </ru.openitr.cbrfinfo.TimePreference>
     </PreferenceCategory>
 
 

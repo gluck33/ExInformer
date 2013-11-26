@@ -23,12 +23,7 @@ import java.util.LinkedList;
 public class CurrencyInfoFragment extends ListFragment {
     static Calendar onDate;
     public static final String LOG_TAG = "CBInfo";
-    public static final int STATUS_BEGIN_REFRESH = 10;
     public static final int FIN_STATUS_OK = 20;
-    public static final int FIN_STATUS_NOT_RESPOND = 40;
-    public static final int FIN_STATUS_NO_DATA = 50;
-    public static final int FINS_STATUS_NETWORK_DISABLE = 30;
-
     public static final String PARAM_DATE = "date";
     public static final String PARAM_ONLY_SET_ALARM = "only_set";
     public static final String PARAM_FROM_ACTIVITY = "from_activity";
@@ -156,7 +151,7 @@ public class CurrencyInfoFragment extends ListFragment {
     private void addHeader(FragmentActivity activity, DragSortListView mDslv) {
         LayoutInflater inflater = activity.getLayoutInflater();
         header  = (TextView) inflater.inflate(R.layout.header_footer, null);
-        header.setText(getExchangeDate(activity));
+        header.setText(Icurrency.getDateInBaseAsString(activity));
         mDslv.addHeaderView(header, null, false);
     }
 
@@ -173,23 +168,6 @@ public class CurrencyInfoFragment extends ListFragment {
         getActivity().unregisterReceiver(br);
         super.onDestroy();
         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": onDestroy");
-    }
-
-    public  static String getExchangeDate(FragmentActivity activity) {
-        String result = "";
-        Calendar exDate = Calendar.getInstance();
-        Cursor cursor = (activity.getContentResolver().query(CURRENCYS_URI, new String[]{CbInfoDb.CUR_KEY_DATE}, null, null, null));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            cursor.moveToFirst();
-            exDate.setTimeInMillis(cursor.getLong(0));
-            result = sdf.format(exDate.getTime());
-        }
-        finally {
-            cursor.close();
-            return result;
-        }
-
     }
 
 
@@ -262,7 +240,7 @@ public class CurrencyInfoFragment extends ListFragment {
                 switch (status) {
                     case (MainActivity.FIN_STATUS_OK):
                         loadCurrencysFromProvider();
-                        header.setText(getExchangeDate(getActivity()));
+                        header.setText(Icurrency.getDateInBaseAsString(getActivity()));
                         break;
                 }
             }
