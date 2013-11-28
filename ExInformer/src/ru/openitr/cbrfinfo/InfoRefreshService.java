@@ -5,21 +5,17 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -171,7 +167,7 @@ public abstract class InfoRefreshService extends Service {
      *
      ******************************************/
 
-    public abstract class refreshInfoTask extends AsyncTask<Calendar, Integer, Integer> {
+    public abstract class RefreshInfoTask extends AsyncTask<Calendar, Integer, Integer> {
         protected static final int OK = 20;
         protected static final int STATUS_NETWORK_DISABLE = 30;
         protected static final int STATUS_NOT_RESPOND = 40;
@@ -182,7 +178,7 @@ public abstract class InfoRefreshService extends Service {
         boolean startFromNulldate = false;
         Calendar onDate;
 
-        abstract Calendar getLastDateOfInfo() throws IOException;
+        abstract Calendar getLastDateOfInfoOnServer() throws IOException;
         abstract void putLastDateToPrefs(SharedPreferences sharedPreferences, long lastDateMillis);
         abstract boolean infoNeedUpdate(Calendar onDate);
         abstract int updateInfo(Calendar onDate);
@@ -196,7 +192,7 @@ public abstract class InfoRefreshService extends Service {
             if (params[0].getTimeInMillis() == 0 ){
                 startFromNulldate = true;
                 try {
-                    onDate = getLastDateOfInfo();
+                    onDate = getLastDateOfInfoOnServer();
                     putLastDateToPrefs(sharedPreferences, onDate.getTimeInMillis());
                     if (onDate.getTimeInMillis() > lastSavedDateOfExchange) {
                         lastInfo = true;

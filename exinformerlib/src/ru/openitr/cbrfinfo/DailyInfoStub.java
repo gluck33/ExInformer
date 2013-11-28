@@ -240,6 +240,19 @@ public class DailyInfoStub {
         return result;
     }
 
+    public Calendar getLatestMetalDateFromServer() {
+        Calendar fromDate = Calendar.getInstance();
+        Calendar toDate = Calendar.getInstance();
+        fromDate.roll(Calendar.DAY_OF_YEAR, -4);
+        toDate.roll(Calendar.DAY_OF_YEAR,2);
+        try {
+            ArrayList<DragMetal> metalPrices = getMetPrice(fromDate, toDate);
+            return metalPrices.get(metalPrices.size()-1).getOnDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 }

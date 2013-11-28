@@ -73,28 +73,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CBInfo.iml" afterPath="$PROJECT_DIR$/CBInfo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../supportlib_v7/appcompat/appcompat.iml" afterPath="$PROJECT_DIR$/../supportlib_v7/appcompat/appcompat.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/base_preferences.xml" afterPath="$PROJECT_DIR$/res/xml/base_preferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../dragsortlistview/dragsortlistview.iml" afterPath="$PROJECT_DIR$/../dragsortlistview/dragsortlistview.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/ru.openitr.exinformerlib.iml" afterPath="$PROJECT_DIR$/../exinformerlib/ru.openitr.exinformerlib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-ru/strings.xml" afterPath="$PROJECT_DIR$/res/values-ru/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -160,19 +142,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="InfoRefreshService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="1" selection-start="6962" selection-end="6962" vertical-scroll-proportion="-5.259259" vertical-offset="2459" max-vertical-offset="4964">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CbInfoDb.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="2" selection-start="348" selection-end="348" vertical-scroll-proportion="0.18378378" vertical-offset="0" max-vertical-offset="2312">
+            <state line="28" column="33" selection-start="761" selection-end="779" vertical-scroll-proportion="0.33693695" vertical-offset="0" max-vertical-offset="4964">
               <folding />
             </state>
           </provider>
@@ -181,16 +154,34 @@
       <file leaf-file-name="CurInfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="27" selection-start="1430" selection-end="1430" vertical-scroll-proportion="-8.206897" vertical-offset="0" max-vertical-offset="1717">
+            <state line="60" column="37" selection-start="2236" selection-end="2236" vertical-scroll-proportion="0.0" vertical-offset="1031" max-vertical-offset="1717">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values-ru/strings.xml">
+      <file leaf-file-name="MetInfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="52" selection-start="3281" selection-end="3281" vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1020">
+            <state line="62" column="0" selection-start="2165" selection-end="2165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DragMetal.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="0" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2040">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DailyInfoStub.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="242" column="48" selection-start="10812" selection-end="10841" vertical-scroll-proportion="0.0" vertical-offset="4114" max-vertical-offset="4488">
               <folding />
             </state>
           </provider>
@@ -241,15 +232,16 @@
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
-        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/RefreshCurrencyInfoService.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
+        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoRefreshService.java" />
       </list>
     </option>
   </component>
@@ -315,6 +307,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -374,22 +367,8 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CBInfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
+              <option name="myItemId" value="cbrfinfo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -445,7 +424,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -724,7 +702,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2224026" sideWeight="0.70711786" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20535715" sideWeight="0.70711786" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3364486" sideWeight="0.49921876" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -806,6 +784,27 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="42" selection-start="1159" selection-end="1159" vertical-scroll-proportion="0.0" vertical-offset="253" max-vertical-offset="1054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="0" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2040">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="115" column="75" selection-start="5625" selection-end="5625" vertical-scroll-proportion="0.0" vertical-offset="1955" max-vertical-offset="4046">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="323" column="0" selection-start="11626" selection-end="11626" vertical-scroll-proportion="0.0" vertical-offset="5491" max-vertical-offset="6188">
@@ -813,18 +812,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="21" selection-start="2571" selection-end="2571" vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="4505">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
@@ -848,18 +838,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="21" selection-start="2571" selection-end="2571" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4505">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="57" selection-start="12264" selection-end="12264" vertical-scroll-proportion="0.0" vertical-offset="1700" max-vertical-offset="6086">
-          <folding />
-        </state>
+        <state line="131" column="57" selection-start="12264" selection-end="12264" vertical-scroll-proportion="0.0" vertical-offset="1700" max-vertical-offset="6086" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java">
@@ -869,9 +850,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
@@ -895,18 +874,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="56" selection-start="9189" selection-end="9189" vertical-scroll-proportion="0.0" vertical-offset="3621" max-vertical-offset="4131">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
@@ -930,13 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.0" vertical-offset="1054" max-vertical-offset="4080">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="165" column="0" selection-start="6081" selection-end="6081" vertical-scroll-proportion="0.0" vertical-offset="2805" max-vertical-offset="4675">
@@ -951,16 +914,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetallArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="63" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="952">
-          <folding />
-        </state>
+        <state line="24" column="63" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="125" max-vertical-offset="952" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="86" selection-start="1413" selection-end="1491" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="901">
-          <folding />
-        </state>
+        <state line="42" column="86" selection-start="1413" selection-end="1491" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="901" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/TimePreference.java">
@@ -1011,9 +970,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java">
@@ -1033,13 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="135" selection-start="738" selection-end="738" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="19" selection-start="2087" selection-end="2087" vertical-scroll-proportion="0.0" vertical-offset="639" max-vertical-offset="1462">
@@ -1047,25 +997,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="75" selection-start="5625" selection-end="5625" vertical-scroll-proportion="0.0" vertical-offset="1766" max-vertical-offset="4046">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="78" selection-start="877" selection-end="883" vertical-scroll-proportion="0.17871222" vertical-offset="0" max-vertical-offset="2601">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="0" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="963" max-vertical-offset="1819">
-          <folding />
-        </state>
+        <state line="27" column="78" selection-start="877" selection-end="883" vertical-scroll-proportion="0.17871222" vertical-offset="0" max-vertical-offset="2601" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java">
@@ -1084,35 +1018,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="0" selection-start="5414" selection-end="5414" vertical-scroll-proportion="0.33248731" vertical-offset="2135" max-vertical-offset="3077">
+        <state line="168" column="0" selection-start="5414" selection-end="5414" vertical-scroll-proportion="0.33248731" vertical-offset="2135" max-vertical-offset="3077" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="2" selection-start="348" selection-end="348" vertical-scroll-proportion="0.18378378" vertical-offset="0" max-vertical-offset="2312" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="135" selection-start="738" selection-end="738" vertical-scroll-proportion="0.36675128" vertical-offset="0" max-vertical-offset="788">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="0" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="963" max-vertical-offset="1819">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="242" column="48" selection-start="10812" selection-end="10841" vertical-scroll-proportion="0.0" vertical-offset="3479" max-vertical-offset="4267">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="247" column="26" selection-start="11249" selection-end="11249" vertical-scroll-proportion="0.61167514" vertical-offset="3360" max-vertical-offset="4148">
+        <state line="62" column="0" selection-start="2165" selection-end="2165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1768">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="27" selection-start="1430" selection-end="1430" vertical-scroll-proportion="-8.206897" vertical-offset="0" max-vertical-offset="1717">
+        <state line="60" column="37" selection-start="2236" selection-end="2236" vertical-scroll-proportion="0.0" vertical-offset="1031" max-vertical-offset="1717">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="1" selection-start="6962" selection-end="6962" vertical-scroll-proportion="-5.259259" vertical-offset="2459" max-vertical-offset="4964">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="2" selection-start="348" selection-end="348" vertical-scroll-proportion="0.18378378" vertical-offset="0" max-vertical-offset="2312">
+        <state line="28" column="33" selection-start="761" selection-end="779" vertical-scroll-proportion="0.33693695" vertical-offset="0" max-vertical-offset="4964">
           <folding />
         </state>
       </provider>

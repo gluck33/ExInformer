@@ -38,9 +38,9 @@ public class CurInfoRefreshService extends InfoRefreshService{
         new RefreshCurrencyInfoTask().execute(onDate);
     }
 
-    private class RefreshCurrencyInfoTask extends InfoRefreshService.refreshInfoTask {
+    private class RefreshCurrencyInfoTask extends RefreshInfoTask {
 
-        Calendar getLastDateOfInfo() throws IOException {
+        Calendar getLastDateOfInfoOnServer() throws IOException {
             Calendar result;
             try {
                 result = new DailyInfoStub().getLatestCurrencyDateFromServer();
