@@ -69,14 +69,14 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="CBInfo" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -142,11 +142,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InfoRefreshService.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="InfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="33" selection-start="761" selection-end="779" vertical-scroll-proportion="0.33693695" vertical-offset="0" max-vertical-offset="4964">
+            <state line="28" column="33" selection-start="761" selection-end="779" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4964">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="340" column="38" selection-start="12935" selection-end="12935" vertical-scroll-proportion="0.0" vertical-offset="4652" max-vertical-offset="5440">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurrencyInfoFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="247" column="70" selection-start="9218" selection-end="9239" vertical-scroll-proportion="0.0" vertical-offset="3530" max-vertical-offset="4318">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#7897#7905#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Icurrency.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="181" column="65" selection-start="5849" selection-end="5849" vertical-scroll-proportion="0.0" vertical-offset="2374" max-vertical-offset="3162">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurWidgetConfActivity.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="73" column="29" selection-start="2488" selection-end="2488" vertical-scroll-proportion="0.25888324" vertical-offset="765" max-vertical-offset="2176">
+              <folding>
+                <element signature="e#1834#1842#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -172,7 +213,7 @@
       <file leaf-file-name="DragMetal.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="0" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2040">
+            <state line="93" column="64" selection-start="2555" selection-end="2555" vertical-scroll-proportion="0.0" vertical-offset="997" max-vertical-offset="1887">
               <folding />
             </state>
           </provider>
@@ -227,21 +268,22 @@
         <option value="$PROJECT_DIR$/res/xml/base_preferences.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
-        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/RefreshCurrencyInfoService.java" />
-        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CBInfoProvider.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoRefreshService.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
+        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java" />
+        <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java" />
       </list>
     </option>
   </component>
@@ -369,6 +411,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cbrfinfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CBInfo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -695,7 +755,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32733813" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2807229" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2807229" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32905483" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="1285" y="553" width="1272" height="465" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -968,11 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1258" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="114" column="22" selection-start="2640" selection-end="2640" vertical-scroll-proportion="0.2563791" vertical-offset="1608" max-vertical-offset="2499" />
@@ -981,13 +1036,6 @@
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="98" selection-start="388" selection-end="388" vertical-scroll-proportion="0.25888324" vertical-offset="0" max-vertical-offset="788" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="323" column="0" selection-start="11626" selection-end="11626" vertical-scroll-proportion="3.4809644" vertical-offset="2085" max-vertical-offset="5474">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -1009,18 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="86" selection-start="6401" selection-end="6422" vertical-scroll-proportion="0.33248731" vertical-offset="2475" max-vertical-offset="3944">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="0" selection-start="5414" selection-end="5414" vertical-scroll-proportion="0.33248731" vertical-offset="2135" max-vertical-offset="3077" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/CbInfoDb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="2" selection-start="348" selection-end="348" vertical-scroll-proportion="0.18378378" vertical-offset="0" max-vertical-offset="2312" />
@@ -1029,13 +1065,6 @@
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="135" selection-start="738" selection-end="738" vertical-scroll-proportion="0.36675128" vertical-offset="0" max-vertical-offset="788">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="0" selection-start="2645" selection-end="2645" vertical-scroll-proportion="0.0" vertical-offset="963" max-vertical-offset="1819">
           <folding />
         </state>
       </provider>
@@ -1061,10 +1090,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="340" column="38" selection-start="12935" selection-end="12935" vertical-scroll-proportion="0.0" vertical-offset="4652" max-vertical-offset="5440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/lib/android-sdk-linux/platforms/android-17/android.jar!/android/os/Looper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="16" selection-start="712" selection-end="712" vertical-scroll-proportion="0.46691635" vertical-offset="0" max-vertical-offset="801">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="33" selection-start="761" selection-end="779" vertical-scroll-proportion="0.33693695" vertical-offset="0" max-vertical-offset="4964">
+        <state line="28" column="33" selection-start="761" selection-end="779" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4964">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/local/lib/android-sdk-linux/platforms/android-17/android.jar!/android/os/Handler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="548" selection-end="628" vertical-scroll-proportion="0.33248731" vertical-offset="10" max-vertical-offset="1411">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="247" column="70" selection-start="9218" selection-end="9239" vertical-scroll-proportion="0.0" vertical-offset="3530" max-vertical-offset="4318">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7897#7905#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DragMetal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="64" selection-start="2555" selection-end="2555" vertical-scroll-proportion="0.0" vertical-offset="997" max-vertical-offset="1887">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="43" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.5543071" vertical-offset="457" max-vertical-offset="1258">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/BasePreferencesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="245" selection-end="245" vertical-scroll-proportion="0.2122347" vertical-offset="0" max-vertical-offset="801">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/Icurrency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="65" selection-start="5849" selection-end="5849" vertical-scroll-proportion="0.0" vertical-offset="2374" max-vertical-offset="3162">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="29" selection-start="2488" selection-end="2488" vertical-scroll-proportion="0.25888324" vertical-offset="765" max-vertical-offset="2176">
+          <folding>
+            <element signature="e#1834#1842#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

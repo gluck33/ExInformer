@@ -91,7 +91,7 @@ public class DragMetal {
         String result = "";
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            result = sdf.format(getDateInBase(context));
+            result = sdf.format(getDateInBase(context).getTime());
         } catch (Exception e){
             return result;
         }
@@ -100,12 +100,18 @@ public class DragMetal {
 
     public static boolean isNeedUpdate(Calendar onDate, Context context){
         Cursor c = context.getContentResolver().query(CBInfoProvider.METAL_CONTENT_URI,CbInfoDb.MET_ALL_COLUMNS,null,null,null);
-        if (!c.moveToFirst())
+        if (!c.moveToFirst()){
+            c.close();
             return true;
+
+        }
         Calendar infoDate = Calendar.getInstance();
         infoDate.setTimeInMillis(c.getLong(CbInfoDb.MET_DATE_COL_NUM));
-        if (onDate.get(Calendar.DAY_OF_YEAR)!= infoDate.get(Calendar.DAY_OF_YEAR))
+        if (onDate.get(Calendar.DAY_OF_YEAR)!= infoDate.get(Calendar.DAY_OF_YEAR)){
+            c.close();
             return true;
+        }
+        c.close();
         return false;
     }
 

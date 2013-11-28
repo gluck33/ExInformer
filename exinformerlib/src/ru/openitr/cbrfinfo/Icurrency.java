@@ -162,12 +162,17 @@ public class Icurrency {
 
     public static boolean isNeedUpdate(Calendar onDate, Context context){
         Cursor c = context.getContentResolver().query(CBInfoProvider.CURRENCY_CONTENT_URI,CbInfoDb.CUR_ALL_COLUMNS,null,null,null);
-        if (!c.moveToFirst())
+        if (!c.moveToFirst()){
+            c.close();
             return true;
+        }
         Calendar infoDate = Calendar.getInstance();
         infoDate.setTimeInMillis(c.getLong(CbInfoDb.VALDATE_COLUMN));
-        if (onDate.get(Calendar.DAY_OF_YEAR)!= infoDate.get(Calendar.DAY_OF_YEAR))
+        if (onDate.get(Calendar.DAY_OF_YEAR)!= infoDate.get(Calendar.DAY_OF_YEAR)){
+            c.close();
             return true;
+        }
+        c.close();
         return false;
     }
 
@@ -189,7 +194,7 @@ public class Icurrency {
         String result = "";
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            result = sdf.format(getDateInBase(context));
+            result = sdf.format(getDateInBase(context).getTime());
         } catch (Exception e){
             return result;
         }

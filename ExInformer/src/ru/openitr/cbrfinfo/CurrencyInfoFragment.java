@@ -204,6 +204,11 @@ public class CurrencyInfoFragment extends ListFragment {
         c.close();
     }
 
+    /**
+     * Перемещение элемента в листе.
+     * @param from с какой позиции переместить
+     * @param to на какую позицию переместить
+     */
     private void moveItem(int from, int to) {
         // TODO Сделать сначала перемещние элемента в массиве потом в базе и убрать loadCurrencysFromProvider.
         // TODO Перемещение в базе убрать в отдельный поток.

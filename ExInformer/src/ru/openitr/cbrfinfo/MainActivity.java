@@ -9,9 +9,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -25,12 +22,10 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.DatePicker;
 //import android.widget.PopupMenu;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.PopupMenu;
 
 
@@ -45,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
     public static final String PARAM_STATUS = "status";
     public static final int STATUS_BEGIN_REFRESH = 10;
     public static final int FIN_STATUS_OK = 20;
-    public static final int FINS_STATUS_NETWORK_DISABLE = 30;
+    public static final int FIN_STATUS_NETWORK_DISABLE = 30;
     public static final int FIN_STATUS_NOT_RESPOND = 40;
     public static final int FIN_STATUS_NO_DATA = 50;
     private static final int FIN_STATUS_BAD_DATA = 70;
@@ -335,7 +330,7 @@ public class MainActivity extends ActionBarActivity {
                         });
                         notRespondDialog.show(getSupportFragmentManager(), Integer.toString(AppDialog.NOT_RESPOND_DIALOG));
                         break;
-                    case FINS_STATUS_NETWORK_DISABLE:
+                    case FIN_STATUS_NETWORK_DISABLE:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Network disabled.");
                         endProgress();
                         netSettingsDialog = AppDialog.newInstance(AppDialog.NETSETTINGS_DIALOG);
@@ -344,8 +339,6 @@ public class MainActivity extends ActionBarActivity {
                     default:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
                         endProgress();
-//                        if (progressDialog != null)
-//                            progressDialog.dismiss();
                         break;
                 }
             }

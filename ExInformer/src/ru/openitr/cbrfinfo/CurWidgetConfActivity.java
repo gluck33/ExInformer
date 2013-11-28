@@ -55,10 +55,6 @@ public class CurWidgetConfActivity extends Activity {
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 
         setResult(RESULT_CANCELED, resultValue);
-        //setContentView(R.layout.cur_widget_conf);
-     //*************************************************
-
-//        tv = (TextView) findViewById(R.id.widgetObject);
         ArrayList<String> curList = new ArrayList<String>();
         Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CbInfoDb.CUR_KEY_CHARCODE, CbInfoDb.CUR_KEY_VNAME},null, null, CbInfoDb.CUR_KEY_ORDER);
         cursor.moveToFirst();
@@ -75,7 +71,7 @@ public class CurWidgetConfActivity extends Activity {
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        AlertDialog resDialog = null;
+        AlertDialog resDialog;
         switch (id){
             case WIDGET_CONF_DIALOG:
                 LayoutInflater inflater = LayoutInflater.from(this);
