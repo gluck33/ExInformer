@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created by
- * User: oleg
+ * User: Oleg Balditsyn
  * Date: 05.04.13
  * Time: 16:16
  */

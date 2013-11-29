@@ -15,7 +15,6 @@
     <string-array name="page_titles">
         <item>Курсы валют</item>
         <item>Драгоценные металлы</item>
-        <item>Новости</item>
     </string-array>
     <string-array name="metall_names">
         <item>Золото</item>

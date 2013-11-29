@@ -7,11 +7,11 @@
 
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" android:baselineAligned="true"
             >
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:id="@+id/widgetObject" android:layout_gravity="center_horizontal|top" android:layout_weight="1"
                 android:enabled="true" android:focusable="false" android:linksClickable="false"
@@ -20,7 +20,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton" android:layout_gravity="right|top" android:adjustViewBounds="false"
-                android:background="@drawable/expander_ic_maximized" android:onClick="onChoseButtonClick"/>
+                android:background="@drawable/expander_ic_maximized" android:onClick="onChoseButtonClick"
+            android:clickable="false" />
     </LinearLayout>
     <Button
             android:layout_width="wrap_content"
