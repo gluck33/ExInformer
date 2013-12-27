@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -64,7 +65,7 @@ public class CurWidgetConfActivity extends FragmentActivity {
         if (widgetID == AppWidgetManager.INVALID_APPWIDGET_ID){
             finish();
         }
-        setContentView(R.layout.cur_widget_conf);
+        //setContentView(R.layout.cur_widget_conf);
         resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetID);
 
@@ -115,10 +116,20 @@ public class CurWidgetConfActivity extends FragmentActivity {
 //        tv.setText(text);
 //    }
 
-      void showConfigDialog(String chosenText, int infoType){
-          dialogView = ConfigDialog.newInstance(chosenText, infoType, new OnClickSaveButton(infoType));
-          dialogView.show(getSupportFragmentManager(), "widgetconfig");
-      }
+
+    void showChoiceCurrencyDialog(){
+        selectCurrencyDialog.show(getSupportFragmentManager(), "currencys");
+    }
+
+    void showChoiceMetallDialog(){
+        selectMetalDialog.show(getSupportFragmentManager(), "metalls");
+    }
+
+    void showConfigDialog(String chosenText, int infoType){
+        dialogView = ConfigDialog.newInstance(chosenText, infoType, new OnClickSaveButton(infoType));
+        dialogView.setOnChoiceListener(new OnClickChoiceButton(infoType));
+        dialogView.show(getSupportFragmentManager(), "widgetconfig");
+    }
 
     /**
      * Обработка выбора из списка страниц. Т.е. вида информации (Валюты, металлы и т.д.)
@@ -165,6 +176,9 @@ public class CurWidgetConfActivity extends FragmentActivity {
         public void onClick(DialogInterface dialogInterface, int i) {
             ListView lv = ((AlertDialog) dialogInterface).getListView();
             int checkedPosition = lv.getCheckedItemPosition();
+            widgetDisplayInfo = metalsList.get(checkedPosition);
+            dialogInterface.dismiss();
+            showConfigDialog(widgetDisplayInfo, INFO_TYPE_METAL);
 
         }
     }
@@ -187,14 +201,14 @@ public class CurWidgetConfActivity extends FragmentActivity {
             switch (this.infoType){
                 case INFO_TYPE_CURRENCY:
                     String _vChCode = widgetDisplayInfo.split(" - ")[0];
-                    editor.putString(WIDGET_CURRENCY_CHARCODE +widgetID, _vChCode);
-                    editor.putString(WIDGET_INFO_TYPE, String.valueOf(INFO_TYPE_CURRENCY));
+                    editor.putString(WIDGET_CURRENCY_CHARCODE + widgetID, _vChCode);
+                    editor.putString(WIDGET_INFO_TYPE + widgetID, String.valueOf(INFO_TYPE_CURRENCY));
                     editor.commit();
                     break;
                 case INFO_TYPE_METAL:
-                    String metalCode = widgetDisplayInfo;
-                    editor.putString(WIDGET_METAL_CODE, metalCode);
-                    editor.putString(WIDGET_INFO_TYPE, String.valueOf(INFO_TYPE_METAL));
+                    String metalCode = String.valueOf(metalsList.indexOf(widgetDisplayInfo));
+                    editor.putString(WIDGET_METAL_CODE + widgetID, metalCode);
+                    editor.putString(WIDGET_INFO_TYPE + widgetID, String.valueOf(INFO_TYPE_METAL));
                     editor.commit();
                     break;
             }
@@ -206,7 +220,31 @@ public class CurWidgetConfActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * Обработка нажатия кнопки выбора из списка "\/" в диалоге конфигурации виджета
+     */
 
+
+    public class OnClickChoiceButton implements View.OnClickListener{
+
+        private int infType;
+
+        public OnClickChoiceButton(int infType) {
+            this.infType = infType;
+        }
+
+        @Override
+        public void onClick(View view) {
+           switch (infType){
+               case INFO_TYPE_CURRENCY:
+                   showChoiceCurrencyDialog();
+                   break;
+               case INFO_TYPE_METAL:
+                   showChoiceMetallDialog();
+                   break;
+           }
+        }
+    }
     /**
      *  Класс для вывода диалога одиночного выбора
      */
@@ -270,6 +308,7 @@ public class CurWidgetConfActivity extends FragmentActivity {
         protected static String chosenString;
         protected static int infoType;
         protected static View.OnClickListener onSaveListener;
+        protected View.OnClickListener onChoiceClickListener;
 
         static ConfigDialog newInstance(String chosenString, int infoType, View.OnClickListener onSaveListener){
             return new ConfigDialog(chosenString, infoType, onSaveListener);
@@ -281,11 +320,25 @@ public class CurWidgetConfActivity extends FragmentActivity {
             this.onSaveListener = onSaveListener;
         }
 
+        public void setOnChoiceListener(View.OnClickListener l){
+            this.onChoiceClickListener = l;
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            //setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
+
+        }
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.cur_widget_conf, container,false);
             TextView chosenTextView = (TextView) v.findViewById(R.id.widgetObject);
             chosenTextView.setText(chosenString);
+            ImageButton choiceButton = (ImageButton) v.findViewById(R.id.imageButton);
+            choiceButton.setOnClickListener(this.onChoiceClickListener);
             Button saveButton = (Button) v.findViewById(R.id.SelectButton);
             saveButton.setOnClickListener(onSaveListener);
             return v;

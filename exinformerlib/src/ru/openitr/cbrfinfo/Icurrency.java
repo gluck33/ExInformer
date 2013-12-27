@@ -3,6 +3,7 @@ package ru.openitr.cbrfinfo;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 
 import java.text.ParseException;
@@ -30,6 +31,7 @@ public class Icurrency {
         this.vCurs = 0f;
         this.vchCode = "";
         this.vCode = 0;
+        this.vDate = Calendar.getInstance();
     }
 
 
@@ -93,6 +95,8 @@ public class Icurrency {
     public void setvDate(Calendar vDate) {
         this.vDate = vDate;
     }
+
+    public void setvDate(Long _time) {this.vDate.setTimeInMillis(_time);}
 
     public String vDateAsString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -201,7 +205,24 @@ public class Icurrency {
         return result;
     }
 
-
+    public static Icurrency getIcurencyFromBase(Context context, String _vChCode){
+        Cursor cursor = context.getContentResolver().query(CBInfoProvider.CURRENCY_CONTENT_URI, CbInfoDb.CUR_ALL_COLUMNS, CbInfoDb.CUR_KEY_CHARCODE +" = ?", new String[]{_vChCode}, null);
+        Icurrency result = new Icurrency();
+        try {
+            if (cursor.getCount()<=0) {
+                cursor.close();
+                return null;
+            }
+            cursor.moveToFirst();
+            result.setVchCode(cursor.getString(CbInfoDb.VALCHARCODE_COLUMN));
+            result.setvCurs(cursor.getFloat(CbInfoDb.VALCURS_COLUMN));
+            result.setvDate(cursor.getLong(CbInfoDb.VALDATE_COLUMN));
+            result.setvName(cursor.getString(CbInfoDb.VALNAME_COLUMN));
+        }finally {
+            cursor.close();
+        }
+        return result;
+    }
 
 
 }

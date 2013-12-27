@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    android:minWidth="400dp">
 
     <LinearLayout
             android:orientation="horizontal"
@@ -15,13 +16,14 @@
                 android:layout_height="fill_parent"
                 android:id="@+id/widgetObject" android:layout_gravity="center_horizontal|top" android:layout_weight="1"
                 android:enabled="true" android:focusable="false" android:linksClickable="false"
-                android:gravity="center_vertical" android:singleLine="false"/>
+                android:gravity="center_vertical" android:singleLine="true" />
         <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton" android:layout_gravity="right|top" android:adjustViewBounds="false"
-                android:background="@drawable/expander_ic_maximized" android:onClick="onChoseButtonClick"
-            android:clickable="false" />
+                android:background="@drawable/expander_ic_maximized"
+            android:clickable="false"
+            android:onClick="showChoiceDialog" />
     </LinearLayout>
     <Button
             android:layout_width="wrap_content"

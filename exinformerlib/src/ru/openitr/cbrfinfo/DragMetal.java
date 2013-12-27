@@ -11,6 +11,7 @@ import java.util.Calendar;
  */
 public class DragMetal {
     private final static String [] MetallEngNames = {"gold", "silver", "platinum", "palladium"};
+    private final static String [] MetallSymNames = {"Au", "Ag", "Pt", "Pd"};
     private int code;
     private float price;
     private Calendar onDate;
@@ -20,6 +21,11 @@ public class DragMetal {
         this.price = price;
         this.onDate = Calendar.getInstance();
     }
+
+    public DragMetal(){
+        this.onDate = Calendar.getInstance();
+    }
+
     public DragMetal(int code, float price, Calendar dateOfPrice) {
         this.code = code;
         this.price = price;
@@ -35,6 +41,10 @@ public class DragMetal {
 
     public String getMetallEngName() {
         return MetallEngNames [this.code-1];
+    }
+
+    public String getMetallSymName() {
+        return MetallSymNames [this.code-1];
     }
 
     public float getPrice() {
@@ -58,10 +68,16 @@ public class DragMetal {
         this.price = Float.parseFloat(price);
     }
 
+    public void setPrice(Float _price) {
+        this.price = _price;
+    }
+
 
     public void setOnDate(Calendar onDate) {
         this.onDate = onDate;
     }
+
+    public void setOnDate(Long _time){ this.onDate.setTimeInMillis(_time);}
 
     public ContentValues asContentValues() {
         ContentValues result = new ContentValues();
@@ -115,6 +131,24 @@ public class DragMetal {
         return false;
     }
 
+    public static DragMetal getMetalFromBase(Context context, int metalCode){
+        DragMetal result = new DragMetal(metalCode,0);
+        Calendar date = Calendar.getInstance();
+        Cursor cursor = (context.getContentResolver().query(CBInfoProvider.METAL_CONTENT_URI, CbInfoDb.MET_ALL_COLUMNS, CbInfoDb.MET_KEY_CODE + " = ?", new String[] {String.valueOf(metalCode)}, null));
+        try {
 
+            if (cursor.getCount()<= 0 ){
+                cursor.close();
+                return null;
+            }
+            result.setCode(cursor.getInt(CbInfoDb.MET_CODE_COL_NUM));
+            result.setPrice(cursor.getFloat(CbInfoDb.MET_PRICE_COL_NUM));
+            result.setOnDate(cursor.getLong(CbInfoDb.MET_DATE_COL_NUM));
+        } finally {
+            cursor.close();
+        }
+
+        return result;
+    }
 
 }

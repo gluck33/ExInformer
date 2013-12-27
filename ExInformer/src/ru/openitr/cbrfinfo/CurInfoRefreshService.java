@@ -14,6 +14,7 @@ import java.util.Calendar;
 /**
  * Created by oleg on 25.11.13.
  */
+
 public class CurInfoRefreshService extends InfoRefreshService{
     void readPreferencesFromFile(SharedPreferences sharedPreferences) {
         autoupdate = sharedPreferences.getBoolean("PREF_AUTO_UPDATE", true);

@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.widget.RemoteViews;
 
+import java.lang.reflect.Array;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -20,6 +21,7 @@ import java.text.SimpleDateFormat;
  * Date: 05.04.13
  * Time: 16:16
  */
+
 public class CurrencyWidget extends AppWidgetProvider {
 
     static final Uri CURRENCY_URI = CBInfoProvider.CURRENCY_CONTENT_URI;
@@ -64,33 +66,47 @@ public class CurrencyWidget extends AppWidgetProvider {
         }
     }
 
-    static void updateWidget(Context context, AppWidgetManager appWidgetManager, SharedPreferences sp, int id) {
+    static RemoteViews inflateWidget(Context context, Icurrency cur){
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
-        String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE +id, null);
-        if (_vChCode != null){
-            Cursor cursor = context.getContentResolver().query(CURRENCY_URI, CbInfoDb.CUR_ALL_COLUMNS, CbInfoDb.CUR_KEY_CHARCODE +" = ?", new String[]{_vChCode}, null);
-            if (cursor.getCount()<=0) {
-                Intent startServiceIntent = new Intent (context, CurInfoRefreshService.class);
-                context.startService(startServiceIntent);
-            }
-            try {
-                cursor.moveToFirst();
-                String vChCode = cursor.getString(CbInfoDb.VALCHARCODE_COLUMN);
-                String uriString = "android.resource://ru.openitr.cbrfinfo/drawable/f_"+vChCode;
-                float curs = cursor.getFloat(CbInfoDb.VALCURS_COLUMN);
-                long cursDate = cursor.getLong(CbInfoDb.VALDATE_COLUMN);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                widgetView.setTextViewText(R.id.widgetVchCode,vChCode);
-                widgetView.setTextViewText(R.id.widgetVCurs,String.valueOf(curs));
-                widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString.toLowerCase()));
-                widgetView.setTextViewText(R.id.cursDateTv,sdf.format(new Date(cursDate)));
+        widgetView.setTextViewText(R.id.widgetVchCode,cur.getVchCode());
+        widgetView.setTextViewText(R.id.widgetVCurs,cur.vCursAsString());
+        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse("android.resource://ru.openitr.exinformer/drawable/f_" +cur.getVchCode().toLowerCase()));
+        widgetView.setTextViewText(R.id.cursDateTv,cur.vDateAsString());
+        return widgetView;
+    }
 
-            }finally {
-                cursor.close();
-            }
-            appWidgetManager.updateAppWidget(id, widgetView);
+    static RemoteViews inflateWidget(Context context, DragMetal met){
+        RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
+        String[] metNames = context.getResources().getStringArray(R.array.metall_names);
+        widgetView.setTextViewText(R.id.widgetVchCode,met.getMetallSymName());
+        widgetView.setTextViewText(R.id.widgetVCurs,Float.toString(met.getPrice()));
+        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse("android.resource://ru.openitr.exinformer/drawable/" + met.getMetallEngName()));
+        widgetView.setTextViewText(R.id.cursDateTv,met.getOnDateAsString());
+        return widgetView; 
+    }
+
+    static void updateWidget(Context context, AppWidgetManager appWidgetManager, SharedPreferences sp, int id) {
+        String stringInfoType = sp.getString(CurWidgetConfActivity.WIDGET_INFO_TYPE + id, null);
+        if (stringInfoType == null) return;
+        Integer infoType = Integer.decode(stringInfoType);
+        switch (infoType){
+            case  0:
+                String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE +id, null);
+                if (_vChCode == null) break;
+                Icurrency cur = Icurrency.getIcurencyFromBase(context, _vChCode);
+                if (cur !=null)
+                    appWidgetManager.updateAppWidget(id, inflateWidget(context, cur));
+                break;
+            case 1:
+                Integer _metCode = Integer.getInteger(sp.getString(CurWidgetConfActivity.WIDGET_METAL_CODE+id, null));
+                if (_metCode == null) break;
+                DragMetal met = DragMetal.getMetalFromBase(context, _metCode);
+                if (met != null)
+                    appWidgetManager.updateAppWidget(id, inflateWidget(context, met));
+                break;
         }
     }
+
     public void updateWidgets(Context context){
         ComponentName thisWidget = new ComponentName(context, CurrencyWidget.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
