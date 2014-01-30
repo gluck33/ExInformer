@@ -100,7 +100,7 @@ public class Icurrency {
 
     public String vDateAsString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String dat = sdf.format(this.vDate);
+        String dat = sdf.format(this.vDate.getTime());
         return dat;
     }
 

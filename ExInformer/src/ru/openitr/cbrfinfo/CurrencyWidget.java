@@ -43,7 +43,9 @@ public class CurrencyWidget extends AppWidgetProvider {
         super.onDeleted(context, appWidgetIds);
         SharedPreferences.Editor editor = context.getSharedPreferences(CurWidgetConfActivity.WIDGET_PREF,Context.MODE_PRIVATE).edit();
         for (int widgetId: appWidgetIds){
-            editor.remove(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE +widgetId);
+            editor.remove(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE + Integer.toString(widgetId));
+            editor.remove(CurWidgetConfActivity.WIDGET_METAL_CODE + Integer.toString(widgetId));
+            editor.remove(CurWidgetConfActivity.WIDGET_INFO_TYPE + Integer.toString(widgetId));
         }
         editor.commit();
     }
@@ -70,7 +72,8 @@ public class CurrencyWidget extends AppWidgetProvider {
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
         widgetView.setTextViewText(R.id.widgetVchCode,cur.getVchCode());
         widgetView.setTextViewText(R.id.widgetVCurs,cur.vCursAsString());
-        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse("android.resource://ru.openitr.exinformer/drawable/f_" +cur.getVchCode().toLowerCase()));
+        String uriString = "android.resource://" + context.getPackageName() +"/drawable/f_";
+        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString +cur.getVchCode().toLowerCase()));
         widgetView.setTextViewText(R.id.cursDateTv,cur.vDateAsString());
         return widgetView;
     }
@@ -80,7 +83,8 @@ public class CurrencyWidget extends AppWidgetProvider {
         String[] metNames = context.getResources().getStringArray(R.array.metall_names);
         widgetView.setTextViewText(R.id.widgetVchCode,met.getMetallSymName());
         widgetView.setTextViewText(R.id.widgetVCurs,Float.toString(met.getPrice()));
-        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse("android.resource://ru.openitr.exinformer/drawable/" + met.getMetallEngName()));
+        String uriString = "android.resource://" + context.getPackageName() +"/drawable/";
+        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString + met.getMetallEngName()));
         widgetView.setTextViewText(R.id.cursDateTv,met.getOnDateAsString());
         return widgetView; 
     }
@@ -91,14 +95,14 @@ public class CurrencyWidget extends AppWidgetProvider {
         Integer infoType = Integer.decode(stringInfoType);
         switch (infoType){
             case  0:
-                String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE +id, null);
+                String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE  + id, null);
                 if (_vChCode == null) break;
                 Icurrency cur = Icurrency.getIcurencyFromBase(context, _vChCode);
                 if (cur !=null)
                     appWidgetManager.updateAppWidget(id, inflateWidget(context, cur));
                 break;
             case 1:
-                Integer _metCode = Integer.getInteger(sp.getString(CurWidgetConfActivity.WIDGET_METAL_CODE+id, null));
+                Integer _metCode = Integer.getInteger(sp.getString(CurWidgetConfActivity.WIDGET_METAL_CODE + id, null));
                 if (_metCode == null) break;
                 DragMetal met = DragMetal.getMetalFromBase(context, _metCode);
                 if (met != null)
