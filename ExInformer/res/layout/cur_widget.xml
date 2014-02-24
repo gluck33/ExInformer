@@ -12,14 +12,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/flagImageView"
-            android:src="@drawable/f_usd"
+            android:src="@drawable/palladium_w"
             android:adjustViewBounds="false"
             android:layout_alignWithParentIfMissing="false"
             android:baselineAlignBottom="false" android:clickable="false"
             android:cropToPadding="false" android:focusable="false" android:focusableInTouchMode="false"
             android:longClickable="true"
             android:scaleType="center"
-            android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

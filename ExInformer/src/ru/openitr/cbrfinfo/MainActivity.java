@@ -180,6 +180,10 @@ public class MainActivity extends ActionBarActivity {
                 return true;
             case (R.id.exiItem):
                 finish();
+                return true;
+            case 100:
+                if (LogSystem.DEBUG)
+                    TestFunc.rollbackToYesterday(getApplicationContext());
         }
         return false;
     }
@@ -194,6 +198,8 @@ public class MainActivity extends ActionBarActivity {
                 return false;
             }
         });
+        if (LogSystem.DEBUG)
+            popupMenu.getMenu().add(Menu.NONE, 100, 500, "Возврат на вчера");
         popupMenu.inflate(R.menu.main_menu);
         popupMenu.show();
 

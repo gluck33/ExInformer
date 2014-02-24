@@ -6,13 +6,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.net.Uri;
 import android.widget.RemoteViews;
-
-import java.lang.reflect.Array;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 
 /**
@@ -22,10 +17,10 @@ import java.text.SimpleDateFormat;
  * Time: 16:16
  */
 
-public class CurrencyWidget extends AppWidgetProvider {
+public class InfoWidget extends AppWidgetProvider {
 
     static final Uri CURRENCY_URI = CBInfoProvider.CURRENCY_CONTENT_URI;
-    public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.cbrfinfo.CURRENCY_UPDATED";
+    public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.cbrfinfo.INFO_UPDATED";
     public Long cursTime = Long.valueOf(0);
 
     @Override
@@ -84,7 +79,7 @@ public class CurrencyWidget extends AppWidgetProvider {
         widgetView.setTextViewText(R.id.widgetVchCode,met.getMetallSymName());
         widgetView.setTextViewText(R.id.widgetVCurs,Float.toString(met.getPrice()));
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/";
-        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString + met.getMetallEngName()));
+        widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString + met.getMetallEngName() + "_w"));
         widgetView.setTextViewText(R.id.cursDateTv,met.getOnDateAsString());
         return widgetView; 
     }
@@ -102,7 +97,10 @@ public class CurrencyWidget extends AppWidgetProvider {
                     appWidgetManager.updateAppWidget(id, inflateWidget(context, cur));
                 break;
             case 1:
-                Integer _metCode = Integer.getInteger(sp.getString(CurWidgetConfActivity.WIDGET_METAL_CODE + id, null));
+                String prefName = CurWidgetConfActivity.WIDGET_METAL_CODE + id;
+                String prefStringValue = sp.getString(prefName, null);
+                Integer _metCode = Integer.parseInt(prefStringValue);
+//                        Integer.getInteger(prefStringValue);
                 if (_metCode == null) break;
                 DragMetal met = DragMetal.getMetalFromBase(context, _metCode);
                 if (met != null)
@@ -112,12 +110,14 @@ public class CurrencyWidget extends AppWidgetProvider {
     }
 
     public void updateWidgets(Context context){
-        ComponentName thisWidget = new ComponentName(context, CurrencyWidget.class);
+        ComponentName thisWidget = new ComponentName(context, InfoWidget.class.getName());
+        //ComponentName thisWidget = new ComponentName(context, InfoWidget.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetsIds = appWidgetManager.getAppWidgetIds(thisWidget);
         SharedPreferences sp = context.getSharedPreferences(CurWidgetConfActivity.WIDGET_PREF, Context.MODE_PRIVATE);
         for (int widgetId: appWidgetsIds){
             updateWidget(context,appWidgetManager,sp,widgetId);
+            LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Update widget id = "+String.valueOf(widgetId));
         }
          LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Widget: Widget info updated.");
     }

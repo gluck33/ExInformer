@@ -99,7 +99,7 @@ public class Icurrency {
     public void setvDate(Long _time) {this.vDate.setTimeInMillis(_time);}
 
     public String vDateAsString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String dat = sdf.format(this.vDate.getTime());
         return dat;
     }

@@ -237,7 +237,7 @@ public abstract class InfoRefreshService extends Service {
             LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : (onPostExecute) Result of service: " + result);
             super.onPostExecute(result);
             Intent resIntent = new Intent(MainActivity.INFO_REFRESH_INTENT);
-            Intent widgetUpdateIntent = new Intent(CurrencyWidget.CURRENCY_WIDGET_UPDATE);
+            Intent widgetUpdateIntent = new Intent(InfoWidget.CURRENCY_WIDGET_UPDATE);
             switch (result) {
                 case STATUS_NOT_RESPOND:
                 case STATUS_NETWORK_DISABLE:
@@ -260,9 +260,9 @@ public abstract class InfoRefreshService extends Service {
                     break;
                 default:
                     resIntent.putExtra(MainActivity.PARAM_STATUS, CurrencyInfoFragment.FIN_STATUS_OK);
+                    if (autoupdate)
+                        reschedule(alarms, hourOfRefresh, minuteOfRefresh);
             }
-            if (autoupdate)
-                reschedule(alarms, hourOfRefresh, minuteOfRefresh);
             sendBroadcast(resIntent);
             if (lastInfo && result == OK){
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : lastInfo = " + lastInfo);

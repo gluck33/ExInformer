@@ -18,7 +18,7 @@ import java.util.Date;
 public final class LogSystem {
     private static boolean mLoggingEnabled = true;
     private static final String PATH = "sdcard/log_cb_info.dat";
-    private static boolean DEBUG = true;
+    public static boolean DEBUG = true;
     private LogSystem() {
 
     }

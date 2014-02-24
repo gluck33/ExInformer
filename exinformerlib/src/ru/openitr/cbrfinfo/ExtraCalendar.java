@@ -39,4 +39,17 @@ public class ExtraCalendar {
     public static String getSimpleDateString(Calendar onDate){
         return new SimpleDateFormat("dd.MM.yy").format(onDate.getTime());
     }
+
+    public static Calendar getToday(){
+        return Calendar.getInstance();
+    }
+    public static Calendar getTomorrow(Calendar currentDate){
+        currentDate.roll(Calendar.DAY_OF_YEAR, true);
+        return currentDate;
+    }
+    public static Calendar getYesterday(Calendar currentDate){
+        currentDate.roll(Calendar.DAY_OF_YEAR, -1);
+        return currentDate;
+    }
+
 }

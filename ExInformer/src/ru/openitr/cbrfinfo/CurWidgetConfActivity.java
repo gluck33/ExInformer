@@ -77,13 +77,13 @@ public class CurWidgetConfActivity extends FragmentActivity {
         for (int i = 0; i<= pageNames.length - 1; i ++)
             pageList.add(pageNames[i]);
 
-        // АrrayList для со списком металлов.
+        // АrrayList со списком металлов.
 
         String[] metalNames = getResources().getStringArray(R.array.metall_names);
         for (int i = 0; i<= metalNames.length - 1; i ++)
             metalsList.add(metalNames[i]);
 
-        // АrrayList для со списком валют.
+        // АrrayList со списком валют.
 
         Cursor cursor = getContentResolver().query(CURRENCY_URI,new String[]{CbInfoDb.CUR_KEY_CHARCODE, CbInfoDb.CUR_KEY_VNAME},null, null, CbInfoDb.CUR_KEY_ORDER);
         cursor.moveToFirst();
@@ -206,7 +206,7 @@ public class CurWidgetConfActivity extends FragmentActivity {
                     editor.commit();
                     break;
                 case INFO_TYPE_METAL:
-                    String metalCode = String.valueOf(metalsList.indexOf(widgetDisplayInfo));
+                    String metalCode = String.valueOf(metalsList.indexOf(widgetDisplayInfo)+1);
                     editor.putString(WIDGET_METAL_CODE + widgetID, metalCode);
                     editor.putString(WIDGET_INFO_TYPE + widgetID, String.valueOf(INFO_TYPE_METAL));
                     editor.commit();
@@ -214,7 +214,7 @@ public class CurWidgetConfActivity extends FragmentActivity {
             }
             setResult(RESULT_OK, resultValue);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(dialogView.getActivity());
-            CurrencyWidget.updateWidget(dialogView.getActivity(),appWidgetManager,sp,widgetID);
+            InfoWidget.updateWidget(dialogView.getActivity(), appWidgetManager, sp, widgetID);
             finish();
 
         }

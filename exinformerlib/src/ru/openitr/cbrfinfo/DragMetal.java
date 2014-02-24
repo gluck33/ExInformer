@@ -137,7 +137,7 @@ public class DragMetal {
         Cursor cursor = (context.getContentResolver().query(CBInfoProvider.METAL_CONTENT_URI, CbInfoDb.MET_ALL_COLUMNS, CbInfoDb.MET_KEY_CODE + " = ?", new String[] {String.valueOf(metalCode)}, null));
         try {
 
-            if (cursor.getCount()<= 0 ){
+            if (!cursor.moveToFirst()){
                 cursor.close();
                 return null;
             }

@@ -41,7 +41,7 @@
             android:authorities="ru.openitr.cbrfinfo.metals"/>
 
         <receiver
-        android:name="ru.openitr.cbrfinfo.CurrencyWidget"
+        android:name=".InfoWidget"
         android:icon="@drawable/money"
         android:label="@string/app_name">
         <intent-filter>
@@ -50,12 +50,11 @@
             </action>
         </intent-filter>
         <intent-filter>
-            <action android:name="ru.openitr.cbrfinfo.CURRENCY_UPDATED"/>
+            <action android:name="ru.openitr.cbrfinfo.INFO_UPDATED"/>
         </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/cur_widget_metadata">
-
             </meta-data>
         </receiver>
 
