@@ -182,8 +182,13 @@ public class MainActivity extends ActionBarActivity {
                 finish();
                 return true;
             case 100:
-                if (LogSystem.DEBUG)
+                if (LogSystem.DEBUG){
                     TestFunc.rollbackToYesterday(getApplicationContext());
+                    CurrencyInfoFragment curf = (CurrencyInfoFragment) fragments.get(CURRENCY_FRAGMENT);
+                    curf.loadCurrencysFromProvider();
+                    MetalInfoFragment mf = (MetalInfoFragment) fragments.get(METALL_FRAGMENT);
+                    mf.loadMetalPricesFromProvider();
+                }
         }
         return false;
     }
@@ -213,7 +218,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private void getInfo(Calendar newDate) {
+    public void getInfo(Calendar newDate) {
         onDate = newDate;
         switch (viewPager.getCurrentItem()){
             case CURRENCY_FRAGMENT:
@@ -228,7 +233,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    private void getInfo(long timeInMillis) {
+    public void getInfo(long timeInMillis) {
         if (timeInMillis == 0) refreshServiceIntent.putExtra(PARAM_FROM_ACTIVITY, true);
             switch (viewPager.getCurrentItem()){
                 case (CURRENCY_FRAGMENT):

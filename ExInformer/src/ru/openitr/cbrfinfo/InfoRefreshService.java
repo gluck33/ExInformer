@@ -40,8 +40,9 @@ public abstract class InfoRefreshService extends Service {
     public static final int NOTIFICATION_ID = 1;
     long lastSavedDateOfExchange;
     boolean soundNotification;
-    int updateInterval;
+    int updateInterval = 30;
     boolean fromActivity;
+    boolean fromWidget;
     protected Context mContext;
     protected int hourOfRefresh;
     protected int minuteOfRefresh;
@@ -113,6 +114,7 @@ public abstract class InfoRefreshService extends Service {
         onDate.setTimeInMillis(dateFromExtraParam);
         Boolean onlySetAlarm = intent.getBooleanExtra(CurrencyInfoFragment.PARAM_ONLY_SET_ALARM, false);
         fromActivity = intent.getBooleanExtra(CurrencyInfoFragment.PARAM_FROM_ACTIVITY, false);
+        fromWidget = intent.getBooleanExtra("FROM_WIDGET", false);
         if (onlySetAlarm) {
             resetPreferences(mContext, onDate);
             return Service.START_NOT_STICKY;
@@ -237,7 +239,7 @@ public abstract class InfoRefreshService extends Service {
             LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : (onPostExecute) Result of service: " + result);
             super.onPostExecute(result);
             Intent resIntent = new Intent(MainActivity.INFO_REFRESH_INTENT);
-            Intent widgetUpdateIntent = new Intent(InfoWidget.CURRENCY_WIDGET_UPDATE);
+            Intent widgetUpdateIntent = new Intent(InfoWidget.INFO_WIDGET_UPDATE);
             switch (result) {
                 case STATUS_NOT_RESPOND:
                 case STATUS_NETWORK_DISABLE:

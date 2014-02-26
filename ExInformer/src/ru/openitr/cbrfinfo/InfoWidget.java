@@ -20,7 +20,7 @@ import android.widget.RemoteViews;
 public class InfoWidget extends AppWidgetProvider {
 
     static final Uri CURRENCY_URI = CBInfoProvider.CURRENCY_CONTENT_URI;
-    public static String CURRENCY_WIDGET_UPDATE = "ru.openitr.cbrfinfo.INFO_UPDATED";
+    public static String INFO_WIDGET_UPDATE = "ru.openitr.cbrfinfo.INFO_UPDATED";
     public Long cursTime = Long.valueOf(0);
 
     @Override
@@ -48,7 +48,7 @@ public class InfoWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (CURRENCY_WIDGET_UPDATE.equals(intent.getAction())){
+        if (INFO_WIDGET_UPDATE.equals(intent.getAction())){
            updateWidgets(context);
            cursTime = intent.getLongExtra("CURS_TIME",1000*60*60*24);
         }
@@ -65,6 +65,8 @@ public class InfoWidget extends AppWidgetProvider {
 
     static RemoteViews inflateWidget(Context context, Icurrency cur){
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
+        if (cur.getvCurs() == 0)
+            getCurrentInfo(context, 0);
         widgetView.setTextViewText(R.id.widgetVchCode,cur.getVchCode());
         widgetView.setTextViewText(R.id.widgetVCurs,cur.vCursAsString());
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/f_";
@@ -75,6 +77,8 @@ public class InfoWidget extends AppWidgetProvider {
 
     static RemoteViews inflateWidget(Context context, DragMetal met){
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
+        if (met.getPrice() == 0)
+            getCurrentInfo(context,1);
         String[] metNames = context.getResources().getStringArray(R.array.metall_names);
         widgetView.setTextViewText(R.id.widgetVchCode,met.getMetallSymName());
         widgetView.setTextViewText(R.id.widgetVCurs,Float.toString(met.getPrice()));
@@ -121,4 +125,19 @@ public class InfoWidget extends AppWidgetProvider {
         }
          LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Widget: Widget info updated.");
     }
+    static private void getCurrentInfo (Context context, int infoType){
+        switch (infoType){
+            case 0:
+                Intent refreshCurServiceIntent = new Intent(context, CurInfoRefreshService.class);
+                refreshCurServiceIntent.putExtra(CurrencyInfoFragment.PARAM_FROM_ACTIVITY, true);
+                context.startService(refreshCurServiceIntent);
+                break;
+            case 1:
+                Intent refreshMetInfoService = new Intent(context, MetInfoRefreshService.class);
+                refreshMetInfoService.putExtra(CurrencyInfoFragment.PARAM_FROM_ACTIVITY, true);
+                context.startService(refreshMetInfoService);
+                break;
+        }
+    }
+
 }

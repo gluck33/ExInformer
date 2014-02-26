@@ -204,7 +204,7 @@ public class CBInfoProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         String tableName;
-        switch (uriMatcher.match(uri)){
+        switch (uriMatcher.match(uri)) {
             case URI_CURRENCY:
                 tableName = CbInfoDb.CURRENCY_TABLE;
                 break;
@@ -212,8 +212,8 @@ public class CBInfoProvider extends ContentProvider {
             case URI_CURRENCY_ID:
                 tableName = CbInfoDb.CURRENCY_TABLE;
                 String _vchCode = uri.getLastPathSegment();
-                if (TextUtils.isEmpty(selection)){
-                    selection = CbInfoDb.CUR_KEY_CHARCODE + " = " + "'" +_vchCode + "'";
+                if (TextUtils.isEmpty(selection)) {
+                    selection = CbInfoDb.CUR_KEY_CHARCODE + " = " + "'" + _vchCode + "'";
                 } else {
                     selection = selection + " AND " + CbInfoDb.CUR_KEY_CHARCODE + " = " + _vchCode;
                 }
@@ -226,19 +226,24 @@ public class CBInfoProvider extends ContentProvider {
             case URI_METAL_ID:
                 tableName = CbInfoDb.METAL_TABLE;
                 String _mCode = uri.getLastPathSegment();
-                if (TextUtils.isEmpty(selection)){
-                  selection = CbInfoDb.MET_KEY_CODE + " = " + "'" +_mCode + "'";
+                if (TextUtils.isEmpty(selection)) {
+                    selection = CbInfoDb.MET_KEY_CODE + " = " + "'" + _mCode + "'";
                 } else {
-                  selection = selection + " AND " + CbInfoDb.MET_KEY_CODE + " = " + _mCode;
+                    selection = selection + " AND " + CbInfoDb.MET_KEY_CODE + " = " + _mCode;
                 }
-            break;
+                break;
             default:
-                throw new IllegalArgumentException("Wrong URI: "+ uri);
+                throw new IllegalArgumentException("Wrong URI: " + uri);
         }
         db = dbHelper.getWritableDatabase();
-        int result = db.update(tableName, contentValues, selection, selectionArgs);
-        db.close();
-        return result;
+        int result = 0;
+        try {
+            result = db.update(tableName, contentValues, selection, selectionArgs);
+        } finally {
+            db.close();
+            return result;
+        }
+
     }
 private class InfoDBHelper extends SQLiteOpenHelper {
 

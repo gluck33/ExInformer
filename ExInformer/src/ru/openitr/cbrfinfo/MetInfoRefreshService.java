@@ -22,6 +22,8 @@ public class MetInfoRefreshService extends InfoRefreshService {
         hourOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.hour", 13);
         minuteOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.minute", 0);
         lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_METAL_DATE", 0);
+        // TODO Сделать храненин параметра в файле свойств или убрать совсем.
+        //updateInterval = Integer.parseInt(sharedPreferences.getString ("PREF_UPDATE_FREQ","30"));
     }
 
     void resetPreferences(Context mContext, Calendar onDate) {
@@ -72,8 +74,8 @@ public class MetInfoRefreshService extends InfoRefreshService {
                 Calendar lastDateInfoOnServer = infoStub.get(infoStub.size() - 1).getOnDate();
                 // Если эта дата - сегодня и сервис был запущен из аларма то это значит что данных на завтра нет.
                 // Т.е. свежих данных на сервере еще нет.
-                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,this,"Last date of data is:" +  new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(lastDateInfoOnServer.getTime()));
-                if (startFromNulldate & ExtraCalendar.isToday(lastDateInfoOnServer)& !fromActivity)
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,this,"Last date of data is: " +  new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(lastDateInfoOnServer.getTime()));
+                if (startFromNulldate & ExtraCalendar.isToday(lastDateInfoOnServer)& !fromActivity & !fromWidget)
                     return STATUS_NOT_FRESH_DATA;
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Start update base.");
                 for (DragMetal dragMetalRecord : infoStub) {

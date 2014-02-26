@@ -3,6 +3,7 @@ package ru.openitr.cbrfinfo;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -29,5 +30,8 @@ public class TestFunc {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putLong("PREF_LAST_DATE", onDate.getTimeInMillis());
         editor.commit();
+        Intent widgetUpdateIntent = new Intent(InfoWidget.INFO_WIDGET_UPDATE);
+        widgetUpdateIntent.putExtra("CURS_TIME", onDate.getTimeInMillis());
+        context.sendBroadcast(widgetUpdateIntent);
     }
 }
