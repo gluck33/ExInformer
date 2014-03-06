@@ -39,18 +39,20 @@ public abstract class InfoRefreshService extends Service {
     SharedPreferences sharedPreferences;
     public static final int NOTIFICATION_ID = 1;
     long lastSavedDateOfExchange;
+    boolean showNotification;
     boolean soundNotification;
     int updateInterval = 30;
     boolean fromActivity;
-    boolean fromWidget;
     protected Context mContext;
     protected int hourOfRefresh;
     protected int minuteOfRefresh;
 
-    abstract void readPreferencesFromFile (SharedPreferences sharedPreferences);
+    //abstract void readPreferencesFromFile (SharedPreferences sharedPreferences);
     abstract void resetPreferences (Context mContext, Calendar onDate);
     abstract String setAlarmAction();
     abstract void startTask(Calendar onDate);
+    abstract String getTickerText();
+
     /**
      * Установка задачи на запуск сервиса в следующий раз
      * @param alarmManager
@@ -88,6 +90,30 @@ public abstract class InfoRefreshService extends Service {
         reschedule(alarmManager, interval);
     }
 
+    void readPreferencesFromFile(SharedPreferences sharedPreferences) {
+        showNotification = sharedPreferences.getBoolean("PREF_NOTIFY", true);
+        soundNotification = sharedPreferences.getBoolean("PREF_SOUND_NOTIFY", true);
+    }
+
+
+    void initService(){
+        Calendar nextDateTime = Calendar.getInstance();
+        nextDateTime.set(Calendar.HOUR_OF_DAY, hourOfRefresh);
+        nextDateTime.set(Calendar.MINUTE, minuteOfRefresh);
+        int startHour = 0;
+        boolean between = true;
+        // Прибавляем к времени старта updateInterval до тех пор пока он не попадет в промежуто кремени 13-18 часов
+        // но и при этом был не в прошедшем времени.
+        while (nextDateTime.getTimeInMillis() <= System.currentTimeMillis() && between) {
+            nextDateTime.add(Calendar.MILLISECOND, updateInterval);
+            startHour = nextDateTime.get(Calendar.HOUR_OF_DAY);
+            between = (startHour > hourOfRefresh && startHour < hourOfRefresh + 5);
+        }
+        reschedule(alarms, nextDateTime.get(Calendar.HOUR_OF_DAY), nextDateTime.get(Calendar.MINUTE));
+    }
+
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -114,7 +140,6 @@ public abstract class InfoRefreshService extends Service {
         onDate.setTimeInMillis(dateFromExtraParam);
         Boolean onlySetAlarm = intent.getBooleanExtra(CurrencyInfoFragment.PARAM_ONLY_SET_ALARM, false);
         fromActivity = intent.getBooleanExtra(CurrencyInfoFragment.PARAM_FROM_ACTIVITY, false);
-        fromWidget = intent.getBooleanExtra("FROM_WIDGET", false);
         if (onlySetAlarm) {
             resetPreferences(mContext, onDate);
             return Service.START_NOT_STICKY;
@@ -135,7 +160,7 @@ public abstract class InfoRefreshService extends Service {
     private void notifyNewExchange(Calendar onDate){
         if (fromActivity) return;
         int icon = R.drawable.money;
-        String tickerText = getString(R.string.exchange_rate_change);
+        String tickerText = getTickerText();
         if (newExchangeRateNotification == null)
             newExchangeRateNotification = new Notification (icon, tickerText, System.currentTimeMillis());
         Context context = getApplicationContext();
@@ -254,6 +279,8 @@ public abstract class InfoRefreshService extends Service {
                     if ((System.currentTimeMillis() - nextExecuteDateTime.getTimeInMillis()) < (AlarmManager.INTERVAL_HOUR * 4)){
                         if (!fromActivity)
                             reschedule(alarms, updateInterval);
+                        else
+                            initService();
                     }
                     else {
                         nextExecuteDateTime.roll(Calendar.DAY_OF_YEAR,true);

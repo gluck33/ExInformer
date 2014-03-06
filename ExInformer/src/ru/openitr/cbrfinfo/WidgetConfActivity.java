@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * Time: 11:46
  */
 
-public class CurWidgetConfActivity extends FragmentActivity {
+public class WidgetConfActivity extends FragmentActivity {
 
     public  final static String WIDGET_PREF = "widget_pref";
     public final static String WIDGET_CURRENCY_CHARCODE = "widget_currency_charcode";
@@ -100,9 +100,10 @@ public class CurWidgetConfActivity extends FragmentActivity {
         //
 
         // Диалог выбора валюты.
-        selectCurrencyDialog = SelectListAlertDialog.newInstance(curList, "currencys", new CurrencyListChoiceListener());
+        curList.trimToSize();
+        selectCurrencyDialog = SelectListAlertDialog.newInstance(curList, getText(R.string.currency_page_header).toString(), new CurrencyListChoiceListener());
         //Диалог выбора металлов.
-        selectMetalDialog = SelectListAlertDialog.newInstance(metalsList, "metalls", new MetalListChoiceListener());
+        selectMetalDialog = SelectListAlertDialog.newInstance(metalsList, getText(R.string.metal_page_header).toString(), new MetalListChoiceListener());
         // Выбор типа информации
         selectInfoTypeDialog = SelectListAlertDialog.newInstance(pageList, getText(R.string.selectInfoItem).toString(), new PageListChoseListener());
         selectInfoTypeDialog.show(getSupportFragmentManager(), "page");
@@ -162,10 +163,10 @@ public class CurWidgetConfActivity extends FragmentActivity {
             int checkedPosition = lv.getCheckedItemPosition();
             widgetDisplayInfo = curList.get(checkedPosition);
             dialogInterface.dismiss();
-            showConfigDialog(widgetDisplayInfo, INFO_TYPE_CURRENCY);
+            showConfigDialog(widgetDisplayInfo.trim(), INFO_TYPE_CURRENCY);
             }
-
         }
+
     /**
      * Обработка выбора из списка металлов.
      */
@@ -224,7 +225,6 @@ public class CurWidgetConfActivity extends FragmentActivity {
      * Обработка нажатия кнопки выбора из списка "\/" в диалоге конфигурации виджета
      */
 
-
     public class OnClickChoiceButton implements View.OnClickListener{
 
         private int infType;
@@ -245,6 +245,7 @@ public class CurWidgetConfActivity extends FragmentActivity {
            }
         }
     }
+
     /**
      *  Класс для вывода диалога одиночного выбора
      */

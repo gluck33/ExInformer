@@ -53,4 +53,7 @@
     <string name="preference_met_time_summary">00:00</string>
     <string name="select_widget_info_type">Выбор типа информации</string>
     <string name="rollback">Откатить на вчера</string>
+    <string name="metall_rate_change">Цены на драгоценные металлы изменились</string>
+    <string name="changes_notify_title">Показывать уведомление</string>
+    <string name="changes_notify_summary">Показывать уведомления в статус баре при получении новой информации</string>
 </resources>

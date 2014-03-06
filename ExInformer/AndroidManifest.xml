@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="ru.openitr.cbrfinfo.CurWidgetConfActivity">
+        <activity android:name=".WidgetConfActivity">
              <intent-filter>
                  <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
              </intent-filter>

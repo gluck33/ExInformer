@@ -17,19 +17,23 @@ import java.util.Calendar;
 
 public class CurInfoRefreshService extends InfoRefreshService{
     void readPreferencesFromFile(SharedPreferences sharedPreferences) {
+        super.readPreferencesFromFile(sharedPreferences);
         autoupdate = sharedPreferences.getBoolean("PREF_AUTO_UPDATE", true);
         hourOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.hour", 13);
         minuteOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.minute", 0);
-        soundNotification = sharedPreferences.getBoolean("PREF_SOUND_NOTIFY", true);
         lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_DATE",0);
         updateInterval = Integer.parseInt(sharedPreferences.getString ("PREF_UPDATE_FREQ","30"));
     }
+
+
     void resetPreferences(Context mContext, Calendar onDate) {
         if (Icurrency.isNeedUpdate(onDate, mContext))
             reschedule(alarms, updateInterval);
         else
             reschedule(alarms, hourOfRefresh, minuteOfRefresh);
     }
+
+    String getTickerText(){ return getString(R.string.exchange_rate_change);}
 
     String setAlarmAction() {
         return CurInfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
@@ -70,7 +74,11 @@ public class CurInfoRefreshService extends InfoRefreshService{
             if (!internetAvailable((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE))) {
                 return STATUS_NETWORK_DISABLE;
             }
-            if (ExtraCalendar.isToday(onDate) && startFromNulldate) res = STATUS_NOT_FRESH_DATA;
+            if (ExtraCalendar.isToday(onDate) && startFromNulldate) {
+                res = STATUS_NOT_FRESH_DATA;
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,                        this.getClass().getSimpleName() + "Not fresh data = "
+                                + (ExtraCalendar.isToday(onDate) && startFromNulldate));
+            }
             try {
                 ArrayList<Icurrency> infoStub = dailyInfoStub.getCursOnDate(onDate);
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : Start update base.");

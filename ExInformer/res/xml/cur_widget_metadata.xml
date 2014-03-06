@@ -6,6 +6,6 @@
         android:minHeight="40dp"
         android:minWidth="40dp"
         android:updatePeriodMillis="86400000"
-        android:configure="ru.openitr.cbrfinfo.CurWidgetConfActivity"
+        android:configure="ru.openitr.cbrfinfo.WidgetConfActivity"
         >
 </appwidget-provider>

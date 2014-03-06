@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -54,6 +56,8 @@ public class MainActivity extends ActionBarActivity {
     private FragmentPagerAdapter fragmentPagerAdapter;
     private final List<ListFragment> fragments = new ArrayList<ListFragment>();
     private ViewPager viewPager;
+    public boolean firstRun;
+    public boolean infoLoaded [] = {false, false};
     NotificationManager notificationManager;
     BroadcastReceiver br;
     Intent refreshServiceIntent;
@@ -68,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firstRun = isFirstRun(this);
         mContentView = findViewById(R.id.pager);
         mLoadingView = findViewById(R.id.loading_spinner);
         mLoadingView.setVisibility(View.GONE);
@@ -96,6 +101,8 @@ public class MainActivity extends ActionBarActivity {
                 return pagesTitles[position];
             }
 
+
+
             @Override
             public void notifyDataSetChanged() {
                 super.notifyDataSetChanged();
@@ -103,9 +110,38 @@ public class MainActivity extends ActionBarActivity {
         };
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(fragmentPagerAdapter);
-        viewPager.setCurrentItem(CURRENCY_FRAGMENT);
-//        setInfoDateToTitle();
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i2) {
+                //LogSystem.logInFile("CBInfo", "onPageScrolled");
+            }
 
+            @Override
+            public void onPageSelected(int i) {
+                initInfo(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+               // LogSystem.logInFile("CBInfo", "onPageScrollStateChanged");
+            }
+
+            @Override
+            protected Object clone() throws CloneNotSupportedException {
+                return super.clone();
+            }
+        });
+        viewPager.setCurrentItem(CURRENCY_FRAGMENT);
+        initInfo(0);
+// setInfoDateToTitle();
+
+    }
+
+    public void initInfo(int i){
+        if (firstRun & !infoLoaded[i]){
+            getInfo(0);
+            LogSystem.logInFile("CBInfo", this, "initInfo");
+        }
     }
 
     @Override
@@ -220,17 +256,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void getInfo(Calendar newDate) {
         onDate = newDate;
-        switch (viewPager.getCurrentItem()){
-            case CURRENCY_FRAGMENT:
-                refreshServiceIntent.putExtra(PARAM_DATE, newDate.getTimeInMillis());
-                startService(refreshServiceIntent);
-                break;
-            case METALL_FRAGMENT:
-                refreshMetInfoService.putExtra(PARAM_FROM_ACTIVITY, true);
-                refreshMetInfoService.putExtra(PARAM_DATE, newDate.getTimeInMillis());
-                startService(refreshMetInfoService);
-                break;
-        }
+        getInfo(newDate.getTimeInMillis());
     }
 
     public void getInfo(long timeInMillis) {
@@ -240,11 +266,13 @@ public class MainActivity extends ActionBarActivity {
                     refreshServiceIntent.putExtra(PARAM_FROM_ACTIVITY, true);
                     refreshServiceIntent.putExtra(PARAM_DATE, timeInMillis);
                     startService(refreshServiceIntent);
+                    infoLoaded[CURRENCY_FRAGMENT] = true;
                     break;
                 case (METALL_FRAGMENT):
                     refreshMetInfoService.putExtra(PARAM_FROM_ACTIVITY, true);
                     refreshMetInfoService.putExtra(PARAM_DATE, timeInMillis);
                     startService(refreshMetInfoService);
+                    infoLoaded[METALL_FRAGMENT] = true;
                     break;
             }
     }
@@ -302,6 +330,18 @@ public class MainActivity extends ActionBarActivity {
 
     private void endProgress() {
         if (alpha != null)  alpha.cancel();
+    }
+
+
+    private boolean isFirstRun(Context context){
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean firstRun = sp.getBoolean("PREF_FIRST_RUN", true);
+        if (firstRun){
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putBoolean("PREF_FIRST_RUN",false);
+            editor.commit();
+        }
+        return firstRun;
     }
 
     /**

@@ -16,13 +16,14 @@ import java.util.Calendar;
  * Created by oleg on 26.11.13.
  */
 public class MetInfoRefreshService extends InfoRefreshService {
-
+    @Override
     void readPreferencesFromFile(SharedPreferences sharedPreferences) {
+        super.readPreferencesFromFile(sharedPreferences);
         autoupdate = sharedPreferences.getBoolean("PREF_MET_AUTO_UPDATE", true);
         hourOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.hour", 13);
         minuteOfRefresh = sharedPreferences.getInt("PREF_MET_UPDATE_TIME.minute", 0);
         lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_METAL_DATE", 0);
-        // TODO Сделать храненин параметра в файле свойств или убрать совсем.
+        // TODO Сделать храненин параметра в файле свойств или убрать совсем переменную updateInterval.
         //updateInterval = Integer.parseInt(sharedPreferences.getString ("PREF_UPDATE_FREQ","30"));
     }
 
@@ -37,6 +38,8 @@ public class MetInfoRefreshService extends InfoRefreshService {
     String setAlarmAction() {
         return MetInfoRefreshReciever.ACTION_REFRESH_MET_INFO_ALARM;
     }
+
+    String getTickerText(){return getString(R.string.metall_rate_change);}
 
     void startTask(Calendar onDate) {
         new RefreshMetalInfoTask().execute(onDate);
@@ -75,7 +78,7 @@ public class MetInfoRefreshService extends InfoRefreshService {
                 // Если эта дата - сегодня и сервис был запущен из аларма то это значит что данных на завтра нет.
                 // Т.е. свежих данных на сервере еще нет.
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,this,"Last date of data is: " +  new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(lastDateInfoOnServer.getTime()));
-                if (startFromNulldate & ExtraCalendar.isToday(lastDateInfoOnServer)& !fromActivity & !fromWidget)
+                if (startFromNulldate & ExtraCalendar.isToday(lastDateInfoOnServer)& !fromActivity)
                     return STATUS_NOT_FRESH_DATA;
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Start update base.");
                 for (DragMetal dragMetalRecord : infoStub) {

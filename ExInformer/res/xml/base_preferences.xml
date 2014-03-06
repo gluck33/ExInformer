@@ -11,11 +11,20 @@
         </CheckBoxPreference>
 
         <CheckBoxPreference
+            android:key="PREF_NOTIFY"
+            android:title="@string/changes_notify_title"
+            android:summary="@string/changes_notify_summary"
+            android:defaultValue="true"
+            android:dependency="PREF_AUTO_UPDATE"
+            >
+        </CheckBoxPreference>
+
+        <CheckBoxPreference
                 android:key="PREF_SOUND_NOTIFY"
                 android:title="@string/sound_notify"
                 android:summary="@string/sound_notify_summary"
                 android:defaultValue="true"
-                android:dependency="PREF_AUTO_UPDATE"
+                android:dependency="PREF_NOTIFY"
                 >
         </CheckBoxPreference>
 

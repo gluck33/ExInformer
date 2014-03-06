@@ -36,11 +36,11 @@ public class InfoWidget extends AppWidgetProvider {
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
-        SharedPreferences.Editor editor = context.getSharedPreferences(CurWidgetConfActivity.WIDGET_PREF,Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences(WidgetConfActivity.WIDGET_PREF,Context.MODE_PRIVATE).edit();
         for (int widgetId: appWidgetIds){
-            editor.remove(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE + Integer.toString(widgetId));
-            editor.remove(CurWidgetConfActivity.WIDGET_METAL_CODE + Integer.toString(widgetId));
-            editor.remove(CurWidgetConfActivity.WIDGET_INFO_TYPE + Integer.toString(widgetId));
+            editor.remove(WidgetConfActivity.WIDGET_CURRENCY_CHARCODE + Integer.toString(widgetId));
+            editor.remove(WidgetConfActivity.WIDGET_METAL_CODE + Integer.toString(widgetId));
+            editor.remove(WidgetConfActivity.WIDGET_INFO_TYPE + Integer.toString(widgetId));
         }
         editor.commit();
     }
@@ -57,7 +57,7 @@ public class InfoWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        SharedPreferences sp = context.getSharedPreferences(CurWidgetConfActivity.WIDGET_PREF, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(WidgetConfActivity.WIDGET_PREF, Context.MODE_PRIVATE);
         for (int id: appWidgetIds){
             updateWidget(context, appWidgetManager, sp, id);
         }
@@ -89,19 +89,19 @@ public class InfoWidget extends AppWidgetProvider {
     }
 
     static void updateWidget(Context context, AppWidgetManager appWidgetManager, SharedPreferences sp, int id) {
-        String stringInfoType = sp.getString(CurWidgetConfActivity.WIDGET_INFO_TYPE + id, null);
+        String stringInfoType = sp.getString(WidgetConfActivity.WIDGET_INFO_TYPE + id, null);
         if (stringInfoType == null) return;
         Integer infoType = Integer.decode(stringInfoType);
         switch (infoType){
             case  0:
-                String _vChCode = sp.getString(CurWidgetConfActivity.WIDGET_CURRENCY_CHARCODE  + id, null);
+                String _vChCode = sp.getString(WidgetConfActivity.WIDGET_CURRENCY_CHARCODE  + id, null);
                 if (_vChCode == null) break;
                 Icurrency cur = Icurrency.getIcurencyFromBase(context, _vChCode);
                 if (cur !=null)
                     appWidgetManager.updateAppWidget(id, inflateWidget(context, cur));
                 break;
             case 1:
-                String prefName = CurWidgetConfActivity.WIDGET_METAL_CODE + id;
+                String prefName = WidgetConfActivity.WIDGET_METAL_CODE + id;
                 String prefStringValue = sp.getString(prefName, null);
                 Integer _metCode = Integer.parseInt(prefStringValue);
 //                        Integer.getInteger(prefStringValue);
@@ -118,7 +118,7 @@ public class InfoWidget extends AppWidgetProvider {
         //ComponentName thisWidget = new ComponentName(context, InfoWidget.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetsIds = appWidgetManager.getAppWidgetIds(thisWidget);
-        SharedPreferences sp = context.getSharedPreferences(CurWidgetConfActivity.WIDGET_PREF, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(WidgetConfActivity.WIDGET_PREF, Context.MODE_PRIVATE);
         for (int widgetId: appWidgetsIds){
             updateWidget(context,appWidgetManager,sp,widgetId);
             LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Update widget id = "+String.valueOf(widgetId));

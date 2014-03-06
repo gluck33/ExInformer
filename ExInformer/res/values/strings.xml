@@ -52,4 +52,7 @@
     <string name="preference_met_time_summary">00:00</string>
     <string name="select_widget_info_type">Choice type of information</string>
     <string name="rollback">Rollback yesterday</string>
+    <string name="metall_rate_change">Metall rate change</string>
+    <string name="changes_notify_title">Show notification</string>
+    <string name="changes_notify_summary">Show notification in status bar if application get new information</string>
 </resources>

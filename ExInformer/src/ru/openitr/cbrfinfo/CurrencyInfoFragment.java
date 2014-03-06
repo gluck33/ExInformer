@@ -97,11 +97,10 @@ public class CurrencyInfoFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onDate = Calendar.getInstance();
-        LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ":  onCreate");
+        LogSystem.logInFile(LOG_TAG, this, ":  onCreate");
         br = new CurrencyInfoBroadcastReceiever();
-
-
     }
+
 
 
     @Override
@@ -167,7 +166,7 @@ public class CurrencyInfoFragment extends ListFragment {
     public void onDestroy() {
         getActivity().unregisterReceiver(br);
         super.onDestroy();
-        LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": onDestroy");
+        LogSystem.logInFile(LOG_TAG, this, ": onDestroy");
     }
 
 
