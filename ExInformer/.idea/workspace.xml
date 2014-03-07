@@ -77,19 +77,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurWidgetConfActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/WidgetConfActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoWidget.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoWidget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/base_preferences.xml" afterPath="$PROJECT_DIR$/res/xml/base_preferences.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/cur_widget_conf.xml" afterPath="$PROJECT_DIR$/res/layout/cur_widget_conf.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/xml/cur_widget_metadata.xml" afterPath="$PROJECT_DIR$/res/xml/cur_widget_metadata.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitinit.sh" afterPath="$PROJECT_DIR$/gitinit.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-ru/strings.xml" afterPath="$PROJECT_DIR$/res/values-ru/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -160,10 +151,20 @@
       <file leaf-file-name="CurInfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="57" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
+            <state line="37" column="91" selection-start="1322" selection-end="1409" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1904">
               <folding>
                 <element signature="e#1274#1314#0" expanded="true" />
+                <element signature="e#1354#1407#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoWidget.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoWidget.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="13" selection-start="414" selection-end="414" vertical-scroll-proportion="-0.38938054" vertical-offset="424" max-vertical-offset="2414">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,7 +172,7 @@
       <file leaf-file-name="MetInfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="68" selection-start="846" selection-end="846" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="1853">
+            <state line="43" column="80" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1887">
               <folding>
                 <element signature="e#1553#1591#0" expanded="true" />
               </folding>
@@ -179,13 +180,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfoRefreshService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values-ru/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="0" selection-start="5221" selection-end="5221" vertical-scroll-proportion="0.33333334" vertical-offset="1923" max-vertical-offset="5746">
+            <state line="58" column="86" selection-start="3783" selection-end="3783" vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="1122">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="265" column="20" selection-start="9119" selection-end="9119" vertical-scroll-proportion="0.0" vertical-offset="4280" max-vertical-offset="6732">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6841#6894#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InfoRefreshService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="161" column="0" selection-start="6527" selection-end="6527" vertical-scroll-proportion="-4.413793" vertical-offset="2609" max-vertical-offset="5780">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -252,13 +272,13 @@
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
         <option value="$PROJECT_DIR$/res/xml/base_preferences.xml" />
-        <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
-        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
+        <option value="$PROJECT_DIR$/res/values-ru/strings.xml" />
+        <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java" />
       </list>
     </option>
   </component>
@@ -323,8 +343,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -398,22 +418,8 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CBInfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xml" />
+              <option name="myItemId" value="cbrfinfo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -428,42 +434,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CBInfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values-ru" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CBInfo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -556,6 +526,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -582,19 +565,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -766,14 +736,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32650602" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2686747" sideWeight="0.49919093" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2686747" sideWeight="0.49919093" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32905483" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" x="1280" y="559" width="1272" height="465" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2669903" sideWeight="0.48433736" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2669903" sideWeight="0.48434925" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2669903" sideWeight="0.51566267" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2669903" sideWeight="0.51565075" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25662652" sideWeight="0.49921876" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="98" y="124" width="1084" height="776" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
@@ -1004,19 +974,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="143" column="0" selection-start="6578" selection-end="6578" vertical-scroll-proportion="0.8845178" vertical-offset="1615" max-vertical-offset="2414">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/cur_widget.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1139" />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/WidgetConfActivity.java">
@@ -1072,15 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="60" selection-start="5348" selection-end="5348" vertical-scroll-proportion="0.0" vertical-offset="1853" max-vertical-offset="6732">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="163" column="0" selection-start="5661" selection-end="5661" vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="4012">
@@ -1089,23 +1043,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/cur_widget_conf.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state line="9" column="4" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="748">
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/time_preference.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/time_preference.xml">
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
@@ -1115,47 +1069,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values-ru/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="62" selection-start="3568" selection-end="3568" vertical-scroll-proportion="0.0" vertical-offset="317" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/xml/base_preferences.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="36" selection-start="533" selection-end="545" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="1411">
           <folding>
-            <element signature="e#632#664#0" expanded="true" />
+            <element signature="e#632#664#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="57" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
+        <state line="265" column="20" selection-start="9119" selection-end="9119" vertical-scroll-proportion="0.0" vertical-offset="3138" max-vertical-offset="6732">
           <folding>
-            <element signature="e#1274#1314#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="68" selection-start="846" selection-end="846" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="1853">
+        <state line="43" column="80" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1887">
           <folding>
             <element signature="e#1553#1591#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-ru/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="86" selection-start="3783" selection-end="3783" vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="1122">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoRefreshService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="0" selection-start="5221" selection-end="5221" vertical-scroll-proportion="0.33333334" vertical-offset="1923" max-vertical-offset="5746">
+        <state line="161" column="0" selection-start="6527" selection-end="6527" vertical-scroll-proportion="-4.413793" vertical-offset="2609" max-vertical-offset="5780">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6841#6894#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="91" selection-start="1322" selection-end="1409" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1904">
+          <folding>
+            <element signature="e#1274#1314#0" expanded="true" />
+            <element signature="e#1354#1407#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/InfoWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="414" selection-end="414" vertical-scroll-proportion="-0.38938054" vertical-offset="424" max-vertical-offset="2414">
+          <folding />
         </state>
       </provider>
     </entry>

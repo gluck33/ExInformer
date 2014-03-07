@@ -56,4 +56,5 @@
     <string name="metall_rate_change">Цены на драгоценные металлы изменились</string>
     <string name="changes_notify_title">Показывать уведомление</string>
     <string name="changes_notify_summary">Показывать уведомления в статус баре при получении новой информации</string>
+    <string name="obtained_change_in_metall_rates">Получены новые цены на драгоценные металлы</string>
 </resources>

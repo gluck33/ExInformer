@@ -41,6 +41,8 @@ public class MetInfoRefreshService extends InfoRefreshService {
 
     String getTickerText(){return getString(R.string.metall_rate_change);}
 
+    String getExpandetText(){return getString(R.string.obtained_change_in_metall_rates);}
+
     void startTask(Calendar onDate) {
         new RefreshMetalInfoTask().execute(onDate);
     }

@@ -12,5 +12,3 @@ echo "Adding all files."
 git add .
 echo "Initial commit."
 git commit -m "init commit"
-echo "Adding remote repository."
-git remote add openitr ssh://openitr.ru:2312/~/reps/android/$1.git

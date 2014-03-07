@@ -52,6 +52,7 @@ public abstract class InfoRefreshService extends Service {
     abstract String setAlarmAction();
     abstract void startTask(Calendar onDate);
     abstract String getTickerText();
+    abstract String getExpandetText();
 
     /**
      * Установка задачи на запуск сервиса в следующий раз
@@ -164,7 +165,7 @@ public abstract class InfoRefreshService extends Service {
         if (newExchangeRateNotification == null)
             newExchangeRateNotification = new Notification (icon, tickerText, System.currentTimeMillis());
         Context context = getApplicationContext();
-        String expandedText = getString(R.string.obtained_change_in_exchange_rates);// + "  "+ ExtraCalendar.getSimpleDateString(onDate);
+        String expandedText = getExpandetText();//getString(R.string.obtained_change_in_exchange_rates);// + "  "+ ExtraCalendar.getSimpleDateString(onDate);
         String expandedTitle = tickerText;
 
         Intent startActivityIntent = new Intent(InfoRefreshService.this, CurrencyInfoFragment.class);
@@ -297,7 +298,8 @@ public abstract class InfoRefreshService extends Service {
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : lastInfo = " + lastInfo);
                 widgetUpdateIntent.putExtra("CURS_TIME",Calendar.getInstance().getTimeInMillis());
                 sendBroadcast(widgetUpdateIntent);
-                notifyNewExchange(onDate);
+                if (showNotification)
+                    notifyNewExchange(onDate);
             }
             stopSelf();
         }

@@ -35,6 +35,8 @@ public class CurInfoRefreshService extends InfoRefreshService{
 
     String getTickerText(){ return getString(R.string.exchange_rate_change);}
 
+    String getExpandetText(){return getString(R.string.obtained_change_in_exchange_rates);}
+
     String setAlarmAction() {
         return CurInfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
     }
