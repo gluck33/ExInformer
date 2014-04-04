@@ -151,6 +151,7 @@ public class CurrencyInfoFragment extends ListFragment {
         LayoutInflater inflater = activity.getLayoutInflater();
         header  = (TextView) inflater.inflate(R.layout.header_footer, null);
         header.setText(Icurrency.getDateInBaseAsString(activity));
+
         mDslv.addHeaderView(header, null, false);
     }
 
@@ -179,14 +180,11 @@ public class CurrencyInfoFragment extends ListFragment {
     public void loadCurrencysFromProvider() {
         icurrencies.clear();
         ContentResolver cr = getActivity().getContentResolver();
-        Cursor c = cr.query(CURRENCYS_URI, CbInfoDb.CUR_ALL_COLUMNS, null, null, CbInfoDb.CUR_KEY_ORDER + " ASC");
-        if (c.getCount() == 0) {
-            FragmentActivity curActivity = getActivity();
-            Intent refreshServiceIntent = new Intent(curActivity, CurInfoRefreshService.class).putExtra(PARAM_FROM_ACTIVITY, true);
-            curActivity.startService(refreshServiceIntent);
-            c.close();
-            c = cr.query(CURRENCYS_URI, CbInfoDb.CUR_ALL_COLUMNS, null, null, CbInfoDb.CUR_KEY_ORDER + " ASC");
-        }
+        Cursor c = cr.query
+                        (CBInfoProvider.CURRENCY_CONTENT_URI,
+                        CbInfoDb.CUR_ALL_COLUMNS,
+                        null, null,
+                        CbInfoDb.CUR_KEY_ORDER + " ASC");
         if (c.moveToFirst()) {
             do {
                 String vName = c.getString(CbInfoDb.VALNAME_COLUMN);
@@ -201,7 +199,10 @@ public class CurrencyInfoFragment extends ListFragment {
         }
         if (ca != null) ca.notifyDataSetChanged();
         c.close();
+        c = null;
     }
+
+
 
     /**
      * Перемещение элемента в листе.

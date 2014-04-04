@@ -15,10 +15,14 @@ public class CurInfoRefreshReciever extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + "getAction: "+intent.getAction());
+        Intent curInfoServiceIntent = new Intent(context, CurInfoRefreshService.class);
         if (intent.getAction().equals(ACTION_REFRESH_INFO_ALARM)) {
-            Intent startIntent = new Intent(context, CurInfoRefreshService.class);
-            context.startService(startIntent);
-            LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, ACTION_REFRESH_INFO_ALARM);
+            context.startService(curInfoServiceIntent);
+        }
+        if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())){
+            curInfoServiceIntent.putExtra(MainActivity.PARAM_ONLY_SET_ALARM, true);
+            context.startService(curInfoServiceIntent);
         }
     }
 }

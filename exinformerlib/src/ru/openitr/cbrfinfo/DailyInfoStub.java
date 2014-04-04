@@ -54,7 +54,8 @@ public class DailyInfoStub {
         try {
              LogSystem.logInFile (LOG_TAG, "InfoStub: Getting info from CB server on date "+ sdf.format(onDate.getTime()) + ".");
             androidHttpTransport.call(soapAction, envelope);
-             LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
+            LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
+
         } catch (IOException e) {
             e.printStackTrace();
              LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate IOException: "+e.getMessage());
@@ -82,6 +83,7 @@ public class DailyInfoStub {
                 valCurs = valCurs/valNom;
                 result.add(new Icurrency(valName, valCurs, valChCode, vCode, onDate));
             }
+
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
              LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
@@ -112,11 +114,12 @@ public class DailyInfoStub {
         androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
         try {
              LogSystem.logInFile (LOG_TAG, "InfoStub: Getting GetLatestDate info from CB server.");
-            androidHttpTransport.call(soapAction, envelope);
+             androidHttpTransport.call(soapAction, envelope);
              LogSystem.logInFile(LOG_TAG, "InfoStub: Info getLatestCurrencyDate recieved from SB server. ");
         } catch (IOException e) {
              LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
             e.printStackTrace();
+
             throw e;
         } catch (Exception e) {
              LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());

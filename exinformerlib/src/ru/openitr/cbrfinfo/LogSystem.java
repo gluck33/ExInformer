@@ -1,5 +1,6 @@
 package ru.openitr.cbrfinfo;
 
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.BufferedWriter;
@@ -115,6 +116,7 @@ public final class LogSystem {
     public static int logInFile(String tag, String msg)
     {
         if (!DEBUG) return 0;
+        if (!isExternalStorageWritable()) return 0;
         int result = 1;
         File file = new File(PATH);
         try {
@@ -137,12 +139,22 @@ public final class LogSystem {
     }
 
     public static int logInFile(String tag, Object object ,String msg){
+        if (!DEBUG) return 0;
         String msgWithClassName = getClassName(object)+ ": " + msg;
         return logInFile(tag, msgWithClassName);
+    }
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 
     public static String getClassName(Object object){
         return object.getClass().getSimpleName().toString();
     }
+
+
 
 }

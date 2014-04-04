@@ -83,19 +83,17 @@ public class MetInfoRefreshService extends InfoRefreshService {
                 if (startFromNulldate & ExtraCalendar.isToday(lastDateInfoOnServer)& !fromActivity)
                     return STATUS_NOT_FRESH_DATA;
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Start update base.");
-                for (DragMetal dragMetalRecord : infoStub) {
-                    ContentValues _cv = dragMetalRecord.asContentValues();
-                    if (cr.update(Uri.parse(CBInfoProvider.METAL_CONTENT_URI + "/" + dragMetalRecord.getCodeAsString()),_cv,null,null) == 0) {
-                        cr.insert(CBInfoProvider.METAL_CONTENT_URI, _cv);
+                    for (DragMetal dragMetalRecord : infoStub) {
+                        ContentValues _cv = dragMetalRecord.asContentValues();
+                        if (cr.update(Uri.parse(CBInfoProvider.METAL_CONTENT_URI + "/" + dragMetalRecord.getCodeAsString()), _cv, null, null) == 0) {
+                            cr.insert(CBInfoProvider.METAL_CONTENT_URI, _cv);
+                        }
                     }
-
-                }
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Stop update base.");
             } catch (IOException e) {
                 e.printStackTrace();
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Error !!! : "+e.getMessage());
                 res = STATUS_NOT_RESPOND;
-
             } catch (ArrayIndexOutOfBoundsException e) {
                 e.printStackTrace();
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Error !!! : "+e.getMessage());

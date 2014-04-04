@@ -15,10 +15,17 @@ public class MetInfoRefreshReciever extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + "getAction: "+intent.getAction());
         if (intent.getAction().equals(ACTION_REFRESH_MET_INFO_ALARM)) {
-            Intent startIntent = new Intent(context, MetInfoRefreshService.class);
-            context.startService(startIntent);
-            LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + ": Recieve " + ACTION_REFRESH_MET_INFO_ALARM);
+            Intent metInfoServiceIntent = new Intent(context, MetInfoRefreshService.class);
+            context.startService(metInfoServiceIntent);
+        }
+
+        if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())){
+            Intent metInfoServiceIntent = new Intent(context, MetInfoRefreshService.class);
+            metInfoServiceIntent.putExtra(MainActivity.PARAM_ONLY_SET_ALARM, true);
+            context.startService(metInfoServiceIntent);
+
         }
     }
 }

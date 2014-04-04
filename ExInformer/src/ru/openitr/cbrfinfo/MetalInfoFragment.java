@@ -47,7 +47,7 @@ public class MetalInfoFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onDate = Calendar.getInstance();
-        LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ":  onCreate");
+        LogSystem.logInFile(LOG_TAG, this, ":  onCreate");
         br = new MetalInfoBroadcastReceiever();
 
     }
@@ -109,7 +109,7 @@ public class MetalInfoFragment extends ListFragment {
     public void onDestroy() {
         getActivity().unregisterReceiver(br);
         super.onDestroy();
-        LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + ": onDestroy");
+        LogSystem.logInFile(LOG_TAG, this,": onDestroy");
     }
 
     /**
@@ -120,13 +120,6 @@ public class MetalInfoFragment extends ListFragment {
         metals.clear();
         ContentResolver cr = getActivity().getContentResolver();
         Cursor c = cr.query(METAL_CONTENT_URI, CbInfoDb.MET_ALL_COLUMNS, null, null, CbInfoDb.MET_KEY_ORDER + " ASC");
-        if (c.getCount() == 0) {
-            FragmentActivity curActivity = getActivity();
-            Intent refreshServiceIntent = new Intent(curActivity, MetalInfoFragment.class).putExtra(MainActivity.PARAM_FROM_ACTIVITY, true);
-            curActivity.startService(refreshServiceIntent);
-            c.close();
-            c = cr.query(METAL_CONTENT_URI, CbInfoDb.MET_ALL_COLUMNS, null, null, CbInfoDb.MET_KEY_ORDER + " ASC");
-        }
         if (c.moveToFirst()) {
             do {
                 int code = c.getInt(CbInfoDb.MET_CODE_COL_NUM);
