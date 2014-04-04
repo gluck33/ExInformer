@@ -84,16 +84,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6eeb610b-a795-48ed-aaa7-e3624129e221" name="Default" comment="Add to preferences Update Frequency">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/ZoomOutPageTransformer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurInfoRefreshReciever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/DailyInfoStub.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java" afterPath="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshReciever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetInfoRefreshService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" afterPath="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -179,10 +170,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZoomOutPageTransformer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ZoomOutPageTransformer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/ZoomOutPageTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.278402" vertical-offset="83" max-vertical-offset="884">
+            <state vertical-scroll-proportion="0.0" vertical-offset="83" max-vertical-offset="884">
               <caret line="19" column="24" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="29" />
               <folding />
             </state>
@@ -199,11 +190,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6896553" vertical-offset="0" max-vertical-offset="1020">
-              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.13212435" vertical-offset="0" max-vertical-offset="1020">
+              <caret line="6" column="39" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="39" />
               <folding>
                 <element signature="tag#activity#0;tag#application#0;tag#manifest#0" expanded="false" />
                 <element signature="tag#activity#1;tag#application#0;tag#manifest#0" expanded="false" />
@@ -302,9 +293,9 @@
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MetalInfoFragment.java" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/CurrencyInfoFragment.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/LogSystem.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java" />
         <option value="$PROJECT_DIR$/../exinformerlib/src/ru/openitr/cbrfinfo/annotations.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1158,20 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6896553" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-          <folding>
-            <element signature="tag#activity#0;tag#application#0;tag#manifest#0" expanded="false" />
-            <element signature="tag#activity#1;tag#application#0;tag#manifest#0" expanded="false" />
-            <element signature="tag#activity#2;tag#application#0;tag#manifest#0" expanded="false" />
-            <element signature="tag#receiver#1;tag#application#0;tag#manifest#0" expanded="false" />
-            <element signature="tag#receiver#2;tag#application#0;tag#manifest#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="6103">
@@ -1190,9 +1167,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/openitr/cbrfinfo/ZoomOutPageTransformer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.278402" vertical-offset="83" max-vertical-offset="884">
+        <state vertical-scroll-proportion="0.0" vertical-offset="83" max-vertical-offset="884">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13212435" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="39" />
+          <folding>
+            <element signature="tag#activity#0;tag#application#0;tag#manifest#0" expanded="false" />
+            <element signature="tag#activity#1;tag#application#0;tag#manifest#0" expanded="false" />
+            <element signature="tag#activity#2;tag#application#0;tag#manifest#0" expanded="false" />
+            <element signature="tag#receiver#1;tag#application#0;tag#manifest#0" expanded="false" />
+            <element signature="tag#receiver#2;tag#application#0;tag#manifest#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
