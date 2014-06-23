@@ -72,7 +72,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firstRun = isFirstRun(this);
         mContentView = findViewById(R.id.pager);
         mLoadingView = findViewById(R.id.loading_spinner);
         mLoadingView.setVisibility(View.GONE);
@@ -138,7 +137,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void initInfo(int i){
-        if (firstRun & !infoLoaded[i]){
+        if (isFirstRun(this, i)){
             getInfo(0);
             LogSystem.logInFile("CBInfo", this, "initInfo");
         }
@@ -333,14 +332,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    private boolean isFirstRun(Context context){
+    private boolean isFirstRun(Context context, int page){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean firstRun = sp.getBoolean("PREF_FIRST_RUN", true);
-        if (firstRun){
-            SharedPreferences.Editor editor = sp.edit();
-            editor.putBoolean("PREF_FIRST_RUN",false);
-            editor.commit();
-        }
+            boolean firstRun = sp.getBoolean("PREF_FIRST_RUN"+page, true);
+            if (firstRun) {
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean("PREF_FIRST_RUN"+page, false);
+                editor.commit();
+            }
         return firstRun;
     }
 

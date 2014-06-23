@@ -33,14 +33,20 @@ public class AppDialog extends DialogFragment {
         this.notRespondPositiveOnClick = notRespondPositiveOnClick;
     }
 
+
     DialogInterface.OnClickListener notRespondPositiveOnClick;
-    protected AppDialog(int dialogId) {
-        this.dialogId = dialogId;
+
+    public AppDialog (){
+        String stringArgs = getArguments().getString("DIALOG_ID");
+        this.dialogId = Integer.getInteger(stringArgs);
     }
 
     public static AppDialog newInstance(int id) {
-        AppDialog dialog = new AppDialog(id);
-        return dialog;
+        Bundle args = new Bundle();
+        args.putString("DIALOG_ID", String.valueOf(id));
+        AppDialog result = new AppDialog();
+        result.setArguments(args);
+        return result;
     }
 
     public void setCallBack(DatePickerDialog.OnDateSetListener ondate) {

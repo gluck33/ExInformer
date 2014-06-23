@@ -18,8 +18,7 @@
                 android:id="@+id/widgetObject" android:layout_gravity="center_horizontal|top" android:layout_weight="1"
                 android:enabled="true" android:focusable="false" android:linksClickable="false"
                 android:gravity="center_vertical|center_horizontal" android:singleLine="true"
-            android:textAlignment="center"
-            android:layout_marginLeft="@dimen/rowTextLeftMargin"
+                android:layout_marginLeft="@dimen/rowTextLeftMargin"
             style="@style/TextAppearance.AppCompat.Base.SearchResult" />
         <ImageButton
                 android:layout_width="wrap_content"
