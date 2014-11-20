@@ -4,6 +4,7 @@ package ru.openitr.cbrfinfo;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -122,7 +123,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-               // LogSystem.logInFile("CBInfo", "onPageScrollStateChanged");
+                // LogSystem.logInFile("CBInfo", "onPageScrollStateChanged");
             }
 
             @Override
@@ -130,9 +131,12 @@ public class MainActivity extends ActionBarActivity {
                 return super.clone();
             }
         });
-        viewPager.setCurrentItem(CURRENCY_FRAGMENT);
+        Intent intent = this.getIntent();
+        Bundle extras = intent.getExtras();
+        int openPage = (extras == null) ? 0 : extras.getInt("CURRENT_PAGE",0);
+        viewPager.setCurrentItem(openPage);
         initInfo(0);
-// setInfoDateToTitle();
+        // setInfoDateToTitle();
 
     }
 

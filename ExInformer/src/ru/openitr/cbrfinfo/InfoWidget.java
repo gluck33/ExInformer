@@ -1,5 +1,6 @@
 package ru.openitr.cbrfinfo;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -63,7 +64,7 @@ public class InfoWidget extends AppWidgetProvider {
         }
     }
 
-    static RemoteViews inflateWidget(Context context, Icurrency cur){
+    private RemoteViews inflateWidget(Context context, Icurrency cur){
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
         if (cur.getvCurs() == 0)
             getCurrentInfo(context, 0);
@@ -72,10 +73,15 @@ public class InfoWidget extends AppWidgetProvider {
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/f_";
         widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString +cur.getVchCode().toLowerCase()));
         widgetView.setTextViewText(R.id.cursDateTv,cur.vDateAsString());
+//        Intent showCurrencyFragmentIntent;
+//        showCurrencyFragmentIntent = new Intent(context, MainActivity.class);
+//        showCurrencyFragmentIntent.putExtra("CURRENT_PAGE_0", 0);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, showCurrencyFragmentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        widgetView.setOnClickPendingIntent(R.id.flagImageView, pendingIntent);
         return widgetView;
     }
 
-    static RemoteViews inflateWidget(Context context, DragMetal met){
+    private RemoteViews inflateWidget(Context context, DragMetal met){
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
         if (met.getPrice() == 0)
             getCurrentInfo(context,1);
@@ -85,11 +91,25 @@ public class InfoWidget extends AppWidgetProvider {
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/";
         widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString + met.getMetallEngName() + "_w"));
         widgetView.setTextViewText(R.id.cursDateTv,met.getOnDateAsString());
-        return widgetView; 
+//        Intent showMetallFragmentIntent = new Intent(context, MainActivity.class);
+//        showMetallFragmentIntent.putExtra("CURRENT_PAGE_1", 1);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,showMetallFragmentIntent,0);
+//        widgetView.setOnClickPendingIntent(R.id.flagImageView, pendingIntent);
+        return widgetView;
     }
 
-    static void updateWidget(Context context, AppWidgetManager appWidgetManager, SharedPreferences sp, int id) {
+    private void setOnClickPendingIntent(Context context, int infoType, RemoteViews remoteViews, int widgetId){
+        Intent showMainActivityIntent = new Intent(context, MainActivity.class);
+        showMainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        showMainActivityIntent.addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
+        showMainActivityIntent.putExtra("CURRENT_PAGE",infoType);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, widgetId,showMainActivityIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.flagImageView, pendingIntent);
+    }
+
+    private void updateWidget(Context context, AppWidgetManager appWidgetManager, SharedPreferences sp, int id) {
         String stringInfoType = sp.getString(WidgetConfActivity.WIDGET_INFO_TYPE + id, null);
+        RemoteViews remoteView = null;
         if (stringInfoType == null) return;
         Integer infoType = Integer.decode(stringInfoType);
         switch (infoType){
@@ -98,7 +118,9 @@ public class InfoWidget extends AppWidgetProvider {
                 if (_vChCode == null) break;
                 Icurrency cur = Icurrency.getIcurencyFromBase(context, _vChCode);
                 if (cur !=null)
-                    appWidgetManager.updateAppWidget(id, inflateWidget(context, cur));
+                    remoteView = inflateWidget(context, cur);
+                    setOnClickPendingIntent(context, infoType,remoteView, id);
+                    appWidgetManager.updateAppWidget(id, remoteView);
                 break;
             case 1:
                 String prefName = WidgetConfActivity.WIDGET_METAL_CODE + id;
@@ -108,14 +130,15 @@ public class InfoWidget extends AppWidgetProvider {
                 if (_metCode == null) break;
                 DragMetal met = DragMetal.getMetalFromBase(context, _metCode);
                 if (met != null)
-                    appWidgetManager.updateAppWidget(id, inflateWidget(context, met));
+                    remoteView = inflateWidget(context, met);
+                    setOnClickPendingIntent(context, infoType,remoteView, id);
+                    appWidgetManager.updateAppWidget(id, remoteView);
                 break;
-        }
+            }
     }
 
     public void updateWidgets(Context context){
         ComponentName thisWidget = new ComponentName(context, InfoWidget.class.getName());
-        //ComponentName thisWidget = new ComponentName(context, InfoWidget.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetsIds = appWidgetManager.getAppWidgetIds(thisWidget);
         SharedPreferences sp = context.getSharedPreferences(WidgetConfActivity.WIDGET_PREF, Context.MODE_PRIVATE);
@@ -125,7 +148,7 @@ public class InfoWidget extends AppWidgetProvider {
         }
          LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Widget: Widget info updated.");
     }
-    static private void getCurrentInfo (Context context, int infoType){
+    private void getCurrentInfo (Context context, int infoType){
         switch (infoType){
             case 0:
                 Intent refreshCurServiceIntent = new Intent(context, CurInfoRefreshService.class);
@@ -138,6 +161,14 @@ public class InfoWidget extends AppWidgetProvider {
                 context.startService(refreshMetInfoService);
                 break;
         }
+    }
+
+}
+
+class myRemoteViews extends RemoteViews{
+
+    public myRemoteViews(String packageName, int layoutId) {
+        super(packageName, layoutId);
     }
 
 }

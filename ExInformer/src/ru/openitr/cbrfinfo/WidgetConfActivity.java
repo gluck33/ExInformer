@@ -215,7 +215,9 @@ public class WidgetConfActivity extends FragmentActivity {
             }
             setResult(RESULT_OK, resultValue);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(dialogView.getActivity());
-            InfoWidget.updateWidget(dialogView.getActivity(), appWidgetManager, sp, widgetID);
+            Intent widgetUpdateIntent = new Intent(InfoWidget.INFO_WIDGET_UPDATE);
+            getApplication().sendBroadcast(widgetUpdateIntent);
+//            InfoWidget.updateWidget(dialogView.getActivity(), appWidgetManager, sp, widgetID);
             finish();
 
         }
