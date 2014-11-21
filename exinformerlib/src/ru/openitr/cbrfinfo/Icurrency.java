@@ -18,6 +18,9 @@ import java.util.Calendar;
  * To change this template use File | Settings | File Templates.
  */
 public class Icurrency {
+    public static final int DIRECTION_DOWN = 0;
+    public static final int DIRECTION_UP = 1;
+    public static final int DIRECTION_NOT = 3;
     static final String LOG_TAG = "CBInfo";
     private String vName;   // Наименование валюты.
     private Float vCurs;    // Курс.
@@ -25,6 +28,7 @@ public class Icurrency {
     private int vCode; // Внутренний код валюты.
     private Calendar vDate; // Дата курса.
     private String vFlag; // Ресурс где хранится изображение флага.
+    private int vDirection; // Направление (0 - Падение, 1 - рост, 2 - Нет изменений)
 
     public Icurrency() {
         this.vName = "";
@@ -32,16 +36,18 @@ public class Icurrency {
         this.vchCode = "";
         this.vCode = 0;
         this.vDate = Calendar.getInstance();
+        this.vDirection = DIRECTION_NOT;
     }
 
 
 
-    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Calendar vDate) {
+    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Calendar vDate, int vDirection) {
         this.vName = vName;
         this.vCurs = vCurs;
         this.vchCode = vchCode;
         this.vCode = vCode;
         this.vDate = vDate;
+        this.vDirection = vDirection;
     }
 
     public String getvName() {
@@ -72,6 +78,25 @@ public class Icurrency {
 
     public int getvCode() {
         return vCode;
+    }
+
+    public void setvDirection(int vDirection) {
+        this.vDirection = vDirection;
+    }
+
+    public void setvDirection(float oldPrice, float newPrice) {
+        if (oldPrice > newPrice) {
+            this.vDirection = DIRECTION_DOWN;
+        } else if (oldPrice < newPrice){
+            this.vDirection = DIRECTION_UP;
+        } else if (oldPrice == newPrice){
+            this.vDirection = DIRECTION_NOT;
+        }
+    }
+
+
+    public int getvDirection() {
+        return vDirection;
     }
 
     public void setvCode(int vCode) {
@@ -161,6 +186,7 @@ public class Icurrency {
         cv.put(CbInfoDb.CUR_KEY_VCURS, this.getvCurs());
         cv.put(CbInfoDb.CUR_KEY_VNAME, this.getvName());
         cv.put(CbInfoDb.CUR_KEY_DATE, this.getvDate().getTimeInMillis());
+        cv.put(CbInfoDb.CUR_KEY_DIRECT, this.getvDirection());
         return cv;
     }
 

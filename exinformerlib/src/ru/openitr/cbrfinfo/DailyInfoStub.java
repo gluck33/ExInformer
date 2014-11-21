@@ -81,7 +81,7 @@ public class DailyInfoStub {
                 float valCurs = Float.parseFloat(valCursArrayElement.getProperty("Vcurs").toString());
                 int vCode = Integer.parseInt(valCursArrayElement.getProperty("Vcode").toString());
                 valCurs = valCurs/valNom;
-                result.add(new Icurrency(valName, valCurs, valChCode, vCode, onDate));
+                result.add(new Icurrency(valName, valCurs, valChCode, vCode, onDate, 0));
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -96,6 +96,83 @@ public class DailyInfoStub {
          LogSystem.logInFile (LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");
         return result;
     }
+
+
+    /**
+     * Метод запрашиват динамику курса валют на заданную дату и дату, днем ранее,
+     * из этого делается вывод о направлении движения.
+     * Результат помещается в ArrayList.
+     * Вх. параметр onDate: Дата курса валют, тип - Data
+     * Вых. параметр: массив курсов валют, тип ArrayList<Icurrency>
+     */
+    public ArrayList<Icurrency> getDynamicCursOnDate(Calendar onDate) throws Exception {
+        ArrayList<Icurrency> result = new ArrayList<Icurrency>();
+        String methodName = "GetCursOnDate";
+        String soapAction = "http://web.cbr.ru/GetCursOnDate";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T00:00:00'");
+        PropertyInfo onDateIn = new PropertyInfo();
+        SoapObject request = new SoapObject(namespace, methodName);
+        /* Устанавливаем параметры */
+        onDateIn.setName("On_date");
+        onDateIn.setValue(sdf.format(onDate.getTime()));
+        request.addProperty(onDateIn);
+        /*Готовим запрос*/
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.implicitTypes = true;
+        envelope.dotNet = true;
+
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE androidHttpTransport = new HttpTransportSE(url);
+        androidHttpTransport.debug = true;
+
+        androidHttpTransport.setXmlVersionTag("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+        try {
+            LogSystem.logInFile (LOG_TAG, "InfoStub: Getting info from CB server on date "+ sdf.format(onDate.getTime()) + ".");
+            androidHttpTransport.call(soapAction, envelope);
+            LogSystem.logInFile(LOG_TAG, "InfoStub: Info recieved from SB server. ");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate IOException: "+e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogSystem.logInFile (LOG_TAG, "InfoStub: getCursOnDate Exception: "+e.getMessage());
+            throw e;
+        }
+
+        /* Разбор ответа сервера */
+        LogSystem.logInFile (LOG_TAG, "InfoStub: Begin data parsing.");
+        try {
+            SoapObject resultRequest = (SoapObject) envelope.bodyIn;
+            SoapObject array = (SoapObject) resultRequest.getProperty(0);
+            SoapObject propertyArray = (SoapObject) array.getProperty(1);
+            SoapObject valCursArray = (SoapObject) propertyArray.getProperty(0);
+            for (int i = 0; i < valCursArray.getPropertyCount(); i++) {
+                SoapObject valCursArrayElement = (SoapObject) valCursArray.getProperty(i);
+                String valName = valCursArrayElement.getProperty("Vname").toString();
+                String valChCode = valCursArrayElement.getProperty("VchCode").toString();
+                int valNom = Integer.parseInt((valCursArrayElement.getProperty("Vnom").toString()));
+                float valCurs = Float.parseFloat(valCursArrayElement.getProperty("Vcurs").toString());
+                int vCode = Integer.parseInt(valCursArrayElement.getProperty("Vcode").toString());
+                valCurs = valCurs/valNom;
+                result.add(new Icurrency(valName, valCurs, valChCode, vCode, onDate, 0));
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+            LogSystem.logInFile (LOG_TAG, "InfoStub: IOException: "+e.getMessage());
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogSystem.logInFile (LOG_TAG, "InfoStub: Exception: "+e.getMessage());
+            throw e;
+        }
+        LogSystem.logInFile (LOG_TAG, "InfoStub: Returning result data on date " + sdf.format(onDate.getTime()) + ".");
+        return result;
+    }
+
+
 
     public Calendar getLatestCurrencyDateFromServer() throws Exception {
         String soapAction = "http://web.cbr.ru/GetLatestDateTime";

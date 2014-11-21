@@ -85,4 +85,15 @@
         android:text="30.02.2000"
         android:textColor="@android:color/white"
         android:textSize="12dp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/upDownImage"
+        android:src="@drawable/down_triangle"
+        android:layout_toRightOf="@+id/widgetVchCode"
+        android:layout_above="@+id/widgetVCurs"
+        android:layout_alignTop="@+id/widgetVchCode"
+        android:layout_margin="4dp" />
+
 </RelativeLayout>

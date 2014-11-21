@@ -21,7 +21,7 @@ public abstract class CbInfoDb {
     public static final String DATABASE_NAME = "exInformer.db";
     public static String CURRENCY_TABLE = "curtable";
     public static String METAL_TABLE = "metaltable";
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
     // Имена столбцов таблицы валют
     public static final String CUR_KEY_ID = "_id";
     public static final String CUR_KEY_CODE = "vCode";
@@ -32,6 +32,7 @@ public abstract class CbInfoDb {
     public static final String CUR_KEY_IMAGE_URI = "vFlagImageUri";
     public static final String CUR_KEY_VISIBLE = "vVisible";
     public static final String CUR_KEY_ORDER = "vOrder";
+    public static final String CUR_KEY_DIRECT = "vDirection";
 
     // Индексы столбцов таблицы валют
     public static final int VALINDEX_COLUMN = 0;
@@ -43,6 +44,7 @@ public abstract class CbInfoDb {
     public static final int FLAGURI_COLUMN = 6;
     public static final int VISIBLE_COLUMN = 7;
     public static final int ORDER_COLUMN = 8;
+    public static final int VALCURS_DIRECT_COL_NUM = 9;
 
     // Имена столбцов таблицы металлов
     public static final String MET_KEY_ID = "_id";
@@ -52,6 +54,7 @@ public abstract class CbInfoDb {
     private static final String MET_KEY_IMAGE_URI = "mImageUri";
     public static final String MET_KEY_VISIBLE = "mVisible";
     public static final String MET_KEY_ORDER = "mOrder";
+    public static final String MET_KEY_DIRECT = "mDirection";
 
     // Индексы столбцов таблицы металлов
 
@@ -60,6 +63,7 @@ public abstract class CbInfoDb {
     public static final int MET_PRICE_COL_NUM = 2;
     public static final int MET_DATE_COL_NUM = 3;
     public static final int MET_IMAGE_COL_NUM = 4;
+    public static final int MET_DIRECT_COL_NUM = 5;
 
     public static final String[] MET_ALL_COLUMNS = {MET_KEY_ID, MET_KEY_CODE, MET_KEY_PRICE, MET_KEY_DATE, MET_KEY_IMAGE_URI, MET_KEY_VISIBLE, MET_KEY_ORDER};
 
@@ -76,7 +80,8 @@ public abstract class CbInfoDb {
             CUR_KEY_DATE + " long, " +
             CUR_KEY_IMAGE_URI + " text," +
             CUR_KEY_VISIBLE + " integer," +
-            CUR_KEY_ORDER + " integer" +
+            CUR_KEY_ORDER + " integer," +
+            CUR_KEY_DIRECT + "integer" +
             ");";
     protected static final String [] INSERT_CURRENCY_DATA = {"insert into curtable (\"_id\", \"vCode\", \"vchCode\", \"vCurs\", \"vName\", \"vDate\", \"vFlagImageUri\", \"vVisible\", \"vOrder\") values ('1', '36', 'AUD', '0', 'Австралийский доллар', '0', NULL, NULL, 3);",
             "insert into curtable (\"_id\", \"vCode\", \"vchCode\", \"vCurs\", \"vName\", \"vDate\", \"vFlagImageUri\", \"vVisible\", \"vOrder\") values ('2', '944', 'AZN', '0.0', 'Азербайджанский манат', '0', NULL, NULL, 4); ",
@@ -124,14 +129,14 @@ public abstract class CbInfoDb {
             MET_KEY_DATE + " long, " +
             MET_KEY_IMAGE_URI + " text," +
             MET_KEY_VISIBLE + " integer," +
-            MET_KEY_ORDER + " integer" +
+            MET_KEY_ORDER + " integer, " +
+            MET_KEY_DIRECT + " integer" +
             ");";
     protected static final String[] INSERT_METAL_DATA = {"insert into metaltable (\"_id\", \"mCode\", \"mPrice\", \"mDate\", \"mImageUri\", \"mVisible\", \"mOrder\") values ('1', '1', '0.0', '0', NULL, NULL, NULL);",
             "insert into metaltable (\"_id\", \"mCode\", \"mPrice\", \"mDate\", \"mImageUri\", \"mVisible\", \"mOrder\") values ('2', '2', '0.0', '0', NULL, NULL, NULL);",
             "insert into metaltable (\"_id\", \"mCode\", \"mPrice\", \"mDate\", \"mImageUri\", \"mVisible\", \"mOrder\") values ('3', '3', '0.0', '0', NULL, NULL, NULL);",
             "insert into metaltable (\"_id\", \"mCode\", \"mPrice\", \"mDate\", \"mImageUri\", \"mVisible\", \"mOrder\") values ('4', '4', '0.0', '0', NULL, NULL, NULL);"};
 
-    public static final String[] CUR_ALL_COLUMNS = {CUR_KEY_ID, CUR_KEY_CODE, CUR_KEY_CHARCODE, CUR_KEY_VCURS, CUR_KEY_VNAME, CUR_KEY_DATE, CUR_KEY_IMAGE_URI, CUR_KEY_VISIBLE, CUR_KEY_ORDER};
-    public static final String[] ALL_VISIBLE_COLUMNS = {CUR_KEY_IMAGE_URI, CUR_KEY_CHARCODE, CUR_KEY_VCURS, CUR_KEY_VNAME};
+    public static final String[] CUR_ALL_COLUMNS = {CUR_KEY_ID, CUR_KEY_CODE, CUR_KEY_CHARCODE, CUR_KEY_VCURS, CUR_KEY_VNAME, CUR_KEY_DATE, CUR_KEY_IMAGE_URI, CUR_KEY_VISIBLE, CUR_KEY_ORDER, CUR_KEY_DIRECT};
 
 }

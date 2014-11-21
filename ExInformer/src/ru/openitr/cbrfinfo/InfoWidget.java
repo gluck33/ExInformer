@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
 
 /**
@@ -73,11 +74,6 @@ public class InfoWidget extends AppWidgetProvider {
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/f_";
         widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString +cur.getVchCode().toLowerCase()));
         widgetView.setTextViewText(R.id.cursDateTv,cur.vDateAsString());
-//        Intent showCurrencyFragmentIntent;
-//        showCurrencyFragmentIntent = new Intent(context, MainActivity.class);
-//        showCurrencyFragmentIntent.putExtra("CURRENT_PAGE_0", 0);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, showCurrencyFragmentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        widgetView.setOnClickPendingIntent(R.id.flagImageView, pendingIntent);
         return widgetView;
     }
 
@@ -91,10 +87,6 @@ public class InfoWidget extends AppWidgetProvider {
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/";
         widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString + met.getMetallEngName() + "_w"));
         widgetView.setTextViewText(R.id.cursDateTv,met.getOnDateAsString());
-//        Intent showMetallFragmentIntent = new Intent(context, MainActivity.class);
-//        showMetallFragmentIntent.putExtra("CURRENT_PAGE_1", 1);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,showMetallFragmentIntent,0);
-//        widgetView.setOnClickPendingIntent(R.id.flagImageView, pendingIntent);
         return widgetView;
     }
 
