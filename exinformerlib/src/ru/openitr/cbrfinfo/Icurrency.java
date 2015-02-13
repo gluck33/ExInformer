@@ -1,9 +1,7 @@
 package ru.openitr.cbrfinfo;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 
 import java.text.ParseException;
@@ -18,9 +16,6 @@ import java.util.Calendar;
  * To change this template use File | Settings | File Templates.
  */
 public class Icurrency {
-    public static final int DIRECTION_DOWN = 0;
-    public static final int DIRECTION_UP = 1;
-    public static final int DIRECTION_NOT = 3;
     static final String LOG_TAG = "CBInfo";
     private String vName;   // Наименование валюты.
     private Float vCurs;    // Курс.
@@ -28,7 +23,7 @@ public class Icurrency {
     private int vCode; // Внутренний код валюты.
     private Calendar vDate; // Дата курса.
     private String vFlag; // Ресурс где хранится изображение флага.
-    private int vDirection; // Направление (0 - Падение, 1 - рост, 2 - Нет изменений)
+    private Float vDelta; // Изменение цены по сравнению со вчерашним днем.
 
     public Icurrency() {
         this.vName = "";
@@ -36,18 +31,18 @@ public class Icurrency {
         this.vchCode = "";
         this.vCode = 0;
         this.vDate = Calendar.getInstance();
-        this.vDirection = DIRECTION_NOT;
+        this.vDelta = 0f;
     }
 
 
 
-    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Calendar vDate, int vDirection) {
+    public Icurrency(String vName, Float vCurs, String vchCode, int vCode, Calendar vDate, Float vDelta) {
         this.vName = vName;
         this.vCurs = vCurs;
         this.vchCode = vchCode;
         this.vCode = vCode;
         this.vDate = vDate;
-        this.vDirection = vDirection;
+        this.vDelta = vDelta;
     }
 
     public String getvName() {
@@ -80,27 +75,16 @@ public class Icurrency {
         return vCode;
     }
 
-    public void setvDirection(int vDirection) {
-        this.vDirection = vDirection;
-    }
-
-    public void setvDirection(float oldPrice, float newPrice) {
-        if (oldPrice > newPrice) {
-            this.vDirection = DIRECTION_DOWN;
-        } else if (oldPrice < newPrice){
-            this.vDirection = DIRECTION_UP;
-        } else if (oldPrice == newPrice){
-            this.vDirection = DIRECTION_NOT;
-        }
-    }
-
-
-    public int getvDirection() {
-        return vDirection;
-    }
-
     public void setvCode(int vCode) {
         this.vCode = vCode;
+    }
+
+    public Float getvDelta() {
+        return vDelta;
+    }
+
+    public void setvDelta(Float vDelta) {
+        this.vDelta = vDelta;
     }
 
     @Override
@@ -159,13 +143,12 @@ public class Icurrency {
         }
         else throw new IllegalArgumentException("The argument must contain a key vCode...");
         if (_cv.containsKey("vDate")) {
-            //this.vDate = new SimpleDateFormat("yyyy-MM-dd").parse(_cv.getAsString("vDate"));
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 sdf.parse(_cv.getAsString("vDate"));
                 this.vDate = sdf.getCalendar();
             } catch (ParseException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
         }
         else throw new IllegalArgumentException("The argument must contain a key vDate...");
@@ -186,7 +169,6 @@ public class Icurrency {
         cv.put(CbInfoDb.CUR_KEY_VCURS, this.getvCurs());
         cv.put(CbInfoDb.CUR_KEY_VNAME, this.getvName());
         cv.put(CbInfoDb.CUR_KEY_DATE, this.getvDate().getTimeInMillis());
-        cv.put(CbInfoDb.CUR_KEY_DIRECT, this.getvDirection());
         return cv;
     }
 
@@ -244,10 +226,19 @@ public class Icurrency {
             result.setvCurs(cursor.getFloat(CbInfoDb.VALCURS_COLUMN));
             result.setvDate(cursor.getLong(CbInfoDb.VALDATE_COLUMN));
             result.setvName(cursor.getString(CbInfoDb.VALNAME_COLUMN));
+            result.setvDelta(cursor.getFloat(CbInfoDb.VALDELTA_COLNUM));
         }finally {
             cursor.close();
         }
         return result;
+    }
+
+    /** Округление числа sourceNum до numSymb знаков после запятой */
+    public static float round(float sourceNum, int numSymb) {
+        float pow = (float) Math.pow(10, numSymb);
+        int temp = (int) ( sourceNum / (1 / pow) );
+        float destNum = temp / pow;
+        return destNum;
     }
 
 

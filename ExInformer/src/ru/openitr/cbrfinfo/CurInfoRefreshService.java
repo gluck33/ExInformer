@@ -15,14 +15,14 @@ import java.util.Calendar;
  * Created by oleg on 25.11.13.
  */
 
-public class CurInfoRefreshService extends InfoRefreshService{
+public class CurInfoRefreshService extends InfoRefreshService {
     void readPreferencesFromFile(SharedPreferences sharedPreferences) {
         super.readPreferencesFromFile(sharedPreferences);
         autoupdate = sharedPreferences.getBoolean("PREF_AUTO_UPDATE", true);
         hourOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.hour", 13);
         minuteOfRefresh = sharedPreferences.getInt("PREF_UPDITE_TIME.minute", 0);
-        lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_DATE",0);
-        updateInterval = Integer.parseInt(sharedPreferences.getString ("PREF_UPDATE_FREQ","30"));
+        lastSavedDateOfExchange = sharedPreferences.getLong("PREF_LAST_DATE", 0);
+        updateInterval = Integer.parseInt(sharedPreferences.getString("PREF_UPDATE_FREQ", "30"));
     }
 
 
@@ -33,9 +33,13 @@ public class CurInfoRefreshService extends InfoRefreshService{
             reschedule(alarms, hourOfRefresh, minuteOfRefresh);
     }
 
-    String getTickerText(){ return getString(R.string.exchange_rate_change);}
+    String getTickerText() {
+        return getString(R.string.exchange_rate_change);
+    }
 
-    String getExpandetText(){return getString(R.string.obtained_change_in_exchange_rates);}
+    String getExpandetText() {
+        return getString(R.string.obtained_change_in_exchange_rates);
+    }
 
     String setAlarmAction() {
         return CurInfoRefreshReciever.ACTION_REFRESH_INFO_ALARM;
@@ -71,22 +75,41 @@ public class CurInfoRefreshService extends InfoRefreshService{
         int updateInfo(Calendar onDate) {
             ContentResolver cr = getContentResolver();
             DailyInfoStub dailyInfoStub = new DailyInfoStub();
+            ArrayList<Icurrency> infoStubCurrent;
+            ArrayList<Icurrency> infoStub = null;
             int res = OK;
             LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : Info need to update.");
-            if (!internetAvailable((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE))) {
+            if (!internetAvailable((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))) {
                 return STATUS_NETWORK_DISABLE;
             }
             if (ExtraCalendar.isToday(onDate) && startFromNulldate) {
                 res = STATUS_NOT_FRESH_DATA;
-                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG,                        this.getClass().getSimpleName() + "Not fresh data = "
-                                + (ExtraCalendar.isToday(onDate) && startFromNulldate));
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + "Not fresh data = "
+                        + (ExtraCalendar.isToday(onDate) && startFromNulldate));
             }
             try {
-                ArrayList<Icurrency> infoStub = dailyInfoStub.getCursOnDate(onDate);
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Get the today data on " + onDate.getTime().toLocaleString());
+                infoStubCurrent = dailyInfoStub.getCursOnDate(onDate);
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "End get the today data on " + onDate.getTime().toLocaleString());
+                onDate.roll(Calendar.DAY_OF_YEAR, -1);
+                Calendar dateOnBase = Icurrency.getDateInBase(getBaseContext());
+                if (!ExtraCalendar.isEqualDays(onDate, dateOnBase)) {
+                    LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "Get the yesterday data on " + onDate.getTime().toLocaleString());
+                    infoStub = dailyInfoStub.getCursOnDate(onDate);
+                    LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, "End get the yesterday data on " + onDate.getTime().toLocaleString());
+                }
+                onDate.roll(Calendar.DAY_OF_YEAR, 1);
+                if (infoStub == null) {
+                    infoStub = infoStubCurrent;
+                } else {
+                    infoStub.addAll(infoStubCurrent);
+                }
+
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " : Start update base.");
+
                 for (Icurrency icurrencyRecord : infoStub) {
                     ContentValues _cv = icurrencyRecord.asContentValues();
-                    if (cr.update(Uri.parse(CBInfoProvider.CURRENCY_CONTENT_URI + "/" + icurrencyRecord.getVchCode()),_cv,null,null) == 0) {
+                    if (cr.update(Uri.parse(CBInfoProvider.CURRENCY_CONTENT_URI + "/" + icurrencyRecord.getVchCode()), _cv, null, null) == 0) {
                         cr.insert(CBInfoProvider.CURRENCY_CONTENT_URI, _cv);
                     }
 
@@ -102,7 +125,7 @@ public class CurInfoRefreshService extends InfoRefreshService{
             } catch (Exception e) {
                 e.printStackTrace();
                 res = STATUS_BAD_DATA;
-                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " :Stop update base with error: "+e.getLocalizedMessage()+"!!!");
+                LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this.getClass().getSimpleName() + " :Stop update base with error: " + e.getLocalizedMessage() + "!!!");
             }
 
 

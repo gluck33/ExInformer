@@ -85,7 +85,8 @@ public class MetInfoRefreshService extends InfoRefreshService {
                 LogSystem.logInFile(CurrencyInfoFragment.LOG_TAG, this, "Start update base.");
                     for (DragMetal dragMetalRecord : infoStub) {
                         ContentValues _cv = dragMetalRecord.asContentValues();
-                        if (cr.update(Uri.parse(CBInfoProvider.METAL_CONTENT_URI + "/" + dragMetalRecord.getCodeAsString()), _cv, null, null) == 0) {
+                        String updateURI = CBInfoProvider.METAL_CONTENT_URI + "/" + dragMetalRecord.getCodeAsString();
+                        if (cr.update(Uri.parse(updateURI), _cv, null, null) == 0) {
                             cr.insert(CBInfoProvider.METAL_CONTENT_URI, _cv);
                         }
                     }

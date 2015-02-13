@@ -8,7 +8,7 @@
         android:icon="@drawable/action_settings"
         android:title="@string/settings"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom"
+        android:showAsAction="collapseActionView"
         >
 
     </item>
@@ -18,7 +18,7 @@
         android:icon="@drawable/device_access_data_usage"
         android:title="@string/setData"
         android:orderInCategory="200"
-        android:showAsAction="ifRoom"
+        android:showAsAction="collapseActionView"
         >
     </item>
 
@@ -27,7 +27,7 @@
         android:icon="@drawable/navigation_refresh"
         android:title="@string/refresh"
         android:orderInCategory="300"
-        android:showAsAction="ifRoom">
+        android:showAsAction="collapseActionView">
     </item>
 
     <item
@@ -35,7 +35,7 @@
         android:icon="@drawable/navigation_refresh"
         android:title="@string/exit"
         android:orderInCategory="400"
-        android:showAsAction="ifRoom">
+        android:showAsAction="collapseActionView">
     </item>
 
 

@@ -19,7 +19,7 @@
         <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="CurName"
                 android:id="@+id/vNameView" android:layout_gravity="center_vertical|right" android:inputType="textMultiLine"
                 android:layout_marginLeft="5dp" android:textSize="12dp"/>
         <TableRow
@@ -33,11 +33,32 @@
                     android:layout_gravity="center_vertical|bottom" android:layout_marginLeft="@dimen/rowTextLeftMargin" android:width="@dimen/vChCodeColDim"
                     android:gravity="bottom"/>
             <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="30.721"
+                    android:text="30.72100000000"
                     android:id="@+id/vCursView" android:layout_gravity="center_vertical|bottom" android:editable="false"
-                    android:layout_marginLeft="5dp" android:width="@dimen/vCursColDim" android:gravity="bottom"/>
+                    android:layout_marginLeft="5dp" android:width="@dimen/vCursColDim" android:gravity="bottom"
+                android:textAlignment="textStart"
+                android:singleLine="true" />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:id="@+id/cursDeltaImageView"
+                android:src="@drawable/up_triangle"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="+0,5"
+                android:id="@+id/cursDeltaTextView"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1" />
         </TableRow>
     </LinearLayout>
 </LinearLayout>

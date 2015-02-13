@@ -5,7 +5,8 @@
     <item
         android:id="@+id/root_menu"
         android:icon="@drawable/ic_action_overflow"
-        yourapp:showAsAction="ifRoom"
-        android:title="@string/rootmenu_title">
+        yourapp:showAsAction="ifRoom|collapseActionView"
+        android:title="@string/rootmenu_title"
+        yourapp:actionViewClass = "android.support.v7.widget.PopupMenu">
     </item>
 </menu>

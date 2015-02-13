@@ -3,6 +3,7 @@ package ru.openitr.cbrfinfo;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,7 +24,7 @@ public class AppDialog extends DialogFragment {
     static final public int ILLEGAL_DATA_DIALOD = 4;
     static final public int NOT_RESPOND_DIALOG = 5;
     static Calendar onDate;
-    protected int dialogId;
+    int dialogId;
     int year;
     int month;
     int day;
@@ -36,15 +37,19 @@ public class AppDialog extends DialogFragment {
 
     DialogInterface.OnClickListener notRespondPositiveOnClick;
 
-    public AppDialog (){
-        String stringArgs = getArguments().getString("DIALOG_ID");
-        this.dialogId = Integer.getInteger(stringArgs);
-    }
+//    public AppDialog (){
+//        Bundle arguments = getArguments();
+//        if (arguments != null) {
+//            String stringArgs = arguments.getString("DIALOG_ID");
+//            this.dialogId = Integer.getInteger(stringArgs);
+//        }
+//    }
 
     public static AppDialog newInstance(int id) {
         Bundle args = new Bundle();
         args.putString("DIALOG_ID", String.valueOf(id));
         AppDialog result = new AppDialog();
+        result.dialogId = id;
         result.setArguments(args);
         return result;
     }

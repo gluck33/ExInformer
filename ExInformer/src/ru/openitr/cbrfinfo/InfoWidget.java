@@ -66,6 +66,7 @@ public class InfoWidget extends AppWidgetProvider {
     }
 
     private RemoteViews inflateWidget(Context context, Icurrency cur){
+        String directionImageUri = "android.resource://" + context.getPackageName() +"/drawable/";
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
         if (cur.getvCurs() == 0)
             getCurrentInfo(context, 0);
@@ -74,10 +75,17 @@ public class InfoWidget extends AppWidgetProvider {
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/f_";
         widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString +cur.getVchCode().toLowerCase()));
         widgetView.setTextViewText(R.id.cursDateTv,cur.vDateAsString());
+        if (cur.getvDelta() > 0){
+            directionImageUri = directionImageUri + "up_triangle";
+        } else if (cur.getvDelta() < 0){
+            directionImageUri = directionImageUri + "down_triangle";
+        }
+        widgetView.setImageViewUri(R.id.upDownImage, Uri.parse(directionImageUri));
         return widgetView;
     }
 
     private RemoteViews inflateWidget(Context context, DragMetal met){
+        String directionImageUri = "android.resource://" + context.getPackageName() +"/drawable/";
         RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.cur_widget);
         if (met.getPrice() == 0)
             getCurrentInfo(context,1);
@@ -87,6 +95,14 @@ public class InfoWidget extends AppWidgetProvider {
         String uriString = "android.resource://" + context.getPackageName() +"/drawable/";
         widgetView.setImageViewUri(R.id.flagImageView, Uri.parse(uriString + met.getMetallEngName() + "_w"));
         widgetView.setTextViewText(R.id.cursDateTv,met.getOnDateAsString());
+        Float delta = met.getmDelta();
+        if (met.getmDelta() > 0){
+            directionImageUri = directionImageUri + "up_triangle";
+        } else if (met.getmDelta() < 0){
+            directionImageUri = directionImageUri + "down_triangle";
+        }
+        widgetView.setImageViewUri(R.id.upDownImage, Uri.parse(directionImageUri));
+
         return widgetView;
     }
 
@@ -157,10 +173,3 @@ public class InfoWidget extends AppWidgetProvider {
 
 }
 
-class myRemoteViews extends RemoteViews{
-
-    public myRemoteViews(String packageName, int layoutId) {
-        super(packageName, layoutId);
-    }
-
-}

@@ -189,11 +189,12 @@ public class CurrencyInfoFragment extends ListFragment {
             do {
                 String vName = c.getString(CbInfoDb.VALNAME_COLUMN);
                 Float vCurs = c.getFloat(CbInfoDb.VALCURS_COLUMN);
+                Float vDelta = c.getFloat(CbInfoDb.VALDELTA_COLNUM);
                 String vchCode = c.getString(CbInfoDb.VALCHARCODE_COLUMN);
                 int vCode = c.getInt(CbInfoDb.VALCODE_COLUMN);
                 Calendar vDate = Calendar.getInstance();
                 vDate.setTimeInMillis(c.getLong(CbInfoDb.VALDATE_COLUMN));
-                Icurrency ic = new Icurrency(vName, vCurs, vchCode, vCode, vDate);
+                Icurrency ic = new Icurrency(vName, vCurs, vchCode, vCode, vDate, vDelta);
                 icurrencies.add(ic);
             } while (c.moveToNext());
         }

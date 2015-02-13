@@ -23,6 +23,7 @@ public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
     private final String pkgName = getContext().getPackageName();
     private static String [] metalNames = new String[4];
     private Currency measurement = Currency.getInstance("RUB");
+
     public MetallArrayAdapter(Context context, List<DragMetal> metals) {
         super(context, R.layout.metall_prices_layout, R.id.MetalNameView, metals);
         metalNames = context.getResources().getStringArray(R.array.metall_names);
@@ -36,7 +37,8 @@ public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
             holder.metalImage = (ImageView) v.findViewById(R.id.metalIcon);
             holder.metalName = (TextView) v.findViewById(R.id.MetalNameView);
             holder.metalPrice = (TextView) v.findViewById(R.id.MetalPriceView);
-
+            holder.metalDeltaImage = (ImageView) v.findViewById(R.id.MetalDeltaimageView);
+            holder.metalDeltaText = (TextView) v.findViewById(R.id.MetalDeltaTextView);
             v.setTag(holder);
         }
 
@@ -48,13 +50,18 @@ public class MetallArrayAdapter extends ArrayAdapter<DragMetal> {
         holder.metalImage.setImageURI(Uri.parse(imageUriString));
         holder.metalName.setText(name);
         holder.metalPrice.setText(String.valueOf(metalItem.getPrice()) + " " +measureString);
-
+        Float mDelta = metalItem.getmDelta();
+        holder.metalDeltaText.setText(String.valueOf(mDelta));
+        if (mDelta > 0) {holder.metalDeltaImage.setImageURI(Uri.parse("android.resource://" + pkgName + "/drawable/up_triangle"));}
+        else if (mDelta < 0){holder.metalDeltaImage.setImageURI(Uri.parse("android.resource://" + pkgName + "/drawable/down_triangle"));}
         return v;
     }
     private class ViewHolder {
         public TextView metalName;
         public TextView metalPrice;
         public ImageView metalImage;
+        public ImageView metalDeltaImage;
+        public TextView metalDeltaText;
     }
 
 }

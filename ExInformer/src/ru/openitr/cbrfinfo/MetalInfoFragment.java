@@ -126,7 +126,8 @@ public class MetalInfoFragment extends ListFragment {
                 Float  price= c.getFloat(CbInfoDb.MET_PRICE_COL_NUM);
                 Calendar pDate = Calendar.getInstance();
                 pDate.setTimeInMillis(c.getLong(CbInfoDb.MET_DATE_COL_NUM));
-                DragMetal met = new DragMetal(code,price,pDate);
+                Float mDelta = c.getFloat(CbInfoDb.MET_DELTA_COL_NUM);
+                DragMetal met = new DragMetal(code,price,pDate,mDelta);
                 metals.add(met);
             } while (c.moveToNext());
         }

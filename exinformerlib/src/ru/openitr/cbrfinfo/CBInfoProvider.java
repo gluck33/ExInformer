@@ -5,6 +5,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.UriMatcher;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -72,7 +73,14 @@ public class CBInfoProvider extends ContentProvider {
     InfoDBHelper dbHelper;
     @Override
     public boolean onCreate() {
-        dbHelper = new InfoDBHelper(getContext(), CbInfoDb.DATABASE_NAME, null, CbInfoDb.DATABASE_VERSION);
+        Context curCont = getContext();
+        int versionNum = CbInfoDb.DATABASE_VERSION;
+        try {
+            versionNum = 10 + Integer.getInteger(curCont.getPackageManager().getPackageInfo(curCont.getPackageName(), 0).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        dbHelper = new InfoDBHelper(getContext(), CbInfoDb.DATABASE_NAME, null, versionNum);
         return true;
     }
 
@@ -227,7 +235,8 @@ public class CBInfoProvider extends ContentProvider {
                 tableName = CbInfoDb.METAL_TABLE;
                 String _mCode = uri.getLastPathSegment();
                 if (TextUtils.isEmpty(selection)) {
-                    selection = CbInfoDb.MET_KEY_CODE + " = " + "'" + _mCode + "'";
+//                    selection = CbInfoDb.MET_KEY_CODE + " = " + "'" + _mCode + "'";
+                    selection = CbInfoDb.MET_KEY_CODE + " = " + _mCode;
                 } else {
                     selection = selection + " AND " + CbInfoDb.MET_KEY_CODE + " = " + _mCode;
                 }
@@ -259,9 +268,13 @@ private class InfoDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CbInfoDb.CREATE_CUR_TABLE);
+        db.execSQL(CbInfoDb.CREATE_CURTABLE_TRIGGER_1);
+
         for (int i = 0; i <= CbInfoDb.INSERT_CURRENCY_DATA.length - 1; i++)
             db.execSQL(CbInfoDb.INSERT_CURRENCY_DATA[i]);
+
         db.execSQL(CbInfoDb.CREATE_METALL_TABLE);
+        db.execSQL(CbInfoDb.CREATE_METALTABLE_TRIGGER_1);
         for (int i = 0; i <= CbInfoDb.INSERT_METAL_DATA.length - 1; i++)
             db.execSQL(CbInfoDb.INSERT_METAL_DATA[i]);
     }

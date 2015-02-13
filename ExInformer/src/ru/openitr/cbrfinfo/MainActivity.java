@@ -184,7 +184,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.root_menu, menu);
+        inflater.inflate(R.menu.main_menu, menu);
+//        return true;
         return super.onCreatePanelMenu(featureId, menu);
     }
 
@@ -192,7 +193,8 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.root_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
+//        return super.onCreateOptionsMenu(menu);
 //        getMenuInflater().inflate(R.menu.root_menu, menu);
 //        return true;
     }

@@ -15,21 +15,34 @@ public class DragMetal {
     private int code;
     private float price;
     private Calendar onDate;
+    private Float mDelta;
+
+    public Float getmDelta() {
+        return mDelta;
+    }
+
+    public void setmDelta(Float mDelta) {
+        this.mDelta = mDelta;
+    }
+
+
 
     public DragMetal(int code, float price) {
         this.code = code;
         this.price = price;
         this.onDate = Calendar.getInstance();
+        this.mDelta = 0f;
     }
 
     public DragMetal(){
         this.onDate = Calendar.getInstance();
     }
 
-    public DragMetal(int code, float price, Calendar dateOfPrice) {
+    public DragMetal(int code, float price, Calendar dateOfPrice, float mDelta) {
         this.code = code;
         this.price = price;
         this.onDate = dateOfPrice;
+        this.mDelta = mDelta;
     }
 
 
@@ -144,6 +157,7 @@ public class DragMetal {
             result.setCode(cursor.getInt(CbInfoDb.MET_CODE_COL_NUM));
             result.setPrice(cursor.getFloat(CbInfoDb.MET_PRICE_COL_NUM));
             result.setOnDate(cursor.getLong(CbInfoDb.MET_DATE_COL_NUM));
+            result.setmDelta(cursor.getFloat(CbInfoDb.MET_DELTA_COL_NUM));
         } finally {
             cursor.close();
         }
