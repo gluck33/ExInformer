@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:name="Basic menu">
+    <item
+        android:id="@+id/settingsItem"
+        android:icon="@drawable/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="collapseActionView"
+        android:title="@string/settings">
+    </item>
+
+    <item
+        android:id="@+id/setDataItem"
+        android:icon="@drawable/device_access_data_usage"
+        android:title="@string/setData"
+        android:orderInCategory="200"
+        app:showAsAction="collapseActionView"
+        >
+    </item>
+
+    <item
+        android:id="@+id/refreshItem"
+        android:icon="@drawable/navigation_refresh"
+        android:title="@string/refresh"
+        android:orderInCategory="300"
+        app:showAsAction="collapseActionView">
+    </item>
+
+    <item
+        android:id="@+id/exiItem"
+        android:icon="@drawable/navigation_refresh"
+        android:title="@string/exit"
+        android:orderInCategory="400"
+        app:showAsAction="collapseActionView">
+    </item>
+
+
+</menu><!-- From: file:/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/src/main/res/menu/main_menu.xml -->

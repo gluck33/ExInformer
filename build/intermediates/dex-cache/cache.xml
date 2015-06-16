@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/net.sourceforge.kobjects/kobjects-j2me/0.0-SNAPSHOT-20040926-2/9246ca92b16c65114a7fb80b906801e06be95305/kobjects-j2me-0.0-SNAPSHOT-20040926-2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9246ca92b16c65114a7fb80b906801e06be95305">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/kobjects-j2me-0.0-SNAPSHOT-20040926-2-a9562ed8fd04663cf63f996f3c64dc90dbb94635.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/classes-b8339095469ad3686612f5b19f639459dd95c99a.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-base/3.1.1/6649e7c6dc2564ee70a5f4551aa498328b680eda/ksoap2-base-3.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6649e7c6dc2564ee70a5f4551aa498328b680eda">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-base-3.1.1-79156ad7bd123ead8340a9754c0eb2eba5469ee8.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-android/3.1.1/dbbe6c842ff40ea1568ff9f45854ede509ab1ea9/ksoap2-android-3.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="dbbe6c842ff40ea1568ff9f45854ede509ab1ea9">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-android-3.1.1-66a3cb5d224a968aca76d84d6f03fb187d3638c5.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="822512ab78e1e60d8a3a181eb9ca789d910e6afc">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/classes-245ecf12b8603db80b49a53937931983e87f3fa2.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/org.xmlpull/xmlpull/1.1.3.3/9b62254da05ce6399a09164362da7b2419de63ca/xmlpull-1.1.3.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9b62254da05ce6399a09164362da7b2419de63ca">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/xmlpull-1.1.3.3-83076ab37004612b275d05c0adb5ae845c455a27.jar" />
+    </item>
+    <item
+        jar="/usr/local/lib/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-9edf9943366116d48b947f995c5369f0c29485de.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/classes-5cbd3b469cc44fddeaab630f618a6a0df83a78be.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-j2se/3.1.1/3e030eeb9351f670dbfc572f3c16558d5f44cc59/ksoap2-j2se-3.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3e030eeb9351f670dbfc572f3c16558d5f44cc59">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-j2se-3.1.1-89e3f3543ee3b74f41409dbb477c35bc68cb6cf1.jar" />
+    </item>
+    <item
+        jar="/home/oleg/.gradle/caches/modules-2/files-2.1/net.sourceforge.kxml/kxml/2.2.4/1642506e490548d96984b8370e44257c156097f7/kxml-2.2.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1642506e490548d96984b8370e44257c156097f7">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/kxml-2.2.4-276657f8ea1653352a7d9a8a1469a76997ba4ed9.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-14d03630d6ed964b9395046b10c9ab15dcd93c16.jar" />
+    </item>
+    <item
+        jar="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/exploded-aar/asia.ivity.android/drag-sort-listview/1.0/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f0f5d962142c0c1c3296cbe178ee6438ebfbeedb">
+        <dex dex="/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/build/intermediates/pre-dexed/debug/classes-b0bd42e75461b59b2fb796e5efcb52248b2fabcc.jar" />
+    </item>
+
+</items>

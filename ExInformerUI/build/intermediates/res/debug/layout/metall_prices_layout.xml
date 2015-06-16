@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="@dimen/metalRowHeight"
+        android:layout_height="@dimen/metalRowHeight"
+        android:id="@+id/metalIcon"
+        android:src="@drawable/gold"
+        android:layout_marginLeft="@dimen/rowTextLeftMargin"
+        android:layout_marginTop="@dimen/rowTextLeftMargin"
+        android:layout_marginBottom="@dimen/rowTextLeftMargin"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Palladium"
+        android:id="@+id/MetalNameView"
+        android:layout_marginLeft="@dimen/rowTextLeftMargin"
+        android:textSize="@dimen/metalTextSize"
+        android:layout_gravity="center_vertical" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11111"
+            android:id="@+id/MetalPriceView"
+            android:layout_marginLeft="@dimen/rowTextLeftMargin"
+            android:textSize="@dimen/metalTextSize"
+            android:layout_gravity="center_vertical" />
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:id="@+id/MetalDeltaimageView"
+                android:src="@drawable/up_triangle"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="+0.5"
+                android:id="@+id/MetalDeltaTextView"
+                android:layout_gravity="center_vertical" />
+
+        </TableRow>
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/src/main/res/layout/metall_prices_layout.xml -->

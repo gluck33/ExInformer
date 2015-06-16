@@ -1,0 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+	classpath 'com.android.tools.build:gradle:1.1.2'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven { url 'http://ksoap2-android.googlecode.com/svn/m2-repo' }
+    }
+}

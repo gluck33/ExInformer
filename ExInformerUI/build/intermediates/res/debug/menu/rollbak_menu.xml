@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="Basic menu"
+    >
+    <item
+        android:id="@+id/debItem"
+        android:icon="@drawable/action_settings"
+        android:title="@string/rollback"
+        android:orderInCategory="10"
+        android:showAsAction="ifRoom"
+        >
+
+    </item>
+
+</menu><!-- From: file:/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/src/main/res/menu/rollbak_menu.xml -->

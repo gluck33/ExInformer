@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.1.3'
+    }
+}
+apply plugin: 'com.android.application'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':exinformerlib')
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'asia.ivity.android:drag-sort-listview:1.0'
+
+}
+
+android {
+    signingConfigs {
+    }
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+    buildTypes {
+        release {
+            // in later versions of the Gradle plugin runProguard -> minifyEnabled
+            minifyEnabled true
+            proguardFile '/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/proguard-project.txt'
+            zipAlignEnabled true
+        }
+    }
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 22
+    }
+
+}

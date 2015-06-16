@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preference_uprate_category_title">
+        <CheckBoxPreference
+                android:key="PREF_AUTO_UPDATE"
+                android:title="@string/auto_update"
+                android:summary="@string/autoupdate_summary"
+                android:defaultValue="true"
+                >
+        </CheckBoxPreference>
+
+        <CheckBoxPreference
+            android:key="PREF_NOTIFY"
+            android:title="@string/changes_notify_title"
+            android:summary="@string/changes_notify_summary"
+            android:defaultValue="true"
+            android:dependency="PREF_AUTO_UPDATE"
+            >
+        </CheckBoxPreference>
+
+        <CheckBoxPreference
+                android:key="PREF_SOUND_NOTIFY"
+                android:title="@string/sound_notify"
+                android:summary="@string/sound_notify_summary"
+                android:defaultValue="true"
+                android:dependency="PREF_NOTIFY"
+                >
+        </CheckBoxPreference>
+
+        <ru.openitr.cbrfinfo.TimePreference
+                android:name="UpdateTime"
+                android:summary="@string/preference_time_summary"
+                android:dialogLayout="@layout/time_preference"
+                android:title="@string/preference_time_title"
+                android:key="PREF_UPDITE_TIME"
+                android:dependency="PREF_AUTO_UPDATE"
+                android:defaultValue="13:00"
+                >
+        </ru.openitr.cbrfinfo.TimePreference>
+
+        <ListPreference name="UpdateFrequency"
+            android:key="PREF_UPDATE_FREQ"
+            android:title="@string/update_pref_freq_title"
+            android:summary="@string/update_pref_freq_summary"
+            android:defaultValue="30"
+            android:dependency="PREF_AUTO_UPDATE"
+            android:dialogTitle="@string/update_pref_freq_title"
+            android:entries="@array/update_freq_opts"
+            android:entryValues="@array/update_freq_vals">
+         </ListPreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/preference_update_met_group_title">
+        <CheckBoxPreference
+            android:key="PREF_MET_AUTO_UPDATE"
+            android:title="@string/preference_autoupdate_met_info"
+            android:summary="@string/autoupdate_met_summary"
+            android:defaultValue="true"
+            android:dependency="PREF_AUTO_UPDATE"
+            >
+        </CheckBoxPreference>
+        <ru.openitr.cbrfinfo.TimePreference
+            android:name="UpdateMetTime"
+            android:summary="@string/preference_time_summary"
+            android:dialogLayout="@layout/time_preference"
+            android:title="@string/preference_time_title"
+            android:key="PREF_MET_UPDATE_TIME"
+            android:dependency="PREF_MET_AUTO_UPDATE"
+            android:defaultValue="8:00"
+            >
+        </ru.openitr.cbrfinfo.TimePreference>
+    </PreferenceCategory>
+
+
+
+
+</PreferenceScreen><!-- From: file:/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/src/main/res/xml/base_preferences.xml -->

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/exinformerlib/build/intermediates/bundles/debug/res/values-ru/values.xml -->
+    <eat-comment/>
+    <string name="appRightTitlePrefix">дата курса</string>
+    <string name="app_name">Информер ЦБ РФ</string>
+    <string name="app_title">Информация ЦБ РФ</string>
+    <string name="cancel">Отмена</string>
+    <string name="dataDlgMessage">Задать дату курса</string>
+    <string name="futureMsg">Эта дата из будующего!</string>
+    <string name="futureTitle">Неверная дата.</string>
+    <string name="loading">Загрузк данных с сервера...</string>
+    <string name="netSettingsDlgMessage">Приложению требуется доступ к интернет. Для загрузки данных включите GPRS или
+        WiFi
+    </string>
+    <string name="ok">Да</string>
+    <string name="server_url">www.cbr.ru</string>
+    <string name="setData">Установить дату курса</string>
+    <string name="settings">Настройки</string>
+    <string name="vChcodeHead">Код</string>
+    <string name="vCursHead">Курс</string>
+    <string name="vNameHead">Наименование валюты</string>
+    <string name="vNomHead">Номинал</string>
+</resources>

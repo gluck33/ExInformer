@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ExInformer.iml" filepath="$PROJECT_DIR$/ExInformer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExInformerUI/ExInformerUI.iml" filepath="$PROJECT_DIR$/ExInformerUI/ExInformerUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exinformerlib/exinformerlib.iml" filepath="$PROJECT_DIR$/exinformerlib/exinformerlib.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.openitr.cbrfinfo"
+    android:installLocation="auto"
+    android:versionCode="5"
+    android:versionName="2.1.1" >
+
+    <uses-sdk
+        android:maxSdkVersion="19"
+        android:minSdkVersion="7"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@drawable/money"
+        android:label="@string/app_name" >
+        <activity
+            android:name="ru.openitr.cbrfinfo.MainActivity"
+            android:label="@string/app_title"
+            android:theme="@style/AppBaseTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="ru.openitr.cbrfinfo.WidgetConfActivity" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ru.openitr.cbrfinfo.BasePreferencesActivity"
+            android:label="@string/preference_title" >
+        </activity>
+
+        <provider
+            android:name="ru.openitr.cbrfinfo.CBInfoProvider"
+            android:authorities="ru.openitr.cbrfinfo.currency;ru.openitr.cbrfinfo.metals"
+            android:exported="false" >
+        </provider>
+
+        <receiver
+            android:name="ru.openitr.cbrfinfo.InfoWidget"
+            android:icon="@drawable/money"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" >
+                </action>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ru.openitr.cbrfinfo.INFO_UPDATED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/cur_widget_metadata" >
+            </meta-data>
+        </receiver>
+        <receiver android:name="ru.openitr.cbrfinfo.CurInfoRefreshReciever" >
+            <intent-filter>
+                <action android:name="ru.openitr.cbrfinfo.ACTION_REFRESH_CUR_INFO_ALARM" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="ru.openitr.cbrfinfo.MetInfoRefreshReciever" >
+            <intent-filter>
+                <action android:name="ru.openitr.cbrfinfo.ACTION_REFRESH_MET_INFO_ALARM" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="ru.openitr.cbrfinfo.CurInfoRefreshService"
+            android:enabled="true" />
+        <service
+            android:name="ru.openitr.cbrfinfo.MetInfoRefreshService"
+            android:enabled="true" />
+    </application>
+
+</manifest>
