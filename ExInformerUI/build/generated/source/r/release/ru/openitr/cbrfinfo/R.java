@@ -1789,7 +1789,7 @@ containing a value of this type.
         public static final int cursDeltaTextView=0x7f0a0068;
         public static final int custom=0x7f0a003c;
         public static final int customPanel=0x7f0a003b;
-        public static final int debItem=0x7f0a0083;
+        public static final int debItem=0x7f0a0084;
         public static final int decor_content_parent=0x7f0a0045;
         public static final int default_activity_button=0x7f0a0030;
         public static final int dialog=0x7f0a0022;
@@ -1799,7 +1799,7 @@ containing a value of this type.
         public static final int edit_query=0x7f0a0049;
         public static final int end=0x7f0a001b;
         public static final int end_padder=0x7f0a007b;
-        public static final int exiItem=0x7f0a0082;
+        public static final int exiItem=0x7f0a0083;
         public static final int expand_activities_button=0x7f0a002e;
         public static final int expanded_menu=0x7f0a003e;
         public static final int flagImageView=0x7f0a005c;
@@ -1834,8 +1834,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a0041;
-        public static final int refreshItem=0x7f0a0081;
-        public static final int root_menu=0x7f0a0084;
+        public static final int refreshItem=0x7f0a007f;
+        public static final int root_menu=0x7f0a0080;
         public static final int screen=0x7f0a0026;
         public static final int scrollView=0x7f0a0039;
         public static final int search_badge=0x7f0a004b;
@@ -1849,8 +1849,8 @@ containing a value of this type.
         public static final int search_src_text=0x7f0a0050;
         public static final int search_voice_btn=0x7f0a0054;
         public static final int select_dialog_listview=0x7f0a0055;
-        public static final int setDataItem=0x7f0a0080;
-        public static final int settingsItem=0x7f0a007f;
+        public static final int setDataItem=0x7f0a0081;
+        public static final int settingsItem=0x7f0a0082;
         public static final int shortcut=0x7f0a0040;
         public static final int showCustom=0x7f0a0011;
         public static final int showHome=0x7f0a0012;
@@ -1945,8 +1945,6 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main_menu=0x7f0e0000;
-        public static final int rollbak_menu=0x7f0e0001;
-        public static final int root_menu=0x7f0e0002;
     }
     public static final class string {
         public static final int Select=0x7f0c0000;

@@ -1834,8 +1834,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a0041;
-        public static final int refreshItem=0x7f0a0082;
-        public static final int root_menu=0x7f0a007f;
+        public static final int refreshItem=0x7f0a007f;
+        public static final int root_menu=0x7f0a0080;
         public static final int screen=0x7f0a0026;
         public static final int scrollView=0x7f0a0039;
         public static final int search_badge=0x7f0a004b;
@@ -1850,7 +1850,7 @@ containing a value of this type.
         public static final int search_voice_btn=0x7f0a0054;
         public static final int select_dialog_listview=0x7f0a0055;
         public static final int setDataItem=0x7f0a0081;
-        public static final int settingsItem=0x7f0a0080;
+        public static final int settingsItem=0x7f0a0082;
         public static final int shortcut=0x7f0a0040;
         public static final int showCustom=0x7f0a0011;
         public static final int showHome=0x7f0a0012;
@@ -1945,7 +1945,6 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main_menu=0x7f0e0000;
-        public static final int rollbak_menu=0x7f0e0001;
     }
     public static final class string {
         public static final int Select=0x7f0c0000;

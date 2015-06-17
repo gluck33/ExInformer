@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.openitr.cbrfinfo.exinformerlib.BuildConfig;
+
 /**
  * Created by
  * User: oleg
@@ -19,7 +21,7 @@ import java.util.Date;
 public final class LogSystem {
     private static boolean mLoggingEnabled = true;
     private static final String PATH = "sdcard/log_cb_info.dat";
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = BuildConfig.DEBUG;
     private LogSystem() {
 
     }

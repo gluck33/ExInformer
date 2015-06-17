@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:name="Basic menu">
+      xmlns:myapp="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:name="Basic menu"
+      >
     <item
-        android:id="@+id/settingsItem"
-        android:icon="@drawable/action_settings"
+        android:id="@+id/refreshItem"
+        android:title="@string/refresh"
+        android:icon="@android:drawable/stat_notify_sync"
         android:orderInCategory="100"
-        app:showAsAction="collapseActionView"
+        myapp:showAsAction="always">
+    </item>
+
+    <item
+        android:id="@+id/root_menu"
+        android:icon="@drawable/ic_action_overflow"
+        myapp:showAsAction="always"
+        android:title="@string/rootmenu_title"
+        android:orderInCategory="200"
+        >
+    <menu>
+
+        <item
+            android:id="@+id/setDataItem"
+            android:title="@string/setData"
+            android:orderInCategory="250"
+            myapp:showAsAction="never"
+            >
+        </item>
+
+        <item
+        android:id="@+id/settingsItem"
+        android:orderInCategory="300"
+        myapp:showAsAction="never"
         android:title="@string/settings">
     </item>
 
     <item
-        android:id="@+id/setDataItem"
-        android:icon="@drawable/device_access_data_usage"
-        android:title="@string/setData"
-        android:orderInCategory="200"
-        app:showAsAction="collapseActionView"
-        >
-    </item>
-
-    <item
-        android:id="@+id/refreshItem"
-        android:icon="@drawable/navigation_refresh"
-        android:title="@string/refresh"
-        android:orderInCategory="300"
-        app:showAsAction="collapseActionView">
-    </item>
-
-    <item
         android:id="@+id/exiItem"
-        android:icon="@drawable/navigation_refresh"
         android:title="@string/exit"
         android:orderInCategory="400"
-        app:showAsAction="collapseActionView">
+        myapp:showAsAction="never"
+        >
     </item>
-
+        <item
+            android:id="@+id/debItem"
+            android:icon="@drawable/abc_ic_clear_mtrl_alpha"
+            android:title="@string/rollback"
+            android:orderInCategory="500"
+            myapp:showAsAction="always"
+            >
+        </item>
+    </menu>
+</item>
 
 </menu><!-- From: file:/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/src/main/res/menu/main_menu.xml -->

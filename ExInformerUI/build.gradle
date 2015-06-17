@@ -22,21 +22,18 @@ dependencies {
 }
 
 android {
-    signingConfigs {
-    }
-    compileSdkVersion 22
+    compileSdkVersion 21
     buildToolsVersion "22.0.1"
     buildTypes {
         release {
-            // in later versions of the Gradle plugin runProguard -> minifyEnabled
             minifyEnabled true
-            proguardFile '/home/oleg/AndroidStudioProjects/exInformer_all_1/ExInformer/ExInformerUI/proguard-project.txt'
+            proguardFile 'proguard-project.txt'
             zipAlignEnabled true
         }
     }
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 22
+        minSdkVersion 8
+        targetSdkVersion 21
     }
 
 }

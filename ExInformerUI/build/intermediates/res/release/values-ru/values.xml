@@ -90,7 +90,7 @@
     <string name="preference_uprate_category_title">Настройки автообновления информации</string>
     <string name="refresh">Обновить</string>
     <string name="rollback">Откатить на вчера</string>
-    <string name="rootmenu_title">Menu and settings</string>
+    <string name="rootmenu_title">Меню и настройки</string>
     <string name="selectInfoItem">Выберите отображаемую информацию…</string>
     <string name="select_widget_info_type">Выбор типа информации</string>
     <string name="server_url">www.cbr.ru</string>

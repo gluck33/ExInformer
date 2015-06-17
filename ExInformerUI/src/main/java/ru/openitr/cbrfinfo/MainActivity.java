@@ -31,6 +31,9 @@ import java.util.List;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.PopupMenu;
 
+import ru.openitr.cbrfinfo.exinformerlib.*;
+import ru.openitr.cbrfinfo.exinformerlib.BuildConfig;
+
 
 public class MainActivity extends ActionBarActivity {
     public static final int CURRENCY_FRAGMENT = 0;
@@ -178,20 +181,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
-
-//    @Override
-//    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.main_menu, menu);
-////        return true;
-//        return super.onCreatePanelMenu(featureId, menu);
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+        if (!ru.openitr.cbrfinfo.BuildConfig.DEBUG) {
+            MenuItem rollbackItem = menu.findItem(R.id.debItem);
+            rollbackItem.setVisible(false);
+        }
         return true;
     }
 
@@ -215,8 +212,8 @@ public class MainActivity extends ActionBarActivity {
             case (R.id.exiItem):
                 finish();
                 return true;
-            case 100:
-                if (LogSystem.DEBUG){
+            case (R.id.debItem):
+                if (BuildConfig.DEBUG){
                     TestFunc.rollbackToYesterday(getApplicationContext());
                     CurrencyInfoFragment curf = (CurrencyInfoFragment) fragments.get(CURRENCY_FRAGMENT);
                     curf.loadCurrencysFromProvider();
@@ -226,23 +223,6 @@ public class MainActivity extends ActionBarActivity {
         }
         return false;
     }
-
-
-//    public void showMenu(View view) {
-//        PopupMenu popupMenu = new PopupMenu(this, view);
-//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                onOptionsItemSelected(item);
-//                return false;
-//            }
-//        });
-//        if (LogSystem.DEBUG)
-//            popupMenu.getMenu().add(Menu.NONE, 100, 500, "Возврат на вчера");
-//        popupMenu.inflate(R.menu.main_menu);
-//        popupMenu.show();
-//
-//    }
 
     private void refreshPreferences() {
         refreshServiceIntent.putExtra(PARAM_ONLY_SET_ALARM, true);

@@ -253,9 +253,9 @@ public class WidgetConfActivity extends FragmentActivity {
      */
 
     public static class SelectListAlertDialog extends DialogFragment{
-        ArrayList<String> selectArgs = new ArrayList<String>();
         ListAdapter selectListAdapter;
         DialogInterface.OnClickListener selectChoiceListener;
+
 
         /**
          * Создание экземпляра класса
@@ -266,18 +266,20 @@ public class WidgetConfActivity extends FragmentActivity {
          */
 
         public static SelectListAlertDialog newInstance(ArrayList<String> selectionList, String title, DialogInterface.OnClickListener onSelectItemListener){
-            SelectListAlertDialog dialog = new SelectListAlertDialog(selectionList, onSelectItemListener);
+            SelectListAlertDialog dialog = new SelectListAlertDialog();
             Bundle args = new Bundle();
+            args.putStringArrayList("selection_list", selectionList);
             args.putString("title", title);
             dialog.setArguments(args);
+            dialog.setOnSelectItemListener(onSelectItemListener);
             return dialog;
         }
 
 
-        private SelectListAlertDialog(ArrayList<String> selectArgs, DialogInterface.OnClickListener onSelectItemListener){
-            this.selectArgs = selectArgs;
-            this.selectChoiceListener = onSelectItemListener;
-        }
+//        private SelectListAlertDialog(ArrayList<String> selectArgs, DialogInterface.OnClickListener onSelectItemListener){
+//            this.selectArgs = selectArgs;
+//            this.selectChoiceListener = onSelectItemListener;
+//        }
 
         public void setOnSelectItemListener(DialogInterface.OnClickListener selectChoiceListener){
             this.selectChoiceListener = selectChoiceListener;
@@ -294,6 +296,7 @@ public class WidgetConfActivity extends FragmentActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             String title = getArguments().getString("title");
+            ArrayList<String> selectArgs = getArguments().getStringArrayList("selection_list");
             selectListAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_singlechoice, selectArgs);
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(title);
@@ -308,20 +311,29 @@ public class WidgetConfActivity extends FragmentActivity {
      */
 
     public static class ConfigDialog extends DialogFragment{
-        protected static String chosenString;
+        protected static String choicenString;
         protected static int infoType;
         protected static View.OnClickListener onSaveListener;
         protected View.OnClickListener onChoiceClickListener;
 
-        static ConfigDialog newInstance(String chosenString, int infoType, View.OnClickListener onSaveListener){
-            return new ConfigDialog(chosenString, infoType, onSaveListener);
+        public ConfigDialog() {
         }
 
-        public ConfigDialog(String chosenString, int infoType, View.OnClickListener onSaveListener) {
-            this.chosenString = chosenString;
-            this.infoType = infoType;
-            this.onSaveListener = onSaveListener;
+        static ConfigDialog newInstance(String choicenString, int infoType, View.OnClickListener onSaveListener){
+            ConfigDialog configDialog = new ConfigDialog();
+            Bundle args = new Bundle();
+            args.putString("choicen_string", choicenString);
+            args.putInt("info_type", infoType);
+            configDialog.setArguments(args);
+            configDialog.onSaveListener = onSaveListener;
+            return configDialog;
         }
+
+//        public ConfigDialog(String choicenString, int infoType, View.OnClickListener onSaveListener) {
+//            this.choicenString = choicenString;
+//            this.infoType = infoType;
+//            this.onSaveListener = onSaveListener;
+//        }
 
         public void setOnChoiceListener(View.OnClickListener l){
             this.onChoiceClickListener = l;
@@ -330,16 +342,15 @@ public class WidgetConfActivity extends FragmentActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
-            //setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_DeviceDefault_Dialog);
-
+            this.choicenString = getArguments().getString("choicen_string");
+            this.infoType = getArguments().getInt("info_type");
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.cur_widget_conf, container,false);
             TextView chosenTextView = (TextView) v.findViewById(R.id.widgetObject);
-            chosenTextView.setText(chosenString);
+            chosenTextView.setText(choicenString);
             ImageButton choiceButton = (ImageButton) v.findViewById(R.id.imageButton);
             choiceButton.setOnClickListener(this.onChoiceClickListener);
             Button saveButton = (Button) v.findViewById(R.id.SelectButton);
