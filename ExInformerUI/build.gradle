@@ -18,22 +18,32 @@ dependencies {
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'asia.ivity.android:drag-sort-listview:1.0'
-
 }
 
 android {
-    compileSdkVersion 21
+    signingConfigs {
+        unsigned {
+            storePassword = ""
+            keyAlias = ""
+            keyPassword = ""
+        }
+    }
+    compileSdkVersion 22
     buildToolsVersion "22.0.1"
     buildTypes {
         release {
             minifyEnabled true
             proguardFile 'proguard-project.txt'
-            zipAlignEnabled true
+        }
+        debug {
+
         }
     }
     defaultConfig {
         minSdkVersion 8
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
-
+    lintOptions {
+        abortOnError false
+    }
 }

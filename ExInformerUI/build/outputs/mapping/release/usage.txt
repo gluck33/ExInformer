@@ -4753,7 +4753,7 @@ org.ksoap2.SoapFault:
     87:100:public void write(org.xmlpull.v1.XmlSerializer)
 org.ksoap2.SoapFault12:
     private static final long serialVersionUID
-    107:134:public void write(org.xmlpull.v1.XmlSerializer)
+    108:135:public void write(org.xmlpull.v1.XmlSerializer)
 org.ksoap2.serialization.AttributeContainer:
     35:36:public java.lang.String getAttributeAsString(int)
     45:49:public java.lang.Object getAttribute(java.lang.String)
@@ -4797,26 +4797,26 @@ org.ksoap2.serialization.SoapObject:
     571:575:public org.ksoap2.serialization.SoapObject addPropertyIfValue(org.ksoap2.serialization.PropertyInfo)
     305:305:static java.lang.Class class$(java.lang.String)
 org.ksoap2.serialization.SoapPrimitive:
-    75:75:public java.lang.Object getValue()
+    78:78:public java.lang.Object getValue()
 org.ksoap2.serialization.SoapSerializationEnvelope:
     protected static final int QNAME_TYPE
     protected static final int QNAME_NAMESPACE
     protected static final int QNAME_MARSHAL
+    protected static final java.lang.String NULL_LABEL
+    protected static final java.lang.String NIL_LABEL
     private static final java.lang.String ANY_TYPE_LABEL
     private static final java.lang.String ARRAY_MAPPING_NAME
-    private static final java.lang.String NULL_LABEL
-    private static final java.lang.String NIL_LABEL
     private static final java.lang.String HREF_LABEL
     private static final java.lang.String ID_LABEL
     private static final java.lang.String ROOT_LABEL
     private static final java.lang.String TYPE_LABEL
     private static final java.lang.String ITEM_LABEL
     private static final java.lang.String ARRAY_TYPE_LABEL
-    109:109:public boolean isAddAdornments()
-    118:119:public void setAddAdornments(boolean)
-    128:131:public void setBodyOutEmpty(boolean)
-    505:506:public void addTemplate(org.ksoap2.serialization.SoapObject)
-    516:530:public java.lang.Object getResponse()
+    107:107:public boolean isAddAdornments()
+    114:115:public void setAddAdornments(boolean)
+    125:128:public void setBodyOutEmpty(boolean)
+    574:575:public void addTemplate(org.ksoap2.serialization.SoapObject)
+    585:602:public java.lang.Object getResponse()
 org.ksoap2.transport.HttpResponseException:
     16:18:public HttpResponseException(int)
     26:28:public HttpResponseException(java.lang.String,java.lang.Throwable,int)
@@ -4837,6 +4837,7 @@ org.ksoap2.transport.ServiceConnection:
     public static final int DEFAULT_TIMEOUT
     public static final int DEFAULT_BUFFER_SIZE
     public abstract void connect()
+    public abstract void setChunkedStreamingMode()
     public abstract java.lang.String getHost()
     public abstract int getPort()
     public abstract java.lang.String getPath()
@@ -4845,50 +4846,35 @@ org.ksoap2.transport.ServiceConnectionSE:
     51:52:public ServiceConnectionSE(java.net.Proxy,java.lang.String)
     61:62:public ServiceConnectionSE(java.lang.String,int)
     76:77:public void connect()
-    138:138:public java.lang.String getHost()
-    142:142:public int getPort()
-    146:146:public java.lang.String getPath()
+    126:127:public void setChunkedStreamingMode()
+    142:142:public java.lang.String getHost()
+    146:146:public int getPort()
+    150:150:public java.lang.String getPath()
 org.ksoap2.transport.Transport:
     protected static final java.lang.String CONTENT_TYPE_XML_CHARSET_UTF_8
     protected static final java.lang.String CONTENT_TYPE_SOAP_XML_CHARSET_UTF_8
     protected static final java.lang.String USER_AGENT
-    51:68:public Transport()
-    71:72:public Transport(java.lang.String)
-    51:77:public Transport(java.lang.String,int)
-    51:83:public Transport(java.lang.String,int,int)
-    51:102:public Transport(java.net.Proxy,java.lang.String,int)
-    51:109:public Transport(java.net.Proxy,java.lang.String,int,int)
-    148:148:protected byte[] createRequestData(org.ksoap2.SoapEnvelope)
-    158:159:public void setUrl(java.lang.String)
-    176:176:public void reset()
+    71:71:public java.util.HashMap getPrefixes()
+    53:75:public Transport()
+    78:79:public Transport(java.lang.String)
+    53:84:public Transport(java.lang.String,int)
+    53:90:public Transport(java.lang.String,int,int)
+    53:112:public Transport(java.net.Proxy,java.lang.String,int)
+    53:119:public Transport(java.net.Proxy,java.lang.String,int,int)
+    169:169:protected byte[] createRequestData(org.ksoap2.SoapEnvelope)
+    179:180:public void setUrl(java.lang.String)
+    197:197:public void reset()
     public abstract java.util.List call(java.lang.String,org.ksoap2.SoapEnvelope,java.util.List,java.io.File)
-    237:237:public java.lang.String getHost()
-    247:247:public int getPort()
-    257:257:public java.lang.String getPath()
+    265:265:public java.lang.String getHost()
+    276:276:public int getPort()
+    286:286:public java.lang.String getPath()
     public abstract org.ksoap2.transport.ServiceConnection getServiceConnection()
 org.kxml2.io.KXmlParser:
     private static final java.lang.String UNEXPECTED_EOF
     private static final java.lang.String ILLEGAL_TYPE
     private static final int LEGACY
     private static final int XML_DECL
-    1108:1113:public boolean getFeature(java.lang.String)
-    1117:1117:public java.lang.String getInputEncoding()
-    1122:1125:public void defineEntityReplacementText(java.lang.String,java.lang.String)
-    1128:1134:public java.lang.Object getProperty(java.lang.String)
-    1234:1236:public boolean isWhitespace()
-    1245:1258:public char[] getTextCharacters(int[])
-    1270:1270:public java.lang.String getPrefix()
-    1288:1288:public boolean isAttributeDefault(int)
-    1304:1306:public java.lang.String getAttributePrefix(int)
-    1421:1425:public void setProperty(java.lang.String,java.lang.Object)
     1436:1447:public void skipSubTree()
-org.kxml2.io.KXmlSerializer:
-    162:162:public boolean getFeature(java.lang.String)
-    234:234:public java.lang.Object getProperty(java.lang.String)
-    243:249:public void setFeature(java.lang.String,boolean)
-    252:252:public void setProperty(java.lang.String,java.lang.Object)
-    506:506:public java.lang.String getName()
-    522:523:public org.xmlpull.v1.XmlSerializer text(char[],int,int)
 org.kxml2.kdom.Document
 org.kxml2.kdom.Element:
     59:61:public void clear()
@@ -4916,49 +4902,6 @@ org.kxml2.wap.WbxmlSerializer
 org.kxml2.wap.syncml.SyncML
 org.kxml2.wap.wml.Wml
 org.kxml2.wap.wv.WV
-org.xmlpull.v1.XmlPullParser:
-    public static final java.lang.String NO_NAMESPACE
-    public static final int START_DOCUMENT
-    public static final int END_DOCUMENT
-    public static final int START_TAG
-    public static final int END_TAG
-    public static final int TEXT
-    public static final int CDSECT
-    public static final int ENTITY_REF
-    public static final int IGNORABLE_WHITESPACE
-    public static final int PROCESSING_INSTRUCTION
-    public static final int COMMENT
-    public static final int DOCDECL
-    public static final java.lang.String FEATURE_PROCESS_NAMESPACES
-    public static final java.lang.String FEATURE_REPORT_NAMESPACE_ATTRIBUTES
-    public static final java.lang.String FEATURE_PROCESS_DOCDECL
-    public static final java.lang.String FEATURE_VALIDATION
-    public abstract boolean getFeature(java.lang.String)
-    public abstract void setProperty(java.lang.String,java.lang.Object)
-    public abstract java.lang.Object getProperty(java.lang.String)
-    public abstract void setInput(java.io.Reader)
-    public abstract java.lang.String getInputEncoding()
-    public abstract void defineEntityReplacementText(java.lang.String,java.lang.String)
-    public abstract boolean isWhitespace()
-    public abstract char[] getTextCharacters(int[])
-    public abstract java.lang.String getPrefix()
-    public abstract java.lang.String getAttributePrefix(int)
-    public abstract boolean isAttributeDefault(int)
-org.xmlpull.v1.XmlPullParserException:
-    48:48:public java.lang.Throwable getDetail()
-    50:50:public int getLineNumber()
-    51:51:public int getColumnNumber()
-org.xmlpull.v1.XmlPullParserFactory
-org.xmlpull.v1.XmlSerializer:
-    public abstract void setFeature(java.lang.String,boolean)
-    public abstract boolean getFeature(java.lang.String)
-    public abstract void setProperty(java.lang.String,java.lang.Object)
-    public abstract java.lang.Object getProperty(java.lang.String)
-    public abstract void setOutput(java.io.Writer)
-    public abstract int getDepth()
-    public abstract java.lang.String getNamespace()
-    public abstract java.lang.String getName()
-    public abstract org.xmlpull.v1.XmlSerializer text(char[],int,int)
 ru.openitr.cbrfinfo.AppDialog:
     public static final int DATE_DIALOG
     public static final int NETSETTINGS_DIALOG

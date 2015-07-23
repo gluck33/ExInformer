@@ -11,21 +11,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8a6fec4-82c4-463a-bc13-4e5dffd52ef6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/menu/rollbak_menu.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/menu/rollbak_menu.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/menu/root_menu.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/hs_err_pid16333.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/hs_err_pid16337.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/hs_err_pid16503.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/replay_pid16503.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/res/menu/rollbak_menu.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/manifests/tmp/manifestMerger2606312797009282385.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/drag_sort_listview_1_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/kobjects_j2me_0_0_SNAPSHOT_20040926_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/ksoap2_android_3_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/ksoap2_base_3_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/ksoap2_j2se_3_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/kxml_2_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/xmlpull_1_1_3_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/kobjects-j2me-0.0-SNAPSHOT-20040926-2-a9562ed8fd04663cf63f996f3c64dc90dbb94635.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-android-3.1.1-66a3cb5d224a968aca76d84d6f03fb187d3638c5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-base-3.1.1-79156ad7bd123ead8340a9754c0eb2eba5469ee8.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-j2se-3.1.1-89e3f3543ee3b74f41409dbb477c35bc68cb6cf1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/kxml-2.2.4-276657f8ea1653352a7d9a8a1469a76997ba4ed9.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/xmlpull-1.1.3.3-83076ab37004612b275d05c0adb5ae845c455a27.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/lint-results-release-fatal_files/lint-error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/lint-results-release-fatal_files/lint-run.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/lint-results-release-fatal_files/lint-warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/exinformerlib/ant.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/manifests/tmp/manifestMerger936545083054864662.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-245ecf12b8603db80b49a53937931983e87f3fa2.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-245ecf12b8603db80b49a53937931983e87f3fa2.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-5cbd3b469cc44fddeaab630f618a6a0df83a78be.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-5cbd3b469cc44fddeaab630f618a6a0df83a78be.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-b0bd42e75461b59b2fb796e5efcb52248b2fabcc.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-b0bd42e75461b59b2fb796e5efcb52248b2fabcc.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-b8339095469ad3686612f5b19f639459dd95c99a.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/classes-b8339095469ad3686612f5b19f639459dd95c99a.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/dex/debug/classes.dex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/dex/release/classes.dex" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/dex/release/classes.dex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/classes-proguard/release/classes.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/classes-proguard/release/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/classes.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/debug/classes.jar" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/debug/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/release/classes.jar" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/release/classes.jar" />
@@ -35,11 +49,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-14d03630d6ed964b9395046b10c9ab15dcd93c16.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-14d03630d6ed964b9395046b10c9ab15dcd93c16.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/kobjects-j2me-0.0-SNAPSHOT-20040926-2-a9562ed8fd04663cf63f996f3c64dc90dbb94635.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/kobjects-j2me-0.0-SNAPSHOT-20040926-2-a9562ed8fd04663cf63f996f3c64dc90dbb94635.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-android-3.1.1-66a3cb5d224a968aca76d84d6f03fb187d3638c5.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-android-3.1.1-66a3cb5d224a968aca76d84d6f03fb187d3638c5.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-base-3.1.1-79156ad7bd123ead8340a9754c0eb2eba5469ee8.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-base-3.1.1-79156ad7bd123ead8340a9754c0eb2eba5469ee8.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-j2se-3.1.1-89e3f3543ee3b74f41409dbb477c35bc68cb6cf1.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/ksoap2-j2se-3.1.1-89e3f3543ee3b74f41409dbb477c35bc68cb6cf1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/kxml-2.2.4-276657f8ea1653352a7d9a8a1469a76997ba4ed9.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/kxml-2.2.4-276657f8ea1653352a7d9a8a1469a76997ba4ed9.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/resources/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/resources/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/resources/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/resources/resources-debug-androidTest.ap_" />
@@ -47,43 +56,34 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/resources/resources-release.ap_" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/resources/resources-release.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-9edf9943366116d48b947f995c5369f0c29485de.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-9edf9943366116d48b947f995c5369f0c29485de.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/xmlpull-1.1.3.3-83076ab37004612b275d05c0adb5ae845c455a27.jar" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/pre-dexed/debug/xmlpull-1.1.3.3-83076ab37004612b275d05c0adb5ae845c455a27.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/exploded-aar/ExInformer/exinformerlib/unspecified/aapt/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/manifests/androidTest/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/manifests/androidTest/debug/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/manifests/full/release/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/manifests/full/release/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformer.iml" afterPath="$PROJECT_DIR$/ExInformer.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/debug/aapt/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/release/AndroidManifest.xml" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/release/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/release/aapt/AndroidManifest.xml" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/bundles/release/aapt/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build/intermediates/manifests/androidTest/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/exinformerlib/build/intermediates/manifests/androidTest/debug/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/ExInformerUI.iml" afterPath="$PROJECT_DIR$/ExInformerUI/ExInformerUI.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/src/main/java/ru/openitr/cbrfinfo/LogSystem.java" afterPath="$PROJECT_DIR$/exinformerlib/src/main/java/ru/openitr/cbrfinfo/LogSystem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/MainActivity.java" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/generated/source/r/debug/ru/openitr/cbrfinfo/R.java" afterPath="$PROJECT_DIR$/ExInformerUI/build/generated/source/r/debug/ru/openitr/cbrfinfo/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/generated/source/r/release/ru/openitr/cbrfinfo/R.java" afterPath="$PROJECT_DIR$/ExInformerUI/build/generated/source/r/release/ru/openitr/cbrfinfo/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/symbols/release/R.txt" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/symbols/release/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/TestFunc.java" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/TestFunc.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/WidgetConfActivity.java" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/WidgetConfActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/proguard-rules/release/aapt_rules.txt" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/proguard-rules/release/aapt_rules.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/layout/activity_main.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/layout/activity_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build.gradle" afterPath="$PROJECT_DIR$/ExInformerUI/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/build.gradle" afterPath="$PROJECT_DIR$/exinformerlib/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/layout/currencylayuot.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/layout/currencylayuot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/layout/currencylayuot.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/layout/currencylayuot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/currencylayuot.xml" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/currencylayuot.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/mapping/release/dump.txt" afterPath="$PROJECT_DIR$/ExInformerUI/build/outputs/mapping/release/dump.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/exinformerlib.iml" afterPath="$PROJECT_DIR$/exinformerlib/exinformerlib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/lint-results-release-fatal.html" afterPath="$PROJECT_DIR$/ExInformerUI/build/outputs/lint-results-release-fatal.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/layout/main_currency.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/layout/main_currency.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/layout/main_currency.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/layout/main_currency.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/main_currency.xml" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/main_currency.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/menu/main_menu.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/menu/main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/menu/main_menu.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/menu/main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/res/menu/main_menu.xml" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/res/menu/main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/incremental/mergeResources/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/incremental/mergeResources/release/merger.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/incremental/mergeResources/release/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/mapping/release/mapping.txt" afterPath="$PROJECT_DIR$/ExInformerUI/build/outputs/mapping/release/mapping.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/proguard-project.txt" afterPath="$PROJECT_DIR$/ExInformerUI/proguard-project.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/src/main/res/values-ru/strings.xml" afterPath="$PROJECT_DIR$/ExInformerUI/src/main/res/values-ru/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/values-ru/values.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/debug/values-ru/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/values-ru/values.xml" afterPath="$PROJECT_DIR$/ExInformerUI/build/intermediates/res/release/values-ru/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exinformerlib/project.properties" afterPath="$PROJECT_DIR$/exinformerlib/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ExInformerUI/build/outputs/mapping/release/usage.txt" afterPath="$PROJECT_DIR$/ExInformerUI/build/outputs/mapping/release/usage.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ExInformer.iws" />
@@ -116,7 +116,50 @@
           <activation />
         </task>
         <projects_view>
-          <tree_state />
+          <tree_state>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="ExInformer" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="ExInformer" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="ExInformer" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="Run Configurations" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.RunConfigurationsNode" />
+              </PATH_ELEMENT>
+            </PATH>
+            <PATH>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ExternalProjectsStructure$RootNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="ExInformer" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ProjectNode" />
+              </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="ExInformer" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.ModuleNode" />
+              </PATH_ELEMENT>
+            </PATH>
+          </tree_state>
         </projects_view>
       </state>
     </system>
@@ -126,39 +169,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CurrencyArrayAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/CurrencyArrayAdapter.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ExInformerUI/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49809885">
-              <caret line="55" column="72" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WidgetConfActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/WidgetConfActivity.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/exinformerlib/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="291" column="45" selection-start-line="291" selection-start-column="45" selection-end-line="291" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#7240#7241#0" expanded="false" />
-                <element signature="e#7288#7289#0" expanded="false" />
-                <element signature="e#8970#8971#0" expanded="false" />
-                <element signature="e#9016#9017#0" expanded="false" />
-                <element signature="e#12886#12887#0" expanded="false" />
-                <element signature="e#12940#12941#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.9350649">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="proguard-project.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ExInformerUI/proguard-project.txt">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -1680,7 +1715,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5737812556247" />
+        <entry key="$PROJECT_DIR$" value="5744100125587" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2044,15 +2079,7 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-android/3.1.1/dbbe6c842ff40ea1568ff9f45854ede509ab1ea9/ksoap2-android-3.1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-j2se/3.1.1/56cc8f31b8477817de9b7323fbfe5a64d934f90f/ksoap2-j2se-3.1.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-j2se/3.1.1/3e030eeb9351f670dbfc572f3c16558d5f44cc59/ksoap2-j2se-3.1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-base/3.1.1/9944db05ac00d374f5e975cd7724f11405083b1/ksoap2-base-3.1.1-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.ksoap2-android/ksoap2-base/3.1.1/6649e7c6dc2564ee70a5f4551aa498328b680eda/ksoap2-base-3.1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.kxml/kxml/2.2.4/40d659c4fe53caa1dfce5b77ddec040726f2e27a/kxml-2.2.4-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.kxml/kxml/2.2.4/1642506e490548d96984b8370e44257c156097f7/kxml-2.2.4.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sourceforge.kobjects/kobjects-j2me/0.0-SNAPSHOT-20040926-2/9246ca92b16c65114a7fb80b906801e06be95305/kobjects-j2me-0.0-SNAPSHOT-20040926-2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.xmlpull/xmlpull/1.1.3.3/9b62254da05ce6399a09164362da7b2419de63ca/xmlpull-1.1.3.3.jar" />
+                            <option value="$MODULE_DIR$/libs/ksoap2-android-assembly-3.4.0-jar-with-dependencies.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/1.1.3/53ba00bb0686ccb8b46794dbd78e28e7035045a6/gradle-1.1.3-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/1.1.3/c6f66d30006cebbaf8c1c7f8675e955223bf64e6/gradle-1.1.3.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-core/1.1.3/c045d80d90d548ed69b746a4136a4138e2c3dba3/gradle-core-1.1.3-sources.jar" />
@@ -2217,24 +2244,35 @@
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/ExInformer/src/main/java/ru/openitr/cbrfinfo/InfoWidget.java" />
         <option value="$PROJECT_DIR$/ExInformer/build.gradle" />
-        <option value="$PROJECT_DIR$/exinformerlib/build.gradle" />
         <option value="$PROJECT_DIR$/exinformerlib/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/menu/root_menu.xml" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/values-ru/strings.xml" />
-        <option value="$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/menu/rollbak_menu.xml" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/menu/main_menu.xml" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/TestFunc.java" />
         <option value="$PROJECT_DIR$/exinformerlib/src/main/java/ru/openitr/cbrfinfo/LogSystem.java" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/MainActivity.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/main_currency.xml" />
-        <option value="$PROJECT_DIR$/ExInformerUI/build.gradle" />
         <option value="$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/WidgetConfActivity.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/ExInformerUI/proguard-project.txt" />
+        <option value="$PROJECT_DIR$/ExInformerUI/src/main/res/layout/currencylayuot.xml" />
+        <option value="$PROJECT_DIR$/ExInformerUI/build.gradle" />
+        <option value="$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/exinformerlib/build.gradle" />
       </list>
     </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="NamedScopeManager">
     <order />
@@ -2267,7 +2305,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2286,6 +2324,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExInformer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exinformerlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="AndroidView">
@@ -2296,24 +2348,14 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformer" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExInformerUI" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="android.project.structure.last.selected" value="ExInformerUI" />
@@ -2324,27 +2366,11 @@
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Android2_2" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
+    <property name="restartRequiresConfirmation" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="418" />
   </component>
   <component name="RunManager" selected="Android Application.ExInformerUI">
-    <configuration default="false" name="ExInformer [androidDependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="androidDependencies" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
-    </configuration>
     <configuration default="false" name="ExInformer [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -2386,7 +2412,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/ExInformerUI" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -2395,7 +2421,7 @@
             <option value="installDebug" />
           </list>
         </option>
-        <option name="vmOptions" />
+        <option name="vmOptions" value="" />
       </ExternalSystemSettings>
       <method />
     </configuration>
@@ -2560,35 +2586,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="exinformerlib" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="exinformerlib" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
-      <method />
-    </configuration>
     <configuration default="false" name="ExInformerUI" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="ExInformerUI" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -2604,36 +2601,7 @@
       <option name="DISABLE_BOOT_ANIMATION" value="false" />
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ExInformer-ExInformer" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="ExInformerUI" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="CLEAR_LOGCAT" value="true" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
@@ -2647,21 +2615,36 @@
       <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
-    <list size="7">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.exinformerlib" />
-      <item index="1" class="java.lang.String" itemvalue="Android Application.ExInformerUI" />
-      <item index="2" class="java.lang.String" itemvalue="Android Application.ExInformer-ExInformer" />
-      <item index="3" class="java.lang.String" itemvalue="Gradle.ExInformer [androidDependencies]" />
-      <item index="4" class="java.lang.String" itemvalue="Gradle.ExInformer [signingReport]" />
-      <item index="5" class="java.lang.String" itemvalue="Gradle.ExInformer:exinformerlib [build]" />
-      <item index="6" class="java.lang.String" itemvalue="Gradle.ExInformer:ExInformerUI [installDebug]" />
+    <configuration default="false" name="ExInformer [androidDependencies]" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="androidDependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Android Application.ExInformerUI" />
+      <item index="1" class="java.lang.String" itemvalue="Gradle.ExInformer [androidDependencies]" />
+      <item index="2" class="java.lang.String" itemvalue="Gradle.ExInformer [signingReport]" />
+      <item index="3" class="java.lang.String" itemvalue="Gradle.ExInformer:exinformerlib [build]" />
+      <item index="4" class="java.lang.String" itemvalue="Gradle.ExInformer:ExInformerUI [installDebug]" />
     </list>
     <recent_temporary>
-      <list size="4">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="Gradle.ExInformer:ExInformerUI [installDebug]" />
-        <item index="1" class="java.lang.String" itemvalue="Gradle.ExInformer:exinformerlib [build]" />
-        <item index="2" class="java.lang.String" itemvalue="Gradle.ExInformer [signingReport]" />
-        <item index="3" class="java.lang.String" itemvalue="Gradle.ExInformer [androidDependencies]" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.ExInformer [signingReport]" />
+        <item index="2" class="java.lang.String" itemvalue="Gradle.ExInformer:exinformerlib [build]" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
@@ -2690,36 +2673,45 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1280" height="971" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="1.0" sideWeight="0.46103895" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5457876" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4969475" sideWeight="0.41233766" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.43089432" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3992674" sideWeight="0.28733766" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4969475" sideWeight="0.58766234" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.49675325" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.48376623" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.49362478" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12332112" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.52597404" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12332112" sideWeight="0.4935065" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4969475" sideWeight="0.58603895" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.45421246" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5691057" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.49362478" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.50427353" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3992674" sideWeight="0.71266234" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3992674" sideWeight="0.71266234" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.4935065" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2748,45 +2740,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="187" column="53" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/layout/main_currency.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/WidgetConfActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="327" column="20" selection-start-line="327" selection-start-column="20" selection-end-line="327" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#7240#7241#0" expanded="false" />
-            <element signature="e#7288#7289#0" expanded="false" />
-            <element signature="e#8970#8971#0" expanded="false" />
-            <element signature="e#9016#9017#0" expanded="false" />
-            <element signature="e#12886#12887#0" expanded="false" />
-            <element signature="e#12940#12941#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2808,7 +2765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2823,26 +2779,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="52" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="52" />
-          <folding>
-            <element signature="e#328#345#0" expanded="false" />
-            <element signature="e#648#672#0" expanded="false" />
-            <element signature="e#815#832#0" expanded="false" />
-            <element signature="e#1093#1111#0" expanded="false" />
-            <element signature="e#1192#1206#0" expanded="false" />
-            <element signature="e#1441#1459#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="9" selection-start-column="1" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/MainActivity.java">
@@ -2856,7 +2803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2871,14 +2817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#328#345#0" expanded="false" />
-            <element signature="e#648#672#0" expanded="false" />
-            <element signature="e#815#832#0" expanded="false" />
-            <element signature="e#1093#1111#0" expanded="false" />
-            <element signature="e#1192#1206#0" expanded="false" />
-            <element signature="e#1441#1459#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2893,14 +2831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#328#345#0" expanded="false" />
-            <element signature="e#648#672#0" expanded="false" />
-            <element signature="e#815#832#0" expanded="false" />
-            <element signature="e#1093#1111#0" expanded="false" />
-            <element signature="e#1192#1206#0" expanded="false" />
-            <element signature="e#1441#1459#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2915,14 +2845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#328#345#0" expanded="false" />
-            <element signature="e#648#672#0" expanded="false" />
-            <element signature="e#815#832#0" expanded="false" />
-            <element signature="e#1093#1111#0" expanded="false" />
-            <element signature="e#1192#1206#0" expanded="false" />
-            <element signature="e#1441#1459#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2934,21 +2856,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/menu/main_menu.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#328#345#0" expanded="false" />
-            <element signature="e#648#672#0" expanded="false" />
-            <element signature="e#815#832#0" expanded="false" />
-            <element signature="e#1093#1111#0" expanded="false" />
-            <element signature="e#1192#1206#0" expanded="false" />
-            <element signature="e#1441#1459#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -2958,7 +2865,7 @@
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2976,29 +2883,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/exinformerlib/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06844106">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="9" selection-start-column="1" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/values-ru/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.027149322">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3006,14 +2904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07692308">
           <caret line="28" column="32" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -3035,14 +2925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
-          <folding>
-            <element signature="e#328#345#0" expanded="false" />
-            <element signature="e#648#672#0" expanded="false" />
-            <element signature="e#815#832#0" expanded="false" />
-            <element signature="e#1093#1111#0" expanded="false" />
-            <element signature="e#1192#1206#0" expanded="false" />
-            <element signature="e#1441#1459#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3137,53 +3019,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/layout/main_currency.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.903226">
-          <caret line="5" column="77" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/java/ru/openitr/cbrfinfo/WidgetConfActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="291" column="45" selection-start-line="291" selection-start-column="45" selection-end-line="291" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#7240#7241#0" expanded="false" />
-            <element signature="e#7288#7289#0" expanded="false" />
-            <element signature="e#8970#8971#0" expanded="false" />
-            <element signature="e#9016#9017#0" expanded="false" />
-            <element signature="e#12886#12887#0" expanded="false" />
-            <element signature="e#12940#12941#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/proguard-project.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ExInformerUI/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30635837">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5895954">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3191,6 +3030,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49809885">
           <caret line="55" column="72" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="41" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExInformerUI/proguard-project.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59621453">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/layout/currencylayuot.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31134564">
+          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/res/layout/main_currency.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="77" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45086706">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExInformerUI/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExInformerUI/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exinformerlib/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9350649">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
           <folding />
         </state>
       </provider>
