@@ -50,29 +50,29 @@ public final class R {
 		public static final int mvf = 0x7f02006a;
 	}
 	public static final class id {
-		public static final int click_remove = 0x7f0a0004;
-		public static final int drag_handle = 0x7f0a0005;
+		public static final int click_remove = 0x7f0d0004;
+		public static final int drag_handle = 0x7f0d0005;
 	}
 	public static final class layout {
 		public static final int main = 0x7f03001f;
 	}
 	public static final class string {
-		public static final int appRightTitlePrefix = 0x7f0c0045;
-		public static final int app_name = 0x7f0c0013;
-		public static final int app_title = 0x7f0c0014;
-		public static final int cancel = 0x7f0c0018;
-		public static final int dataDlgMessage = 0x7f0c001c;
-		public static final int futureMsg = 0x7f0c001f;
-		public static final int futureTitle = 0x7f0c0020;
-		public static final int loading = 0x7f0c0021;
-		public static final int netSettingsDlgMessage = 0x7f0c0026;
-		public static final int ok = 0x7f0c002b;
-		public static final int server_url = 0x7f0c0038;
-		public static final int setData = 0x7f0c0039;
-		public static final int settings = 0x7f0c003a;
-		public static final int vChcodeHead = 0x7f0c0040;
-		public static final int vCursHead = 0x7f0c0041;
-		public static final int vNameHead = 0x7f0c0042;
-		public static final int vNomHead = 0x7f0c0043;
+		public static final int appRightTitlePrefix = 0x7f06000e;
+		public static final int app_name = 0x7f060010;
+		public static final int app_title = 0x7f060011;
+		public static final int cancel = 0x7f060015;
+		public static final int dataDlgMessage = 0x7f060019;
+		public static final int futureMsg = 0x7f06001c;
+		public static final int futureTitle = 0x7f06001d;
+		public static final int loading = 0x7f06001e;
+		public static final int netSettingsDlgMessage = 0x7f060023;
+		public static final int ok = 0x7f060029;
+		public static final int server_url = 0x7f060036;
+		public static final int setData = 0x7f060037;
+		public static final int settings = 0x7f060038;
+		public static final int vChcodeHead = 0x7f06003d;
+		public static final int vCursHead = 0x7f06003e;
+		public static final int vNameHead = 0x7f06003f;
+		public static final int vNomHead = 0x7f060040;
 	}
 }

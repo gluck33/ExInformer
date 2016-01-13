@@ -11,8 +11,10 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v7.app.NotificationCompat;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -34,7 +36,7 @@ public abstract class InfoRefreshService extends Service {
     protected long nextExecuteTimeInMills;
     protected boolean autoupdate = false;
     private boolean lastInfo = false;
-    private Notification newExchangeRateNotification;
+//    private Notification newExchangeRateNotification;
     NotificationManager notificationManager;
     SharedPreferences sharedPreferences;
     public static final int NOTIFICATION_ID = 1;
@@ -162,24 +164,37 @@ public abstract class InfoRefreshService extends Service {
         if (fromActivity) return;
         int icon = R.drawable.money;
         String tickerText = getTickerText();
-        if (newExchangeRateNotification == null)
-            newExchangeRateNotification = new Notification (icon, tickerText, System.currentTimeMillis());
         Context context = getApplicationContext();
         String expandedText = getExpandetText();//getString(R.string.obtained_change_in_exchange_rates);// + "  "+ ExtraCalendar.getSimpleDateString(onDate);
         String expandedTitle = tickerText;
 
-        Intent startActivityIntent = new Intent(InfoRefreshService.this, CurrencyInfoFragment.class);
-
+        Intent startActivityIntent = new Intent(InfoRefreshService.this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(context,0 ,startActivityIntent,0);
+            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        Notification newExchangeRateNotification;
+/*
+        if (currentapiVersion < Build.VERSION_CODES.HONEYCOMB_MR2){
+            newExchangeRateNotification = new Notification (icon, tickerText, System.currentTimeMillis());
+            newExchangeRateNotification.setLatestEventInfo(context,expandedTitle,expandedText,launchIntent);
+            }
+            else {
+*/
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+                newExchangeRateNotification = builder.setContentIntent(launchIntent)
+                        .setSmallIcon(icon)
+                        .setTicker(tickerText)
+                        .setWhen(System.currentTimeMillis())
+                        .setAutoCancel(true)
+                        .setContentTitle(expandedTitle)
+                        .setContentText(expandedText)
+                        .build();
 
-        newExchangeRateNotification.setLatestEventInfo(context,expandedTitle,expandedText,launchIntent);
-
+//            }
         if (soundNotification)
             newExchangeRateNotification.defaults |= Notification.DEFAULT_SOUND;
         newExchangeRateNotification.flags |= Notification.FLAG_AUTO_CANCEL;
 
         notificationManager.notify(NOTIFICATION_ID, newExchangeRateNotification);
-
     }
 
 

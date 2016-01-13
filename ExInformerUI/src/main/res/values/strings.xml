@@ -56,4 +56,5 @@
     <string name="changes_notify_title">Show notification</string>
     <string name="changes_notify_summary">Show notification in status bar if application get new information</string>
     <string name="obtained_change_in_metall_rates">Some new metal prices</string>
+    <string name="no_fresh_data">Your data is the most recent.</string>
 </resources>

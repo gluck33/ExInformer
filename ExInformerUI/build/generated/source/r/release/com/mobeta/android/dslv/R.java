@@ -28,11 +28,11 @@ public final class R {
 		public static final int use_default_controller = 0x7f010036;
 	}
 	public static final class id {
-		public static final int clickRemove = 0x7f0a0015;
-		public static final int flingRemove = 0x7f0a0016;
-		public static final int onDown = 0x7f0a0017;
-		public static final int onLongPress = 0x7f0a0018;
-		public static final int onMove = 0x7f0a0019;
+		public static final int clickRemove = 0x7f0d0015;
+		public static final int flingRemove = 0x7f0d0016;
+		public static final int onDown = 0x7f0d0017;
+		public static final int onLongPress = 0x7f0d0018;
+		public static final int onMove = 0x7f0d0019;
 	}
 	public static final class styleable {
 		public static final int[] DragSortListView = { 0x7f010025, 0x7f010026, 0x7f010027, 0x7f010028, 0x7f010029, 0x7f01002a, 0x7f01002b, 0x7f01002c, 0x7f01002d, 0x7f01002e, 0x7f01002f, 0x7f010030, 0x7f010031, 0x7f010032, 0x7f010033, 0x7f010034, 0x7f010035, 0x7f010036 };

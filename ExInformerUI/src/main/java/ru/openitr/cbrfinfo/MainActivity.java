@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.List;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.PopupMenu;
+import android.widget.Toast;
 
 import ru.openitr.cbrfinfo.exinformerlib.*;
 import ru.openitr.cbrfinfo.exinformerlib.BuildConfig;
@@ -49,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
     public static final int FIN_STATUS_NETWORK_DISABLE = 30;
     public static final int FIN_STATUS_NOT_RESPOND = 40;
     public static final int FIN_STATUS_NO_DATA = 50;
+    protected static final int STATUS_NOT_FRESH_DATA = 60;
     private static final int FIN_STATUS_BAD_DATA = 70;
     public static final int GET_INFO = 80;
     private static final int SHOW_PREFERENCES = 1;
@@ -365,6 +367,8 @@ public class MainActivity extends ActionBarActivity {
                         netSettingsDialog = AppDialog.newInstance(AppDialog.NETSETTINGS_DIALOG);
                         netSettingsDialog.show(getSupportFragmentManager(),Integer.toString(AppDialog.NETSETTINGS_DIALOG));
                         break;
+                    case STATUS_NOT_FRESH_DATA:
+                        showToast(getString(R.string.no_fresh_data));
                     default:
                         LogSystem.logInFile(LOG_TAG, this.getClass().getSimpleName() + " : Refreshing OK.");
                         endProgress();
@@ -375,6 +379,13 @@ public class MainActivity extends ActionBarActivity {
                 getInfo(0);
             }
         }
+    }
+
+    private void showToast(String messageStr) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, messageStr, duration);
+        toast.show();
     }
 
 }
